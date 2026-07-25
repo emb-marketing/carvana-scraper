@@ -1,0 +1,449 @@
+{
+  "search_url": "https://www.carvana.com/cars",
+  "sample_size": 10,
+  "vehicles": [
+    {
+      "vin": "JTEEU5JR6P5298535",
+      "vehicleId": 4568548,
+      "label": "2023 Toyota 4Runner",
+      "mileage": 29677,
+      "price_total": 38990,
+      "reports": [
+        {
+          "vendor": "carfax",
+          "url": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEEU5JR6P5298535",
+          "sequence": 1,
+          "challenged": false,
+          "assist_cleared": null,
+          "status": 200,
+          "text_bytes": 12865,
+          "title": "CARFAX Vehicle History Report for this 2023 TOYOTA 4RUNNER SR5: JTEEU5JR6P5298535",
+          "content_signals": {
+            "owner": 36,
+            "accident": 6,
+            "title": 19,
+            "odometer": 4,
+            "service": 32,
+            "damage": 7,
+            "recall": 9,
+            "salvage": 1,
+            "records": 2
+          },
+          "looks_like_report": true
+        }
+      ],
+      "links": {
+        "carfax": [
+          "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEEU5JR6P5298535"
+        ],
+        "autocheck": [
+          "https://www.carvana.com/vehicle/autocheck/4568548"
+        ],
+        "anchor_texts": [
+          "View report",
+          "Personal",
+          "View Report (opens in a new tab)"
+        ]
+      }
+    },
+    {
+      "vin": "JTEZU5JR0G5129158",
+      "vehicleId": 4515493,
+      "label": "2016 Toyota 4Runner",
+      "mileage": 61438,
+      "price_total": 31590,
+      "reports": [
+        {
+          "vendor": "carfax",
+          "url": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEZU5JR0G5129158",
+          "sequence": 2,
+          "challenged": false,
+          "assist_cleared": null,
+          "status": 200,
+          "text_bytes": 13462,
+          "title": "CARFAX Vehicle History Report for this 2016 TOYOTA 4RUNNER SR5 PREMIUM: JTEZU5JR0G5129158",
+          "content_signals": {
+            "owner": 39,
+            "accident": 6,
+            "title": 18,
+            "odometer": 5,
+            "service": 31,
+            "damage": 7,
+            "recall": 10,
+            "salvage": 1,
+            "records": 4
+          },
+          "looks_like_report": true
+        }
+      ],
+      "links": {
+        "carfax": [
+          "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEZU5JR0G5129158"
+        ],
+        "autocheck": [
+          "https://www.carvana.com/vehicle/autocheck/4515493"
+        ],
+        "anchor_texts": [
+          "View report",
+          "Details",
+          "Lease",
+          "View Report (opens in a new tab)"
+        ]
+      }
+    },
+    {
+      "vin": "3TYKD5HN3ST028017",
+      "vehicleId": 4562622,
+      "label": "2025 Toyota Tacoma Double Cab",
+      "mileage": 20202,
+      "price_total": 35590,
+      "reports": [
+        {
+          "vendor": "carfax",
+          "url": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=3TYKD5HN3ST028017",
+          "sequence": 3,
+          "challenged": false,
+          "assist_cleared": null,
+          "status": 200,
+          "text_bytes": 8908,
+          "title": "CARFAX Vehicle History Report for this 2025 TOYOTA TACOMA SR: 3TYKD5HN3ST028017",
+          "content_signals": {
+            "owner": 28,
+            "accident": 15,
+            "title": 16,
+            "odometer": 4,
+            "service": 4,
+            "damage": 18,
+            "recall": 9,
+            "salvage": 1,
+            "records": 2
+          },
+          "looks_like_report": true
+        }
+      ],
+      "links": {
+        "carfax": [
+          "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=3TYKD5HN3ST028017"
+        ],
+        "autocheck": [
+          "https://www.carvana.com/vehicle/autocheck/4562622"
+        ],
+        "anchor_texts": [
+          "Fleet",
+          "View Report (opens in a new tab)"
+        ]
+      }
+    },
+    {
+      "vin": "5N1DR3BA5SC255898",
+      "vehicleId": 4565336,
+      "label": "2025 Nissan Pathfinder",
+      "mileage": 26417,
+      "price_total": 28590,
+      "reports": [
+        {
+          "vendor": "carfax",
+          "url": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=5N1DR3BA5SC255898",
+          "sequence": 4,
+          "challenged": false,
+          "assist_cleared": null,
+          "status": 200,
+          "text_bytes": 6454,
+          "title": "CARFAX Vehicle History Report for this 2025 NISSAN PATHFINDER SV: 5N1DR3BA5SC255898",
+          "content_signals": {
+            "owner": 27,
+            "accident": 6,
+            "title": 15,
+            "odometer": 4,
+            "service": 10,
+            "damage": 6,
+            "recall": 4,
+            "salvage": 1,
+            "records": 4
+          },
+          "looks_like_report": true
+        }
+      ],
+      "links": {
+        "carfax": [
+          "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=5N1DR3BA5SC255898"
+        ],
+        "autocheck": [
+          "https://www.carvana.com/vehicle/autocheck/4565336"
+        ],
+        "anchor_texts": [
+          "View report",
+          "Details",
+          "Rental",
+          "View Report (opens in a new tab)"
+        ]
+      }
+    },
+    {
+      "vin": "JTEBU5JR6K5727068",
+      "vehicleId": 4444686,
+      "label": "2019 Toyota 4Runner",
+      "mileage": 55716,
+      "price_total": 36990,
+      "reports": [
+        {
+          "vendor": "carfax",
+          "url": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEBU5JR6K5727068",
+          "sequence": 5,
+          "challenged": false,
+          "assist_cleared": null,
+          "status": 200,
+          "text_bytes": 14752,
+          "title": "CARFAX Vehicle History Report for this 2019 TOYOTA 4RUNNER LIMITED: JTEBU5JR6K5727068",
+          "content_signals": {
+            "owner": 38,
+            "accident": 6,
+            "title": 21,
+            "odometer": 4,
+            "service": 32,
+            "damage": 7,
+            "recall": 9,
+            "salvage": 1,
+            "records": 2
+          },
+          "looks_like_report": true
+        }
+      ],
+      "links": {
+        "carfax": [
+          "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEBU5JR6K5727068"
+        ],
+        "autocheck": [
+          "https://www.carvana.com/vehicle/autocheck/4444686"
+        ],
+        "anchor_texts": [
+          "View report",
+          "Personal",
+          "View Report (opens in a new tab)"
+        ]
+      }
+    },
+    {
+      "vin": "JTEEU5JR2P5303553",
+      "vehicleId": 4470485,
+      "label": "2023 Toyota 4Runner",
+      "mileage": 12733,
+      "price_total": 39990,
+      "reports": [
+        {
+          "vendor": "carfax",
+          "url": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEEU5JR2P5303553",
+          "sequence": 6,
+          "challenged": false,
+          "assist_cleared": null,
+          "status": 200,
+          "text_bytes": 13387,
+          "title": "CARFAX Vehicle History Report for this 2023 TOYOTA 4RUNNER SR5: JTEEU5JR2P5303553",
+          "content_signals": {
+            "owner": 44,
+            "accident": 5,
+            "title": 21,
+            "odometer": 5,
+            "service": 20,
+            "damage": 25,
+            "recall": 11,
+            "salvage": 1,
+            "records": 4
+          },
+          "looks_like_report": true
+        }
+      ],
+      "links": {
+        "carfax": [
+          "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEEU5JR2P5303553"
+        ],
+        "autocheck": [
+          "https://www.carvana.com/vehicle/autocheck/4470485"
+        ],
+        "anchor_texts": [
+          "Fleet, Rental",
+          "View Report (opens in a new tab)"
+        ]
+      }
+    },
+    {
+      "vin": "JTEBU5JR2K5713815",
+      "vehicleId": 4537673,
+      "label": "2019 Toyota 4Runner",
+      "mileage": 90503,
+      "price_total": 33590,
+      "reports": [
+        {
+          "vendor": "carfax",
+          "url": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEBU5JR2K5713815",
+          "sequence": 7,
+          "challenged": false,
+          "assist_cleared": null,
+          "status": 403,
+          "text_bytes": 0,
+          "title": "carfax.com",
+          "content_signals": {
+            "owner": 0,
+            "accident": 0,
+            "title": 0,
+            "odometer": 0,
+            "service": 0,
+            "damage": 0,
+            "recall": 0,
+            "salvage": 0,
+            "records": 0
+          },
+          "looks_like_report": false
+        }
+      ],
+      "links": {
+        "carfax": [
+          "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEBU5JR2K5713815"
+        ],
+        "autocheck": [
+          "https://www.carvana.com/vehicle/autocheck/4537673"
+        ],
+        "anchor_texts": [
+          "View report",
+          "Details",
+          "Lease",
+          "View Report (opens in a new tab)"
+        ]
+      }
+    },
+    {
+      "vin": "5TDGZRAH1NS541642",
+      "vehicleId": 4477775,
+      "label": "2022 Toyota Highlander",
+      "mileage": 49731,
+      "price_total": 33590,
+      "reports": [
+        {
+          "vendor": "carfax",
+          "url": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=5TDGZRAH1NS541642",
+          "sequence": 8,
+          "challenged": false,
+          "assist_cleared": null,
+          "status": 403,
+          "text_bytes": 0,
+          "title": "carfax.com",
+          "content_signals": {
+            "owner": 0,
+            "accident": 0,
+            "title": 0,
+            "odometer": 0,
+            "service": 0,
+            "damage": 0,
+            "recall": 0,
+            "salvage": 0,
+            "records": 0
+          },
+          "looks_like_report": false
+        }
+      ],
+      "links": {
+        "carfax": [
+          "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=5TDGZRAH1NS541642"
+        ],
+        "autocheck": [
+          "https://www.carvana.com/vehicle/autocheck/4477775"
+        ],
+        "anchor_texts": [
+          "Fleet, Rental",
+          "View Report (opens in a new tab)"
+        ]
+      }
+    },
+    {
+      "vin": "JTEFU5JR0N5264964",
+      "vehicleId": 4520496,
+      "label": "2022 Toyota 4Runner",
+      "mileage": 50817,
+      "price_total": 39990,
+      "reports": [
+        {
+          "vendor": "carfax",
+          "url": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEFU5JR0N5264964",
+          "sequence": 9,
+          "challenged": false,
+          "assist_cleared": null,
+          "status": 403,
+          "text_bytes": 0,
+          "title": "carfax.com",
+          "content_signals": {
+            "owner": 0,
+            "accident": 0,
+            "title": 0,
+            "odometer": 0,
+            "service": 0,
+            "damage": 0,
+            "recall": 0,
+            "salvage": 0,
+            "records": 0
+          },
+          "looks_like_report": false
+        }
+      ],
+      "links": {
+        "carfax": [
+          "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEFU5JR0N5264964"
+        ],
+        "autocheck": [
+          "https://www.carvana.com/vehicle/autocheck/4520496"
+        ],
+        "anchor_texts": [
+          "View report",
+          "Details",
+          "Personal",
+          "View Report (opens in a new tab)"
+        ]
+      }
+    },
+    {
+      "vin": "5TDAAAA53RS010775",
+      "vehicleId": 4538722,
+      "label": "2024 Toyota Grand Highlander",
+      "mileage": 12717,
+      "price_total": 45590,
+      "reports": [
+        {
+          "vendor": "carfax",
+          "url": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=5TDAAAA53RS010775",
+          "sequence": 10,
+          "challenged": false,
+          "assist_cleared": null,
+          "status": 403,
+          "text_bytes": 0,
+          "title": "carfax.com",
+          "content_signals": {
+            "owner": 0,
+            "accident": 0,
+            "title": 0,
+            "odometer": 0,
+            "service": 0,
+            "damage": 0,
+            "recall": 0,
+            "salvage": 0,
+            "records": 0
+          },
+          "looks_like_report": false
+        }
+      ],
+      "links": {
+        "carfax": [
+          "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=5TDAAAA53RS010775"
+        ],
+        "autocheck": [
+          "https://www.carvana.com/vehicle/autocheck/4538722"
+        ],
+        "anchor_texts": [
+          "View report",
+          "Details",
+          "Personal",
+          "View Report (opens in a new tab)"
+        ]
+      }
+    }
+  ],
+  "extracted_count": 21
+}

@@ -1,0 +1,365 @@
+{
+  "_source": "RSC flight payload / recommendations API \u2014 one representative record",
+  "_all_keys": [
+    "analyticsOnlyGetItByDays",
+    "backSeatImageUrl",
+    "bodyStyle",
+    "color",
+    "drivingMiles",
+    "earliestDaysToDeliveryOrPickupType",
+    "earliestLocalLocation",
+    "entireDashImageUrl",
+    "fuelType",
+    "fulfillmentType",
+    "imageUrl",
+    "infotainmentImageUrl",
+    "interiorColor",
+    "isLockedByCurrentUser",
+    "isNewSinceLastVisit",
+    "isOnDemand",
+    "isPurchasePending",
+    "isSprinkle",
+    "jellyBeanDesktopUrl",
+    "jellyBeanMobileUrl",
+    "kbbTrim",
+    "locationId",
+    "luxuryType",
+    "make",
+    "marketplaceIncentives",
+    "matchedFilters",
+    "mileage",
+    "milesPerGallon",
+    "missingFilters",
+    "model",
+    "offering",
+    "parentModel",
+    "passengerSeatImageUrl",
+    "price",
+    "score",
+    "seatingCapacity",
+    "splattingVideos",
+    "sportType",
+    "standardizedHero",
+    "steeringImageUrl",
+    "stockNumber",
+    "stockRecallStatusType",
+    "storeKey",
+    "stores",
+    "textlessUrl",
+    "transportCost",
+    "trim",
+    "trunkImageUrl",
+    "vdpSlug",
+    "vehicleId",
+    "vehicleInventoryType",
+    "vehicleLockType",
+    "vehiclePurchaseType",
+    "vehicleReservableReasons",
+    "vehicleTags",
+    "vin",
+    "year"
+  ],
+  "record": {
+    "stockNumber": 2005064921,
+    "vehicleId": 4566118,
+    "make": "Toyota",
+    "parentModel": "Highlander",
+    "model": "Highlander",
+    "trim": "XLE",
+    "kbbTrim": "XLE Sport Utility 4D",
+    "color": "Black",
+    "interiorColor": "Black",
+    "bodyStyle": "Suv",
+    "mileage": 67921,
+    "milesPerGallon": 22,
+    "fuelType": "Gas",
+    "price": {
+      "total": 27990.0,
+      "totalDiscountAmount": 0.0,
+      "discounts": [],
+      "transportCost": 1990.0,
+      "pricingErrorMessage": "",
+      "totalTaxes": 0.0,
+      "totalFees": 0.0,
+      "kbbValue": 24230.0,
+      "feesMinusShipping": 0.0,
+      "incentivizedPrice": 27990.0,
+      "msrp": 40580.0,
+      "marketAdjustment": -12590.0,
+      "incentives": [],
+      "marketplaceIncentives": [],
+      "appliedIncentives": [],
+      "additionalIncentives": []
+    },
+    "year": 2018,
+    "seatingCapacity": 8,
+    "imageUrl": "/2005064921/post-large/normalized/zoomcrop/2005064921-edc-02.jpg?v=2026.7.25_18.50.12",
+    "standardizedHero": "https://vexgateway.fastly.carvana.io/2005064921/standardizedHero.jpg?v=1784751286.899",
+    "jellyBeanDesktopUrl": "https://vexstockimages.fastly.carvana.io/stockimages/2018_TOYOTA_HIGHLANDER_XLE%20SPORT%20UTILITY%204D_BLACK_stock_1_desktop.png?v=1772051602.003",
+    "jellyBeanMobileUrl": "https://vexstockimages.fastly.carvana.io/stockimages/2018_TOYOTA_HIGHLANDER_XLE%20SPORT%20UTILITY%204D_BLACK_stock_1_mobile.png?v=1772051602.003",
+    "textlessUrl": "https://vexgateway.fastly.carvana.io/2005064921/hero-no-letters.jpg",
+    "passengerSeatImageUrl": "",
+    "entireDashImageUrl": "https://vexgateway.fastly.carvana.io/vex-7055425/details/feature-239210621.jpg?v=1784732277.235",
+    "infotainmentImageUrl": "https://vexgateway.fastly.carvana.io/vex-7055425/details/feature-239210635.jpg?v=1784732277.235",
+    "steeringImageUrl": "https://vexgateway.fastly.carvana.io/vex-7055425/details/feature-239210623.jpg?v=1784732277.235",
+    "backSeatImageUrl": "https://vexgateway.fastly.carvana.io/vex-7055425/details/feature-239210618.jpg?v=1784732277.235",
+    "trunkImageUrl": "https://vexgateway.fastly.carvana.io/vex-7055425/details/feature-239210624.jpg?v=1784732277.235",
+    "isOnDemand": false,
+    "isPurchasePending": false,
+    "transportCost": 1990,
+    "vehicleInventoryType": 1,
+    "fulfillmentType": 3,
+    "vehicleLockType": 0,
+    "isLockedByCurrentUser": false,
+    "vdpSlug": "2018-toyota-highlander-xle",
+    "locationId": 246,
+    "stockRecallStatusType": 0,
+    "vin": "5TDJZRFH2JS539326",
+    "vehicleTags": [
+      {
+        "tagId": 121,
+        "tagCategoryId": 1,
+        "tagKey": "RecentlyAdded",
+        "tagName": "Recently Added",
+        "tagDescription": "This vehicle has been made purchasable for the first time within the last 72 hours",
+        "tagToolTip": "",
+        "sortOrder": 50,
+        "isResultTileDisplayable": true
+      }
+    ],
+    "matchedFilters": {},
+    "missingFilters": {},
+    "storeKey": "None",
+    "stores": [],
+    "vehiclePurchaseType": "Purchasable",
+    "vehicleReservableReasons": [],
+    "splattingVideos": [
+      {
+        "videoName": "srpvideo-swipe",
+        "h264VideoURL": "https://vexgateway.fastly.carvana.io/executions/336881028/GAUSSIAN_RENDERER/srpvideo-swipe.mp4?v=1784751279.335",
+        "h265VideoURL": "https://vexgateway.fastly.carvana.io/executions/336881028/GAUSSIAN_RENDERER/srpvideo-swipe-h265.mp4?v=1784751279.335",
+        "dimensions": {
+          "width": 450,
+          "height": 240
+        },
+        "pauseFrames": [
+          {
+            "start": 0,
+            "end": 0
+          },
+          {
+            "start": 45,
+            "end": 49
+          },
+          {
+            "start": 69,
+            "end": 73
+          },
+          {
+            "start": 111,
+            "end": 115
+          },
+          {
+            "start": 149,
+            "end": 153
+          },
+          {
+            "start": 192,
+            "end": 196
+          },
+          {
+            "start": 235,
+            "end": 239
+          },
+          {
+            "start": 278,
+            "end": 282
+          },
+          {
+            "start": 321,
+            "end": 325
+          },
+          {
+            "start": 364,
+            "end": 368
+          },
+          {
+            "start": 407,
+            "end": 415
+          },
+          {
+            "start": 471,
+            "end": 475
+          },
+          {
+            "start": 531,
+            "end": 539
+          },
+          {
+            "start": 578,
+            "end": 582
+          },
+          {
+            "start": 621,
+            "end": 625
+          },
+          {
+            "start": 664,
+            "end": 668
+          },
+          {
+            "start": 707,
+            "end": 711
+          },
+          {
+            "start": 750,
+            "end": 754
+          },
+          {
+            "start": 793,
+            "end": 797
+          },
+          {
+            "start": 831,
+            "end": 835
+          },
+          {
+            "start": 873,
+            "end": 877
+          },
+          {
+            "start": 897,
+            "end": 901
+          },
+          {
+            "start": 946,
+            "end": 950
+          }
+        ],
+        "thumbnailURL": "https://vexgateway.fastly.carvana.io/executions/336881028/GAUSSIAN_RENDERER/srpvideo-swipe.jpg?v=1784751279.335",
+        "frameCount": 950,
+        "fps": 30.0
+      },
+      {
+        "videoName": "srpvideo-photo-cards",
+        "h264VideoURL": "https://vexgateway.fastly.carvana.io/executions/336881028/GAUSSIAN_RENDERER/srpvideo-photo-cards-h264.mp4?v=1784751279.335",
+        "h265VideoURL": "https://vexgateway.fastly.carvana.io/executions/336881028/GAUSSIAN_RENDERER/srpvideo-photo-cards-h265.mp4?v=1784751279.335",
+        "dimensions": {
+          "width": 450,
+          "height": 240
+        },
+        "pauseFrames": [
+          {
+            "start": 0,
+            "end": 0
+          },
+          {
+            "start": 33,
+            "end": 39
+          },
+          {
+            "start": 66,
+            "end": 72
+          },
+          {
+            "start": 99,
+            "end": 105
+          },
+          {
+            "start": 132,
+            "end": 138
+          },
+          {
+            "start": 165,
+            "end": 171
+          },
+          {
+            "start": 198,
+            "end": 204
+          },
+          {
+            "start": 231,
+            "end": 237
+          },
+          {
+            "start": 263,
+            "end": 269
+          },
+          {
+            "start": 295,
+            "end": 301
+          },
+          {
+            "start": 327,
+            "end": 333
+          },
+          {
+            "start": 366,
+            "end": 372
+          },
+          {
+            "start": 405,
+            "end": 411
+          },
+          {
+            "start": 437,
+            "end": 443
+          },
+          {
+            "start": 469,
+            "end": 475
+          },
+          {
+            "start": 501,
+            "end": 507
+          },
+          {
+            "start": 534,
+            "end": 540
+          },
+          {
+            "start": 567,
+            "end": 573
+          },
+          {
+            "start": 600,
+            "end": 606
+          },
+          {
+            "start": 633,
+            "end": 639
+          },
+          {
+            "start": 666,
+            "end": 672
+          },
+          {
+            "start": 699,
+            "end": 705
+          },
+          {
+            "start": 738,
+            "end": 744
+          }
+        ],
+        "thumbnailURL": "https://vexgateway.fastly.carvana.io/executions/336881028/GAUSSIAN_RENDERER/srpvideo-photo-cards.jpg?v=1784751279.335",
+        "frameCount": 744,
+        "fps": 30.0
+      }
+    ],
+    "earliestDaysToDeliveryOrPickupType": "Pickup",
+    "isNewSinceLastVisit": false,
+    "drivingMiles": 1781,
+    "score": 3.3848348,
+    "isSprinkle": false,
+    "earliestLocalLocation": {
+      "locationId": 154,
+      "activityType": "unknown"
+    },
+    "analyticsOnlyGetItByDays": 9,
+    "offering": "Used",
+    "luxuryType": "Non-Luxury",
+    "sportType": "Non-Sport",
+    "marketplaceIncentives": []
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "results": [
+    {
+      "sequence": 1,
+      "vin": "JTEBU5JR2K5713815",
+      "label": "2019 Toyota 4Runner",
+      "initially_challenged": true,
+      "markers": [
+        "captcha-delivery.com",
+        "datadome",
+        "geo.captcha-delivery"
+      ],
+      "cookies_before": [
+        "datadome"
+      ],
+      "assist_cleared": true,
+      "assist_seconds": 33.2,
+      "cookies_after": [
+        "datadome"
+      ],
+      "text_bytes": 10712,
+      "title": "CARFAX Vehicle History Report for this 2019 TOYOTA 4RUNNER SR5 PREMIUM: JTEBU5JR2K5713815",
+      "report_loaded": true,
+      "successes_since_solve": 0
+    },
+    {
+      "sequence": 2,
+      "vin": "5TDGZRAH1NS541642",
+      "label": "2022 Toyota Highlander",
+      "initially_challenged": false,
+      "markers": [],
+      "cookies_before": [
+        "datadome"
+      ],
+      "text_bytes": 14114,
+      "title": "CARFAX Vehicle History Report for this 2022 TOYOTA HIGHLANDER XLE: 5TDGZRAH1NS541642",
+      "report_loaded": true,
+      "successes_since_solve": 1
+    },
+    {
+      "sequence": 3,
+      "vin": "JTEFU5JR0N5264964",
+      "label": "2022 Toyota 4Runner",
+      "initially_challenged": false,
+      "markers": [],
+      "cookies_before": [
+        "datadome"
+      ],
+      "text_bytes": 9821,
+      "title": "CARFAX Vehicle History Report for this 2022 TOYOTA 4RUNNER SR5 PREMIUM: JTEFU5JR0N5264964",
+      "report_loaded": true,
+      "successes_since_solve": 2
+    },
+    {
+      "sequence": 4,
+      "vin": "5TDAAAA53RS010775",
+      "label": "2024 Toyota Grand Highlander",
+      "initially_challenged": false,
+      "markers": [],
+      "cookies_before": [
+        "datadome"
+      ],
+      "text_bytes": 7132,
+      "title": "CARFAX Vehicle History Report for this 2024 TOYOTA GRAND HIGHLANDER XLE: 5TDAAAA53RS010775",
+      "report_loaded": true,
+      "successes_since_solve": 3
+    },
+    {
+      "sequence": 5,
+      "vin": "JTEEU5JR6P5298535",
+      "label": "2023 Toyota 4Runner",
+      "initially_challenged": false,
+      "markers": [],
+      "cookies_before": [
+        "datadome"
+      ],
+      "text_bytes": 12865,
+      "title": "CARFAX Vehicle History Report for this 2023 TOYOTA 4RUNNER SR5: JTEEU5JR6P5298535",
+      "report_loaded": true,
+      "successes_since_solve": 4
+    },
+    {
+      "sequence": 6,
+      "vin": "JTEZU5JR0G5129158",
+      "label": "2016 Toyota 4Runner",
+      "initially_challenged": false,
+      "markers": [],
+      "cookies_before": [
+        "datadome"
+      ],
+      "text_bytes": 13462,
+      "title": "CARFAX Vehicle History Report for this 2016 TOYOTA 4RUNNER SR5 PREMIUM: JTEZU5JR0G5129158",
+      "report_loaded": true,
+      "successes_since_solve": 5
+    },
+    {
+      "sequence": 7,
+      "vin": "3TYKD5HN3ST028017",
+      "label": "2025 Toyota Tacoma Double Cab",
+      "initially_challenged": false,
+      "markers": [],
+      "cookies_before": [
+        "datadome"
+      ],
+      "text_bytes": 8908,
+      "title": "CARFAX Vehicle History Report for this 2025 TOYOTA TACOMA SR: 3TYKD5HN3ST028017",
+      "report_loaded": true,
+      "successes_since_solve": 6
+    },
+    {
+      "sequence": 8,
+      "vin": "5N1DR3BA5SC255898",
+      "label": "2025 Nissan Pathfinder",
+      "initially_challenged": false,
+      "markers": [],
+      "cookies_before": [
+        "datadome"
+      ],
+      "text_bytes": 6454,
+      "title": "CARFAX Vehicle History Report for this 2025 NISSAN PATHFINDER SV: 5N1DR3BA5SC255898",
+      "report_loaded": true,
+      "successes_since_solve": 7
+    }
+  ],
+  "timeline": [
+    "#1 PUZZLE SOLVED in 33.2s",
+    "#1 report loaded AFTER solve (10712b)",
+    "#2 clean (14114b)",
+    "#3 clean (9821b)",
+    "#4 clean (7132b)",
+    "#5 clean (12865b)",
+    "#6 clean (13462b)",
+    "#7 clean (8908b)",
+    "#8 clean (6454b)"
+  ]
+}

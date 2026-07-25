@@ -1,0 +1,1704 @@
+{
+  "base_search_url": "https://www.carvana.com/cars",
+  "filtered_search_url": "https://www.carvana.com/cars/toyota-4runner",
+  "captured_json_responses": [
+    {
+      "url": "https://apik.carvana.io/merch/buffering/api/v1/soonestavailabilitybulk",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"userId\":\"\",\"vehicles\":[{\"vehicleId\":4565238,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":356,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4557232,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":43,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4558656,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":292,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4531395,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":356,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4523926,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":356,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4495441,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":43,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4262238,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":292,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4531492,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":356,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4520776,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":356,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4579272,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":356,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4584766,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":292,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4563106,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":43,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4498718,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":292,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4442624,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":292,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4553278,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":356,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4520741,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":292,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4569215,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":356,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4572282,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":356,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4520532,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":356,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4526961,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":356,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4490613,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":292,\"vehicleSaleStatus\":\"Available\"}],\"zipCode\":\"89101\"}",
+      "resource_type": "xhr",
+      "bytes": 35341,
+      "top_level_keys": [
+        "content",
+        "errorMessage",
+        "status"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_buffering_api_v1_soonestavailabilitybulk.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/web-eventable/api/graph?ui-rendered",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"query\":\"mutation weapiEvent($EventPayload: EventPayload!) { event( payload: $EventPayload ) }\",\"operationName\":\"weapiEvent\",\"variables\":{\"EventPayload\":{\"clickstream\":{\"browser\":{\"cookieId\":\"ebaac806-3e3d-753a-5659-98ce1e79a470\",\"resolution\":\"1440x900\",\"referralUrl\":\"\",\"url\":\"https://www.carvana.com/cars\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"},\"device\":{\"resolution\":\"1440x900\"}},\"event\":{\"id\":\"4de16699-7f98-4321-9e39-40ca65059569\",\"name\":\"ui-rendered\",\"timestamp\":\"2026-07-25T18:49:15.340Z\"},\"metadata\":{\"correlationId\":\"c4a3ca29-f326-458f-a0b9-09c553e0831f\",\"environment\":\"prod\",\"project\":\"search\",\"track\":\"search\"},\"impersonation\":{\"isImpersonated\":false},\"customAttributes\":{\"appVersion\":\"1.40.96\",\"isWebview\":false,\"webview\":null,\"currentSearchRequestId\":\"d0756b55-0d1d-47ab-b765-43ca43c0a814\",\"previousSearchRequestId\":\"\"}}}}",
+      "resource_type": "fetch",
+      "bytes": 24,
+      "top_level_keys": [
+        "data"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_web-eventable_api_graph_ui-rendered.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v1/suggest/filters",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"analyticsData\":{\"browser\":\"Chrome\",\"clientId\":\"srp_ui\",\"deviceName\":\"\",\"isBot\":false,\"isFirstActiveSearchSession\":false,\"isMobileDevice\":false,\"previousSearchRequestId\":\"d0756b55-0d1d-47ab-b765-43ca43c0a814\",\"referrer\":\"\",\"searchSessionId\":\"e1a19ade-e25c-4522-919d-a55cf2563906\",\"utmParams\":{}},\"browserCookieId\":\"<redacted>\",\"dealershipId\":null,\"filters\":{},\"pagination\":{\"page\":1,\"pageSize\":24},\"requestedFeatures\":[\"ExcludeFacetData\",\"HideImpossibleCombos\",\"LocationBasedPrefiltering\",\"ApplyTradeIn\"],\"sortBy\":\"MostPopular\",\"zip5\":\"89101\",\"numberOfSuggestedFilters\":10}",
+      "resource_type": "xhr",
+      "bytes": 4949,
+      "top_level_keys": [
+        "suggestedFilters",
+        "suggestedFiltersRequestId"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_search_api_v1_suggest_filters.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v2/pricing",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"applyVerboseLogging\":false,\"browserCookieId\":\"<redacted>\",\"vehicleIds\":[4565238,4557232,4558656,4531395,4523926,4495441,4262238,4531492,4520776,4579272,4584766,4563106,4498718,4442624,4553278,4520741,4569215,4572282,4520532,4526961,4490613],\"zip5\":\"89101\",\"analyticsData\":{\"browser\":\"Chrome\",\"clientId\":\"srp_ui\",\"deviceName\":\"\",\"isBot\":false,\"isFirstActiveSearchSession\":false,\"isMobileDevice\":false,\"previousSearchRequestId\":\"d0756b55-0d1d-47ab-b765-43ca43c0a814\",\"referrer\":\"\",\"searchSessionId\":\"e1a19ade-e25c-4522-919d-a55cf2563906\",\"utmParams\":{}},\"applyTradeIn\":true,\"preferredAcquisitionName\":\"\"}",
+      "resource_type": "xhr",
+      "bytes": 15430,
+      "top_level_keys": [
+        "financeInfo",
+        "vehiclePaymentTermsMapping"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_search_api_v2_pricing.json"
+    },
+    {
+      "url": "https://pixels.spotify.com/v1/config/f616167ee261473684db60d401be3001",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 80,
+      "top_level_keys": [
+        "aamFields",
+        "cookieOptIn",
+        "pixelId"
+      ],
+      "record_count": null,
+      "file": "pixels.spotify.com_v1_config_f616167ee261473684db60d401be3001.json"
+    },
+    {
+      "url": "https://carvana.sjv.io/xur/12225",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "missingIdentifyInfo=true&_ir=U56%7C%7C1785005356048%7C2dd22784",
+      "resource_type": "xhr",
+      "bytes": 120,
+      "top_level_keys": [
+        "fpc",
+        "tps"
+      ],
+      "record_count": null,
+      "file": "carvana.sjv.io_xur_12225.json"
+    },
+    {
+      "url": "https://pixels.spotify.com/v1/ingest",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json",
+      "post_data": "{\"batch\":[{\"pid\":\"d004c0a1081f4bf3949f095db5a37524\",\"sid\":\"28d335c4bedb44e1b530362235e676d2\",\"events\":[{\"action\":\"view\",\"time\":1785005355.984,\"group\":null,\"label\":null,\"experiment\":null,\"body\":{\"url\":\"https://www.carvana.com/cars\",\"referrer\":\"\",\"inIframe\":false,\"windowWidth\":1440,\"windowHeight\":900,\"timezoneOffset\":420,\"viewParams\":{}}},{\"action\":\"alias\",\"time\":1785005355.984,\"group\":null,\"label\":null,\"experiment\":null,\"body\":{\"event_id\":null,\"alias_id\":\"undefined\",\"user_hashed_email\":null,\"user_hashed_phone_number\":null,\"partner_user_id\":null,\"click_id\":null}}],\"uid\":\"5f13854a9e3c426394b8c51e37bf6065\",\"time\":1785005355.985,\"pixel_version\":\"2.4.0-b\",\"pixel_id\":\"f616167ee261473684db60d401be3001\"}]}",
+      "resource_type": "fetch",
+      "bytes": 47,
+      "top_level_keys": [
+        "response"
+      ],
+      "record_count": null,
+      "file": "pixels.spotify.com_v1_ingest.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/web-eventable/api/graph?mega-srp-user-info",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"query\":\"mutation weapiEvent($EventPayload: EventPayload!) { event( payload: $EventPayload ) }\",\"operationName\":\"weapiEvent\",\"variables\":{\"EventPayload\":{\"clickstream\":{\"browser\":{\"cookieId\":\"ebaac806-3e3d-753a-5659-98ce1e79a470\",\"resolution\":\"1440x900\",\"referralUrl\":\"\",\"url\":\"https://www.carvana.com/cars\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"},\"device\":{\"resolution\":\"1440x900\"}},\"event\":{\"id\":\"7aa5077a-0b6c-4d98-bcd6-e052ce089db3\",\"name\":\"mega-srp-user-info\",\"timestamp\":\"2026-07-25T18:49:16.417Z\"},\"metadata\":{\"correlationId\":\"c4a3ca29-f326-458f-a0b9-09c553e0831f\",\"environment\":\"prod\",\"project\":\"search\",\"track\":\"search\"},\"impersonation\":{\"isImpersonated\":false},\"customAttributes\":{\"appliedFilters\":{},\"currentPage\":1,\"currentPageVehicleCount\":21,\"financeInfo\":{\"financingType\":\"estimatedFinancing\",\"maxMonthlyPayment\":2000,\"minDownPayment\":0,\"pricingHasErrored\":false,\"isUsingSampleTerms\":true,\"terms2ErrorMessage\":\"\",\"tradeTaxSavings\":0,\"creditStatusErrorMessage\":\"\",\"minDownPaymentNoTrade\":null},\"geoIpAccuracyRadius\":20,\"isOpenSearch\":true,\"isZipFromCookies\":false,\"previousSearchRequestId\":\"\",\"refSource\":\"\",\"searchRequestId\":\"d0756b55-0d1d-47ab-b765-43ca43c0a814\",\"searchSource\":\"InitialPageLoad\",\"sortBy\":\"MostPopular\",\"suggestionInfo\":{\"action\":null,\"buildKey\":null,\"description\":null,\"isStickySearchbar\":null,\"suggestionIndex\":null,\"suggestionsLength\":null,\"suggestionSource\":null,\"suggestionText\":null,\"textEntered\":null},\"totalMatchedInventory\":47906,\"tradesInfo\":{\"applyTradeIn\":null,\"maxTradeTaxSavings\":null,\"status\":null,\"totalTradeInEquity\":null,\"totalTradeInValue\":null,\"tradeIncentive\":null},\"zip\":\"89101\",\"zipFromIp\":null,\"zipSource\":\"ipaddress\",\"appVersion\":\"1.40.96\",\"isWebview\":false,\"webview\":null,\"currentSearchRequestId\":\"d0756b55-0d1d-47ab-b765-43ca43c0a814\"}}}}",
+      "resource_type": "fetch",
+      "bytes": 24,
+      "top_level_keys": [
+        "data"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_web-eventable_api_graph_mega-srp-user-info.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/web-eventable/api/graph?mega-srp-vehicle-data",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"query\":\"mutation weapiEvent($EventPayload: EventPayload!) { event( payload: $EventPayload ) }\",\"operationName\":\"weapiEvent\",\"variables\":{\"EventPayload\":{\"clickstream\":{\"browser\":{\"cookieId\":\"ebaac806-3e3d-753a-5659-98ce1e79a470\",\"resolution\":\"1440x900\",\"referralUrl\":\"\",\"url\":\"https://www.carvana.com/cars\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"},\"device\":{\"resolution\":\"1440x900\"}},\"event\":{\"id\":\"e81ad560-af2a-4f5a-abba-07c0caafbcbb\",\"name\":\"mega-srp-vehicle-data\",\"timestamp\":\"2026-07-25T18:49:16.417Z\"},\"metadata\":{\"correlationId\":\"c4a3ca29-f326-458f-a0b9-09c553e0831f\",\"environment\":\"prod\",\"project\":\"search\",\"track\":\"search\"},\"impersonation\":{\"isImpersonated\":false},\"customAttributes\":{\"searchRequestId\":\"d0756b55-0d1d-47ab-b765-43ca43c0a814\",\"previousSearchRequestId\":\"\",\"duplicateSearchRequestId\":false,\"vehicles\":[{\"deliveryInfo\":{\"daysToAvailability\":1,\"drivingMiles\":6,\"isRestrictedLocation\":false,\"locationCity\":\"North Las Vegas\",\"locationState\":\"NV\",\"servicingLocationId\":462},\"factoryUpgradesTotal\":395,\"hasSplattingVideo\":true,\"isPurchasePending\":false,\"locationId\":356,\"offering\":\"Used\",\"pickupInfo\":{\"daysToAvailability\":2,\"drivingMiles\":6,\"isRestrictedLocation\":false,\"locationCity\":\"Las Vegas\",\"locationState\":\"NV\",\"servicingLocationId\":154},\"stockNumber\":3006186810,\"stores\":[\"Partner-Direct\",\"CoreOD\"],\"tileIndex\":0,\"tileInfo\":{\"activityType\":\"LocalDelivery\",\"additionalCashDown\":0,\"apr\":0.0699,\"discounts\":[],\"estimatedTaxesAndFees\":1764,\"feesMinusShipping\":0,\"getItBy\":\"Tomorrow\",\"hasTerms\":true,\"isLocked\":false,\"isOnHold\":false,\"monthlyPayment\":376,\"nonRefundableShippingFees\":0,\"previousPrice\":21590,\"pricingErrorMessage\":\"\",\"routeId\":\"H4sIAAAAAAAAAyXFMQrAIBAEwL9sfUUUFdzfhFNCQFEkCEH8e4pMMwtXbqA9YoxeUJqCLljBqQ9oBTP996HggpYbNN4J-ltBswVpVDAIZh6g3R9_uc3zUgAAAA\",\"term\":75,\"total\":20990,\"totalCashDue\":0,\"totalTaxes\":0,\"transportCost\":0,\"utcSoonestDateTimeIso\":\"2026-07-26T19:07:00Z\"},\"tradeTaxSavings\":0,\"vehicleId\":4565238,\"vehicleInventoryType\":1,\"vehicleLockType\":0,\"vehiclePurchaseType\":\"Purchasable\",\"vehicleUnlockDateTime\":null},{\"deliveryInfo\":{\"daysToAvailability\":1,\"drivingMiles\":6,\"isRestrictedLocation\":false,\"locationCity\":\"North Las Vegas\",\"locationState\":\"NV\",\"servicingLocationId\":462},\"factoryUpgradesTotal\":null,\"hasSplattingVideo\":true,\"isPurchasePending\":false,\"locationId\":43,\"offering\":\"Used\",\"pickupInfo\":{\"daysToAvailability\":2,\"drivingMiles\":6,\"isRestrictedLocation\":false,\"locationCity\":\"Las Vegas\",\"locationState\":\"NV\",\"servicingLocationId\":154},\"stockNumber\":3006186721,\"stores\":[\"Partner-Direct\"],\"tileIndex\":1,\"tileInfo\":{\"activityType\":\"LocalDelivery\",\"additionalCashDown\":0,\"apr\":0.0699,\"discounts\":[],\"estimatedTaxesAndFees\":2011,\"feesMinusShipping\":0,\"getItBy\":\"Tomorrow\",\"hasTerms\":true,\"isLocked\":false,\"isOnHold\":false,\"monthlyPayment\":429,\"nonRefundableShippingFees\":0,\"previousPrice\":24590,\"pricingErrorMessage\":\"\",\"routeId\":\"H4sIAAAAAAAAAyXFMQrAIBAEwL9sfUUUFdzfhFNCQFEkCEH8e4pMMwtXbqA9YoxeUJqCLljBqQ9oBTP996HggpYbNN4J-ltBswVpVDAIZh6g3R9_uc3zUgAAAA\",\"term\":75,\"total\":23990,\"totalCashDue\":0,\"totalTaxes\":0,\"transportCost\":0,\"utcSoonestDateTimeIso\":\"2026-07-26T19:07:00Z\"},\"tradeTaxSavings\":0,\"vehicleId\":4557232,\"vehicleInventoryType\":1,\"vehicleLockType\":0,\"vehiclePurchaseType\":\"Purchasable\",\"vehicleUnlockDateTime\":null},{\"deliveryInfo\":{\"daysToAvailability\":1,\"drivingMiles\":6,\"isRestrictedLocation\":false,\"locationCity\":\"North Las Vegas\",\"locationState\":\"NV\",\"servicingLocationId\":462},\"factoryUpgradesTotal\":395,\"hasSplattingVideo\":true,\"isPurchasePending\":false,\"locationId\":292,\"offering\":\"Used\",\"pickupInfo\":{\"daysToAvailability\":1,\"drivingMiles\":6,\"isRestrictedLocation\":false,\"locationCity\":\"Las Vegas\",\"locationState\":\"NV\",\"servicingLocationId\":154},\"stockNumber\":2005025992,\"stores\":[\"Partner-Direct\",\"CoreOD\"],\"tileIndex\":2,\"tileInfo\":{\"activityType\":\"Pickup\",\"additionalCashDown\":0,\"apr\":0.0699,\"discounts\":[],\"estimatedTaxesAn",
+      "resource_type": "fetch",
+      "bytes": 24,
+      "top_level_keys": [
+        "data"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_web-eventable_api_graph_mega-srp-vehicle-data.json"
+    },
+    {
+      "url": "https://assets.fastly.carvana.io/merchui/_next/static/prefetch-manifest.json",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 842,
+      "top_level_keys": [
+        "<array>"
+      ],
+      "record_count": 14,
+      "file": "assets.fastly.carvana.io_merchui__next_static_prefetch-manifest.json.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v1/Delivery?Zip5=89101",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 10504,
+      "top_level_keys": [
+        "deliveryInfoGroups",
+        "deliveryInfoToDisplay",
+        "isDeliveryAllowed",
+        "isMeetupAllowed",
+        "isOutOfMarket",
+        "isPickupAllowed",
+        "isUserProfileZipMismatch",
+        "localLocationId",
+        "meetupInfoGroups",
+        "pickUpInfoToDisplay",
+        "pickupInfoGroups"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_search_api_v1_Delivery_Zip5_89101.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/header-module/header/assets-manifest.json?v=25-11-45",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 780,
+      "top_level_keys": [
+        "176.js",
+        "444.js",
+        "761.js",
+        "images/wsys-modal-header-mobile.png",
+        "images/wsys-modal-header-shape.png",
+        "index.js",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_header-module_header_assets-manifest.json_v_25-11-45.json"
+    },
+    {
+      "url": "https://assets.fastly.carvana.io/footer/module/assets-manifest.json?v=25-11-45",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 167,
+      "top_level_keys": [
+        "index.js",
+        "version"
+      ],
+      "record_count": null,
+      "file": "assets.fastly.carvana.io_footer_module_assets-manifest.json_v_25-11-45.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/merch-favorites-mfe/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 591,
+      "top_level_keys": [
+        "110.js",
+        "110.js.map",
+        "index.js",
+        "index.js.map",
+        "styles.css",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_merch-favorites-mfe_assets-manifest.json_v_251145.json"
+    },
+    {
+      "url": "https://apik.carvana.io/core/headerapi/api/v2/header?keys=partner&keys=appsettings&partnerUrlName=notused",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 748,
+      "top_level_keys": [
+        "appSettings",
+        "partner"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_core_headerapi_api_v2_header_keys_partner_keys_appsettings_partnerUrlName_notused.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/softpull-modal-module/assets-manifest.json?v=25-11-45",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 1512,
+      "top_level_keys": [
+        "811.js",
+        "index.js",
+        "locked.png",
+        "mockServiceWorker.js",
+        "styles.css",
+        "unlocked.png",
+        "vehicle1.png",
+        "vehicle2.png",
+        "vehicle=1.png",
+        "vehicle=2.png",
+        "vehicle=3.png",
+        "vehicle=4.png",
+        "vehicle=5.png",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_softpull-modal-module_assets-manifest.json_v_25-11-45.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/device-detection/api/v1/devicedetection",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 602,
+      "top_level_keys": [
+        "browserName",
+        "browserVendor",
+        "browserVersion",
+        "isBrowser",
+        "isChecker",
+        "isDownloader",
+        "isEReader",
+        "isFeedReader",
+        "isFilter",
+        "isGamesConsole",
+        "isMediaPlayer",
+        "isMobilePhone",
+        "isRobot",
+        "isSetTopBox",
+        "isSpam",
+        "isTV",
+        "isTablet",
+        "manufacturer",
+        "mobileDevice",
+        "osFamily",
+        "osName",
+        "osVendor",
+        "osVersion",
+        "primaryHardwareType",
+        "touchScreen"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_device-detection_api_v1_devicedetection.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/header-module/account-menu/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 727,
+      "top_level_keys": [
+        "761.js",
+        "images/wsys-modal-header-mobile.png",
+        "images/wsys-modal-header-shape.png",
+        "index.js",
+        "styles.css",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_header-module_account-menu_assets-manifest.json_v_251145.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/carvana-appraisal-refresh-ui/modules/assets-manifest.json?v=25-11-45",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 348,
+      "top_level_keys": [
+        "./index.html",
+        "index.js",
+        "index.js.map"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_carvana-appraisal-refresh-ui_modules_assets-manifest.json_v_25-11-45.json"
+    },
+    {
+      "url": "https://assets.fastly.carvana.io/authentication-flows/account-modal/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 778,
+      "top_level_keys": [
+        "36.js",
+        "3rdpartylicenses.txt",
+        "assets/.gitkeep",
+        "car.png",
+        "favicon.ico",
+        "index.css",
+        "index.js"
+      ],
+      "record_count": null,
+      "file": "assets.fastly.carvana.io_authentication-flows_account-modal_assets-manifest.json_v_251145.json"
+    },
+    {
+      "url": "https://storage.googleapis.com/chat-ui-ngcp-prod/build/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 222,
+      "top_level_keys": [
+        "484.main-min.js",
+        "main.js"
+      ],
+      "record_count": null,
+      "file": "storage.googleapis.com_chat-ui-ngcp-prod_build_assets-manifest.json_v_251145.json"
+    },
+    {
+      "url": "https://assets.fastly.carvana.io/authentication-flows/one-time-password-modal/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 729,
+      "top_level_keys": [
+        "36.js",
+        "3rdpartylicenses.txt",
+        "assets/.gitkeep",
+        "favicon.ico",
+        "index.css",
+        "index.js"
+      ],
+      "record_count": null,
+      "file": "assets.fastly.carvana.io_authentication-flows_one-time-password-modal_assets-manifest.json_v_251145.json"
+    },
+    {
+      "url": "https://apik.carvana.io/core/consent-api/api/v1/consent/disclosures",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "[{\"ConsentType\":\"Tcpa\"},{\"ConsentType\":\"Esign\"},{\"ConsentType\":\"CreateAccount\"}]",
+      "resource_type": "fetch",
+      "bytes": 2953,
+      "top_level_keys": [
+        "content",
+        "errorMessage",
+        "status"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_core_consent-api_api_v1_consent_disclosures.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/header-module/header/assets-manifest.json?v=25-11-45",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 780,
+      "top_level_keys": [
+        "176.js",
+        "444.js",
+        "761.js",
+        "images/wsys-modal-header-mobile.png",
+        "images/wsys-modal-header-shape.png",
+        "index.js",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_header-module_header_assets-manifest.json_v_25-11-45__2.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/merch-favorites-mfe/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 591,
+      "top_level_keys": [
+        "110.js",
+        "110.js.map",
+        "index.js",
+        "index.js.map",
+        "styles.css",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_merch-favorites-mfe_assets-manifest.json_v_251145__2.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/header-module/account-menu/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 727,
+      "top_level_keys": [
+        "761.js",
+        "images/wsys-modal-header-mobile.png",
+        "images/wsys-modal-header-shape.png",
+        "index.js",
+        "styles.css",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_header-module_account-menu_assets-manifest.json_v_251145__2.json"
+    },
+    {
+      "url": "https://storage.googleapis.com/chat-ui-ngcp-prod/build/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 222,
+      "top_level_keys": [
+        "484.main-min.js",
+        "main.js"
+      ],
+      "record_count": null,
+      "file": "storage.googleapis.com_chat-ui-ngcp-prod_build_assets-manifest.json_v_251145__2.json"
+    },
+    {
+      "url": "https://pixels.spotify.com/v1/config/f616167ee261473684db60d401be3001",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 80,
+      "top_level_keys": [
+        "aamFields",
+        "cookieOptIn",
+        "pixelId"
+      ],
+      "record_count": null,
+      "file": "pixels.spotify.com_v1_config_f616167ee261473684db60d401be3001__2.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/device-detection/api/v1/devicedetection",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 602,
+      "top_level_keys": [
+        "browserName",
+        "browserVendor",
+        "browserVersion",
+        "isBrowser",
+        "isChecker",
+        "isDownloader",
+        "isEReader",
+        "isFeedReader",
+        "isFilter",
+        "isGamesConsole",
+        "isMediaPlayer",
+        "isMobilePhone",
+        "isRobot",
+        "isSetTopBox",
+        "isSpam",
+        "isTV",
+        "isTablet",
+        "manufacturer",
+        "mobileDevice",
+        "osFamily",
+        "osName",
+        "osVendor",
+        "osVersion",
+        "primaryHardwareType",
+        "touchScreen"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_device-detection_api_v1_devicedetection__2.json"
+    },
+    {
+      "url": "https://pixels.spotify.com/v1/ingest",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json",
+      "post_data": "{\"batch\":[{\"pid\":\"aeb6c4d3c7e84703b8401f6a3510c6bf\",\"sid\":\"28d335c4bedb44e1b530362235e676d2\",\"events\":[{\"action\":\"view\",\"time\":1785005367.491,\"group\":null,\"label\":null,\"experiment\":null,\"body\":{\"url\":\"https://www.carvana.com/cars/toyota-4runner\",\"referrer\":\"\",\"inIframe\":false,\"windowWidth\":1440,\"windowHeight\":900,\"timezoneOffset\":420,\"viewParams\":{}}},{\"action\":\"alias\",\"time\":1785005367.491,\"group\":null,\"label\":null,\"experiment\":null,\"body\":{\"event_id\":null,\"alias_id\":\"undefined\",\"user_hashed_email\":null,\"user_hashed_phone_number\":null,\"partner_user_id\":null,\"click_id\":null}}],\"uid\":\"5f13854a9e3c426394b8c51e37bf6065\",\"time\":1785005367.492,\"pixel_version\":\"2.4.0-b\",\"pixel_id\":\"f616167ee261473684db60d401be3001\"}]}",
+      "resource_type": "fetch",
+      "bytes": 47,
+      "top_level_keys": [
+        "response"
+      ],
+      "record_count": null,
+      "file": "pixels.spotify.com_v1_ingest__2.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/buffering/api/v1/soonestavailabilitybulk",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"userId\":\"\",\"vehicles\":[{\"vehicleId\":4568548,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":43,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4515493,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":43,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4584034,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":259,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4515112,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":43,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4545374,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":43,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4470485,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":232,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4586189,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":232,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4537673,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":43,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4301248,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":413,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4595859,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":43,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4404159,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":43,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4444686,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":292,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4520496,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":356,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4552108,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":405,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4549566,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":259,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4581083,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":300,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4565721,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":300,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4542052,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":6,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4526663,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":405,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4585164,\"vehicleInventoryType\":\"DealerMarketplace\",\"vehicleLocationId\":66,\"vehicleSaleStatus\":\"Available\"},{\"vehicleId\":4468654,\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":224,\"vehicleSaleStatus\":\"Available\"}],\"zipCode\":\"89101\"}",
+      "resource_type": "xhr",
+      "bytes": 35331,
+      "top_level_keys": [
+        "content",
+        "errorMessage",
+        "status"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_buffering_api_v1_soonestavailabilitybulk__2.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/carvana-appraisal-refresh-ui/modules/assets-manifest.json?v=25-11-45",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 348,
+      "top_level_keys": [
+        "./index.html",
+        "index.js",
+        "index.js.map"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_carvana-appraisal-refresh-ui_modules_assets-manifest.json_v_25-11-45__2.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/softpull-modal-module/assets-manifest.json?v=25-11-45",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 1512,
+      "top_level_keys": [
+        "811.js",
+        "index.js",
+        "locked.png",
+        "mockServiceWorker.js",
+        "styles.css",
+        "unlocked.png",
+        "vehicle1.png",
+        "vehicle2.png",
+        "vehicle=1.png",
+        "vehicle=2.png",
+        "vehicle=3.png",
+        "vehicle=4.png",
+        "vehicle=5.png",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_softpull-modal-module_assets-manifest.json_v_25-11-45__2.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v1/suggest/filters",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"analyticsData\":{\"browser\":\"Chrome\",\"clientId\":\"srp_ui\",\"deviceName\":\"\",\"isBot\":false,\"isFirstActiveSearchSession\":true,\"isMobileDevice\":false,\"previousSearchRequestId\":\"3c4b58da-d5f0-4fd3-8154-c3916830b1f7\",\"referrer\":\"\",\"searchSessionId\":\"da6b0089-2ab6-414b-9190-e1801e122ff3\",\"utmParams\":{}},\"browserCookieId\":\"<redacted>\",\"dealershipId\":null,\"filters\":{\"makes\":[{\"name\":\"Toyota\",\"parentModels\":[{\"name\":\"4Runner\"}]}]},\"pagination\":{\"page\":1,\"pageSize\":24},\"requestedFeatures\":[\"ExcludeFacetData\",\"HideImpossibleCombos\",\"LocationBasedPrefiltering\",\"ApplyTradeIn\"],\"sortBy\":\"MostPopular\",\"zip5\":\"89101\",\"numberOfSuggestedFilters\":10}",
+      "resource_type": "xhr",
+      "bytes": 7074,
+      "top_level_keys": [
+        "suggestedFilters",
+        "suggestedFiltersRequestId"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_search_api_v1_suggest_filters__2.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v1/Delivery?Zip5=89101",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 10504,
+      "top_level_keys": [
+        "deliveryInfoGroups",
+        "deliveryInfoToDisplay",
+        "isDeliveryAllowed",
+        "isMeetupAllowed",
+        "isOutOfMarket",
+        "isPickupAllowed",
+        "isUserProfileZipMismatch",
+        "localLocationId",
+        "meetupInfoGroups",
+        "pickUpInfoToDisplay",
+        "pickupInfoGroups"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_search_api_v1_Delivery_Zip5_89101__2.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/web-eventable/api/graph?ui-rendered",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"query\":\"mutation weapiEvent($EventPayload: EventPayload!) { event( payload: $EventPayload ) }\",\"operationName\":\"weapiEvent\",\"variables\":{\"EventPayload\":{\"clickstream\":{\"browser\":{\"cookieId\":\"ebaac806-3e3d-753a-5659-98ce1e79a470\",\"resolution\":\"1440x900\",\"referralUrl\":\"\",\"url\":\"https://www.carvana.com/cars/toyota-4runner\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"},\"device\":{\"resolution\":\"1440x900\"}},\"event\":{\"id\":\"8c5033b0-731f-420a-9b42-09cc92c55050\",\"name\":\"ui-rendered\",\"timestamp\":\"2026-07-25T18:49:27.882Z\"},\"metadata\":{\"correlationId\":\"90b75c0d-2f2e-4311-a1fc-4e2142c35e5a\",\"environment\":\"prod\",\"project\":\"search\",\"track\":\"search\"},\"impersonation\":{\"isImpersonated\":false},\"customAttributes\":{\"appVersion\":\"1.40.96\",\"isWebview\":false,\"webview\":null,\"currentSearchRequestId\":\"3c4b58da-d5f0-4fd3-8154-c3916830b1f7\",\"previousSearchRequestId\":\"\"}}}}",
+      "resource_type": "fetch",
+      "bytes": 24,
+      "top_level_keys": [
+        "data"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_web-eventable_api_graph_ui-rendered__2.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v2/pricing",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"applyVerboseLogging\":false,\"browserCookieId\":\"<redacted>\",\"vehicleIds\":[4568548,4515493,4584034,4515112,4545374,4470485,4586189,4537673,4301248,4595859,4404159,4444686,4520496,4552108,4549566,4581083,4565721,4542052,4526663,4585164,4468654],\"zip5\":\"89101\",\"analyticsData\":{\"browser\":\"Chrome\",\"clientId\":\"srp_ui\",\"deviceName\":\"\",\"isBot\":false,\"isFirstActiveSearchSession\":true,\"isMobileDevice\":false,\"previousSearchRequestId\":\"3c4b58da-d5f0-4fd3-8154-c3916830b1f7\",\"referrer\":\"\",\"searchSessionId\":\"da6b0089-2ab6-414b-9190-e1801e122ff3\",\"utmParams\":{}},\"applyTradeIn\":true,\"preferredAcquisitionName\":\"\"}",
+      "resource_type": "xhr",
+      "bytes": 15538,
+      "top_level_keys": [
+        "financeInfo",
+        "vehiclePaymentTermsMapping"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_search_api_v2_pricing__2.json"
+    },
+    {
+      "url": "https://assets.fastly.carvana.io/merchui/_next/static/prefetch-manifest.json",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 842,
+      "top_level_keys": [
+        "<array>"
+      ],
+      "record_count": 14,
+      "file": "assets.fastly.carvana.io_merchui__next_static_prefetch-manifest.json__2.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/buffering/api/v1/soonestavailabilitybulk",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"userId\":\"\",\"vehicles\":[{\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":43,\"vehicleSaleStatus\":\"Available\",\"vehicleId\":4568548}],\"zipCode\":\"89101\"}",
+      "resource_type": "xhr",
+      "bytes": 1747,
+      "top_level_keys": [
+        "content",
+        "errorMessage",
+        "status"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_buffering_api_v1_soonestavailabilitybulk__3.json"
+    },
+    {
+      "url": "https://assets.fastly.carvana.io/spinner/spinner-loader/assets-manifest.json?v=25-11-45",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 105,
+      "top_level_keys": [
+        "index.js"
+      ],
+      "record_count": null,
+      "file": "assets.fastly.carvana.io_spinner_spinner-loader_assets-manifest.json_v_25-11-45.json"
+    },
+    {
+      "url": "https://pixels.spotify.com/v1/config/f616167ee261473684db60d401be3001",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 80,
+      "top_level_keys": [
+        "aamFields",
+        "cookieOptIn",
+        "pixelId"
+      ],
+      "record_count": null,
+      "file": "pixels.spotify.com_v1_config_f616167ee261473684db60d401be3001__3.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/split-test/api/v2/buckets/bundle",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"experiments\":[\"car-merch-spinner-raycasting\",\"car-merch-ui-vault-spinner\",\"car-merch-ui-vdp-mini-hero\",\"car-merch-ui-vdp-miu-miu-standards-and-150-inspection\",\"car-merch-ui-vdp-zipcode-hero\"],\"identifier\":\"ebaac806-3e3d-753a-5659-98ce1e79a470\"}",
+      "resource_type": "xhr",
+      "bytes": 660,
+      "top_level_keys": [
+        "content",
+        "errorMessage",
+        "status"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_split-test_api_v2_buckets_bundle.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/reviews/api/review/sv",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"from\":0,\"make\":\"Toyota\",\"model\":\"4Runner\",\"size\":20,\"trim\":\"SR5 Sport Utility 4D\",\"year\":2023}",
+      "resource_type": "xhr",
+      "bytes": 9724,
+      "top_level_keys": [
+        "reviews",
+        "summary"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_reviews_api_review_sv.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/web-eventable/api/graph?ui-rendered",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"query\":\"mutation weapiEvent($EventPayload: EventPayload!) { event( payload: $EventPayload ) }\",\"operationName\":\"weapiEvent\",\"variables\":{\"EventPayload\":{\"clickstream\":{\"browser\":{\"cookieId\":\"ebaac806-3e3d-753a-5659-98ce1e79a470\",\"resolution\":\"1440x900\",\"referralUrl\":\"\",\"url\":\"https://www.carvana.com/vehicle/4568548?refSource=srp\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"},\"device\":{\"resolution\":\"1440x900\"}},\"event\":{\"id\":\"bb0ff188-0668-4dd1-a003-4196cf955da9\",\"name\":\"ui-rendered\",\"timestamp\":\"2026-07-25T18:49:48.012Z\"},\"metadata\":{\"correlationId\":\"11bb3e73-e32b-444b-b7d8-7cad7d50b66d\",\"environment\":\"prod\",\"project\":\"vdp\",\"track\":\"vdp\"},\"impersonation\":{\"isImpersonated\":false},\"customAttributes\":{\"appVersion\":\"1.40.97\",\"campaignTemplate\":null,\"inventoryType\":\"Core\",\"isWebview\":false,\"offering\":\"Used\",\"page\":\"vdp\",\"vehicleId\":4568548,\"webview\":null,\"availabilityData\":{\"action\":\"GetStarted\",\"error\":\"None\",\"lockType\":\"None\"}}}}}",
+      "resource_type": "fetch",
+      "bytes": 24,
+      "top_level_keys": [
+        "data"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_web-eventable_api_graph_ui-rendered__3.json"
+    },
+    {
+      "url": "https://apik.carvana.io/core/discount/api/v1/discount?stateAbbreviation=NV&userId=",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 266,
+      "top_level_keys": [
+        "content",
+        "errorMessage",
+        "status"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_core_discount_api_v1_discount_stateAbbreviation_NV_userId.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/header-module/header/assets-manifest.json?v=25-11-45",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 780,
+      "top_level_keys": [
+        "176.js",
+        "444.js",
+        "761.js",
+        "images/wsys-modal-header-mobile.png",
+        "images/wsys-modal-header-shape.png",
+        "index.js",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_header-module_header_assets-manifest.json_v_25-11-45__3.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/merch-favorites-mfe/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 591,
+      "top_level_keys": [
+        "110.js",
+        "110.js.map",
+        "index.js",
+        "index.js.map",
+        "styles.css",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_merch-favorites-mfe_assets-manifest.json_v_251145__3.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/header-module/account-menu/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 727,
+      "top_level_keys": [
+        "761.js",
+        "images/wsys-modal-header-mobile.png",
+        "images/wsys-modal-header-shape.png",
+        "index.js",
+        "styles.css",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_header-module_account-menu_assets-manifest.json_v_251145__3.json"
+    },
+    {
+      "url": "https://storage.googleapis.com/chat-ui-ngcp-prod/build/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 222,
+      "top_level_keys": [
+        "484.main-min.js",
+        "main.js"
+      ],
+      "record_count": null,
+      "file": "storage.googleapis.com_chat-ui-ngcp-prod_build_assets-manifest.json_v_251145__3.json"
+    },
+    {
+      "url": "https://pixels.spotify.com/v1/ingest",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json",
+      "post_data": "{\"batch\":[{\"pid\":\"36eac1ffaf22468db934917ce2749cc6\",\"sid\":\"28d335c4bedb44e1b530362235e676d2\",\"events\":[{\"action\":\"view\",\"time\":1785005388.108,\"group\":null,\"label\":null,\"experiment\":null,\"body\":{\"url\":\"https://www.carvana.com/vehicle/4568548?refSource=srp\",\"referrer\":\"\",\"inIframe\":false,\"windowWidth\":1440,\"windowHeight\":900,\"timezoneOffset\":420,\"viewParams\":{}}},{\"action\":\"alias\",\"time\":1785005388.108,\"group\":null,\"label\":null,\"experiment\":null,\"body\":{\"event_id\":null,\"alias_id\":\"undefined\",\"user_hashed_email\":null,\"user_hashed_phone_number\":null,\"partner_user_id\":null,\"click_id\":null}}],\"uid\":\"5f13854a9e3c426394b8c51e37bf6065\",\"time\":1785005388.132,\"pixel_version\":\"2.4.0-b\",\"pixel_id\":\"f616167ee261473684db60d401be3001\"}]}",
+      "resource_type": "fetch",
+      "bytes": 47,
+      "top_level_keys": [
+        "response"
+      ],
+      "record_count": null,
+      "file": "pixels.spotify.com_v1_ingest__3.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/device-detection/api/v1/devicedetection",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 602,
+      "top_level_keys": [
+        "browserName",
+        "browserVendor",
+        "browserVersion",
+        "isBrowser",
+        "isChecker",
+        "isDownloader",
+        "isEReader",
+        "isFeedReader",
+        "isFilter",
+        "isGamesConsole",
+        "isMediaPlayer",
+        "isMobilePhone",
+        "isRobot",
+        "isSetTopBox",
+        "isSpam",
+        "isTV",
+        "isTablet",
+        "manufacturer",
+        "mobileDevice",
+        "osFamily",
+        "osName",
+        "osVendor",
+        "osVersion",
+        "primaryHardwareType",
+        "touchScreen"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_device-detection_api_v1_devicedetection__3.json"
+    },
+    {
+      "url": "https://spinnerdata.carvana.io/spinnerdata/2005072229/spinnerData.json?v=991669",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 70690,
+      "top_level_keys": [
+        "car",
+        "categories",
+        "createdAt",
+        "features",
+        "imperfections",
+        "interiorImages",
+        "packageOptionsData",
+        "poseData",
+        "spins"
+      ],
+      "record_count": null,
+      "file": "spinnerdata.carvana.io_spinnerdata_2005072229_spinnerData.json_v_991669.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v2/pricing/vehicle",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"applyVerboseLogging\":false,\"applyTradeIn\":true,\"browserCookieId\":\"<redacted>\",\"routeId\":\"H4sIAAAAAAAAAyXFMQrAIBAEwL9sfUUUFdzfhFNCQFEkCEH8e4pMMwtXbqA9YoxeUJqCLljBqQ9oBTP996HggpYbNN4J-ltBswVpVDAIZh6g3R9_uc3zUgAAAA\",\"vehicleId\":4568548,\"zip5\":\"89101\",\"preferredAcquisitionName\":\"\",\"analyticsData\":{\"clientId\":\"vdp_ui\",\"correlationId\":\"11bb3e73-e32b-444b-b7d8-7cad7d50b66d\",\"utmParams\":{}}}",
+      "resource_type": "xhr",
+      "bytes": 1176,
+      "top_level_keys": [
+        "errors",
+        "financeInfo",
+        "offering",
+        "price",
+        "searchRequestId",
+        "vehicleId"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_search_api_v2_pricing_vehicle.json"
+    },
+    {
+      "url": "https://descartes-external.ngcp.prod.nosidelines.io/vehicle-questions/",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json",
+      "post_data": "{\"correlation_id\":\"11bb3e73-e32b-444b-b7d8-7cad7d50b66d\",\"kbb_vehicle_id\":462691,\"user_id\":\"\",\"vehicle_id\":4568548,\"year\":2023,\"make\":\"Toyota\",\"model\":\"4Runner\",\"trim\":\"SR5 Sport Utility 4D\",\"page\":\"vdp_ui\"}",
+      "resource_type": "xhr",
+      "bytes": 1426,
+      "top_level_keys": [
+        "question_version",
+        "questions"
+      ],
+      "record_count": null,
+      "file": "descartes-external.ngcp.prod.nosidelines.io_vehicle-questions.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/carvanamerchcontextapi/api/v3/distance?zip5=89101",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 8129,
+      "top_level_keys": [
+        "locationDistances"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_carvanamerchcontextapi_api_v3_distance_zip5_89101.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/web-eventable/api/graph?SPT%20Data",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"query\":\"mutation weapiEvent($EventPayload: EventPayload!) { event( payload: $EventPayload ) }\",\"operationName\":\"weapiEvent\",\"variables\":{\"EventPayload\":{\"clickstream\":{\"browser\":{\"cookieId\":\"ebaac806-3e3d-753a-5659-98ce1e79a470\",\"resolution\":\"1440x900\",\"referralUrl\":\"\",\"url\":\"https://www.carvana.com/vehicle/4568548?refSource=srp\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"},\"device\":{\"resolution\":\"1440x900\"}},\"event\":{\"id\":\"15f8b13f-b0ba-4ba2-8ba7-952522db3b12\",\"name\":\"SPT Data\",\"timestamp\":\"2026-07-25T18:49:49.010Z\"},\"metadata\":{\"correlationId\":\"11bb3e73-e32b-444b-b7d8-7cad7d50b66d\",\"environment\":\"prod\",\"project\":\"vdp\",\"track\":\"vdp\"},\"impersonation\":{\"isImpersonated\":false},\"customAttributes\":{\"error\":\"None\",\"financingType\":\"estimatedFinancing\",\"hasSoftPull\":false,\"isInitialEvent\":true,\"isTradeInApplied\":null,\"merchSelectedActivityType\":\"LocalDelivery\",\"priceInfo\":{\"total\":38990,\"totalDiscountAmount\":0,\"discounts\":[],\"monthlyPayment\":697,\"downPayment\":0,\"downPaymentDetails\":{\"totalCashDue\":0,\"additionalCashDown\":0,\"nonRefundableShippingFees\":0,\"tradeDown\":0},\"apr\":0.0699,\"term\":75,\"transportCost\":0,\"pricingErrorMessage\":\"\",\"totalTaxes\":0,\"totalFees\":0,\"feesMinusShipping\":0,\"estimatedTaxesAndFees\":3247,\"tradeTaxSavings\":0,\"incentivizedPrice\":38990,\"msrp\":40155,\"marketAdjustment\":-1165,\"incentives\":[],\"marketplaceIncentives\":[],\"appliedIncentives\":[],\"additionalIncentives\":[]},\"transportCost\":0,\"totalPurchasePrice\":42237,\"pricingSearchRequestId\":\"45e10ff9-1b22-4438-82cf-fb5d3e4ae224\",\"zip\":\"89101\",\"appVersion\":\"1.40.97\",\"campaignTemplate\":null,\"inventoryType\":\"Core\",\"isWebview\":false,\"offering\":\"Used\",\"page\":\"vdp\",\"vehicleId\":4568548,\"webview\":null,\"availabilityData\":{\"action\":\"GetStarted\",\"error\":\"None\",\"lockType\":\"None\"}}}}}",
+      "resource_type": "fetch",
+      "bytes": 24,
+      "top_level_keys": [
+        "data"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_web-eventable_api_graph_SPT_20Data.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/web-eventable/api/graph?mega-vdp",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"query\":\"mutation weapiEvent($EventPayload: EventPayload!) { event( payload: $EventPayload ) }\",\"operationName\":\"weapiEvent\",\"variables\":{\"EventPayload\":{\"clickstream\":{\"browser\":{\"cookieId\":\"ebaac806-3e3d-753a-5659-98ce1e79a470\",\"resolution\":\"1440x900\",\"referralUrl\":\"\",\"url\":\"https://www.carvana.com/vehicle/4568548?refSource=srp\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"},\"device\":{\"resolution\":\"1440x900\"}},\"event\":{\"id\":\"371003b3-5e98-43a5-af15-92e651dcbcfe\",\"name\":\"mega-vdp\",\"timestamp\":\"2026-07-25T18:49:49.010Z\"},\"metadata\":{\"correlationId\":\"11bb3e73-e32b-444b-b7d8-7cad7d50b66d\",\"environment\":\"prod\",\"project\":\"vdp\",\"track\":\"vdp\"},\"impersonation\":{\"isImpersonated\":false},\"customAttributes\":{\"apr\":0.0699,\"availabilityData\":{\"action\":\"GetStarted\",\"error\":\"None\",\"lockType\":\"None\"},\"delivery\":{\"activityType\":\"LocalDelivery\",\"utcSoonestDateTime\":1785092820000,\"utcSoonestDateTimeIso\":\"2026-07-26T19:07:00Z\",\"drivingMiles\":6,\"isRestrictedLocation\":false,\"asSoonAsText\":\"tomorrow\",\"daysToAvailability\":1,\"secondsUntilCutoff\":11412,\"localTimeZone\":\"America/Los_Angeles\",\"servicingLocationId\":462,\"locationCity\":\"North Las Vegas\",\"locationState\":\"NV\",\"routeId\":\"H4sIAAAAAAAAAyXFMQrAIBAEwL9sfUUUFdzfhFNCQFEkCEH8e4pMMwtXbqA9YoxeUJqCLljBqQ9oBTP996HggpYbNN4J-ltBswVpVDAIZh6g3R9_uc3zUgAAAA\"},\"downPayment\":0,\"experiments\":{\"car-merch-spinner-raycasting\":\"control\",\"car-merch-ui-quali-factory-upgrades\":\"control\",\"car-merch-ui-vault-spinner\":\"control\",\"car-merch-ui-vdp-mini-hero\":\"control\",\"car-merch-ui-vdp-miu-miu-standards-and-150-inspection\":\"control\",\"car-merch-ui-vdp-zipcode-hero\":\"control\"},\"financingType\":\"estimatedFinancing\",\"hasBrochure\":false,\"hasPoseOemData\":false,\"hasOwnerReviews\":true,\"hasWhyBuy\":true,\"hasWindowSticker\":false,\"imperfectionCount\":2,\"isAvailableForImmediatePurchase\":true,\"isFavorited\":false,\"isInitialLanding\":true,\"isLoggedIn\":false,\"isOEMFirstVehicle\":false,\"isSold\":false,\"isTradeInApplied\":null,\"isZipFromCookies\":true,\"loadTime\":5473,\"navMode\":\"doc\",\"pickup\":{\"activityType\":\"Pickup\",\"utcSoonestDateTime\":1785174300000,\"utcSoonestDateTimeIso\":\"2026-07-27T17:45:00Z\",\"drivingMiles\":6,\"isRestrictedLocation\":false,\"asSoonAsText\":\"Monday\",\"daysToAvailability\":2,\"secondsUntilCutoff\":11412,\"localTimeZone\":\"America/Los_Angeles\",\"servicingLocationId\":154,\"locationCity\":\"Las Vegas\",\"locationState\":\"NV\",\"routeId\":\"H4sIAAAAAAAAAy3KQQqAIBBA0bv89SxSMnBuExoRKIqIEOLd2_TWb3JfBbWb994JqQTUuF04Q0edMGJHrVBbQCchPX-ob0bNEmLL6CGMq6F2fc7aEGNSAAAA\"},\"refSource\":\"srp\",\"stores\":[],\"totalCashDue\":0,\"transitCharge\":0,\"vehicleLocationId\":43,\"vehicleLocationZip\":\"85353\",\"whyBuyCount\":10,\"whyBuyType\":\"v2-vin\",\"zip\":\"89101\",\"zipFromIp\":null,\"zipSource\":\"ipaddress\",\"appVersion\":\"1.40.97\",\"campaignTemplate\":null,\"inventoryType\":\"Core\",\"isWebview\":false,\"offering\":\"Used\",\"page\":\"vdp\",\"vehicleId\":4568548,\"webview\":null}}}}",
+      "resource_type": "fetch",
+      "bytes": 24,
+      "top_level_keys": [
+        "data"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_web-eventable_api_graph_mega-vdp.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v1/Delivery?Zip5=89101",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 10504,
+      "top_level_keys": [
+        "deliveryInfoGroups",
+        "deliveryInfoToDisplay",
+        "isDeliveryAllowed",
+        "isMeetupAllowed",
+        "isOutOfMarket",
+        "isPickupAllowed",
+        "isUserProfileZipMismatch",
+        "localLocationId",
+        "meetupInfoGroups",
+        "pickUpInfoToDisplay",
+        "pickupInfoGroups"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_search_api_v1_Delivery_Zip5_89101__3.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/softpull-modal-module/assets-manifest.json?v=25-11-45",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 1512,
+      "top_level_keys": [
+        "811.js",
+        "index.js",
+        "locked.png",
+        "mockServiceWorker.js",
+        "styles.css",
+        "unlocked.png",
+        "vehicle1.png",
+        "vehicle2.png",
+        "vehicle=1.png",
+        "vehicle=2.png",
+        "vehicle=3.png",
+        "vehicle=4.png",
+        "vehicle=5.png",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_softpull-modal-module_assets-manifest.json_v_25-11-45__3.json"
+    },
+    {
+      "url": "https://vexgateway.fastly.carvana.io/executions/333652471/INTERIOR_TILING/tiles/config.json",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 254,
+      "top_level_keys": [
+        "hfov",
+        "multiRes",
+        "type"
+      ],
+      "record_count": null,
+      "file": "vexgateway.fastly.carvana.io_executions_333652471_INTERIOR_TILING_tiles_config.json.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/vehicledetails/api/v1/inspection/report/4568548",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 42101,
+      "top_level_keys": [
+        "inspectedOn",
+        "inspectonCategories",
+        "make",
+        "model",
+        "stockNumber",
+        "trim",
+        "vehicleId",
+        "vehicleInventoryType",
+        "vin",
+        "year"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_vehicledetails_api_v1_inspection_report_4568548.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/merchui/api/v1/servicecontracts?vin=JTEEU5JR6P5298535&effectiveAtUtc=2026-07-25T18%3A49%3A58.404Z",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 22165,
+      "top_level_keys": [
+        "content",
+        "status"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_merchui_api_v1_servicecontracts_vin_JTEEU5JR6P5298535_effectiveAtUtc_2026-07-25T18_3A49_3A58.404Z.json"
+    },
+    {
+      "url": "https://apimpub.carvana.com/ancillary-products-api/api/v2/GapWaiver/availability?amountFinanced=42237&homeState=NV&institutionName=Carvana&paymentType=Financing&vehicleId=4568548",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "error": "body unavailable: Response.text: Protocol error (Network.getResponseBody): No resource with given identifier found"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v1/recommendations/personalized-recs",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "error": "body unavailable: Response.text: Protocol error (Network.getResponseBody): No resource with given identifier found"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v1/recommendations/personalized-recs",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "error": "body unavailable: Response.text: Protocol error (Network.getResponseBody): No resource with given identifier found"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/buffering/api/v1/soonestavailabilitybulk",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "error": "body unavailable: Response.text: Protocol error (Network.getResponseBody): No resource with given identifier found"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/buffering/api/v1/soonestavailabilitybulk",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"userId\":\"\",\"vehicles\":[{\"vehicleInventoryType\":\"Core\",\"vehicleLocationId\":43,\"vehicleSaleStatus\":\"Available\",\"vehicleId\":4515493}],\"zipCode\":\"89101\"}",
+      "resource_type": "xhr",
+      "bytes": 1747,
+      "top_level_keys": [
+        "content",
+        "errorMessage",
+        "status"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_buffering_api_v1_soonestavailabilitybulk__4.json"
+    },
+    {
+      "url": "https://apik.carvana.io/core/discount/api/v1/discount?stateAbbreviation=NV&userId=",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 266,
+      "top_level_keys": [
+        "content",
+        "errorMessage",
+        "status"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_core_discount_api_v1_discount_stateAbbreviation_NV_userId__2.json"
+    },
+    {
+      "url": "https://descartes-external.ngcp.prod.nosidelines.io/vehicle-questions/",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json",
+      "post_data": "{\"correlation_id\":\"79902874-284a-4fb0-bdce-4656ea6cacc3\",\"kbb_vehicle_id\":412743,\"user_id\":\"\",\"vehicle_id\":4515493,\"year\":2016,\"make\":\"Toyota\",\"model\":\"4Runner\",\"trim\":\"SR5 Premium Sport Utility 4D\",\"page\":\"vdp_ui\"}",
+      "resource_type": "xhr",
+      "bytes": 1384,
+      "top_level_keys": [
+        "question_version",
+        "questions"
+      ],
+      "record_count": null,
+      "file": "descartes-external.ngcp.prod.nosidelines.io_vehicle-questions__2.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/web-eventable/api/graph?ui-rendered",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"query\":\"mutation weapiEvent($EventPayload: EventPayload!) { event( payload: $EventPayload ) }\",\"operationName\":\"weapiEvent\",\"variables\":{\"EventPayload\":{\"clickstream\":{\"browser\":{\"cookieId\":\"ebaac806-3e3d-753a-5659-98ce1e79a470\",\"resolution\":\"1440x900\",\"referralUrl\":\"\",\"url\":\"https://www.carvana.com/vehicle/4515493?refSource=srp\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"},\"device\":{\"resolution\":\"1440x900\"}},\"event\":{\"id\":\"275cc2cd-12f2-4f7a-8544-aa4c0feef74f\",\"name\":\"ui-rendered\",\"timestamp\":\"2026-07-25T18:50:05.752Z\"},\"metadata\":{\"correlationId\":\"79902874-284a-4fb0-bdce-4656ea6cacc3\",\"environment\":\"prod\",\"project\":\"vdp\",\"track\":\"vdp\"},\"impersonation\":{\"isImpersonated\":false},\"customAttributes\":{\"appVersion\":\"1.40.97\",\"campaignTemplate\":null,\"inventoryType\":\"Core\",\"isWebview\":false,\"offering\":\"Used\",\"page\":\"vdp\",\"vehicleId\":4515493,\"webview\":null,\"availabilityData\":{\"action\":\"GetStarted\",\"error\":\"None\",\"lockType\":\"None\"}}}}}",
+      "resource_type": "fetch",
+      "bytes": 24,
+      "top_level_keys": [
+        "data"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_web-eventable_api_graph_ui-rendered__4.json"
+    },
+    {
+      "url": "https://pixels.spotify.com/v1/config/f616167ee261473684db60d401be3001",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 80,
+      "top_level_keys": [
+        "aamFields",
+        "cookieOptIn",
+        "pixelId"
+      ],
+      "record_count": null,
+      "file": "pixels.spotify.com_v1_config_f616167ee261473684db60d401be3001__4.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/softpull-modal-module/assets-manifest.json?v=25-11-45",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 1512,
+      "top_level_keys": [
+        "811.js",
+        "index.js",
+        "locked.png",
+        "mockServiceWorker.js",
+        "styles.css",
+        "unlocked.png",
+        "vehicle1.png",
+        "vehicle2.png",
+        "vehicle=1.png",
+        "vehicle=2.png",
+        "vehicle=3.png",
+        "vehicle=4.png",
+        "vehicle=5.png",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_softpull-modal-module_assets-manifest.json_v_25-11-45__4.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/reviews/api/review/sv",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"from\":0,\"make\":\"Toyota\",\"model\":\"4Runner\",\"size\":20,\"trim\":\"SR5 Premium Sport Utility 4D\",\"year\":2016}",
+      "resource_type": "xhr",
+      "bytes": 10113,
+      "top_level_keys": [
+        "reviews",
+        "summary"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_reviews_api_review_sv__2.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/header-module/header/assets-manifest.json?v=25-11-45",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 780,
+      "top_level_keys": [
+        "176.js",
+        "444.js",
+        "761.js",
+        "images/wsys-modal-header-mobile.png",
+        "images/wsys-modal-header-shape.png",
+        "index.js",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_header-module_header_assets-manifest.json_v_25-11-45__4.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v1/Delivery?Zip5=89101",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 10504,
+      "top_level_keys": [
+        "deliveryInfoGroups",
+        "deliveryInfoToDisplay",
+        "isDeliveryAllowed",
+        "isMeetupAllowed",
+        "isOutOfMarket",
+        "isPickupAllowed",
+        "isUserProfileZipMismatch",
+        "localLocationId",
+        "meetupInfoGroups",
+        "pickUpInfoToDisplay",
+        "pickupInfoGroups"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_search_api_v1_Delivery_Zip5_89101__4.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/merch-favorites-mfe/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 591,
+      "top_level_keys": [
+        "110.js",
+        "110.js.map",
+        "index.js",
+        "index.js.map",
+        "styles.css",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_merch-favorites-mfe_assets-manifest.json_v_251145__4.json"
+    },
+    {
+      "url": "https://static.fastly.carvana.io/header-module/account-menu/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 727,
+      "top_level_keys": [
+        "761.js",
+        "images/wsys-modal-header-mobile.png",
+        "images/wsys-modal-header-shape.png",
+        "index.js",
+        "styles.css",
+        "version"
+      ],
+      "record_count": null,
+      "file": "static.fastly.carvana.io_header-module_account-menu_assets-manifest.json_v_251145__4.json"
+    },
+    {
+      "url": "https://storage.googleapis.com/chat-ui-ngcp-prod/build/assets-manifest.json?v=251145",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 222,
+      "top_level_keys": [
+        "484.main-min.js",
+        "main.js"
+      ],
+      "record_count": null,
+      "file": "storage.googleapis.com_chat-ui-ngcp-prod_build_assets-manifest.json_v_251145__4.json"
+    },
+    {
+      "url": "https://spinnerdata.carvana.io/spinnerdata/2004929160/spinnerData.json?v=991669",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 65104,
+      "top_level_keys": [
+        "car",
+        "categories",
+        "createdAt",
+        "features",
+        "imperfections",
+        "interiorImages",
+        "packageOptionsData",
+        "poseData",
+        "spins"
+      ],
+      "record_count": null,
+      "file": "spinnerdata.carvana.io_spinnerdata_2004929160_spinnerData.json_v_991669.json"
+    },
+    {
+      "url": "https://pixels.spotify.com/v1/ingest",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json",
+      "post_data": "{\"batch\":[{\"pid\":\"d75608e933854ff78d3fdb3c19e0863d\",\"sid\":\"28d335c4bedb44e1b530362235e676d2\",\"events\":[{\"action\":\"view\",\"time\":1785005405.854,\"group\":null,\"label\":null,\"experiment\":null,\"body\":{\"url\":\"https://www.carvana.com/vehicle/4515493?refSource=srp\",\"referrer\":\"\",\"inIframe\":false,\"windowWidth\":1440,\"windowHeight\":900,\"timezoneOffset\":420,\"viewParams\":{}}},{\"action\":\"alias\",\"time\":1785005405.855,\"group\":null,\"label\":null,\"experiment\":null,\"body\":{\"event_id\":null,\"alias_id\":\"undefined\",\"user_hashed_email\":null,\"user_hashed_phone_number\":null,\"partner_user_id\":null,\"click_id\":null}}],\"uid\":\"5f13854a9e3c426394b8c51e37bf6065\",\"time\":1785005405.884,\"pixel_version\":\"2.4.0-b\",\"pixel_id\":\"f616167ee261473684db60d401be3001\"}]}",
+      "resource_type": "fetch",
+      "bytes": 47,
+      "top_level_keys": [
+        "response"
+      ],
+      "record_count": null,
+      "file": "pixels.spotify.com_v1_ingest__4.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/device-detection/api/v1/devicedetection",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 602,
+      "top_level_keys": [
+        "browserName",
+        "browserVendor",
+        "browserVersion",
+        "isBrowser",
+        "isChecker",
+        "isDownloader",
+        "isEReader",
+        "isFeedReader",
+        "isFilter",
+        "isGamesConsole",
+        "isMediaPlayer",
+        "isMobilePhone",
+        "isRobot",
+        "isSetTopBox",
+        "isSpam",
+        "isTV",
+        "isTablet",
+        "manufacturer",
+        "mobileDevice",
+        "osFamily",
+        "osName",
+        "osVendor",
+        "osVersion",
+        "primaryHardwareType",
+        "touchScreen"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_device-detection_api_v1_devicedetection__4.json"
+    },
+    {
+      "url": "https://vexgateway.fastly.carvana.io/executions/336751443/INTERIOR_TILING/tiles/config.json",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json",
+      "post_data": null,
+      "resource_type": "fetch",
+      "bytes": 254,
+      "top_level_keys": [
+        "hfov",
+        "multiRes",
+        "type"
+      ],
+      "record_count": null,
+      "file": "vexgateway.fastly.carvana.io_executions_336751443_INTERIOR_TILING_tiles_config.json.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v2/pricing/vehicle",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"applyVerboseLogging\":false,\"applyTradeIn\":true,\"browserCookieId\":\"<redacted>\",\"routeId\":\"H4sIAAAAAAAAAyXFMQrAIBAEwL9sfUUUFdzfhFNCQFEkCEH8e4pMMwtXbqA9YoxeUJqCLljBqQ9oBTP996HggpYbNN4J-ltBswVpVDAIZh6g3R9_uc3zUgAAAA\",\"vehicleId\":4515493,\"zip5\":\"89101\",\"preferredAcquisitionName\":\"\",\"analyticsData\":{\"clientId\":\"vdp_ui\",\"correlationId\":\"79902874-284a-4fb0-bdce-4656ea6cacc3\",\"utmParams\":{}}}",
+      "resource_type": "xhr",
+      "bytes": 1176,
+      "top_level_keys": [
+        "errors",
+        "financeInfo",
+        "offering",
+        "price",
+        "searchRequestId",
+        "vehicleId"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_search_api_v2_pricing_vehicle__2.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/web-eventable/api/graph?mega-vdp",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"query\":\"mutation weapiEvent($EventPayload: EventPayload!) { event( payload: $EventPayload ) }\",\"operationName\":\"weapiEvent\",\"variables\":{\"EventPayload\":{\"clickstream\":{\"browser\":{\"cookieId\":\"ebaac806-3e3d-753a-5659-98ce1e79a470\",\"resolution\":\"1440x900\",\"referralUrl\":\"\",\"url\":\"https://www.carvana.com/vehicle/4515493?refSource=srp\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"},\"device\":{\"resolution\":\"1440x900\"}},\"event\":{\"id\":\"bd4ecda0-660c-4c51-b459-a210f195ba70\",\"name\":\"mega-vdp\",\"timestamp\":\"2026-07-25T18:50:06.493Z\"},\"metadata\":{\"correlationId\":\"79902874-284a-4fb0-bdce-4656ea6cacc3\",\"environment\":\"prod\",\"project\":\"vdp\",\"track\":\"vdp\"},\"impersonation\":{\"isImpersonated\":false},\"customAttributes\":{\"apr\":0.0699,\"availabilityData\":{\"action\":\"GetStarted\",\"error\":\"None\",\"lockType\":\"None\"},\"delivery\":{\"activityType\":\"LocalDelivery\",\"utcSoonestDateTime\":1785092820000,\"utcSoonestDateTimeIso\":\"2026-07-26T19:07:00Z\",\"drivingMiles\":6,\"isRestrictedLocation\":false,\"asSoonAsText\":\"tomorrow\",\"daysToAvailability\":1,\"secondsUntilCutoff\":11394,\"localTimeZone\":\"America/Los_Angeles\",\"servicingLocationId\":462,\"locationCity\":\"North Las Vegas\",\"locationState\":\"NV\",\"routeId\":\"H4sIAAAAAAAAAyXFMQrAIBAEwL9sfUUUFdzfhFNCQFEkCEH8e4pMMwtXbqA9YoxeUJqCLljBqQ9oBTP996HggpYbNN4J-ltBswVpVDAIZh6g3R9_uc3zUgAAAA\"},\"downPayment\":0,\"experiments\":{\"car-merch-spinner-raycasting\":\"control\",\"car-merch-ui-quali-factory-upgrades\":\"control\",\"car-merch-ui-vault-spinner\":\"control\",\"car-merch-ui-vdp-mini-hero\":\"control\",\"car-merch-ui-vdp-miu-miu-standards-and-150-inspection\":\"control\",\"car-merch-ui-vdp-zipcode-hero\":\"control\"},\"financingType\":\"estimatedFinancing\",\"hasBrochure\":true,\"hasPoseOemData\":false,\"hasOwnerReviews\":true,\"hasWhyBuy\":true,\"hasWindowSticker\":false,\"imperfectionCount\":9,\"isAvailableForImmediatePurchase\":true,\"isFavorited\":false,\"isInitialLanding\":true,\"isLoggedIn\":false,\"isOEMFirstVehicle\":false,\"isSold\":false,\"isTradeInApplied\":null,\"isZipFromCookies\":true,\"loadTime\":4153,\"navMode\":\"doc\",\"pickup\":{\"activityType\":\"Pickup\",\"utcSoonestDateTime\":1785174300000,\"utcSoonestDateTimeIso\":\"2026-07-27T17:45:00Z\",\"drivingMiles\":6,\"isRestrictedLocation\":false,\"asSoonAsText\":\"Monday\",\"daysToAvailability\":2,\"secondsUntilCutoff\":11394,\"localTimeZone\":\"America/Los_Angeles\",\"servicingLocationId\":154,\"locationCity\":\"Las Vegas\",\"locationState\":\"NV\",\"routeId\":\"H4sIAAAAAAAAAy3KQQqAIBBA0bv89SxSMnBuExoRKIqIEOLd2_TWb3JfBbWb994JqQTUuF04Q0edMGJHrVBbQCchPX-ob0bNEmLL6CGMq6F2fc7aEGNSAAAA\"},\"refSource\":\"srp\",\"stores\":[],\"totalCashDue\":0,\"transitCharge\":0,\"vehicleLocationId\":43,\"vehicleLocationZip\":\"85353\",\"whyBuyCount\":7,\"whyBuyType\":\"v2-vin\",\"zip\":\"89101\",\"zipFromIp\":null,\"zipSource\":\"ipaddress\",\"appVersion\":\"1.40.97\",\"campaignTemplate\":null,\"inventoryType\":\"Core\",\"isWebview\":false,\"offering\":\"Used\",\"page\":\"vdp\",\"vehicleId\":4515493,\"webview\":null}}}}",
+      "resource_type": "fetch",
+      "bytes": 24,
+      "top_level_keys": [
+        "data"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_web-eventable_api_graph_mega-vdp__2.json"
+    },
+    {
+      "url": "https://analytics.carvana.io/edge/web-eventable/api/graph?SPT%20Data",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"query\":\"mutation weapiEvent($EventPayload: EventPayload!) { event( payload: $EventPayload ) }\",\"operationName\":\"weapiEvent\",\"variables\":{\"EventPayload\":{\"clickstream\":{\"browser\":{\"cookieId\":\"ebaac806-3e3d-753a-5659-98ce1e79a470\",\"resolution\":\"1440x900\",\"referralUrl\":\"\",\"url\":\"https://www.carvana.com/vehicle/4515493?refSource=srp\",\"userAgent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"},\"device\":{\"resolution\":\"1440x900\"}},\"event\":{\"id\":\"02cf0be2-7a69-4d10-a906-5fa7a8916bd4\",\"name\":\"SPT Data\",\"timestamp\":\"2026-07-25T18:50:06.493Z\"},\"metadata\":{\"correlationId\":\"79902874-284a-4fb0-bdce-4656ea6cacc3\",\"environment\":\"prod\",\"project\":\"vdp\",\"track\":\"vdp\"},\"impersonation\":{\"isImpersonated\":false},\"customAttributes\":{\"error\":\"None\",\"financingType\":\"estimatedFinancing\",\"hasSoftPull\":false,\"isInitialEvent\":true,\"isTradeInApplied\":null,\"merchSelectedActivityType\":\"LocalDelivery\",\"priceInfo\":{\"total\":31590,\"totalDiscountAmount\":0,\"discounts\":[],\"monthlyPayment\":565,\"downPayment\":0,\"downPaymentDetails\":{\"totalCashDue\":0,\"additionalCashDown\":0,\"nonRefundableShippingFees\":0,\"tradeDown\":0},\"apr\":0.0699,\"term\":75,\"transportCost\":0,\"pricingErrorMessage\":\"\",\"totalTaxes\":0,\"totalFees\":0,\"feesMinusShipping\":0,\"estimatedTaxesAndFees\":2637,\"tradeTaxSavings\":0,\"incentivizedPrice\":31590,\"msrp\":36190,\"marketAdjustment\":-4600,\"incentives\":[],\"marketplaceIncentives\":[],\"appliedIncentives\":[],\"additionalIncentives\":[]},\"transportCost\":0,\"totalPurchasePrice\":34227,\"pricingSearchRequestId\":\"0b77ace7-4e1f-4fe2-a702-125cdd2258f3\",\"zip\":\"89101\",\"appVersion\":\"1.40.97\",\"campaignTemplate\":null,\"inventoryType\":\"Core\",\"isWebview\":false,\"offering\":\"Used\",\"page\":\"vdp\",\"vehicleId\":4515493,\"webview\":null,\"availabilityData\":{\"action\":\"GetStarted\",\"error\":\"None\",\"lockType\":\"None\"}}}}}",
+      "resource_type": "fetch",
+      "bytes": 24,
+      "top_level_keys": [
+        "data"
+      ],
+      "record_count": null,
+      "file": "analytics.carvana.io_edge_web-eventable_api_graph_SPT_20Data__2.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/carvanamerchcontextapi/api/v3/distance?zip5=89101",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 8129,
+      "top_level_keys": [
+        "locationDistances"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_carvanamerchcontextapi_api_v3_distance_zip5_89101__2.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/vehicledetails/api/v1/inspection/report/4515493",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 42136,
+      "top_level_keys": [
+        "inspectedOn",
+        "inspectonCategories",
+        "make",
+        "model",
+        "stockNumber",
+        "trim",
+        "vehicleId",
+        "vehicleInventoryType",
+        "vin",
+        "year"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_vehicledetails_api_v1_inspection_report_4515493.json"
+    },
+    {
+      "url": "https://apimpub.carvana.com/ancillary-products-api/api/v2/GapWaiver/availability?amountFinanced=34227&homeState=NV&institutionName=Carvana&paymentType=Financing&vehicleId=4515493",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 54,
+      "top_level_keys": [
+        "isGapWaiverAvailable",
+        "price"
+      ],
+      "record_count": null,
+      "file": "apimpub.carvana.com_ancillary-products-api_api_v2_GapWaiver_availability_amountFinanced_34227_homeState_NV_institutionNa.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v1/recommendations/personalized-recs",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"analyticsData\":{\"correlationId\":\"79902874-284a-4fb0-bdce-4656ea6cacc3\",\"searchRequestId\":\"\",\"isMobileDevice\":false,\"browser\":\"Chrome\",\"filterSource\":\"notSpecified\",\"referrer\":\"\"},\"browserCookieId\":\"<redacted>\",\"clientId\":\"vdp_ui\",\"filters\":{\"lockTypes\":[\"None\"],\"purchaseTypes\":[\"Purchasable\"],\"price\":{\"max\":28431}},\"numVehiclesToReturn\":21,\"vehicleId\":4515493,\"zip5\":\"89101\"}",
+      "resource_type": "xhr",
+      "bytes": 168175,
+      "top_level_keys": [
+        "vehicles"
+      ],
+      "record_count": 21,
+      "file": "apik.carvana.io_merch_search_api_v1_recommendations_personalized-recs.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/merchui/api/v1/servicecontracts?vin=JTEZU5JR0G5129158&effectiveAtUtc=2026-07-25T18%3A50%3A12.057Z",
+      "status": 200,
+      "method": "GET",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": null,
+      "resource_type": "xhr",
+      "bytes": 26957,
+      "top_level_keys": [
+        "content",
+        "status"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_merchui_api_v1_servicecontracts_vin_JTEZU5JR0G5129158_effectiveAtUtc_2026-07-25T18_3A50_3A12.057Z.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/search/api/v1/recommendations/personalized-recs",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"analyticsData\":{\"correlationId\":\"79902874-284a-4fb0-bdce-4656ea6cacc3\",\"searchRequestId\":\"\",\"isMobileDevice\":false,\"browser\":\"Chrome\",\"filterSource\":\"notSpecified\",\"referrer\":\"\"},\"browserCookieId\":\"<redacted>\",\"clientId\":\"vdp_ui\",\"filters\":{\"lockTypes\":[\"None\"],\"purchaseTypes\":[\"Purchasable\"]},\"numVehiclesToReturn\":21,\"vehicleId\":4515493,\"zip5\":\"89101\"}",
+      "resource_type": "xhr",
+      "bytes": 182335,
+      "top_level_keys": [
+        "vehicles"
+      ],
+      "record_count": 21,
+      "file": "apik.carvana.io_merch_search_api_v1_recommendations_personalized-recs__2.json"
+    },
+    {
+      "url": "https://apik.carvana.io/merch/buffering/api/v1/soonestavailabilitybulk",
+      "status": 200,
+      "method": "POST",
+      "content_type": "application/json; charset=utf-8",
+      "post_data": "{\"vehicles\":[{\"vehicleId\":4529485,\"vehicleLocationId\":327,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4353331,\"vehicleLocationId\":418,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4472434,\"vehicleLocationId\":418,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4353732,\"vehicleLocationId\":247,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4567729,\"vehicleLocationId\":224,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4592115,\"vehicleLocationId\":248,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4555488,\"vehicleLocationId\":248,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4509896,\"vehicleLocationId\":13,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4399551,\"vehicleLocationId\":43,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4540393,\"vehicleLocationId\":117,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4595859,\"vehicleLocationId\":43,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4407661,\"vehicleLocationId\":466,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4594972,\"vehicleLocationId\":224,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4544144,\"vehicleLocationId\":13,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4566118,\"vehicleLocationId\":246,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4448231,\"vehicleLocationId\":247,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4539185,\"vehicleLocationId\":6,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4487423,\"vehicleLocationId\":371,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4495062,\"vehicleLocationId\":248,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4542104,\"vehicleLocationId\":158,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4521485,\"vehicleLocationId\":111,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4456581,\"vehicleLocationId\":473,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4573989,\"vehicleLocationId\":128,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4468431,\"vehicleLocationId\":117,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4487739,\"vehicleLocationId\":43,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4537703,\"vehicleLocationId\":418,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4557969,\"vehicleLocationId\":224,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4384795,\"vehicleLocationId\":246,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4540174,\"vehicleLocationId\":248,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4537816,\"vehicleLocationId\":43,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4551993,\"vehicleLocationId\":334,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4455578,\"vehicleLocationId\":312,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4468654,\"vehicleLocationId\":224,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4450229,\"vehicleLocationId\":466,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4488343,\"vehicleLocationId\":79,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4584193,\"vehicleLocationId\":165,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4381793,\"vehicleLocationId\":418,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4522581,\"vehicleLocationId\":224,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4447559,\"vehicleLocationId\":1,\"vehicleInventoryType\":\"Core\"},{\"vehicleId\":4536281,\"vehicleLocationId\":247,\"vehicleInventoryType\":\"Core\"}],\"zipCode\":\"89101\"}",
+      "resource_type": "xhr",
+      "bytes": 67409,
+      "top_level_keys": [
+        "content",
+        "errorMessage",
+        "status"
+      ],
+      "record_count": null,
+      "file": "apik.carvana.io_merch_buffering_api_v1_soonestavailabilitybulk__5.json"
+    }
+  ],
+  "vdp_findings": [
+    {
+      "url": "https://www.carvana.com/vehicle/4568548?refSource=srp",
+      "title": "2023 Toyota 4Runner | Carvana",
+      "vin": null,
+      "history_anchors": [
+        {
+          "href": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEEU5JR6P5298535",
+          "text": "View report",
+          "target": "_blank"
+        },
+        {
+          "href": "https://www.carvana.com/vehicle/autocheck/4568548",
+          "text": "Personal",
+          "target": "_blank"
+        },
+        {
+          "href": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEEU5JR6P5298535",
+          "text": "View Report (opens in a new tab)",
+          "target": "_blank"
+        }
+      ],
+      "history_controls": [],
+      "keyword_mentions": {
+        "carfax": 3,
+        "autocheck": 4,
+        "accident": 9,
+        "owner": 8,
+        "title": 58,
+        "service record": 0,
+        "imperfection": 5,
+        "recall": 1,
+        "monthly payment": 0,
+        "shipping": 1
+      },
+      "had_next_data": false
+    },
+    {
+      "url": "https://www.carvana.com/vehicle/4515493?refSource=srp",
+      "title": "2016 Toyota 4Runner | Carvana",
+      "vin": null,
+      "history_anchors": [
+        {
+          "href": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEZU5JR0G5129158",
+          "text": "View report",
+          "target": "_blank"
+        },
+        {
+          "href": "https://www.carvana.com/vehicle/autocheck/4515493",
+          "text": "Details",
+          "target": "_blank"
+        },
+        {
+          "href": "https://www.carvana.com/vehicle/autocheck/4515493",
+          "text": "Lease",
+          "target": "_blank"
+        },
+        {
+          "href": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEZU5JR0G5129158",
+          "text": "View Report (opens in a new tab)",
+          "target": "_blank"
+        }
+      ],
+      "history_controls": [],
+      "keyword_mentions": {
+        "carfax": 9,
+        "autocheck": 5,
+        "accident": 8,
+        "owner": 75,
+        "title": 74,
+        "service record": 0,
+        "imperfection": 77,
+        "recall": 1,
+        "monthly payment": 0,
+        "shipping": 4
+      },
+      "had_next_data": false
+    }
+  ]
+}

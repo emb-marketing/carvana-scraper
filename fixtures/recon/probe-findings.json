@@ -1,0 +1,98 @@
+{
+  "search": {
+    "endpoint": null,
+    "candidates": [
+      {
+        "url": "https://apik.carvana.io/merch/search/api/v1/search",
+        "status": 0,
+        "len": null,
+        "summary": {},
+        "error": "TypeError: Failed to fetch"
+      },
+      {
+        "url": "https://apik.carvana.io/merch/search/api/v2/search",
+        "status": 0,
+        "len": null,
+        "summary": {},
+        "error": "TypeError: Failed to fetch"
+      },
+      {
+        "url": "https://apik.carvana.io/merch/search/api/v1/vehicles",
+        "status": 0,
+        "len": null,
+        "summary": {},
+        "error": "TypeError: Failed to fetch"
+      },
+      {
+        "url": "https://apik.carvana.io/merch/search/api/v1/srp",
+        "status": 0,
+        "len": null,
+        "summary": {},
+        "error": "TypeError: Failed to fetch"
+      },
+      {
+        "url": "https://apik.carvana.io/merch/search/api/v1/inventory",
+        "status": 0,
+        "len": null,
+        "summary": {},
+        "error": "TypeError: Failed to fetch"
+      }
+    ],
+    "filters": []
+  },
+  "autocheck": {
+    "page_url": "https://www.carvana.com/vehicle/autocheck/4515493",
+    "iframe_src": "https://apik.carvana.io/merch/merchui/api/v1/autocheck?vehicleId=4515493&token=qSD2%2FdFf6tvqKhRgWRBvk4VPfJrWBA28lpXM5JIYNok%3D",
+    "frame_html_bytes": 816980,
+    "frame_text_bytes": 727,
+    "signals": {
+      "owner": 0,
+      "accident": 0,
+      "title": 0,
+      "salvage": 0,
+      "lemon": 0,
+      "flood": 0,
+      "odometer": 0,
+      "service": 0,
+      "recall": 0,
+      "personal": 1,
+      "lease": 0,
+      "fleet": 0,
+      "rental": 0,
+      "auction": 0,
+      "damage": 0,
+      "autocheck": 0,
+      "score": 0,
+      "records": 0
+    },
+    "token_in_src": true
+  },
+  "carfax": {
+    "url": "https://www.carfax.com/VehicleHistory/p/Report.cfx?partner=CVN_0&vin=JTEZU5JR0G5129158",
+    "title": "CARFAX Vehicle History Report for this 2016 TOYOTA 4RUNNER SR5 PREMIUM: JTEZU5JR0G5129158",
+    "html_bytes": 330431,
+    "text_bytes": 13462,
+    "challenge_markers": [],
+    "signals": {
+      "owner": 39,
+      "accident": 6,
+      "title": 18,
+      "salvage": 1,
+      "lemon": 1,
+      "flood": 1,
+      "odometer": 5,
+      "service": 31,
+      "recall": 10,
+      "personal": 9,
+      "lease": 8,
+      "fleet": 0,
+      "rental": 0,
+      "auction": 0,
+      "damage": 7,
+      "autocheck": 0,
+      "score": 0,
+      "records": 4
+    },
+    "server": "unknown"
+  }
+}

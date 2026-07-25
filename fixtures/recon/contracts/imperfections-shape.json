@@ -1,0 +1,32 @@
+{
+  "_source": "spinnerdata.carvana.io/spinnerdata/<stockNumber>/spinnerData.json",
+  "count": 9,
+  "sample": [
+    {
+      "id": 17515843,
+      "title": "Water Spots",
+      "description": "Water dried on the paint and left small deposits of minerals, which may have etched into the clear coat.",
+      "location": "exterior",
+      "imageUrl": "https://vexgateway.fastly.carvana.io/vex-7053088/details/imperfection-17515843.jpg?v=1784700599.235",
+      "videoUrl": null,
+      "aspectRatio": "4:3",
+      "imageWidth": 4032,
+      "imageHeight": 3024,
+      "compressedVideo": null,
+      "zoneDescription": "Roof"
+    },
+    {
+      "id": 17515844,
+      "title": "Water Spots",
+      "description": "Water dried on the paint and left small deposits of minerals, which may have etched into the clear coat.",
+      "location": "exterior",
+      "imageUrl": "https://vexgateway.fastly.carvana.io/vex-7053088/details/imperfection-17515844.jpg?v=1784700599.235",
+      "videoUrl": null,
+      "aspectRatio": "4:3",
+      "imageWidth": 4032,
+      "imageHeight": 3024,
+      "compressedVideo": null,
+      "zoneDescription": "Trunk"
+    }
+  ]
+}

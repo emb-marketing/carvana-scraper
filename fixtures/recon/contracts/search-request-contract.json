@@ -1,0 +1,33 @@
+{
+  "_source": "POST apik.carvana.io/merch/search/api/v1/suggest/filters \u2014 the SRP's own envelope",
+  "_note": "make/model map to the URL path; year/price/mileage param names were never confirmed",
+  "request": {
+    "browserCookieId": "<redacted>",
+    "dealershipId": null,
+    "filters": {
+      "makes": [
+        {
+          "name": "Toyota",
+          "parentModels": [
+            {
+              "name": "4Runner"
+            }
+          ]
+        }
+      ]
+    },
+    "pagination": {
+      "page": 1,
+      "pageSize": 24
+    },
+    "requestedFeatures": [
+      "ExcludeFacetData",
+      "HideImpossibleCombos",
+      "LocationBasedPrefiltering",
+      "ApplyTradeIn"
+    ],
+    "sortBy": "MostPopular",
+    "zip5": "89101",
+    "numberOfSuggestedFilters": 10
+  }
+}

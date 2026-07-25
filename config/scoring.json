@@ -1,0 +1,73 @@
+{
+  "_comment": "Tuning knobs for ranking. Weights are relative; they are renormalized over whichever signals a given vehicle actually has, so a car missing (say) a KBB value is not penalized for the gap. Edit and re-run — no code change needed.",
+
+  "weights": {
+    "price": 0.20,
+    "mileage": 0.16,
+    "kbb_delta": 0.15,
+    "accidents": 0.13,
+    "autocheck_score": 0.12,
+    "owners": 0.07,
+    "use_type": 0.05,
+    "service_density": 0.04,
+    "repair_cost": 0.02,
+    "reliability": 0.02,
+    "imperfections": 0.02,
+    "recalls": 0.02
+  },
+
+  "disqualifiers": {
+    "title_brand_problem": true,
+    "odometer_rollback": true,
+    "structural_damage": true,
+    "airbag_deployment": true,
+    "total_loss": true,
+    "insurance_loss": true,
+    "auction_problem": false
+  },
+
+  "expected_life_miles": 200000,
+  "baseline_miles_per_year": 12000,
+  "target_service_records_per_year": 1.5,
+  "imperfection_count_for_zero_score": 15,
+  "repair_cost_best": 200,
+  "repair_cost_worst": 900,
+
+  "accident_severity_scores": {
+    "none": 1.0,
+    "minor": 0.45,
+    "minor to moderate": 0.3,
+    "moderate": 0.2,
+    "moderate to severe": 0.08,
+    "severe": 0.0,
+    "unknown": 0.25
+  },
+
+  "use_type_scores": {
+    "personal": 1.0,
+    "personal lease": 0.85,
+    "lease": 0.8,
+    "government": 0.55,
+    "fleet": 0.5,
+    "rental": 0.35,
+    "commercial": 0.2,
+    "livery": 0.15,
+    "taxi": 0.05,
+    "police": 0.05,
+    "driver education": 0.3
+  },
+
+  "reliability_scores": {
+    "great": 1.0,
+    "good": 0.6,
+    "fair": 0.2
+  },
+
+  "owner_count_scores": {
+    "1": 1.0,
+    "2": 0.75,
+    "3": 0.5,
+    "4": 0.3,
+    "default": 0.15
+  }
+}

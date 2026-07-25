@@ -1,0 +1,40 @@
+# Dedicated Chrome profile (contains Carvana session + anti-bot trust cookies)
+.browser-profile/
+
+# Generated reports
+out/
+
+# VIN cache (SQLite) + archived raw report payloads
+cache/
+
+# Scratch / recon throwaway scripts
+.tmp/
+
+# Recon artifacts: keep only the curated evidence, never the captured report content.
+# Carfax/AutoCheck report HTML, text and screenshots are licensed third-party content and stay
+# local (cache/raw/ + these ignores). Page dumps and third-party analytics payloads are multi-MB
+# noise. What IS committed is the small findings set docs/RECON.md cites.
+fixtures/recon/*
+!fixtures/recon/.gitkeep
+!fixtures/recon/manifest.json
+!fixtures/recon/report-sample.json
+!fixtures/recon/autocheck-sample.json
+!fixtures/recon/puzzle-test.json
+!fixtures/recon/probe-findings.json
+!fixtures/recon/contracts/
+!fixtures/recon/contracts/*.json
+
+# Run logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
+# --- credential gitignore sweep (claude 2026-04-24) ---
+credentials.json
+token.json
+client_secret*.json
+service-account*.json
+*.key
+*.p12
+*.pem
