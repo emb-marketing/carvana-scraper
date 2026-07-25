@@ -1,0 +1,7577 @@
+{
+  "extracted_at": "2026-07-25",
+  "source": "fixtures/recon/search-base.html",
+  "bounds": {
+    "year": [
+      2009,
+      2027
+    ],
+    "price": [
+      6990,
+      260990
+    ],
+    "mileage": [
+      4,
+      147743
+    ]
+  },
+  "makes": [
+    {
+      "name": "Acura",
+      "count": 576,
+      "models": [
+        {
+          "name": "ADX",
+          "count": 1,
+          "slug": "acura-adx",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "ILX",
+          "count": 34,
+          "slug": "acura-ilx",
+          "trims": [
+            "2.0L",
+            "AcuraWatch Plus Pkg",
+            "Premium & A-SPEC Pkgs",
+            "Premium Pkg",
+            "Special Edition",
+            "Technology & A-SPEC Pkgs",
+            "base"
+          ]
+        },
+        {
+          "name": "Integra",
+          "count": 70,
+          "slug": "acura-integra",
+          "trims": [
+            "1.5T",
+            "1.5T w/A-Spec & Tech Pkg",
+            "1.5T w/A-Spec Pkg",
+            "Type S"
+          ]
+        },
+        {
+          "name": "MDX",
+          "count": 190,
+          "slug": "acura-mdx",
+          "trims": [
+            "Base w/Technology Pkg",
+            "SH-AWD",
+            "SH-AWD PMC Edition",
+            "SH-AWD w/A-Spec Pkg",
+            "SH-AWD w/Advance Pkg",
+            "SH-AWD w/Technology & A-Spec Pkgs",
+            "SH-AWD w/Technology & Entertainment Pkgs",
+            "SH-AWD w/Technology Pkg",
+            "Technology Pkg",
+            "Type S",
+            "Type S w/Advance Pkg",
+            "base"
+          ]
+        },
+        {
+          "name": "RDX",
+          "count": 170,
+          "slug": "acura-rdx",
+          "trims": [
+            "A-SPEC Pkg",
+            "AcuraWatch Plus Pkg",
+            "Advance Pkg",
+            "FWD w/A-SPEC Pkg",
+            "FWD w/A-Spec Pkg",
+            "FWD w/Advance Pkg",
+            "FWD w/Technology Pkg",
+            "SH-AWD",
+            "SH-AWD A-SPEC Pkg",
+            "SH-AWD Advance Pkg",
+            "SH-AWD Technology Pkg",
+            "SH-AWD w/A-SPEC Pkg",
+            "SH-AWD w/A-Spec & Advance Pkgs",
+            "SH-AWD w/A-Spec Pkg",
+            "SH-AWD w/Advance Pkg",
+            "SH-AWD w/Technology Pkg",
+            "Technology & AcuraWatch Plus Pkg",
+            "Technology Pkg",
+            "base"
+          ]
+        },
+        {
+          "name": "RL",
+          "count": 1,
+          "slug": "acura-rl",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "RLX",
+          "count": 4,
+          "slug": "acura-rlx",
+          "trims": [
+            "SH-AWD",
+            "base"
+          ]
+        },
+        {
+          "name": "TL",
+          "count": 16,
+          "slug": "acura-tl",
+          "trims": [
+            "SH-AWD",
+            "Special Edition",
+            "base"
+          ]
+        },
+        {
+          "name": "TLX",
+          "count": 81,
+          "slug": "acura-tlx",
+          "trims": [
+            "2",
+            "2.0 SH-AWD w/A-SPEC Pkg",
+            "2.0 SH-AWD w/A-Spec Pkg",
+            "2.0 SH-AWD w/Advance Pkg",
+            "2.0 SH-AWD w/Technology Pkg",
+            "2.0 w/A-SPEC Pkg",
+            "2.0 w/A-Spec Pkg",
+            "2.0 w/Technology Pkg",
+            "2.4",
+            "2.4 w/Technology Pkg",
+            "3.5",
+            "3.5 w/Advance Pkg",
+            "3.5 w/Technology Pkg",
+            "3.5 w/Technology Pkg & A-SPEC Pkg",
+            "Base w/Technology Pkg",
+            "Type S"
+          ]
+        },
+        {
+          "name": "TSX",
+          "count": 4,
+          "slug": "acura-tsx",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "ZDX",
+          "count": 5,
+          "slug": "acura-zdx",
+          "trims": [
+            "A-Spec",
+            "Type S"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Alfa Romeo",
+      "count": 253,
+      "models": [
+        {
+          "name": "4C",
+          "count": 7,
+          "slug": "alfa-romeo-4c",
+          "trims": [
+            "Launch Edition",
+            "base"
+          ]
+        },
+        {
+          "name": "Giulia",
+          "count": 103,
+          "slug": "alfa-romeo-giulia",
+          "trims": [
+            "Competizione",
+            "Quadrifoglio",
+            "Sport",
+            "Sprint",
+            "Ti",
+            "Ti Lusso",
+            "Ti Sport",
+            "Ti Sport Carbon",
+            "Ti Veloce",
+            "Veloce",
+            "base"
+          ]
+        },
+        {
+          "name": "Stelvio",
+          "count": 117,
+          "slug": "alfa-romeo-stelvio",
+          "trims": [
+            "Estrema",
+            "Lusso",
+            "Quadrifoglio",
+            "Quadrifoglio Carbon Edition",
+            "Quadrifoglio Super Sport",
+            "Sport",
+            "Sprint",
+            "Ti",
+            "Ti Lusso",
+            "Ti Sport",
+            "Veloce",
+            "base"
+          ]
+        },
+        {
+          "name": "Tonale",
+          "count": 26,
+          "slug": "alfa-romeo-tonale",
+          "trims": [
+            "Ti",
+            "Tributo Italiano",
+            "Veloce",
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Audi",
+      "count": 1432,
+      "models": [
+        {
+          "name": "A3",
+          "count": 85,
+          "slug": "audi-a3",
+          "trims": [
+            "1.8T Premium",
+            "2.0 TDI Premium",
+            "2.0T Premium",
+            "2.0T Premium Plus",
+            "2.0T Quattro",
+            "40 TFSI Premium",
+            "Premium",
+            "Premium Plus",
+            "S line Premium Plus",
+            "TDI Premium"
+          ]
+        },
+        {
+          "name": "A4",
+          "count": 95,
+          "slug": "audi-a4",
+          "trims": [
+            "2.0T Premium",
+            "2.0T Quattro Premium",
+            "40 Premium",
+            "40 Premium Plus",
+            "40 TFSI Premium",
+            "40 TFSI Premium Plus",
+            "45 Premium",
+            "45 Premium Plus",
+            "Premium",
+            "Premium Plus",
+            "Prestige",
+            "S line 45 TFSI Premium",
+            "S line 45 TFSI Premium Plus",
+            "Ultra Premium"
+          ]
+        },
+        {
+          "name": "A5",
+          "count": 152,
+          "slug": "audi-a5",
+          "trims": [
+            "2.0T Premium Plus",
+            "2.0T Quattro Premium",
+            "Premium",
+            "Premium Plus",
+            "Prestige",
+            "S line 45 TFSI Premium",
+            "base"
+          ]
+        },
+        {
+          "name": "A6",
+          "count": 87,
+          "slug": "audi-a6",
+          "trims": [
+            "2.0T Premium",
+            "2.0T Premium Plus",
+            "2.0T Sport",
+            "3.0T Premium Plus",
+            "3.0T Prestige",
+            "3.0T Quattro",
+            "3.0T Quattro Premium",
+            "45 TFSI Premium",
+            "45 TFSI Premium Plus",
+            "55 TFSI Premium",
+            "55 TFSI Premium Plus",
+            "55 TFSI Prestige",
+            "Sport 45 TFSI Premium",
+            "Sport 45 TFSI Premium Plus",
+            "TDI Premium Plus"
+          ]
+        },
+        {
+          "name": "A6 e-tron",
+          "count": 1,
+          "slug": "audi-a6-e-tron",
+          "trims": [
+            "Premium"
+          ]
+        },
+        {
+          "name": "A7",
+          "count": 12,
+          "slug": "audi-a7",
+          "trims": [
+            "55 TFSI Premium",
+            "55 TFSI Premium Plus",
+            "55 TFSI Prestige e Quattro",
+            "Premium Plus",
+            "Premium Quattro",
+            "Prestige"
+          ]
+        },
+        {
+          "name": "A8",
+          "count": 22,
+          "slug": "audi-a8",
+          "trims": [
+            "L 3.0T",
+            "L 4.0T",
+            "L 55 TFSI",
+            "L 60 TFSI",
+            "L 60 TFSI e Plug-in Hybrid"
+          ]
+        },
+        {
+          "name": "allroad",
+          "count": 2,
+          "slug": "audi-allroad",
+          "trims": [
+            "Premium Plus"
+          ]
+        },
+        {
+          "name": "e-tron",
+          "count": 21,
+          "slug": "audi-e-tron",
+          "trims": [
+            "Chronos",
+            "Premium",
+            "Premium Plus",
+            "Prestige"
+          ]
+        },
+        {
+          "name": "e-tron GT",
+          "count": 3,
+          "slug": "audi-e-tron-gt",
+          "trims": [
+            "Premium Plus",
+            "Prestige"
+          ]
+        },
+        {
+          "name": "e-tron S",
+          "count": 1,
+          "slug": "audi-e-tron-s",
+          "trims": [
+            "Premium Plus",
+            "Prestige"
+          ]
+        },
+        {
+          "name": "Q3",
+          "count": 219,
+          "slug": "audi-q3",
+          "trims": [
+            "40 TFSI Premium",
+            "40 TFSI Premium Plus",
+            "45 TFSI S line Premium",
+            "45 TFSI S line Premium Plus",
+            "Premium",
+            "Premium Plus",
+            "Prestige",
+            "S line 45 TFSI Premium",
+            "S line 45 TFSI Premium Plus",
+            "S line Premium",
+            "S line Premium Plus",
+            "Sport Premium Plus"
+          ]
+        },
+        {
+          "name": "Q4 e-tron",
+          "count": 15,
+          "slug": "audi-q4-e-tron",
+          "trims": [
+            "40 Premium",
+            "40 Premium Plus",
+            "50 Premium",
+            "50 Premium Plus",
+            "50 Prestige",
+            "55 Premium"
+          ]
+        },
+        {
+          "name": "Q5",
+          "count": 325,
+          "slug": "audi-q5",
+          "trims": [
+            "2.0T Premium",
+            "2.0T Premium Plus",
+            "3.0T Premium Plus",
+            "3.0T Prestige",
+            "3.2 Quattro Premium Plus",
+            "40 TFSI Premium",
+            "40 TFSI Premium Plus",
+            "40 TFSI Prestige",
+            "45 TFSI Premium",
+            "45 TFSI Premium Plus",
+            "45 TFSI Prestige",
+            "45 TFSI S line Premium",
+            "45 TFSI S line Premium Plus",
+            "45 TFSI S line Prestige",
+            "45 TFSI Titanium Premium",
+            "45 TFSI Titanium Premium Plus",
+            "55 TFSI e Premium",
+            "55 TFSI e Premium Plus",
+            "55 TFSI e Prestige",
+            "55 TFSI e S line Premium",
+            "55 TFSI e S line Premium Plus",
+            "55 TFSI e S line Prestige",
+            "All-new TFSI Premium",
+            "All-new TFSI Premium Plus",
+            "Premium",
+            "Premium Plus",
+            "Premium Plus w/Technology Value Pkg",
+            "Premium w/Technology Value Pkg",
+            "Prestige",
+            "TDI Premium Plus"
+          ]
+        },
+        {
+          "name": "Q6 e-tron",
+          "count": 4,
+          "slug": "audi-q6-e-tron",
+          "trims": [
+            "Premium Plus"
+          ]
+        },
+        {
+          "name": "Q7",
+          "count": 168,
+          "slug": "audi-q7",
+          "trims": [
+            "2.0T Premium Plus",
+            "3.0T Premium",
+            "3.0T Premium Plus",
+            "3.0T Prestige",
+            "3.0T S line Prestige",
+            "45 TFSI Premium",
+            "45 TFSI Premium Plus",
+            "45 TFSI SE Premium",
+            "55 TFSI Premium",
+            "55 TFSI Premium Plus",
+            "55 TFSI Prestige",
+            "55 TFSI SE Premium",
+            "55 TFSI SE Premium Plus",
+            "TDI Premium Plus"
+          ]
+        },
+        {
+          "name": "Q8",
+          "count": 30,
+          "slug": "audi-q8",
+          "trims": [
+            "55 TFSI Premium",
+            "55 TFSI Premium Plus",
+            "55 TFSI Prestige",
+            "Premium",
+            "Premium Plus",
+            "Prestige"
+          ]
+        },
+        {
+          "name": "Q8 e-tron",
+          "count": 5,
+          "slug": "audi-q8-e-tron",
+          "trims": [
+            "Premium",
+            "Premium Plus",
+            "Prestige"
+          ]
+        },
+        {
+          "name": "RS 3",
+          "count": 1,
+          "slug": "audi-rs-3",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "RS 5",
+          "count": 13,
+          "slug": "audi-rs-5",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "RS 6",
+          "count": 2,
+          "slug": "audi-rs-6",
+          "trims": [
+            "Avant"
+          ]
+        },
+        {
+          "name": "RS 7",
+          "count": 3,
+          "slug": "audi-rs-7",
+          "trims": [
+            "Prestige"
+          ]
+        },
+        {
+          "name": "RS e-tron GT",
+          "count": 2,
+          "slug": "audi-rs-e-tron-gt",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "RS Q8",
+          "count": 2,
+          "slug": "audi-rs-q8",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "S3",
+          "count": 13,
+          "slug": "audi-s3",
+          "trims": [
+            "Premium Plus",
+            "TFSI Premium"
+          ]
+        },
+        {
+          "name": "S4",
+          "count": 19,
+          "slug": "audi-s4",
+          "trims": [
+            "Premium",
+            "Premium Plus",
+            "Prestige"
+          ]
+        },
+        {
+          "name": "S5",
+          "count": 39,
+          "slug": "audi-s5",
+          "trims": [
+            "3.0T Quattro",
+            "Premium",
+            "Premium Plus",
+            "Prestige",
+            "Quattro"
+          ]
+        },
+        {
+          "name": "S6",
+          "count": 5,
+          "slug": "audi-s6",
+          "trims": [
+            "Premium Plus",
+            "Prestige"
+          ]
+        },
+        {
+          "name": "S7",
+          "count": 3,
+          "slug": "audi-s7",
+          "trims": [
+            "Premium Plus",
+            "base"
+          ]
+        },
+        {
+          "name": "S8",
+          "count": 4,
+          "slug": "audi-s8",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "SQ5",
+          "count": 54,
+          "slug": "audi-sq5",
+          "trims": [
+            "Premium",
+            "Premium Plus",
+            "Prestige"
+          ]
+        },
+        {
+          "name": "SQ7",
+          "count": 4,
+          "slug": "audi-sq7",
+          "trims": [
+            "Premium Plus",
+            "Prestige"
+          ]
+        },
+        {
+          "name": "SQ8",
+          "count": 10,
+          "slug": "audi-sq8",
+          "trims": [
+            "Premium Plus",
+            "Prestige"
+          ]
+        },
+        {
+          "name": "TT",
+          "count": 11,
+          "slug": "audi-tt",
+          "trims": [
+            "Quattro Premium Plus",
+            "RS",
+            "TTS",
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BMW",
+      "count": 2531,
+      "models": [
+        {
+          "name": "1 Series",
+          "count": 8,
+          "slug": "bmw-1-series",
+          "trims": [
+            "128i",
+            "135i"
+          ]
+        },
+        {
+          "name": "2 Series",
+          "count": 150,
+          "slug": "bmw-2-series",
+          "trims": [
+            "228 Gran",
+            "228 xDrive Gran",
+            "228i",
+            "228i Gran",
+            "228i xDrive Gran",
+            "230i",
+            "230i xDrive",
+            "M235i",
+            "M235i xDrive",
+            "M235i xDrive Gran",
+            "M240i",
+            "M240i xDrive"
+          ]
+        },
+        {
+          "name": "3 Series",
+          "count": 300,
+          "slug": "bmw-3-series",
+          "trims": [
+            "320i",
+            "320i xDrive",
+            "328i",
+            "328i Gran Turismo xDrive",
+            "328i xDrive",
+            "328i xDrive Sport",
+            "330e",
+            "330e iPerformance",
+            "330i",
+            "330i Gran Turismo xDrive",
+            "330i xDrive",
+            "330i xDrive Sport",
+            "335d",
+            "335i",
+            "335i xDrive",
+            "335is",
+            "340i",
+            "340i xDrive",
+            "M340i",
+            "M340i xDrive"
+          ]
+        },
+        {
+          "name": "4 Series",
+          "count": 166,
+          "slug": "bmw-4-series",
+          "trims": [
+            "428i",
+            "428i Gran",
+            "428i xDrive",
+            "428i xDrive Gran",
+            "430i",
+            "430i Gran",
+            "430i xDrive",
+            "430i xDrive Gran",
+            "435i",
+            "435i Gran xDrive",
+            "435i xDrive",
+            "440i",
+            "440i Gran",
+            "440i xDrive",
+            "440i xDrive Gran",
+            "M440i",
+            "M440i xDrive",
+            "M440i xDrive Gran"
+          ]
+        },
+        {
+          "name": "5 Series",
+          "count": 190,
+          "slug": "bmw-5-series",
+          "trims": [
+            "528i",
+            "528i xDrive",
+            "530e",
+            "530e iPerformance",
+            "530e xDrive",
+            "530e xDrive iPerformance",
+            "530i",
+            "530i xDrive",
+            "535d xDrive",
+            "535i",
+            "535i Gran Turismo",
+            "535i xDrive",
+            "540i",
+            "540i xDrive",
+            "550i",
+            "550i Gran Turismo xDrive",
+            "550i xDrive",
+            "M550i xDrive"
+          ]
+        },
+        {
+          "name": "6 Series",
+          "count": 36,
+          "slug": "bmw-6-series",
+          "trims": [
+            "640i",
+            "640i Gran",
+            "640i Gran Turismo xDrive",
+            "640i Gran xDrive",
+            "650i",
+            "650i Gran",
+            "650i Gran xDrive",
+            "650i xDrive"
+          ]
+        },
+        {
+          "name": "7 Series",
+          "count": 57,
+          "slug": "bmw-7-series",
+          "trims": [
+            "740Li",
+            "740e xDrive",
+            "740i",
+            "740i xDrive",
+            "745e xDrive",
+            "750i",
+            "750i xDrive",
+            "760Li",
+            "ALPINA B7 xDrive"
+          ]
+        },
+        {
+          "name": "8 Series",
+          "count": 18,
+          "slug": "bmw-8-series",
+          "trims": [
+            "840i",
+            "840i Gran",
+            "840i xDrive",
+            "840i xDrive Gran",
+            "M850i xDrive",
+            "M850i xDrive Gran"
+          ]
+        },
+        {
+          "name": "i3",
+          "count": 25,
+          "slug": "bmw-i3",
+          "trims": [
+            "Base w/Range Extender",
+            "Range Extender",
+            "base",
+            "s w/Range Extender"
+          ]
+        },
+        {
+          "name": "i4",
+          "count": 39,
+          "slug": "bmw-i4",
+          "trims": [
+            "M50",
+            "eDrive35",
+            "eDrive40",
+            "eDrive40 Gran",
+            "xDrive40",
+            "xDrive40 Gran"
+          ]
+        },
+        {
+          "name": "i5",
+          "count": 7,
+          "slug": "bmw-i5",
+          "trims": [
+            "M60",
+            "eDrive40",
+            "xDrive40"
+          ]
+        },
+        {
+          "name": "i7",
+          "count": 1,
+          "slug": "bmw-i7",
+          "trims": [
+            "M70"
+          ]
+        },
+        {
+          "name": "i8",
+          "count": 5,
+          "slug": "bmw-i8",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "iX",
+          "count": 13,
+          "slug": "bmw-ix",
+          "trims": [
+            "M60",
+            "xDrive50"
+          ]
+        },
+        {
+          "name": "M2",
+          "count": 10,
+          "slug": "bmw-m2",
+          "trims": [
+            "Competition",
+            "base"
+          ]
+        },
+        {
+          "name": "M3",
+          "count": 17,
+          "slug": "bmw-m3",
+          "trims": [
+            "CS",
+            "Competition",
+            "Competition xDrive",
+            "base"
+          ]
+        },
+        {
+          "name": "M4",
+          "count": 19,
+          "slug": "bmw-m4",
+          "trims": [
+            "CS",
+            "Competition xDrive",
+            "base"
+          ]
+        },
+        {
+          "name": "M5",
+          "count": 17,
+          "slug": "bmw-m5",
+          "trims": [
+            "Competition",
+            "base"
+          ]
+        },
+        {
+          "name": "M6",
+          "count": 6,
+          "slug": "bmw-m6",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "M8",
+          "count": 1,
+          "slug": "bmw-m8",
+          "trims": [
+            "Competition"
+          ]
+        },
+        {
+          "name": "X1",
+          "count": 304,
+          "slug": "bmw-x1",
+          "trims": [
+            "M35i",
+            "sDrive28i",
+            "xDrive28i"
+          ]
+        },
+        {
+          "name": "X2",
+          "count": 159,
+          "slug": "bmw-x2",
+          "trims": [
+            "M35i",
+            "sDrive28i",
+            "xDrive28i"
+          ]
+        },
+        {
+          "name": "X3",
+          "count": 435,
+          "slug": "bmw-x3",
+          "trims": [
+            "3.0i",
+            "M40i",
+            "M50",
+            "sDrive28i",
+            "sDrive30i",
+            "sDrive30i SA",
+            "xDrive28d",
+            "xDrive28i",
+            "xDrive30",
+            "xDrive30e",
+            "xDrive30i",
+            "xDrive30i SA",
+            "xDrive35i"
+          ]
+        },
+        {
+          "name": "X3 M",
+          "count": 7,
+          "slug": "bmw-x3-m",
+          "trims": [
+            "Competition",
+            "base"
+          ]
+        },
+        {
+          "name": "X4",
+          "count": 61,
+          "slug": "bmw-x4",
+          "trims": [
+            "M40i",
+            "xDrive28i",
+            "xDrive30i",
+            "xDrive35i"
+          ]
+        },
+        {
+          "name": "X4 M",
+          "count": 5,
+          "slug": "bmw-x4-m",
+          "trims": [
+            "Competition",
+            "base"
+          ]
+        },
+        {
+          "name": "X5",
+          "count": 297,
+          "slug": "bmw-x5",
+          "trims": [
+            "M50i",
+            "M60i",
+            "sDrive35i",
+            "sDrive40i",
+            "xDrive35i",
+            "xDrive35i Premium",
+            "xDrive40e",
+            "xDrive40e iPerformance",
+            "xDrive40i",
+            "xDrive45e",
+            "xDrive50e",
+            "xDrive50i"
+          ]
+        },
+        {
+          "name": "X5 M",
+          "count": 7,
+          "slug": "bmw-x5-m",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "X6",
+          "count": 39,
+          "slug": "bmw-x6",
+          "trims": [
+            "M50i",
+            "M60i",
+            "sDrive35i",
+            "xDrive35i",
+            "xDrive40i",
+            "xDrive50i"
+          ]
+        },
+        {
+          "name": "X6 M",
+          "count": 3,
+          "slug": "bmw-x6-m",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "X7",
+          "count": 106,
+          "slug": "bmw-x7",
+          "trims": [
+            "M50i",
+            "M60i",
+            "xDrive40i",
+            "xDrive50i"
+          ]
+        },
+        {
+          "name": "XM",
+          "count": 2,
+          "slug": "bmw-xm",
+          "trims": [
+            "Label",
+            "base"
+          ]
+        },
+        {
+          "name": "Z4",
+          "count": 21,
+          "slug": "bmw-z4",
+          "trims": [
+            "M40i",
+            "sDrive 30i",
+            "sDrive M40i",
+            "sDrive28i",
+            "sDrive30i",
+            "sDrive35i",
+            "sDrive35is"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Buick",
+      "count": 1382,
+      "models": [
+        {
+          "name": "Cascada",
+          "count": 24,
+          "slug": "buick-cascada",
+          "trims": [
+            "Premium",
+            "Sport Touring"
+          ]
+        },
+        {
+          "name": "Enclave",
+          "count": 157,
+          "slug": "buick-enclave",
+          "trims": [
+            "Avenir",
+            "Convenience",
+            "Essence",
+            "Leather",
+            "Preferred",
+            "Premium",
+            "Sport Touring"
+          ]
+        },
+        {
+          "name": "Encore",
+          "count": 245,
+          "slug": "buick-encore",
+          "trims": [
+            "Convenience",
+            "Essence",
+            "Leather",
+            "Preferred",
+            "Preferred II",
+            "Premium",
+            "Sport Touring",
+            "base"
+          ]
+        },
+        {
+          "name": "Encore GX",
+          "count": 614,
+          "slug": "buick-encore-gx",
+          "trims": [
+            "Avenir",
+            "Essence",
+            "Preferred",
+            "Select",
+            "Sport Touring"
+          ]
+        },
+        {
+          "name": "Envision",
+          "count": 138,
+          "slug": "buick-envision",
+          "trims": [
+            "Avenir",
+            "Essence",
+            "Preferred",
+            "Premium",
+            "Premium I",
+            "Premium II",
+            "Sport Touring",
+            "base"
+          ]
+        },
+        {
+          "name": "Envista",
+          "count": 127,
+          "slug": "buick-envista",
+          "trims": [
+            "Avenir",
+            "Preferred",
+            "Sport Touring"
+          ]
+        },
+        {
+          "name": "LaCrosse",
+          "count": 37,
+          "slug": "buick-lacrosse",
+          "trims": [
+            "CXL",
+            "CXS",
+            "Convenience",
+            "Essence",
+            "Leather",
+            "Premium",
+            "Premium I",
+            "Premium II",
+            "base"
+          ]
+        },
+        {
+          "name": "Lucerne",
+          "count": 4,
+          "slug": "buick-lucerne",
+          "trims": [
+            "CXL"
+          ]
+        },
+        {
+          "name": "Regal",
+          "count": 23,
+          "slug": "buick-regal",
+          "trims": [
+            "CXL",
+            "Essence",
+            "GS",
+            "Preferred",
+            "Premium I",
+            "Premium II",
+            "Sport Touring",
+            "base"
+          ]
+        },
+        {
+          "name": "Verano",
+          "count": 13,
+          "slug": "buick-verano",
+          "trims": [
+            "Leather",
+            "Leather Group",
+            "Premium",
+            "Premium Group",
+            "Sport Touring",
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cadillac",
+      "count": 949,
+      "models": [
+        {
+          "name": "ATS",
+          "count": 32,
+          "slug": "cadillac-ats",
+          "trims": [
+            "2.0L Turbo Luxury",
+            "2.0L Turbo Performance",
+            "2.0L Turbo Standard",
+            "2.5L Luxury",
+            "2.5L Standard",
+            "3.6L Luxury",
+            "3.6L Performance",
+            "3.6L Premium",
+            "Luxury",
+            "Premium Luxury",
+            "base"
+          ]
+        },
+        {
+          "name": "ATS-V",
+          "count": 3,
+          "slug": "cadillac-ats-v",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "CT4",
+          "count": 43,
+          "slug": "cadillac-ct4",
+          "trims": [
+            "Luxury",
+            "Premium Luxury",
+            "Sport",
+            "V-Series",
+            "V-Series Blackwing"
+          ]
+        },
+        {
+          "name": "CT5",
+          "count": 50,
+          "slug": "cadillac-ct5",
+          "trims": [
+            "Luxury",
+            "Premium Luxury",
+            "Sport",
+            "V-Series",
+            "V-Series Blackwing"
+          ]
+        },
+        {
+          "name": "CT5-V",
+          "count": 1,
+          "slug": "cadillac-ct5-v",
+          "trims": [
+            "V-Series Blackwing"
+          ]
+        },
+        {
+          "name": "CT6",
+          "count": 31,
+          "slug": "cadillac-ct6",
+          "trims": [
+            "2.0 Turbo",
+            "2.0 Turbo Luxury",
+            "3.0 Platinum",
+            "3.0 Sport",
+            "3.0 Twin Turbo Premium Luxury",
+            "3.6 Luxury",
+            "3.6 Premium Luxury",
+            "PLUG-IN"
+          ]
+        },
+        {
+          "name": "CT6-V",
+          "count": 1,
+          "slug": "cadillac-ct6-v",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "CTS",
+          "count": 70,
+          "slug": "cadillac-cts",
+          "trims": [
+            "2.0 Luxury",
+            "2.0 Luxury Collection",
+            "2.0 Premium Collection",
+            "3.6",
+            "3.6 Luxury",
+            "3.6 Luxury Collection",
+            "3.6 Performance Collection",
+            "3.6 Premium Collection",
+            "3.6 Premium Luxury",
+            "3.6 Sport",
+            "CTS-V",
+            "Sport",
+            "base"
+          ]
+        },
+        {
+          "name": "DTS",
+          "count": 2,
+          "slug": "cadillac-dts",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "ELR",
+          "count": 2,
+          "slug": "cadillac-elr",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "Escalade",
+          "count": 183,
+          "slug": "cadillac-escalade",
+          "trims": [
+            "5 1/4 ft",
+            "Luxury",
+            "Luxury 5 1/4 ft",
+            "Platinum",
+            "Prem Lux Platinum",
+            "Prem Luxury Platinum",
+            "Premium",
+            "Premium 5 1/4 ft",
+            "Premium Luxury",
+            "Sport",
+            "Sport Platinum",
+            "V-Series",
+            "base"
+          ]
+        },
+        {
+          "name": "LYRIQ",
+          "count": 141,
+          "slug": "cadillac-lyriq",
+          "trims": [
+            "Debut Edition",
+            "Luxury",
+            "Luxury 1",
+            "Luxury 2",
+            "Luxury 3",
+            "Premium Luxury",
+            "Sport",
+            "Sport 1",
+            "Sport 2",
+            "Tech"
+          ]
+        },
+        {
+          "name": "OPTIQ",
+          "count": 1,
+          "slug": "cadillac-optiq",
+          "trims": [
+            "Sport 1"
+          ]
+        },
+        {
+          "name": "SRX",
+          "count": 29,
+          "slug": "cadillac-srx",
+          "trims": [
+            "Luxury Collection",
+            "Performance Collection",
+            "Premium Collection",
+            "base"
+          ]
+        },
+        {
+          "name": "VISTIQ",
+          "count": 2,
+          "slug": "cadillac-vistiq",
+          "trims": [
+            "Luxury",
+            "Sport"
+          ]
+        },
+        {
+          "name": "XT4",
+          "count": 110,
+          "slug": "cadillac-xt4",
+          "trims": [
+            "Luxury",
+            "Premium Luxury",
+            "Sport"
+          ]
+        },
+        {
+          "name": "XT5",
+          "count": 139,
+          "slug": "cadillac-xt5",
+          "trims": [
+            "Luxury",
+            "Platinum",
+            "Premium Luxury",
+            "Sport",
+            "base"
+          ]
+        },
+        {
+          "name": "XT6",
+          "count": 70,
+          "slug": "cadillac-xt6",
+          "trims": [
+            "Luxury",
+            "Premium Luxury",
+            "Sport"
+          ]
+        },
+        {
+          "name": "XTS",
+          "count": 39,
+          "slug": "cadillac-xts",
+          "trims": [
+            "Luxury",
+            "Luxury Collection",
+            "Platinum Collection",
+            "Premium Collection",
+            "Premium Luxury",
+            "Standard",
+            "Vsport Platinum Collection",
+            "Vsport Premium Collection",
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chevrolet",
+      "count": 8087,
+      "models": [
+        {
+          "name": "Avalanche",
+          "count": 8,
+          "slug": "chevrolet-avalanche",
+          "trims": [
+            "5 1/4 ft",
+            "Black Diamond LT",
+            "Black Diamond LTZ",
+            "LS",
+            "LS 5 1/4 ft",
+            "LT",
+            "LT 5 1/4 ft",
+            "base"
+          ]
+        },
+        {
+          "name": "Blazer",
+          "count": 348,
+          "slug": "chevrolet-blazer",
+          "trims": [
+            "1LT",
+            "2LT",
+            "3LT",
+            "Premier",
+            "RS"
+          ]
+        },
+        {
+          "name": "Blazer EV",
+          "count": 93,
+          "slug": "chevrolet-blazer-ev",
+          "trims": [
+            "2LT",
+            "LT",
+            "RS"
+          ]
+        },
+        {
+          "name": "Bolt",
+          "count": 67,
+          "slug": "chevrolet-bolt",
+          "trims": [
+            "1LT",
+            "2LT",
+            "LT",
+            "Premier"
+          ]
+        },
+        {
+          "name": "Camaro",
+          "count": 379,
+          "slug": "chevrolet-camaro",
+          "trims": [
+            "LS",
+            "LT",
+            "LT1",
+            "SS",
+            "ZL1"
+          ]
+        },
+        {
+          "name": "Captiva Sport",
+          "count": 2,
+          "slug": "chevrolet-captiva-sport",
+          "trims": [
+            "LT",
+            "LTZ"
+          ]
+        },
+        {
+          "name": "Colorado",
+          "count": 469,
+          "slug": "chevrolet-colorado",
+          "trims": [
+            "LS 6 ft",
+            "LT",
+            "LT 6 ft",
+            "Trail Boss",
+            "Work Truck",
+            "Work Truck 6 ft",
+            "Z71",
+            "ZR2",
+            "base"
+          ]
+        },
+        {
+          "name": "Corvette",
+          "count": 352,
+          "slug": "chevrolet-corvette",
+          "trims": [
+            "427",
+            "E-Ray",
+            "Grand Sport",
+            "Stingray",
+            "Stingray Z51",
+            "Z06",
+            "base"
+          ]
+        },
+        {
+          "name": "Cruze",
+          "count": 87,
+          "slug": "chevrolet-cruze",
+          "trims": [
+            "1LT",
+            "2LT",
+            "LS",
+            "LT",
+            "LTZ",
+            "Premier"
+          ]
+        },
+        {
+          "name": "Equinox",
+          "count": 1095,
+          "slug": "chevrolet-equinox",
+          "trims": [
+            "ACTIV",
+            "LS",
+            "LT",
+            "LTZ",
+            "Premier",
+            "RS"
+          ]
+        },
+        {
+          "name": "Equinox EV",
+          "count": 38,
+          "slug": "chevrolet-equinox-ev",
+          "trims": [
+            "LT",
+            "LT 1",
+            "LT 2",
+            "Launch Edition RS",
+            "RS"
+          ]
+        },
+        {
+          "name": "Express 2500",
+          "count": 3,
+          "slug": "chevrolet-express-2500",
+          "trims": [
+            "Diesel",
+            "Diesel Extended",
+            "Extended",
+            "LS",
+            "LT",
+            "Regular",
+            "base"
+          ]
+        },
+        {
+          "name": "Express 3500",
+          "count": 1,
+          "slug": "chevrolet-express-3500",
+          "trims": [
+            "LS",
+            "LS D",
+            "LS Diesel",
+            "LS Diesel Extended",
+            "LS Extended",
+            "LS Extended D",
+            "LS Regular",
+            "LT",
+            "LT D",
+            "LT Diesel",
+            "LT Diesel Extended",
+            "LT Extended",
+            "LT Extended D",
+            "Regular"
+          ]
+        },
+        {
+          "name": "HHR",
+          "count": 1,
+          "slug": "chevrolet-hhr",
+          "trims": [
+            "LT Sport"
+          ]
+        },
+        {
+          "name": "Impala",
+          "count": 64,
+          "slug": "chevrolet-impala",
+          "trims": [
+            "LS",
+            "LT",
+            "LT Eco",
+            "LTZ",
+            "Premier"
+          ]
+        },
+        {
+          "name": "Malibu",
+          "count": 264,
+          "slug": "chevrolet-malibu",
+          "trims": [
+            "1LT",
+            "2LT",
+            "Hybrid",
+            "L",
+            "LS",
+            "LT",
+            "LTZ",
+            "Premier",
+            "RS"
+          ]
+        },
+        {
+          "name": "Silverado 1500",
+          "count": 1701,
+          "slug": "chevrolet-silverado-1500",
+          "trims": [
+            "Custom",
+            "Custom Trail Boss",
+            "High Country",
+            "LS",
+            "LS 6 1/2 ft",
+            "LT",
+            "LT 5 3/4 ft",
+            "LT 6 1/2 ft",
+            "LT 8 ft",
+            "LT Trail Boss",
+            "LTZ",
+            "LTZ 5 3/4 ft",
+            "LTZ 6 1/2 ft",
+            "LTZ 8 ft",
+            "RST",
+            "Short Bed",
+            "Work Truck",
+            "Work Truck 5 3/4 ft",
+            "Work Truck 6 1/2 ft",
+            "Work Truck 8 ft",
+            "Z71 6 1/2 ft",
+            "Z71 8 ft",
+            "Z71 LT",
+            "Z71 LTZ",
+            "ZR2"
+          ]
+        },
+        {
+          "name": "Silverado 2500",
+          "count": 313,
+          "slug": "chevrolet-silverado-2500",
+          "trims": [
+            "6 1/2 ft",
+            "Custom",
+            "High Country",
+            "LT",
+            "LT 6 1/2 ft",
+            "LT 8 ft",
+            "LTZ",
+            "LTZ 6 1/2 ft",
+            "LTZ 8 ft",
+            "Work Truck",
+            "Work Truck 6 1/2 ft",
+            "Work Truck 8 ft",
+            "ZR2"
+          ]
+        },
+        {
+          "name": "Silverado 3500",
+          "count": 43,
+          "slug": "chevrolet-silverado-3500",
+          "trims": [
+            "High Country",
+            "LT",
+            "LT 8 ft",
+            "LTZ",
+            "LTZ 8 ft",
+            "Work Truck",
+            "Work Truck 8 ft"
+          ]
+        },
+        {
+          "name": "Silverado 3500 HD Chassis Cab",
+          "count": 1,
+          "slug": "chevrolet-silverado-3500-hd-chassis-cab",
+          "trims": [
+            "171.5\" W.B.",
+            "Cab & Chassis",
+            "LT Cab & Chassis",
+            "Work Truck Cab & Chassis"
+          ]
+        },
+        {
+          "name": "Silverado EV",
+          "count": 22,
+          "slug": "chevrolet-silverado-ev",
+          "trims": [
+            "LT Extended Range",
+            "RST",
+            "Trail Boss Extended Range",
+            "Work Truck"
+          ]
+        },
+        {
+          "name": "Sonic",
+          "count": 19,
+          "slug": "chevrolet-sonic",
+          "trims": [
+            "LS",
+            "LT",
+            "LTZ",
+            "Premier"
+          ]
+        },
+        {
+          "name": "Spark",
+          "count": 66,
+          "slug": "chevrolet-spark",
+          "trims": [
+            "1LT",
+            "2LT",
+            "ACTIV",
+            "LS"
+          ]
+        },
+        {
+          "name": "SS",
+          "count": 3,
+          "slug": "chevrolet-ss",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "Suburban",
+          "count": 208,
+          "slug": "chevrolet-suburban",
+          "trims": [
+            "High Country",
+            "LS",
+            "LT",
+            "LTZ",
+            "Premier",
+            "RST",
+            "Z71"
+          ]
+        },
+        {
+          "name": "Tahoe",
+          "count": 419,
+          "slug": "chevrolet-tahoe",
+          "trims": [
+            "High Country",
+            "LS",
+            "LT",
+            "LTZ",
+            "Premier",
+            "RST",
+            "Z71"
+          ]
+        },
+        {
+          "name": "Trailblazer",
+          "count": 469,
+          "slug": "chevrolet-trailblazer",
+          "trims": [
+            "ACTIV",
+            "LS",
+            "LT",
+            "RS"
+          ]
+        },
+        {
+          "name": "Traverse",
+          "count": 472,
+          "slug": "chevrolet-traverse",
+          "trims": [
+            "High Country",
+            "LS",
+            "LT",
+            "LTZ",
+            "Premier",
+            "RS",
+            "Z71"
+          ]
+        },
+        {
+          "name": "Trax",
+          "count": 1057,
+          "slug": "chevrolet-trax",
+          "trims": [
+            "1RS",
+            "2RS",
+            "ACTIV",
+            "LS",
+            "LT",
+            "LTZ",
+            "Premier"
+          ]
+        },
+        {
+          "name": "Volt",
+          "count": 23,
+          "slug": "chevrolet-volt",
+          "trims": [
+            "LT",
+            "Premier",
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chrysler",
+      "count": 1494,
+      "models": [
+        {
+          "name": "200",
+          "count": 27,
+          "slug": "chrysler-200",
+          "trims": [
+            "200C",
+            "200S",
+            "LX",
+            "Limited",
+            "Limited Platinum",
+            "S",
+            "Touring"
+          ]
+        },
+        {
+          "name": "300",
+          "count": 104,
+          "slug": "chrysler-300",
+          "trims": [
+            "300",
+            "300 Limited",
+            "300 Limited Anniversary Pkg",
+            "300 Touring",
+            "300 Touring L",
+            "300C",
+            "300C Luxury Series",
+            "300C Platinum",
+            "300S",
+            "300S Alloy Edition",
+            "300S V6",
+            "300S V8",
+            "Limited",
+            "SRT8"
+          ]
+        },
+        {
+          "name": "Pacifica",
+          "count": 1183,
+          "slug": "chrysler-pacifica",
+          "trims": [
+            "L",
+            "LX",
+            "Launch Edition",
+            "Limited",
+            "Limited 35th Anniversary Edition",
+            "Pinnacle",
+            "Platinum",
+            "Premium S Appearance",
+            "Red S",
+            "S Appearance",
+            "Select",
+            "Touring",
+            "Touring L",
+            "Touring L 35th Anniversary Edition",
+            "Touring L Plus",
+            "Touring L Plus 35th Anniversary Edition",
+            "Touring Plus",
+            "Touring-L",
+            "Touring-L Plus"
+          ]
+        },
+        {
+          "name": "Town & Country",
+          "count": 26,
+          "slug": "chrysler-town-country",
+          "trims": [
+            "LX",
+            "Limited",
+            "Touring",
+            "Touring-L"
+          ]
+        },
+        {
+          "name": "Voyager",
+          "count": 154,
+          "slug": "chrysler-voyager",
+          "trims": [
+            "L",
+            "LX",
+            "LXi"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dodge",
+      "count": 1842,
+      "models": [
+        {
+          "name": "Avenger",
+          "count": 2,
+          "slug": "dodge-avenger",
+          "trims": [
+            "SXT"
+          ]
+        },
+        {
+          "name": "Challenger",
+          "count": 394,
+          "slug": "dodge-challenger",
+          "trims": [
+            "392 Hemi Scat Pack Shaker",
+            "GT",
+            "GT 50th Anniversary",
+            "R/T",
+            "R/T 50th Anniversary",
+            "R/T Classic",
+            "R/T Plus",
+            "R/T Plus Shaker",
+            "R/T Scat Pack",
+            "R/T Scat Pack Widebody",
+            "R/T Shaker",
+            "SE",
+            "SRT 392",
+            "SRT Hellcat",
+            "SRT Hellcat Jailbreak",
+            "SRT Hellcat Jailbreak Widebody",
+            "SRT Hellcat Redeye",
+            "SRT Hellcat Redeye Widebody",
+            "SRT Hellcat Widebody",
+            "SRT8",
+            "SRT8 392",
+            "SXT",
+            "SXT Plus",
+            "Scat Pack",
+            "Scat Pack Shaker",
+            "T/A 392",
+            "T/A Plus"
+          ]
+        },
+        {
+          "name": "Charger",
+          "count": 409,
+          "slug": "dodge-charger",
+          "trims": [
+            "Daytona",
+            "Daytona 392",
+            "GT",
+            "GT Plus",
+            "R/T",
+            "R/T Max",
+            "R/T Plus",
+            "R/T Road & Track",
+            "R/T Road/Track",
+            "R/T Scat Pack",
+            "SE",
+            "SRT 392",
+            "SRT Hellcat",
+            "SRT Hellcat Jailbreak Widebody",
+            "SRT Hellcat Redeye Jailbreak Widebody",
+            "SRT Hellcat Redeye Widebody",
+            "SRT8",
+            "SXT",
+            "SXT Plus",
+            "Scat Pack",
+            "Scat Pack Widebody"
+          ]
+        },
+        {
+          "name": "Charger Daytona",
+          "count": 10,
+          "slug": "dodge-charger-daytona",
+          "trims": [
+            "R/T",
+            "Scat Pack"
+          ]
+        },
+        {
+          "name": "Dart",
+          "count": 12,
+          "slug": "dodge-dart",
+          "trims": [
+            "GT",
+            "Limited",
+            "Rallye",
+            "SE",
+            "SXT",
+            "SXT Sport",
+            "Turbo"
+          ]
+        },
+        {
+          "name": "Durango",
+          "count": 736,
+          "slug": "dodge-durango",
+          "trims": [
+            "Anodized Platinum",
+            "Citadel",
+            "GT",
+            "GT HEMI",
+            "GT HEMI Plus",
+            "GT HEMI Premium",
+            "GT Launch Edition",
+            "GT Plus",
+            "GT Premium",
+            "GT Rallye",
+            "Limited",
+            "R/T",
+            "R/T 20th Anniversary Premium",
+            "R/T HEMI Orange",
+            "R/T Plus",
+            "R/T Premium",
+            "SRT",
+            "SRT 392",
+            "SRT 392 Premium",
+            "SRT Hellcat",
+            "SRT Hellcat Hammerhead",
+            "SRT Hellcat Jailbreak",
+            "SRT Hellcat Premium",
+            "SXT",
+            "SXT Launch Edition",
+            "SXT Plus"
+          ]
+        },
+        {
+          "name": "Grand Caravan",
+          "count": 107,
+          "slug": "dodge-grand-caravan",
+          "trims": [
+            "AVP",
+            "GT",
+            "R/T",
+            "SE",
+            "SE 30th Anniversary",
+            "SE Plus",
+            "SXT",
+            "SXT Plus",
+            "base"
+          ]
+        },
+        {
+          "name": "Hornet",
+          "count": 80,
+          "slug": "dodge-hornet",
+          "trims": [
+            "GT",
+            "GT Plus",
+            "R/T",
+            "R/T Plus"
+          ]
+        },
+        {
+          "name": "Journey",
+          "count": 91,
+          "slug": "dodge-journey",
+          "trims": [
+            "AVP",
+            "Crossroad",
+            "Crossroad Plus",
+            "GT",
+            "LUX",
+            "R/T",
+            "SE",
+            "SE Value",
+            "SE w/Value Pkg",
+            "SXT"
+          ]
+        },
+        {
+          "name": "Ram 1500",
+          "count": 1,
+          "slug": "dodge-ram-1500",
+          "trims": [
+            "Laramie 6 1/4 ft",
+            "Laramie 8 ft",
+            "Long Bed",
+            "SLT 6 1/3 ft",
+            "SLT 6 1/4 ft",
+            "SLT 8 ft",
+            "ST",
+            "ST 6 1/3 ft",
+            "ST 6 1/4 ft",
+            "ST 8 ft",
+            "SXT 6 1/4 ft",
+            "SXT 8 ft",
+            "Short Bed"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FIAT",
+      "count": 131,
+      "models": [
+        {
+          "name": "124 Spider",
+          "count": 45,
+          "slug": "fiat-124-spider",
+          "trims": [
+            "Abarth",
+            "Classica",
+            "Lusso",
+            "Lusso Red Top Edition"
+          ]
+        },
+        {
+          "name": "500",
+          "count": 24,
+          "slug": "fiat-500",
+          "trims": [
+            "500C Gucci",
+            "500C Lounge",
+            "500c Lounge Cabrio",
+            "Abarth",
+            "GQ Edition",
+            "Lounge",
+            "Pop",
+            "Sport"
+          ]
+        },
+        {
+          "name": "500 Abarth",
+          "count": 5,
+          "slug": "fiat-500-abarth",
+          "trims": [
+            "Cabrio",
+            "base"
+          ]
+        },
+        {
+          "name": "500e",
+          "count": 1,
+          "slug": "fiat-500e",
+          "trims": [
+            "RED"
+          ]
+        },
+        {
+          "name": "500L",
+          "count": 12,
+          "slug": "fiat-500l",
+          "trims": [
+            "Lounge",
+            "Pop",
+            "Trekking",
+            "Urbana Trekking"
+          ]
+        },
+        {
+          "name": "500X",
+          "count": 44,
+          "slug": "fiat-500x",
+          "trims": [
+            "Easy",
+            "Lounge",
+            "Pop",
+            "Sport",
+            "Trekking",
+            "Trekking Plus",
+            "Urbana Edition"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ford",
+      "count": 7325,
+      "models": [
+        {
+          "name": "Bronco",
+          "count": 164,
+          "slug": "ford-bronco",
+          "trims": [
+            "Badlands",
+            "Big Bend",
+            "Black Diamond",
+            "Everglades",
+            "Heritage Edition",
+            "Outer Banks",
+            "Raptor",
+            "Wildtrak",
+            "base"
+          ]
+        },
+        {
+          "name": "Bronco Sport",
+          "count": 336,
+          "slug": "ford-bronco-sport",
+          "trims": [
+            "Badlands",
+            "Big Bend",
+            "Heritage",
+            "Heritage Limited",
+            "Outer Banks",
+            "base"
+          ]
+        },
+        {
+          "name": "C-MAX",
+          "count": 15,
+          "slug": "ford-c-max",
+          "trims": [
+            "SE",
+            "SEL",
+            "Titanium"
+          ]
+        },
+        {
+          "name": "E-350",
+          "count": 1,
+          "slug": "ford-e-350",
+          "trims": [
+            "Commercial",
+            "Commercial Extended",
+            "Extended",
+            "XLT",
+            "base"
+          ]
+        },
+        {
+          "name": "EcoSport",
+          "count": 211,
+          "slug": "ford-ecosport",
+          "trims": [
+            "S",
+            "SE",
+            "SES",
+            "Titanium"
+          ]
+        },
+        {
+          "name": "Edge",
+          "count": 458,
+          "slug": "ford-edge",
+          "trims": [
+            "Limited",
+            "SE",
+            "SEL",
+            "ST",
+            "ST Line",
+            "ST-Line",
+            "Sport",
+            "Titanium"
+          ]
+        },
+        {
+          "name": "Escape",
+          "count": 694,
+          "slug": "ford-escape",
+          "trims": [
+            "Active",
+            "Limited",
+            "Platinum",
+            "S",
+            "SE",
+            "SE Hybrid",
+            "SE Sport",
+            "SEL",
+            "SEL Hybrid",
+            "ST-Line",
+            "ST-Line Elite",
+            "ST-Line Hybrid",
+            "ST-Line Select",
+            "ST-Line Select Hybrid",
+            "Titanium",
+            "Titanium Hybrid",
+            "XLT",
+            "base"
+          ]
+        },
+        {
+          "name": "Expedition",
+          "count": 383,
+          "slug": "ford-expedition",
+          "trims": [
+            "Active",
+            "King Ranch",
+            "Limited",
+            "Platinum",
+            "TREMOR",
+            "Timberline",
+            "XL",
+            "XLT"
+          ]
+        },
+        {
+          "name": "Explorer",
+          "count": 1050,
+          "slug": "ford-explorer",
+          "trims": [
+            "Active",
+            "King Ranch",
+            "Limited",
+            "Limited HEV",
+            "Platinum",
+            "ST",
+            "ST-Line",
+            "Sport",
+            "Timberline",
+            "Tremor",
+            "XLT",
+            "base"
+          ]
+        },
+        {
+          "name": "F-150",
+          "count": 1621,
+          "slug": "ford-f-150",
+          "trims": [
+            "FX2",
+            "FX4",
+            "Harley-Davidson",
+            "King Ranch",
+            "Lariat",
+            "Limited",
+            "Platinum",
+            "Raptor",
+            "Raptor R",
+            "STX",
+            "SVT Raptor",
+            "Tremor",
+            "XL",
+            "XLT"
+          ]
+        },
+        {
+          "name": "F-150 Lightning",
+          "count": 58,
+          "slug": "ford-f-150-lightning",
+          "trims": [
+            "Flash",
+            "Lariat",
+            "Platinum",
+            "Pro",
+            "XLT"
+          ]
+        },
+        {
+          "name": "F-250",
+          "count": 325,
+          "slug": "ford-f-250",
+          "trims": [
+            "King Ranch",
+            "Lariat",
+            "Platinum",
+            "XL",
+            "XLT"
+          ]
+        },
+        {
+          "name": "F-350",
+          "count": 140,
+          "slug": "ford-f-350",
+          "trims": [
+            "FX4 6 3/4 ft",
+            "FX4 8 ft",
+            "King Ranch",
+            "Lariat",
+            "Lariat 6 3/4 ft",
+            "Lariat 8 ft",
+            "Limited",
+            "Platinum",
+            "Short Bed",
+            "XL",
+            "XL 6 3/4 ft",
+            "XL 8 ft",
+            "XLT",
+            "XLT 6 3/4 ft",
+            "XLT 8 ft"
+          ]
+        },
+        {
+          "name": "Fiesta",
+          "count": 51,
+          "slug": "ford-fiesta",
+          "trims": [
+            "S",
+            "SE",
+            "ST"
+          ]
+        },
+        {
+          "name": "Flex",
+          "count": 25,
+          "slug": "ford-flex",
+          "trims": [
+            "Limited",
+            "SE",
+            "SEL"
+          ]
+        },
+        {
+          "name": "Focus",
+          "count": 122,
+          "slug": "ford-focus",
+          "trims": [
+            "Electric",
+            "RS",
+            "S",
+            "SE",
+            "SEL",
+            "ST",
+            "Titanium"
+          ]
+        },
+        {
+          "name": "Focus ST",
+          "count": 4,
+          "slug": "ford-focus-st",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "Fusion",
+          "count": 235,
+          "slug": "ford-fusion",
+          "trims": [
+            "Hybrid",
+            "Platinum",
+            "Plug-In Hybrid SE Luxury",
+            "Plug-In Hybrid Titanium",
+            "S",
+            "S Hybrid",
+            "SE",
+            "SE Hybrid",
+            "SEL",
+            "SEL Hybrid",
+            "Sport",
+            "Titanium"
+          ]
+        },
+        {
+          "name": "Maverick",
+          "count": 220,
+          "slug": "ford-maverick",
+          "trims": [
+            "Lariat",
+            "Lariat SuperCrew",
+            "Lobo",
+            "Tremor",
+            "XL",
+            "XL SuperCrew",
+            "XLT",
+            "XLT SuperCrew"
+          ]
+        },
+        {
+          "name": "Mustang",
+          "count": 758,
+          "slug": "ford-mustang",
+          "trims": [
+            "BULLITT",
+            "Boss 302",
+            "Dark Horse",
+            "EcoBoost",
+            "EcoBoost Premium",
+            "GT",
+            "GT 50 Years Limited Edition",
+            "GT Premium",
+            "Mach 1",
+            "Premium",
+            "Shelby GT350",
+            "Shelby GT350R",
+            "Shelby GT500",
+            "V6",
+            "V6 Premium",
+            "base"
+          ]
+        },
+        {
+          "name": "Mustang MACH-E",
+          "count": 138,
+          "slug": "ford-mustang-mach-e",
+          "trims": [
+            "California Route 1",
+            "GT",
+            "Premium",
+            "Select"
+          ]
+        },
+        {
+          "name": "Ranger",
+          "count": 222,
+          "slug": "ford-ranger",
+          "trims": [
+            "Edge 6 ft",
+            "Lariat",
+            "Long Bed",
+            "Raptor",
+            "STX 6 ft",
+            "Short Bed",
+            "Sport",
+            "Sport 6 ft",
+            "XL",
+            "XL 6 ft",
+            "XL 7 ft",
+            "XLT",
+            "XLT 6 ft",
+            "XLT 7 ft"
+          ]
+        },
+        {
+          "name": "Taurus",
+          "count": 28,
+          "slug": "ford-taurus",
+          "trims": [
+            "Limited",
+            "SE",
+            "SEL",
+            "SHO"
+          ]
+        },
+        {
+          "name": "Transit 150",
+          "count": 15,
+          "slug": "ford-transit-150",
+          "trims": [
+            "Low Roof w/60/40 Side Door w/LWB",
+            "Low Roof w/60/40 Side Door w/RWB",
+            "Low Roof w/LWB",
+            "Low Roof w/RWB",
+            "Low Roof w/Sliding Side Door w/LWB",
+            "Low Roof w/Sliding Side Door w/RWB",
+            "Medium Roof w/Dual Sliding Side Doors w/LWB",
+            "Medium Roof w/Dual Sliding Side Doors w/RWB",
+            "Medium Roof w/LWB",
+            "Medium Roof w/RWB",
+            "Medium Roof w/Sliding Side Door w/LWB",
+            "Medium Roof w/Sliding Side Door w/RWB",
+            "XL w/Low Roof w/Sliding Side Door",
+            "XLT w/Low Roof w/Sliding Side Door",
+            "XLT w/Medium Roof",
+            "XLT w/Medium Roof w/Sliding Side Door"
+          ]
+        },
+        {
+          "name": "Transit 350",
+          "count": 29,
+          "slug": "ford-transit-350",
+          "trims": [
+            "Extended Length High Roof",
+            "Extended Length High Roof w/10,360-lb GVWR",
+            "Extended Length High Roof w/10360-lb GVWR",
+            "Extended Length High Roof w/9950-lb GVWR",
+            "High Roof",
+            "Low Roof w/RWB",
+            "Medium Roof w/LWB",
+            "Medium Roof w/RWB",
+            "XL Extended Length w/High Roof",
+            "XL Extended Length w/High Roof w/Sliding Side Door",
+            "XL w/High Roof w/Sliding Side Door",
+            "XL w/Low Roof",
+            "XL w/Low Roof w/60/40 Side Door",
+            "XL w/Low Roof w/Sliding Side Door",
+            "XL w/Medium Roof",
+            "XL w/Medium Roof w/Sliding Side Door",
+            "XLT Extended Length w/High Roof",
+            "XLT Extended Length w/High Roof w/Sliding Side Door",
+            "XLT w/High Roof w/Sliding Side Door",
+            "XLT w/Low Roof",
+            "XLT w/Low Roof w/60/40 Side Door",
+            "XLT w/Low Roof w/Sliding Side Door",
+            "XLT w/Medium Roof",
+            "XLT w/Medium Roof w/Sliding Side Door"
+          ]
+        },
+        {
+          "name": "Transit Connect",
+          "count": 22,
+          "slug": "ford-transit-connect",
+          "trims": [
+            "Titanium",
+            "XL",
+            "XLT"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Genesis",
+      "count": 356,
+      "models": [
+        {
+          "name": "Electrified G80",
+          "count": 1,
+          "slug": "genesis-electrified-g80",
+          "trims": [
+            "Advanced"
+          ]
+        },
+        {
+          "name": "Electrified GV70",
+          "count": 2,
+          "slug": "genesis-electrified-gv70",
+          "trims": [
+            "Advanced"
+          ]
+        },
+        {
+          "name": "G70",
+          "count": 178,
+          "slug": "genesis-g70",
+          "trims": [
+            "2.0T",
+            "2.0T Advanced",
+            "2.5T",
+            "2.5T Prestige",
+            "2.5T Standard",
+            "3.3T",
+            "3.3T Advanced",
+            "3.3T Design Edition",
+            "3.3T Sport Advanced"
+          ]
+        },
+        {
+          "name": "G80",
+          "count": 23,
+          "slug": "genesis-g80",
+          "trims": [
+            "2.5T",
+            "3.3T Sport",
+            "3.8",
+            "5"
+          ]
+        },
+        {
+          "name": "G90",
+          "count": 18,
+          "slug": "genesis-g90",
+          "trims": [
+            "3.3T Premium",
+            "5.0 Ultimate"
+          ]
+        },
+        {
+          "name": "GV60",
+          "count": 5,
+          "slug": "genesis-gv60",
+          "trims": [
+            "Advanced",
+            "Performance"
+          ]
+        },
+        {
+          "name": "GV70",
+          "count": 72,
+          "slug": "genesis-gv70",
+          "trims": [
+            "2.5T",
+            "2.5T Advanced",
+            "2.5T Select",
+            "2.5T Sport Prestige",
+            "2.5T Standard",
+            "3.5T Sport"
+          ]
+        },
+        {
+          "name": "GV80",
+          "count": 56,
+          "slug": "genesis-gv80",
+          "trims": [
+            "2.5T Base",
+            "2.5T Prestige",
+            "2.5T Standard",
+            "3.5T Advanced",
+            "3.5T Advanced+",
+            "3.5T Base",
+            "3.5T Prestige"
+          ]
+        },
+        {
+          "name": "GV80 Coupe",
+          "count": 1,
+          "slug": "genesis-gv80-coupe",
+          "trims": [
+            "3.5T e-SC MHEV"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GMC",
+      "count": 2629,
+      "models": [
+        {
+          "name": "Acadia",
+          "count": 404,
+          "slug": "gmc-acadia",
+          "trims": [
+            "AT4",
+            "Denali",
+            "Elevation",
+            "SLE",
+            "SLE-1",
+            "SLE-2",
+            "SLT",
+            "SLT-1",
+            "SLT-2",
+            "base"
+          ]
+        },
+        {
+          "name": "Canyon",
+          "count": 190,
+          "slug": "gmc-canyon",
+          "trims": [
+            "AT4",
+            "AT4X",
+            "Denali",
+            "Elevation",
+            "Elevation Standard",
+            "SL 6 ft",
+            "SLE",
+            "SLE 6 ft",
+            "SLE All Terrain",
+            "SLT",
+            "SLT All Terrain",
+            "Work Truck 6 ft",
+            "base"
+          ]
+        },
+        {
+          "name": "HUMMER EV",
+          "count": 11,
+          "slug": "gmc-hummer-ev",
+          "trims": [
+            "2X",
+            "3X",
+            "Edition 1"
+          ]
+        },
+        {
+          "name": "Sierra 1500",
+          "count": 936,
+          "slug": "gmc-sierra-1500",
+          "trims": [
+            "AT4",
+            "AT4-X",
+            "AT4X",
+            "Denali",
+            "Denali Ultimate",
+            "Elevation",
+            "Pro",
+            "SLE",
+            "SLT",
+            "base"
+          ]
+        },
+        {
+          "name": "Sierra 2500",
+          "count": 200,
+          "slug": "gmc-sierra-2500",
+          "trims": [
+            "AT4",
+            "AT4X",
+            "Denali",
+            "Denali Ultimate",
+            "Pro",
+            "SLE",
+            "SLT",
+            "Work Truck",
+            "base"
+          ]
+        },
+        {
+          "name": "Sierra 3500",
+          "count": 40,
+          "slug": "gmc-sierra-3500",
+          "trims": [
+            "AT4",
+            "Denali",
+            "Denali Ultimate",
+            "Pro",
+            "SLE",
+            "SLE 8 ft",
+            "SLT",
+            "SLT 8 ft",
+            "Work Truck 8 ft",
+            "base"
+          ]
+        },
+        {
+          "name": "Sierra EV",
+          "count": 1,
+          "slug": "gmc-sierra-ev",
+          "trims": [
+            "Denali Standard Range"
+          ]
+        },
+        {
+          "name": "Terrain",
+          "count": 488,
+          "slug": "gmc-terrain",
+          "trims": [
+            "AT4",
+            "Denali",
+            "Elevation",
+            "SLE",
+            "SLE Diesel",
+            "SLE-1",
+            "SLE-2",
+            "SLT",
+            "SLT Diesel",
+            "SLT-1",
+            "SLT-2"
+          ]
+        },
+        {
+          "name": "Yukon",
+          "count": 359,
+          "slug": "gmc-yukon",
+          "trims": [
+            "AT4",
+            "AT4 Ultimate",
+            "Commercial",
+            "Denali",
+            "Denali Ultimate",
+            "Elevation",
+            "SLE",
+            "SLT",
+            "SLT Standard Edition"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Honda",
+      "count": 4608,
+      "models": [
+        {
+          "name": "Accord",
+          "count": 896,
+          "slug": "honda-accord",
+          "trims": [
+            "EX",
+            "EX w/Honda Sensing",
+            "EX-L",
+            "EX-L w/Navigation",
+            "EX-L w/Navigation & Honda Sensing",
+            "LX",
+            "LX-P",
+            "LX-S",
+            "SE",
+            "Sport",
+            "Sport L",
+            "Sport SE",
+            "Sport Special Edition",
+            "Sport-L",
+            "Touring",
+            "base"
+          ]
+        },
+        {
+          "name": "Civic",
+          "count": 957,
+          "slug": "honda-civic",
+          "trims": [
+            "EX",
+            "EX w/Honda Sensing",
+            "EX-L",
+            "EX-L w/Navigation",
+            "EX-L w/Navigation & Honda Sensing",
+            "EX-T",
+            "EX-T w/Honda Sensing",
+            "LX",
+            "LX w/Honda Sensing",
+            "LX-P",
+            "SE",
+            "Si",
+            "Sport",
+            "Sport Touring",
+            "Touring"
+          ]
+        },
+        {
+          "name": "Civic Type R",
+          "count": 54,
+          "slug": "honda-civic-type-r",
+          "trims": [
+            "Touring",
+            "base"
+          ]
+        },
+        {
+          "name": "Clarity",
+          "count": 4,
+          "slug": "honda-clarity",
+          "trims": [
+            "Touring",
+            "base"
+          ]
+        },
+        {
+          "name": "CR-V",
+          "count": 1039,
+          "slug": "honda-cr-v",
+          "trims": [
+            "EX",
+            "EX-L",
+            "EX-L w/Navigation",
+            "LX",
+            "SE",
+            "Special Edition",
+            "Sport",
+            "Sport L",
+            "Sport Touring",
+            "Touring",
+            "TrailSport",
+            "base"
+          ]
+        },
+        {
+          "name": "CR-Z",
+          "count": 3,
+          "slug": "honda-cr-z",
+          "trims": [
+            "EX"
+          ]
+        },
+        {
+          "name": "Crosstour",
+          "count": 3,
+          "slug": "honda-crosstour",
+          "trims": [
+            "EX-L"
+          ]
+        },
+        {
+          "name": "Element",
+          "count": 1,
+          "slug": "honda-element",
+          "trims": [
+            "EX"
+          ]
+        },
+        {
+          "name": "Fit",
+          "count": 68,
+          "slug": "honda-fit",
+          "trims": [
+            "EX",
+            "EX-L",
+            "EX-L w/Navigation",
+            "LX",
+            "Sport",
+            "base"
+          ]
+        },
+        {
+          "name": "HR-V",
+          "count": 368,
+          "slug": "honda-hr-v",
+          "trims": [
+            "EX",
+            "EX-L",
+            "EX-L w/Navigation",
+            "LX",
+            "Sport",
+            "Touring"
+          ]
+        },
+        {
+          "name": "Insight",
+          "count": 26,
+          "slug": "honda-insight",
+          "trims": [
+            "EX",
+            "LX",
+            "Touring"
+          ]
+        },
+        {
+          "name": "Odyssey",
+          "count": 422,
+          "slug": "honda-odyssey",
+          "trims": [
+            "EX",
+            "EX-L",
+            "EX-L w/DVD Res",
+            "EX-L w/Navigation & RES",
+            "Elite",
+            "LX",
+            "SE",
+            "Sport",
+            "Sport L",
+            "Touring",
+            "Touring Elite"
+          ]
+        },
+        {
+          "name": "Passport",
+          "count": 103,
+          "slug": "honda-passport",
+          "trims": [
+            "Black Edition",
+            "EX-L",
+            "Elite",
+            "Sport",
+            "Touring",
+            "TrailSport",
+            "TrailSport Elite"
+          ]
+        },
+        {
+          "name": "Pilot",
+          "count": 425,
+          "slug": "honda-pilot",
+          "trims": [
+            "Black Edition",
+            "EX",
+            "EX-L",
+            "EX-L w/Honda Sensing",
+            "EX-L w/Navi & RES",
+            "EX-L w/Navigation",
+            "EX-L w/RES",
+            "Elite",
+            "LX",
+            "SE",
+            "Special Edition",
+            "Sport",
+            "Touring",
+            "TrailSport"
+          ]
+        },
+        {
+          "name": "Prologue",
+          "count": 31,
+          "slug": "honda-prologue",
+          "trims": [
+            "EX",
+            "Elite",
+            "Touring"
+          ]
+        },
+        {
+          "name": "Ridgeline",
+          "count": 208,
+          "slug": "honda-ridgeline",
+          "trims": [
+            "BLACK EDITION",
+            "Black Edition",
+            "RTL",
+            "RTL-E",
+            "RTL-T",
+            "RTS",
+            "Sport",
+            "TrailSport",
+            "TrailSport+"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hyundai",
+      "count": 4336,
+      "models": [
+        {
+          "name": "Accent",
+          "count": 50,
+          "slug": "hyundai-accent",
+          "trims": [
+            "GLS",
+            "GS",
+            "SE",
+            "SEL",
+            "Value Edition"
+          ]
+        },
+        {
+          "name": "Azera",
+          "count": 8,
+          "slug": "hyundai-azera",
+          "trims": [
+            "Limited",
+            "base"
+          ]
+        },
+        {
+          "name": "Elantra",
+          "count": 635,
+          "slug": "hyundai-elantra",
+          "trims": [
+            "Blue HEV",
+            "GLS",
+            "GT",
+            "Limited",
+            "Limited HEV",
+            "N Line",
+            "N-Line",
+            "SE",
+            "SE Value Edition",
+            "SEL",
+            "SEL Convenience",
+            "SEL Sport",
+            "SEL Sport HEV",
+            "SEL Sport Premium",
+            "Sport",
+            "Value Edition",
+            "base"
+          ]
+        },
+        {
+          "name": "Elantra N",
+          "count": 29,
+          "slug": "hyundai-elantra-n",
+          "trims": [
+            "N"
+          ]
+        },
+        {
+          "name": "Genesis",
+          "count": 25,
+          "slug": "hyundai-genesis",
+          "trims": [
+            "3.8",
+            "4.6",
+            "5"
+          ]
+        },
+        {
+          "name": "Genesis Coupe",
+          "count": 4,
+          "slug": "hyundai-genesis-coupe",
+          "trims": [
+            "2.0T Premium",
+            "3.8",
+            "3.8 Grand Touring",
+            "3.8 Ultimate"
+          ]
+        },
+        {
+          "name": "Ioniq",
+          "count": 19,
+          "slug": "hyundai-ioniq",
+          "trims": [
+            "Blue",
+            "Limited",
+            "SE",
+            "SEL"
+          ]
+        },
+        {
+          "name": "IONIQ 5",
+          "count": 151,
+          "slug": "hyundai-ioniq-5",
+          "trims": [
+            "Limited",
+            "SE",
+            "SE Standard Range",
+            "SEL"
+          ]
+        },
+        {
+          "name": "IONIQ 5 N",
+          "count": 2,
+          "slug": "hyundai-ioniq-5-n",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "IONIQ 6",
+          "count": 49,
+          "slug": "hyundai-ioniq-6",
+          "trims": [
+            "Limited",
+            "SE",
+            "SEL"
+          ]
+        },
+        {
+          "name": "Ioniq Electric",
+          "count": 4,
+          "slug": "hyundai-ioniq-electric",
+          "trims": [
+            "Limited",
+            "SE"
+          ]
+        },
+        {
+          "name": "Kona",
+          "count": 350,
+          "slug": "hyundai-kona",
+          "trims": [
+            "Iron Man",
+            "Limited",
+            "N Line",
+            "N Line S",
+            "Night",
+            "SE",
+            "SEL",
+            "SEL Convenience",
+            "SEL Plus",
+            "SEL Premium",
+            "SEL Sport",
+            "Ultimate"
+          ]
+        },
+        {
+          "name": "Kona Electric",
+          "count": 18,
+          "slug": "hyundai-kona-electric",
+          "trims": [
+            "Limited",
+            "SE",
+            "SEL",
+            "Ultimate"
+          ]
+        },
+        {
+          "name": "Kona N",
+          "count": 6,
+          "slug": "hyundai-kona-n",
+          "trims": [
+            "N"
+          ]
+        },
+        {
+          "name": "Palisade",
+          "count": 428,
+          "slug": "hyundai-palisade",
+          "trims": [
+            "Blue SEL Premium",
+            "Caligraphy Night Edition",
+            "Calligraphy",
+            "Calligraphy Night Edition",
+            "Limited",
+            "SE",
+            "SEL",
+            "SEL Convenience",
+            "SEL Premium",
+            "XRT",
+            "XRT PRO"
+          ]
+        },
+        {
+          "name": "Santa Cruz",
+          "count": 145,
+          "slug": "hyundai-santa-cruz",
+          "trims": [
+            "Limited 4 ft",
+            "Night 4 ft",
+            "SE 4 ft",
+            "SEL 4 ft",
+            "SEL Activity 4 ft",
+            "SEL Premium 4 ft",
+            "XRT 4 ft"
+          ]
+        },
+        {
+          "name": "Santa Fe",
+          "count": 951,
+          "slug": "hyundai-santa-fe",
+          "trims": [
+            "2.0T",
+            "2.0T Limited",
+            "2.0T SEL",
+            "2.0T Ultimate",
+            "2.4 Limited",
+            "2.4 SE",
+            "2.4 SEL",
+            "2.4 SEL Plus",
+            "2.4 Ultimate",
+            "Blue",
+            "Calligraphy",
+            "GLS",
+            "Limited",
+            "Limited Ultimate",
+            "SE",
+            "SEL",
+            "SEL Convenience",
+            "SEL Premium",
+            "XRT",
+            "base"
+          ]
+        },
+        {
+          "name": "Sonata",
+          "count": 495,
+          "slug": "hyundai-sonata",
+          "trims": [
+            "Blue",
+            "Eco",
+            "GLS",
+            "Hybrid",
+            "Hybrid Limited",
+            "Limited",
+            "Limited 2.0T",
+            "N Line",
+            "SE",
+            "SEL",
+            "SEL Convenience",
+            "SEL Plus",
+            "SEL Sport",
+            "Sport",
+            "Sport 2.0T",
+            "Sport+",
+            "base"
+          ]
+        },
+        {
+          "name": "Tucson",
+          "count": 782,
+          "slug": "hyundai-tucson",
+          "trims": [
+            "Blue",
+            "Eco",
+            "GLS",
+            "Limited",
+            "N Line",
+            "Night",
+            "SE",
+            "SE Plus",
+            "SEL",
+            "SEL Convenience",
+            "SEL Plus",
+            "Sport",
+            "Ultimate",
+            "Value",
+            "XRT"
+          ]
+        },
+        {
+          "name": "Veloster",
+          "count": 39,
+          "slug": "hyundai-veloster",
+          "trims": [
+            "2",
+            "2.0 Premium",
+            "N",
+            "RE:FLEX",
+            "Turbo",
+            "Turbo R-Spec",
+            "Turbo Ultimate",
+            "Value Edition",
+            "base"
+          ]
+        },
+        {
+          "name": "Venue",
+          "count": 146,
+          "slug": "hyundai-venue",
+          "trims": [
+            "Denim",
+            "Limited",
+            "SE",
+            "SEL"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "INEOS",
+      "count": 4,
+      "models": [
+        {
+          "name": "Grenadier",
+          "count": 4,
+          "slug": "ineos-grenadier",
+          "trims": [
+            "1924 Limited Edition",
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "INFINITI",
+      "count": 645,
+      "models": [
+        {
+          "name": "FX",
+          "count": 1,
+          "slug": "infiniti-fx",
+          "trims": [
+            "FX37"
+          ]
+        },
+        {
+          "name": "G",
+          "count": 19,
+          "slug": "infiniti-g",
+          "trims": [
+            "G37",
+            "G37 Journey",
+            "G37x"
+          ]
+        },
+        {
+          "name": "JX",
+          "count": 2,
+          "slug": "infiniti-jx",
+          "trims": [
+            "JX35"
+          ]
+        },
+        {
+          "name": "M",
+          "count": 3,
+          "slug": "infiniti-m",
+          "trims": [
+            "M37"
+          ]
+        },
+        {
+          "name": "Q40",
+          "count": 1,
+          "slug": "infiniti-q40",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "Q50",
+          "count": 81,
+          "slug": "infiniti-q50",
+          "trims": [
+            "2.0t",
+            "2.0t LUXE",
+            "2.0t Premium",
+            "3.0t LUXE",
+            "3.0t Premium",
+            "3.0t SPORT",
+            "3.0t Signature Edition",
+            "3.7 Premium",
+            "LUXE",
+            "RED SPORT 400",
+            "S 3.7",
+            "SENSORY"
+          ]
+        },
+        {
+          "name": "Q60",
+          "count": 19,
+          "slug": "infiniti-q60",
+          "trims": [
+            "2.0t",
+            "2.0t Pure",
+            "3.0t Luxe",
+            "3.0t Premium",
+            "IPL",
+            "Journey",
+            "LUXE",
+            "RED SPORT 400",
+            "Red Sport 400"
+          ]
+        },
+        {
+          "name": "Q70",
+          "count": 8,
+          "slug": "infiniti-q70",
+          "trims": [
+            "3.7",
+            "3.7 Luxe",
+            "L 3.7 Luxe"
+          ]
+        },
+        {
+          "name": "QX",
+          "count": 1,
+          "slug": "infiniti-qx",
+          "trims": [
+            "QX56"
+          ]
+        },
+        {
+          "name": "QX30",
+          "count": 36,
+          "slug": "infiniti-qx30",
+          "trims": [
+            "Essential",
+            "Luxe",
+            "Luxury",
+            "Premium",
+            "Pure",
+            "Sport",
+            "base"
+          ]
+        },
+        {
+          "name": "QX50",
+          "count": 93,
+          "slug": "infiniti-qx50",
+          "trims": [
+            "AUTOGRAPH",
+            "ESSENTIAL",
+            "Essential",
+            "LUXE",
+            "Luxe",
+            "PURE",
+            "Pure",
+            "SENSORY",
+            "SPORT",
+            "SPORT Utility",
+            "base"
+          ]
+        },
+        {
+          "name": "QX55",
+          "count": 30,
+          "slug": "infiniti-qx55",
+          "trims": [
+            "ESSENTIAL",
+            "LUXE",
+            "SENSORY"
+          ]
+        },
+        {
+          "name": "QX60",
+          "count": 255,
+          "slug": "infiniti-qx60",
+          "trims": [
+            "3.5",
+            "AUTOGRAPH",
+            "LUXE",
+            "PURE",
+            "SENSORY",
+            "SIGNATURE EDITION"
+          ]
+        },
+        {
+          "name": "QX70",
+          "count": 7,
+          "slug": "infiniti-qx70",
+          "trims": [
+            "3.7"
+          ]
+        },
+        {
+          "name": "QX80",
+          "count": 89,
+          "slug": "infiniti-qx80",
+          "trims": [
+            "LIMITED",
+            "LUXE",
+            "PREMIUM SELECT",
+            "SENSORY",
+            "Signature",
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jaguar",
+      "count": 218,
+      "models": [
+        {
+          "name": "E-PACE",
+          "count": 19,
+          "slug": "jaguar-e-pace",
+          "trims": [
+            "P250",
+            "P250 R-DYN SE",
+            "P250 S",
+            "P250 SE",
+            "P300 R-Dynamic S",
+            "P300 Sport"
+          ]
+        },
+        {
+          "name": "F-PACE",
+          "count": 84,
+          "slug": "jaguar-f-pace",
+          "trims": [
+            "20d Premium",
+            "20d Prestige",
+            "25t",
+            "25t Checkered Flag Limited Edition",
+            "25t Premium",
+            "25t Prestige",
+            "25t R-Sport",
+            "30t Portfolio",
+            "30t Prestige",
+            "30t R-Sport",
+            "35t Prestige",
+            "35t R-Sport",
+            "P250 R-Dynamic S",
+            "P250 S",
+            "P340 S",
+            "P400 R-Dynamic S",
+            "S",
+            "SVR"
+          ]
+        },
+        {
+          "name": "F-TYPE",
+          "count": 62,
+          "slug": "jaguar-f-type",
+          "trims": [
+            "2.0 296 HP",
+            "3.0 380 HP",
+            "400 Sport",
+            "P300",
+            "P300 Checkered Flag Limited Edition",
+            "P340",
+            "P380 R-Dynamic",
+            "Premium",
+            "R",
+            "R-Dynamic",
+            "S",
+            "S British Design Edition",
+            "V8 S",
+            "base"
+          ]
+        },
+        {
+          "name": "I-PACE",
+          "count": 9,
+          "slug": "jaguar-i-pace",
+          "trims": [
+            "EV400 HSE",
+            "EV400 S"
+          ]
+        },
+        {
+          "name": "XE",
+          "count": 7,
+          "slug": "jaguar-xe",
+          "trims": [
+            "XE 25t",
+            "XE 25t Premium",
+            "XE 25t Prestige",
+            "XE P250 S",
+            "XE P300 R-Dynamic S"
+          ]
+        },
+        {
+          "name": "XF",
+          "count": 20,
+          "slug": "jaguar-xf",
+          "trims": [
+            "P250 SE",
+            "P300 R-Dynamic SE",
+            "XF 20d Premium",
+            "XF 3.5t R-Sport",
+            "XF 35t Premium",
+            "XF 35t Prestige",
+            "XF Portfolio",
+            "XF Premium",
+            "XF S",
+            "XF Sport",
+            "XF Supercharged",
+            "XF Supercharged Sports"
+          ]
+        },
+        {
+          "name": "XJ",
+          "count": 12,
+          "slug": "jaguar-xj",
+          "trims": [
+            "XJ",
+            "XJ Collection",
+            "XJL Portfolio",
+            "XJL Supercharged"
+          ]
+        },
+        {
+          "name": "XK",
+          "count": 5,
+          "slug": "jaguar-xk",
+          "trims": [
+            "XK",
+            "XK Touring"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jeep",
+      "count": 8595,
+      "models": [
+        {
+          "name": "Cherokee",
+          "count": 914,
+          "slug": "jeep-cherokee",
+          "trims": [
+            "75th Anniversary",
+            "80th Anniversary Edition",
+            "Altitude",
+            "Altitude Lux",
+            "Freedom",
+            "High Altitude",
+            "Laredo",
+            "Latitude",
+            "Latitude Lux",
+            "Latitude Plus",
+            "Latitude Tech Connect",
+            "Limited",
+            "Lux",
+            "North",
+            "Overland",
+            "Sport",
+            "Sport Altitude",
+            "TrailHawk",
+            "TrailHawk Elite",
+            "Trailhawk L Plus",
+            "X"
+          ]
+        },
+        {
+          "name": "Compass",
+          "count": 1646,
+          "slug": "jeep-compass",
+          "trims": [
+            "75th Anniversary",
+            "80th Spec Edition",
+            "All New Latitude",
+            "All New Limited",
+            "All New Sport",
+            "All New Trailhawk",
+            "Altitude",
+            "High Altitude",
+            "High Altitude Edition",
+            "Latitude",
+            "Latitude Altitude",
+            "Latitude Lux",
+            "Limited",
+            "Limited Altitude",
+            "North Edition",
+            "Red Edition",
+            "Sport",
+            "Sun & Safety",
+            "Trailhawk",
+            "base"
+          ]
+        },
+        {
+          "name": "Gladiator",
+          "count": 625,
+          "slug": "jeep-gladiator",
+          "trims": [
+            "80th Edition",
+            "85th Anniversary Edition",
+            "Altitude",
+            "California Edition",
+            "FarOut",
+            "Freedom",
+            "Freedom Edition",
+            "High Altitude",
+            "High Tide",
+            "Mojave",
+            "Mojave X",
+            "Nighthawk",
+            "North Edition",
+            "Overland",
+            "Rubicon",
+            "Rubicon X",
+            "Sahara",
+            "Sport",
+            "Sport Altitude",
+            "Sport S",
+            "Texas Trail",
+            "Texas Trail Edition",
+            "Willys",
+            "Willys 41",
+            "Willys Sport"
+          ]
+        },
+        {
+          "name": "Grand Cherokee",
+          "count": 2192,
+          "slug": "jeep-grand-cherokee",
+          "trims": [
+            "75th Anniversary Edition",
+            "80th Edition",
+            "85th Anniversary Edition",
+            "All New Altitude",
+            "All New Laredo",
+            "All New Limited",
+            "All New Overland",
+            "All New Summit",
+            "All New Trailhawk",
+            "Altitude",
+            "Altitude X",
+            "Freedom",
+            "High Altitude",
+            "Laredo",
+            "Laredo Altitude",
+            "Laredo E",
+            "Laredo X",
+            "Limited",
+            "Limited 75th Anniversary Edition",
+            "Limited Reserve",
+            "Limited Sterling Edition",
+            "Limited X",
+            "North",
+            "Overland",
+            "SRT",
+            "SRT Red Vapor",
+            "Summit",
+            "Summit Reserve",
+            "Trackhawk",
+            "Trailhawk",
+            "Upland",
+            "base"
+          ]
+        },
+        {
+          "name": "Grand Wagoneer",
+          "count": 333,
+          "slug": "jeep-grand-wagoneer",
+          "trims": [
+            "85th Anniversary Edition",
+            "Limited Altitude",
+            "Limited Reserve",
+            "Obsidian",
+            "Series I",
+            "Series II",
+            "Series II Obsidian",
+            "Series III",
+            "Series III Obsidian",
+            "Summit Obsidian",
+            "Summit Reserve",
+            "Upland",
+            "base"
+          ]
+        },
+        {
+          "name": "Patriot",
+          "count": 43,
+          "slug": "jeep-patriot",
+          "trims": [
+            "Altitude Edition",
+            "High Altitude Edition",
+            "Latitude",
+            "Limited",
+            "Sport",
+            "Sport SE",
+            "base"
+          ]
+        },
+        {
+          "name": "Renegade",
+          "count": 371,
+          "slug": "jeep-renegade",
+          "trims": [
+            "80th Edition",
+            "Altitude",
+            "Dawn of Justice",
+            "Deserthawk",
+            "Islander",
+            "Latitude",
+            "Limited",
+            "North Edition",
+            "Sport",
+            "Trailhawk",
+            "Upland",
+            "Upland Edition"
+          ]
+        },
+        {
+          "name": "Wagoneer",
+          "count": 584,
+          "slug": "jeep-wagoneer",
+          "trims": [
+            "Series I",
+            "Series II",
+            "Series II Carbide",
+            "Series II Overland",
+            "Series III",
+            "Series III Carbide",
+            "Series III Super",
+            "base"
+          ]
+        },
+        {
+          "name": "Wagoneer S",
+          "count": 7,
+          "slug": "jeep-wagoneer-s",
+          "trims": [
+            "Launch Edition",
+            "Limited"
+          ]
+        },
+        {
+          "name": "Wrangler",
+          "count": 1880,
+          "slug": "jeep-wrangler",
+          "trims": [
+            "75th Anniversary Edition",
+            "80th Edition",
+            "85th Anniversary Edition",
+            "All New Rubicon",
+            "All New Sahara",
+            "All New Sport",
+            "All New Sport S",
+            "Altitude",
+            "Beach Edition",
+            "Big Bear",
+            "Black & Tan",
+            "Chief",
+            "Freedom",
+            "Freedom Edition",
+            "High Altitude 4xe",
+            "High Tide",
+            "Jeep Beach 4xe",
+            "Moab",
+            "Rubicon",
+            "Rubicon 392",
+            "Rubicon 392 Final Edition",
+            "Rubicon 4xe",
+            "Rubicon Hard Rock",
+            "Rubicon Recon",
+            "Rubicon X",
+            "Rubicon X 4xe",
+            "Sahara",
+            "Sahara 4xe",
+            "Sahara Altitude",
+            "Sahara High Altitude",
+            "Smoky Mountain",
+            "Sport",
+            "Sport Altitude",
+            "Sport S",
+            "Sport S 4xe",
+            "Unlimited 75th Anniversary Edition",
+            "Unlimited Altitude",
+            "Unlimited Black Bear",
+            "Unlimited Freedom",
+            "Unlimited Rubicon",
+            "Unlimited Rubicon Hard Rock",
+            "Unlimited Sahara",
+            "Unlimited Sport",
+            "Unlimited Sport S",
+            "Unlimited Willys Wheeler W",
+            "Willys",
+            "Willys 41",
+            "Willys 4xe",
+            "Willys Sport",
+            "Willys Wheeler",
+            "Willys Wheeler W",
+            "Winter",
+            "X"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Kia",
+      "count": 5224,
+      "models": [
+        {
+          "name": "Cadenza",
+          "count": 9,
+          "slug": "kia-cadenza",
+          "trims": [
+            "Limited",
+            "Premium",
+            "Technology",
+            "base"
+          ]
+        },
+        {
+          "name": "Carnival",
+          "count": 414,
+          "slug": "kia-carnival",
+          "trims": [
+            "EX",
+            "LX",
+            "LX w/Seat Pkg",
+            "LXS",
+            "SX",
+            "SX Prestige"
+          ]
+        },
+        {
+          "name": "EV6",
+          "count": 79,
+          "slug": "kia-ev6",
+          "trims": [
+            "GT",
+            "GT-Line",
+            "Light",
+            "Light Long Range",
+            "Wind"
+          ]
+        },
+        {
+          "name": "EV9",
+          "count": 38,
+          "slug": "kia-ev9",
+          "trims": [
+            "GT-Line",
+            "Land",
+            "Light",
+            "Light Long Range",
+            "Wind"
+          ]
+        },
+        {
+          "name": "Forte",
+          "count": 340,
+          "slug": "kia-forte",
+          "trims": [
+            "EX",
+            "FE",
+            "GT",
+            "GT-Line",
+            "LX",
+            "LXS",
+            "S",
+            "SX"
+          ]
+        },
+        {
+          "name": "K4",
+          "count": 847,
+          "slug": "kia-k4",
+          "trims": [
+            "EX",
+            "GT-Line",
+            "GT-Line Turbo",
+            "LX",
+            "LXS"
+          ]
+        },
+        {
+          "name": "K5",
+          "count": 278,
+          "slug": "kia-k5",
+          "trims": [
+            "EX",
+            "GT",
+            "GT-Line",
+            "LX",
+            "LXS"
+          ]
+        },
+        {
+          "name": "K900",
+          "count": 2,
+          "slug": "kia-k900",
+          "trims": [
+            "Luxury",
+            "Premium"
+          ]
+        },
+        {
+          "name": "Niro",
+          "count": 150,
+          "slug": "kia-niro",
+          "trims": [
+            "EX",
+            "EX Premium",
+            "EX Touring",
+            "LX",
+            "LXS",
+            "SX",
+            "SX Touring",
+            "Touring",
+            "Touring Special Edition"
+          ]
+        },
+        {
+          "name": "Niro EV",
+          "count": 48,
+          "slug": "kia-niro-ev",
+          "trims": [
+            "EX",
+            "EX Premium",
+            "S",
+            "Wave",
+            "Wind"
+          ]
+        },
+        {
+          "name": "Optima",
+          "count": 122,
+          "slug": "kia-optima",
+          "trims": [
+            "EX",
+            "EX Premium",
+            "LX",
+            "LX Turbo",
+            "Limited",
+            "S",
+            "SE",
+            "SX",
+            "SX Turbo",
+            "base"
+          ]
+        },
+        {
+          "name": "Rio",
+          "count": 71,
+          "slug": "kia-rio",
+          "trims": [
+            "EX",
+            "LX",
+            "S"
+          ]
+        },
+        {
+          "name": "Sedona",
+          "count": 51,
+          "slug": "kia-sedona",
+          "trims": [
+            "EX",
+            "L",
+            "LX",
+            "SX",
+            "SX Limited"
+          ]
+        },
+        {
+          "name": "Seltos",
+          "count": 245,
+          "slug": "kia-seltos",
+          "trims": [
+            "EX",
+            "LX",
+            "Nightfall",
+            "S",
+            "S 1.6",
+            "S 2.0",
+            "SX",
+            "X-Line"
+          ]
+        },
+        {
+          "name": "Sorento",
+          "count": 626,
+          "slug": "kia-sorento",
+          "trims": [
+            "EX",
+            "EX Sport",
+            "L",
+            "LX",
+            "Limited-SXL",
+            "S",
+            "SX",
+            "SX Prestige",
+            "SX-Prestige",
+            "SX-Prestige X-Line",
+            "X-Line EX",
+            "X-Line S",
+            "X-Line SX",
+            "X-Line SX Prestige",
+            "X-Line SX-Prestige",
+            "X-Pro SX Prestige"
+          ]
+        },
+        {
+          "name": "Soul",
+          "count": 582,
+          "slug": "kia-soul",
+          "trims": [
+            "!",
+            "+",
+            "EX",
+            "GT-Line",
+            "GT-Line Turbo",
+            "LX",
+            "S",
+            "Turbo",
+            "X-Line",
+            "base"
+          ]
+        },
+        {
+          "name": "Soul EV",
+          "count": 3,
+          "slug": "kia-soul-ev",
+          "trims": [
+            "+"
+          ]
+        },
+        {
+          "name": "Sportage",
+          "count": 829,
+          "slug": "kia-sportage",
+          "trims": [
+            "EX",
+            "LX",
+            "Nightfall",
+            "S",
+            "SX",
+            "SX Prestige",
+            "SX Turbo",
+            "SX-Prestige",
+            "X-Line",
+            "X-Line Prestige",
+            "X-Pro",
+            "X-Pro Prestige"
+          ]
+        },
+        {
+          "name": "Stinger",
+          "count": 71,
+          "slug": "kia-stinger",
+          "trims": [
+            "GT",
+            "GT-Line",
+            "GT1",
+            "GT2",
+            "Premium",
+            "base"
+          ]
+        },
+        {
+          "name": "Telluride",
+          "count": 419,
+          "slug": "kia-telluride",
+          "trims": [
+            "EX",
+            "EX X-Line",
+            "LX",
+            "S",
+            "SX",
+            "SX X-Line",
+            "SX X-Pro",
+            "SX-Prestige",
+            "SX-Prestige X-Line",
+            "SX-Prestige X-Pro"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Land Rover",
+      "count": 960,
+      "models": [
+        {
+          "name": "Defender",
+          "count": 133,
+          "slug": "land-rover-defender",
+          "trims": [
+            "First Edition",
+            "HSE",
+            "S",
+            "SE",
+            "Sedona Red",
+            "V8",
+            "X",
+            "X-Dynamic HSE",
+            "X-Dynamic S",
+            "X-Dynamic SE",
+            "XS Edition"
+          ]
+        },
+        {
+          "name": "Discovery",
+          "count": 61,
+          "slug": "land-rover-discovery",
+          "trims": [
+            "HSE",
+            "HSE Luxury",
+            "Landmark",
+            "Metropolitan Edition",
+            "P300 Dynamic SE",
+            "P300 S",
+            "P300 S R Dynamic",
+            "P360 Dynamic SE",
+            "P360 HSE R Dynamic",
+            "P360 Metropolitan Edition",
+            "P360 S R Dynamic",
+            "SE"
+          ]
+        },
+        {
+          "name": "Discovery Sport",
+          "count": 93,
+          "slug": "land-rover-discovery-sport",
+          "trims": [
+            "Dynamic SE",
+            "HSE",
+            "HSE 237 HP",
+            "HSE LUX 286 HP",
+            "HSE Luxury",
+            "S",
+            "S R-Dynamic",
+            "SE",
+            "SE R-Dynamic",
+            "Standard"
+          ]
+        },
+        {
+          "name": "LR2",
+          "count": 1,
+          "slug": "land-rover-lr2",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "LR4",
+          "count": 8,
+          "slug": "land-rover-lr4",
+          "trims": [
+            "HSE",
+            "HSE LUX"
+          ]
+        },
+        {
+          "name": "Range Rover",
+          "count": 157,
+          "slug": "land-rover-range-rover",
+          "trims": [
+            "Autobiography",
+            "Autobiography LWB",
+            "HSE",
+            "HSE Td6",
+            "P360",
+            "P400 HSE",
+            "P400 HSE Westminster Edition",
+            "P400 SE",
+            "P400 Westminster Edition",
+            "P400e Autobiography Hybrid",
+            "P400e HSE Hybrid",
+            "P525 Autobiography LWB",
+            "P525 HSE",
+            "P525 HSE LWB",
+            "P525 HSE Westminster Edition",
+            "P525 HSE Westminster Edition LWB",
+            "P525 SVAutobiography Dynamic Black",
+            "P525 Westminster Edition",
+            "P530 Autobiography",
+            "P530 Autobiography LWB",
+            "P530 SE",
+            "SVAutobiography Dynamic",
+            "Supercharged",
+            "Supercharged LWB",
+            "base"
+          ]
+        },
+        {
+          "name": "Range Rover Evoque",
+          "count": 132,
+          "slug": "land-rover-range-rover-evoque",
+          "trims": [
+            "HSE",
+            "HSE Dynamic",
+            "HSE Dynamic 237 HP",
+            "Landmark Edition",
+            "P250 Core S",
+            "P250 Dynamic SE",
+            "P250 First Edition",
+            "P250 R-Dynamic S",
+            "P250 R-Dynamic SE",
+            "P250 S",
+            "P250 SE",
+            "P300 R-Dynamic HSE",
+            "P300 R-Dynamic S",
+            "Prestige",
+            "Pure Plus",
+            "Pure Premium",
+            "SE",
+            "SE Dynamic",
+            "SE Premium"
+          ]
+        },
+        {
+          "name": "Range Rover Sport",
+          "count": 205,
+          "slug": "land-rover-range-rover-sport",
+          "trims": [
+            "Autobiography",
+            "HSE",
+            "HSE Dynamic",
+            "HSE Lux",
+            "HSE Silver Edition",
+            "HST",
+            "P360 SE",
+            "P400 Dynamic SE",
+            "P400 SE Dynamic",
+            "P400e Autobiography Hybrid",
+            "P400e HSE Hybrid",
+            "P460e Dynamic SE",
+            "P525 Autobiography",
+            "P525 HSE Dynamic",
+            "S 360 PS",
+            "SE",
+            "SVR",
+            "Supercharged",
+            "Supercharged Dynamic"
+          ]
+        },
+        {
+          "name": "Range Rover Velar",
+          "count": 170,
+          "slug": "land-rover-range-rover-velar",
+          "trims": [
+            "P250 Dynamic SE",
+            "P250 R-Dynamic S",
+            "P250 S",
+            "P340 R-Dynamic S",
+            "P400 Dynamic HSE",
+            "R-Dynamic HSE",
+            "R-Dynamic S P250",
+            "R-Dynamic S P340",
+            "R-Dynamic SE",
+            "S",
+            "S P250",
+            "S P340"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lexus",
+      "count": 1078,
+      "models": [
+        {
+          "name": "CT",
+          "count": 18,
+          "slug": "lexus-ct",
+          "trims": [
+            "CT 200h",
+            "CT 200h Premium"
+          ]
+        },
+        {
+          "name": "ES",
+          "count": 152,
+          "slug": "lexus-es",
+          "trims": [
+            "ES 250",
+            "ES 250 Ultra Luxury",
+            "ES 300h",
+            "ES 300h F SPORT DESIGN",
+            "ES 300h Luxury",
+            "ES 300h Ultra Luxury",
+            "ES 350",
+            "ES 350 F SPORT",
+            "ES 350 F SPORT HANDLING",
+            "ES 350 F Sport",
+            "ES 350 Luxury",
+            "ES 350 Ultra Luxury"
+          ]
+        },
+        {
+          "name": "GS",
+          "count": 27,
+          "slug": "lexus-gs",
+          "trims": [
+            "GS 200t",
+            "GS 350",
+            "GS 350 F SPORT"
+          ]
+        },
+        {
+          "name": "GX",
+          "count": 131,
+          "slug": "lexus-gx",
+          "trims": [
+            "GX 460",
+            "GX 460 Luxury",
+            "GX 460 Premium",
+            "GX 550 Overtrail",
+            "GX 550 Premium+"
+          ]
+        },
+        {
+          "name": "HS",
+          "count": 2,
+          "slug": "lexus-hs",
+          "trims": [
+            "HS 250h"
+          ]
+        },
+        {
+          "name": "IS",
+          "count": 139,
+          "slug": "lexus-is",
+          "trims": [
+            "IS 200t",
+            "IS 250",
+            "IS 250 Sport",
+            "IS 250C",
+            "IS 300",
+            "IS 300 F SPORT",
+            "IS 300 F SPORT Design",
+            "IS 350",
+            "IS 350 F SPORT",
+            "IS 350 F SPORT Design",
+            "IS 350 Sport",
+            "IS 350C"
+          ]
+        },
+        {
+          "name": "LC",
+          "count": 3,
+          "slug": "lexus-lc",
+          "trims": [
+            "LC 500"
+          ]
+        },
+        {
+          "name": "LS",
+          "count": 34,
+          "slug": "lexus-ls",
+          "trims": [
+            "LS 460",
+            "LS 460 L",
+            "LS 500",
+            "LS 500 F SPORT",
+            "LS 500h"
+          ]
+        },
+        {
+          "name": "LX",
+          "count": 23,
+          "slug": "lexus-lx",
+          "trims": [
+            "LX 570"
+          ]
+        },
+        {
+          "name": "NX",
+          "count": 157,
+          "slug": "lexus-nx",
+          "trims": [
+            "200t",
+            "200t F SPORT",
+            "200t F Sport",
+            "250",
+            "250 Premium",
+            "300",
+            "300 F SPORT",
+            "300 Luxury",
+            "300h",
+            "350",
+            "350 F SPORT Handling",
+            "350 Luxury",
+            "350 Premium",
+            "350h Luxury",
+            "350h Premium",
+            "450h+",
+            "450h+ F SPORT Handling",
+            "450h+Luxury"
+          ]
+        },
+        {
+          "name": "RC",
+          "count": 29,
+          "slug": "lexus-rc",
+          "trims": [
+            "RC 200t",
+            "RC 300",
+            "RC 300 F SPORT",
+            "RC 350",
+            "RC 350 F SPORT",
+            "RC F"
+          ]
+        },
+        {
+          "name": "RX",
+          "count": 271,
+          "slug": "lexus-rx",
+          "trims": [
+            "RX 350",
+            "RX 350 F SPORT",
+            "RX 350 F SPORT Handling",
+            "RX 350 F Sport",
+            "RX 350 F Sport Crafted Line",
+            "RX 350 Luxury",
+            "RX 350 Premium",
+            "RX 350 Premium+",
+            "RX 350L",
+            "RX 350h",
+            "RX 350h Luxury",
+            "RX 350h Premium",
+            "RX 350h Premium+",
+            "RX 450h",
+            "RX 450h F SPORT Handling",
+            "RX 450h+ Luxury",
+            "RX 450hL",
+            "RX 450hL Luxury",
+            "RX 500h F SPORT Performance"
+          ]
+        },
+        {
+          "name": "RZ",
+          "count": 31,
+          "slug": "lexus-rz",
+          "trims": [
+            "300e",
+            "300e Premium",
+            "350e Premium",
+            "450e Luxury",
+            "450e Premium"
+          ]
+        },
+        {
+          "name": "UX",
+          "count": 61,
+          "slug": "lexus-ux",
+          "trims": [
+            "200",
+            "200 F SPORT",
+            "250h",
+            "250h F SPORT",
+            "250h F SPORT Design",
+            "250h Premium",
+            "300h",
+            "300h F SPORT Design",
+            "300h Premium"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lincoln",
+      "count": 461,
+      "models": [
+        {
+          "name": "Aviator",
+          "count": 65,
+          "slug": "lincoln-aviator",
+          "trims": [
+            "Black Label",
+            "Black Label Grand Touring",
+            "Grand Touring",
+            "Reserve",
+            "base"
+          ]
+        },
+        {
+          "name": "Continental",
+          "count": 22,
+          "slug": "lincoln-continental",
+          "trims": [
+            "Black Label",
+            "Reserve",
+            "Select",
+            "base"
+          ]
+        },
+        {
+          "name": "Corsair",
+          "count": 61,
+          "slug": "lincoln-corsair",
+          "trims": [
+            "Premiere",
+            "Reserve",
+            "Standard",
+            "base"
+          ]
+        },
+        {
+          "name": "MKC",
+          "count": 55,
+          "slug": "lincoln-mkc",
+          "trims": [
+            "Black Label",
+            "Premiere",
+            "Reserve",
+            "Select",
+            "base"
+          ]
+        },
+        {
+          "name": "MKS",
+          "count": 5,
+          "slug": "lincoln-mks",
+          "trims": [
+            "EcoBoost",
+            "base"
+          ]
+        },
+        {
+          "name": "MKT",
+          "count": 1,
+          "slug": "lincoln-mkt",
+          "trims": [
+            "EcoBoost"
+          ]
+        },
+        {
+          "name": "MKX",
+          "count": 36,
+          "slug": "lincoln-mkx",
+          "trims": [
+            "Premiere",
+            "Reserve",
+            "Select",
+            "base"
+          ]
+        },
+        {
+          "name": "MKZ",
+          "count": 59,
+          "slug": "lincoln-mkz",
+          "trims": [
+            "Black Label",
+            "Hybrid",
+            "Hybrid Reserve",
+            "Premiere",
+            "Reserve",
+            "Reserve Hybrid",
+            "Reserve I",
+            "Reserve II",
+            "Select",
+            "Select Hybrid",
+            "base"
+          ]
+        },
+        {
+          "name": "Nautilus",
+          "count": 90,
+          "slug": "lincoln-nautilus",
+          "trims": [
+            "Black Label",
+            "Premiere",
+            "Reserve",
+            "Select",
+            "base"
+          ]
+        },
+        {
+          "name": "Navigator",
+          "count": 67,
+          "slug": "lincoln-navigator",
+          "trims": [
+            "Black Label",
+            "Premier",
+            "Premiere",
+            "Reserve",
+            "Select",
+            "Standard",
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lucid",
+      "count": 30,
+      "models": [
+        {
+          "name": "Air",
+          "count": 28,
+          "slug": "lucid-air",
+          "trims": [
+            "Grand Touring",
+            "Touring"
+          ]
+        },
+        {
+          "name": "Gravity",
+          "count": 2,
+          "slug": "lucid-gravity",
+          "trims": [
+            "Grand Touring"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mazda",
+      "count": 2360,
+      "models": [
+        {
+          "name": "CX-3",
+          "count": 44,
+          "slug": "mazda-cx-3",
+          "trims": [
+            "Grand Touring",
+            "Sport",
+            "Touring",
+            "base"
+          ]
+        },
+        {
+          "name": "CX-30",
+          "count": 302,
+          "slug": "mazda-cx-30",
+          "trims": [
+            "2.5 Carbon Turbo",
+            "2.5 S",
+            "2.5 S Carbon Edition",
+            "2.5 S Preferred",
+            "2.5 S Premium",
+            "2.5 S Select Sport",
+            "2.5 Turbo",
+            "2.5 Turbo Premium",
+            "2.5 Turbo Premium Plus",
+            "Carbon Edition",
+            "Preferred",
+            "Premium",
+            "Select",
+            "Turbo",
+            "Turbo Premium",
+            "Turbo Premium Plus",
+            "base"
+          ]
+        },
+        {
+          "name": "CX-5",
+          "count": 681,
+          "slug": "mazda-cx-5",
+          "trims": [
+            "2.5 Carbon Turbo",
+            "2.5 S",
+            "2.5 S Carbon Edition",
+            "2.5 S Preferred",
+            "2.5 S Premium",
+            "2.5 S Premium Plus",
+            "2.5 S Select",
+            "2.5 Turbo",
+            "2.5 Turbo Premium",
+            "2.5 Turbo Signature",
+            "Carbon Edition",
+            "Carbon Edition Turbo",
+            "Grand Select",
+            "Grand Touring",
+            "Grand Touring Reserve",
+            "Signature",
+            "Sport",
+            "Touring"
+          ]
+        },
+        {
+          "name": "CX-50",
+          "count": 346,
+          "slug": "mazda-cx-50",
+          "trims": [
+            "2.5 S Preferred",
+            "2.5 S Premium",
+            "2.5 S Premium Plus",
+            "2.5 S Select",
+            "2.5 Turbo",
+            "2.5 Turbo Meridian Edition",
+            "2.5 Turbo Premium",
+            "2.5 Turbo Premium Plus",
+            "Preferred",
+            "Preferred Plus",
+            "Premium",
+            "Premium Plus",
+            "Select",
+            "Turbo",
+            "Turbo Meridian Edition",
+            "Turbo Premium",
+            "Turbo Premium Plus"
+          ]
+        },
+        {
+          "name": "CX-7",
+          "count": 3,
+          "slug": "mazda-cx-7",
+          "trims": [
+            "i Sport",
+            "s Touring"
+          ]
+        },
+        {
+          "name": "CX-70",
+          "count": 30,
+          "slug": "mazda-cx-70",
+          "trims": [
+            "3.3 Turbo Preferred",
+            "3.3 Turbo Premium",
+            "3.3 Turbo Premium Plus",
+            "3.3 Turbo S Premium",
+            "3.3 Turbo S Premium Plus",
+            "PHEV Premium",
+            "PHEV Premium Plus"
+          ]
+        },
+        {
+          "name": "CX-9",
+          "count": 153,
+          "slug": "mazda-cx-9",
+          "trims": [
+            "Carbon Edition",
+            "Grand Touring",
+            "Signature",
+            "Sport",
+            "Touring",
+            "Touring Plus"
+          ]
+        },
+        {
+          "name": "CX-90",
+          "count": 168,
+          "slug": "mazda-cx-90",
+          "trims": [
+            "3.3 Turbo Preferred",
+            "3.3 Turbo Preferred Plus",
+            "3.3 Turbo Premium",
+            "3.3 Turbo Premium Plus",
+            "3.3 Turbo Premium Sport",
+            "3.3 Turbo S",
+            "3.3 Turbo S Premium",
+            "3.3 Turbo S Premium Plus",
+            "3.3 Turbo Select",
+            "Preferred",
+            "Premium",
+            "Premium Plus",
+            "Premium Sport"
+          ]
+        },
+        {
+          "name": "MAZDA2",
+          "count": 4,
+          "slug": "mazda-mazda2",
+          "trims": [
+            "Sport",
+            "Touring"
+          ]
+        },
+        {
+          "name": "MAZDA3",
+          "count": 323,
+          "slug": "mazda-mazda3",
+          "trims": [
+            "2",
+            "2.5 Carbon Turbo",
+            "2.5 S",
+            "2.5 S Carbon Edition",
+            "2.5 S Preferred",
+            "2.5 S Premium",
+            "2.5 S Select Sport",
+            "2.5 Turbo",
+            "2.5 Turbo Premium Plus",
+            "Carbon Edition",
+            "Grand Touring",
+            "MAZDASPEED3 Sport",
+            "Preferred",
+            "Premium",
+            "Premium Plus",
+            "Select",
+            "Sport",
+            "Touring",
+            "base",
+            "i Grand Touring",
+            "i SV",
+            "i Sport",
+            "i Touring",
+            "s Grand Touring",
+            "s Sport",
+            "s Touring"
+          ]
+        },
+        {
+          "name": "MAZDA5",
+          "count": 3,
+          "slug": "mazda-mazda5",
+          "trims": [
+            "Sport",
+            "Touring"
+          ]
+        },
+        {
+          "name": "MAZDA6",
+          "count": 74,
+          "slug": "mazda-mazda6",
+          "trims": [
+            "Grand Touring",
+            "Grand Touring Reserve",
+            "Signature",
+            "Sport",
+            "Touring",
+            "i Grand Touring",
+            "i Sport",
+            "i Touring"
+          ]
+        },
+        {
+          "name": "MX-30",
+          "count": 5,
+          "slug": "mazda-mx-30",
+          "trims": [
+            "EV",
+            "Premium Plus"
+          ]
+        },
+        {
+          "name": "MX-5 Miata",
+          "count": 223,
+          "slug": "mazda-mx-5-miata",
+          "trims": [
+            "35th Anniversay",
+            "Club",
+            "Club w/Brembo BBS Recaro Pkg",
+            "Grand Touring",
+            "Launch Edition SV",
+            "Special Edition",
+            "Sport"
+          ]
+        },
+        {
+          "name": "RX-8",
+          "count": 1,
+          "slug": "mazda-rx-8",
+          "trims": [
+            "Grand Touring"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mercedes-Benz",
+      "count": 2090,
+      "models": [
+        {
+          "name": "A-Class",
+          "count": 60,
+          "slug": "mercedes-benz-a-class",
+          "trims": [
+            "A 220",
+            "A 220 4MATIC"
+          ]
+        },
+        {
+          "name": "A-Class AMG",
+          "count": 1,
+          "slug": "mercedes-benz-a-class-amg",
+          "trims": [
+            "AMG A 35 4MATIC"
+          ]
+        },
+        {
+          "name": "AMG C-Class",
+          "count": 25,
+          "slug": "mercedes-benz-amg-c-class",
+          "trims": [
+            "C 43 AMG",
+            "C 43 AMG 4MATIC",
+            "C 63 AMG",
+            "C 63 S AMG"
+          ]
+        },
+        {
+          "name": "AMG CLA",
+          "count": 9,
+          "slug": "mercedes-benz-amg-cla",
+          "trims": [
+            "CLA 35 4MATIC",
+            "CLA 45 4MATIC"
+          ]
+        },
+        {
+          "name": "AMG CLE",
+          "count": 2,
+          "slug": "mercedes-benz-amg-cle",
+          "trims": [
+            "CLE 53 4MATIC+"
+          ]
+        },
+        {
+          "name": "AMG CLS",
+          "count": 3,
+          "slug": "mercedes-benz-amg-cls",
+          "trims": [
+            "CLS 53 AMG"
+          ]
+        },
+        {
+          "name": "AMG E-Class",
+          "count": 18,
+          "slug": "mercedes-benz-amg-e-class",
+          "trims": [
+            "E 43 AMG",
+            "E 53 AMG",
+            "E 63 S AMG"
+          ]
+        },
+        {
+          "name": "AMG EQS",
+          "count": 1,
+          "slug": "mercedes-benz-amg-eqs",
+          "trims": [
+            "AMG EQS 53 4MATIC+"
+          ]
+        },
+        {
+          "name": "AMG G-Class",
+          "count": 5,
+          "slug": "mercedes-benz-amg-g-class",
+          "trims": [
+            "G 63 AMG"
+          ]
+        },
+        {
+          "name": "AMG GLA",
+          "count": 7,
+          "slug": "mercedes-benz-amg-gla",
+          "trims": [
+            "GLA 35",
+            "GLA 45",
+            "GLA 45 4MATIC"
+          ]
+        },
+        {
+          "name": "AMG GLB",
+          "count": 2,
+          "slug": "mercedes-benz-amg-glb",
+          "trims": [
+            "AMG GLB 35"
+          ]
+        },
+        {
+          "name": "AMG GLC",
+          "count": 21,
+          "slug": "mercedes-benz-amg-glc",
+          "trims": [
+            "GLC 43 4MATIC",
+            "GLC 63 4MATIC"
+          ]
+        },
+        {
+          "name": "AMG GLE",
+          "count": 35,
+          "slug": "mercedes-benz-amg-gle",
+          "trims": [
+            "GLE 43",
+            "GLE 43 4MATIC",
+            "GLE 53",
+            "GLE 53 4MATIC",
+            "GLE 63 4MATIC",
+            "GLE 63 S",
+            "GLE 63 S 4MATIC"
+          ]
+        },
+        {
+          "name": "AMG GLS",
+          "count": 3,
+          "slug": "mercedes-benz-amg-gls",
+          "trims": [
+            "GLS 63",
+            "GLS 63 4MATIC"
+          ]
+        },
+        {
+          "name": "AMG GT",
+          "count": 2,
+          "slug": "mercedes-benz-amg-gt",
+          "trims": [
+            "53",
+            "63 S"
+          ]
+        },
+        {
+          "name": "AMG S-Class",
+          "count": 4,
+          "slug": "mercedes-benz-amg-s-class",
+          "trims": [
+            "S 63 AMG"
+          ]
+        },
+        {
+          "name": "AMG SL",
+          "count": 1,
+          "slug": "mercedes-benz-amg-sl",
+          "trims": [
+            "SL 43"
+          ]
+        },
+        {
+          "name": "AMG SLC",
+          "count": 2,
+          "slug": "mercedes-benz-amg-slc",
+          "trims": [
+            "SLC 43"
+          ]
+        },
+        {
+          "name": "B-Class",
+          "count": 2,
+          "slug": "mercedes-benz-b-class",
+          "trims": [
+            "B 250e"
+          ]
+        },
+        {
+          "name": "C-Class",
+          "count": 272,
+          "slug": "mercedes-benz-c-class",
+          "trims": [
+            "C 250",
+            "C 250 Luxury",
+            "C 250 Sport",
+            "C 300",
+            "C 300 4MATIC",
+            "C 300 4MATIC Luxury",
+            "C 300 4MATIC Sport",
+            "C 350 4MATIC",
+            "C 350e Plug-In Hybrid",
+            "C 400 4MATIC",
+            "C 450 AMG 4MATIC",
+            "C 63 AMG",
+            "C 63 S AMG"
+          ]
+        },
+        {
+          "name": "CL-Class",
+          "count": 1,
+          "slug": "mercedes-benz-cl-class",
+          "trims": [
+            "CL 63 AMG"
+          ]
+        },
+        {
+          "name": "CLA",
+          "count": 182,
+          "slug": "mercedes-benz-cla",
+          "trims": [
+            "CLA 250",
+            "CLA 250 4MATIC"
+          ]
+        },
+        {
+          "name": "CLE",
+          "count": 3,
+          "slug": "mercedes-benz-cle",
+          "trims": [
+            "CLE 300 4MATIC"
+          ]
+        },
+        {
+          "name": "CLS",
+          "count": 34,
+          "slug": "mercedes-benz-cls",
+          "trims": [
+            "CLS 400 4MATIC",
+            "CLS 450",
+            "CLS 450 4MATIC",
+            "CLS 550",
+            "CLS 550 4MATIC",
+            "CLS 63 AMG",
+            "CLS 63 AMG S 4MATIC"
+          ]
+        },
+        {
+          "name": "E-Class",
+          "count": 166,
+          "slug": "mercedes-benz-e-class",
+          "trims": [
+            "E 250 BlueTEC",
+            "E 300",
+            "E 300 4MATIC",
+            "E 350",
+            "E 350 4MATIC",
+            "E 350 BlueTEC",
+            "E 400",
+            "E 400 4MATIC",
+            "E 400 Hybrid",
+            "E 450",
+            "E 450 4MATIC",
+            "E 550",
+            "E 550 4MATIC",
+            "E 63 AMG 4MATIC S-Model"
+          ]
+        },
+        {
+          "name": "EQB",
+          "count": 6,
+          "slug": "mercedes-benz-eqb",
+          "trims": [
+            "EQB 250+",
+            "EQB 300 4MATIC",
+            "EQB 350 4MATIC"
+          ]
+        },
+        {
+          "name": "EQE",
+          "count": 1,
+          "slug": "mercedes-benz-eqe",
+          "trims": [
+            "EQE 350 4MATIC"
+          ]
+        },
+        {
+          "name": "EQE SUV",
+          "count": 8,
+          "slug": "mercedes-benz-eqe-suv",
+          "trims": [
+            "EQE 350 4MATIC",
+            "EQE 350+",
+            "EQE 500 4MATIC"
+          ]
+        },
+        {
+          "name": "eSprinter",
+          "count": 2,
+          "slug": "mercedes-benz-esprinter",
+          "trims": [
+            "High Roof w/170\" WB"
+          ]
+        },
+        {
+          "name": "G-Class",
+          "count": 5,
+          "slug": "mercedes-benz-g-class",
+          "trims": [
+            "G 550",
+            "G 550 4MATIC"
+          ]
+        },
+        {
+          "name": "GL-Class",
+          "count": 14,
+          "slug": "mercedes-benz-gl-class",
+          "trims": [
+            "GL 450 4MATIC",
+            "GL 550 4MATIC",
+            "GL 63 AMG"
+          ]
+        },
+        {
+          "name": "GLA",
+          "count": 263,
+          "slug": "mercedes-benz-gla",
+          "trims": [
+            "GLA 250",
+            "GLA 250 4MATIC",
+            "GLA 45 AMG 4MATIC"
+          ]
+        },
+        {
+          "name": "GLB",
+          "count": 182,
+          "slug": "mercedes-benz-glb",
+          "trims": [
+            "GLB 250",
+            "GLB 250 4MATIC"
+          ]
+        },
+        {
+          "name": "GLC",
+          "count": 320,
+          "slug": "mercedes-benz-glc",
+          "trims": [
+            "GLC 300",
+            "GLC 300 4MATIC",
+            "GLC 350e 4MATIC"
+          ]
+        },
+        {
+          "name": "GLE",
+          "count": 158,
+          "slug": "mercedes-benz-gle",
+          "trims": [
+            "GLE 350",
+            "GLE 350 4MATIC",
+            "GLE 400 4MATIC",
+            "GLE 450 4MATIC",
+            "GLE 450 AMG 4MATIC",
+            "GLE 450e 4MATIC",
+            "GLE 550e 4MATIC Plug-In Hybrid",
+            "GLE 580 4MATIC"
+          ]
+        },
+        {
+          "name": "GLK-Class",
+          "count": 22,
+          "slug": "mercedes-benz-glk-class",
+          "trims": [
+            "GLK 350",
+            "GLK 350 4MATIC"
+          ]
+        },
+        {
+          "name": "GLS",
+          "count": 78,
+          "slug": "mercedes-benz-gls",
+          "trims": [
+            "GLS 450",
+            "GLS 450 4MATIC",
+            "GLS 550",
+            "GLS 550 4MATIC",
+            "GLS 580 4MATIC"
+          ]
+        },
+        {
+          "name": "M-Class",
+          "count": 19,
+          "slug": "mercedes-benz-m-class",
+          "trims": [
+            "ML 250 BlueTEC 4MATIC",
+            "ML 350",
+            "ML 350 4MATIC",
+            "ML 550 4MATIC"
+          ]
+        },
+        {
+          "name": "Maybach EQS SUV",
+          "count": 1,
+          "slug": "mercedes-benz-maybach-eqs-suv",
+          "trims": [
+            "EQS 680 4MATIC"
+          ]
+        },
+        {
+          "name": "Maybach S-Class",
+          "count": 2,
+          "slug": "mercedes-benz-maybach-s-class",
+          "trims": [
+            "S 550 4MATIC",
+            "S 560 4MATIC",
+            "S 600",
+            "S 650",
+            "base"
+          ]
+        },
+        {
+          "name": "Metris",
+          "count": 10,
+          "slug": "mercedes-benz-metris",
+          "trims": [
+            "Long WB",
+            "Long w/135\" WB",
+            "Standard WB",
+            "Standard w/126\" WB",
+            "base"
+          ]
+        },
+        {
+          "name": "S-Class",
+          "count": 70,
+          "slug": "mercedes-benz-s-class",
+          "trims": [
+            "S 350 BlueTEC 4MATIC",
+            "S 400 Hybrid",
+            "S 450",
+            "S 500 4MATIC",
+            "S 550",
+            "S 550 4MATIC",
+            "S 560",
+            "S 560 4MATIC",
+            "S 580 4MATIC",
+            "S 63 AMG 4MATIC"
+          ]
+        },
+        {
+          "name": "SL",
+          "count": 31,
+          "slug": "mercedes-benz-sl",
+          "trims": [
+            "SL 400",
+            "SL 450",
+            "SL 550",
+            "SL 63 AMG"
+          ]
+        },
+        {
+          "name": "SLC",
+          "count": 7,
+          "slug": "mercedes-benz-slc",
+          "trims": [
+            "SLC 300"
+          ]
+        },
+        {
+          "name": "SLK",
+          "count": 27,
+          "slug": "mercedes-benz-slk",
+          "trims": [
+            "SLK 250",
+            "SLK 300",
+            "SLK 350"
+          ]
+        },
+        {
+          "name": "Sprinter 1500",
+          "count": 2,
+          "slug": "mercedes-benz-sprinter-1500",
+          "trims": [
+            "High Roof w/144\" WB",
+            "High Roof w/170\" WB",
+            "Standard Roof w/144\" WB"
+          ]
+        },
+        {
+          "name": "Sprinter 3500",
+          "count": 1,
+          "slug": "mercedes-benz-sprinter-3500",
+          "trims": [
+            "High Roof w/144\" WB",
+            "High Roof w/170\" WB",
+            "Standard Roof w/144\" WB"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MINI",
+      "count": 272,
+      "models": [
+        {
+          "name": "Clubman",
+          "count": 23,
+          "slug": "mini-clubman",
+          "trims": [
+            "Cooper",
+            "Cooper ALL4",
+            "Cooper S",
+            "Cooper S ALL4",
+            "John Cooper Works ALL4"
+          ]
+        },
+        {
+          "name": "Convertible",
+          "count": 34,
+          "slug": "mini-convertible",
+          "trims": [
+            "Cooper",
+            "Cooper S",
+            "John Cooper Works"
+          ]
+        },
+        {
+          "name": "Countryman",
+          "count": 109,
+          "slug": "mini-countryman",
+          "trims": [
+            "Cooper",
+            "Cooper ALL4",
+            "Cooper S",
+            "Cooper S ALL4",
+            "Cooper SE ALL4",
+            "John Cooper Works ALL4",
+            "Oxford",
+            "S ALL4",
+            "SE ALL4"
+          ]
+        },
+        {
+          "name": "Coupe",
+          "count": 3,
+          "slug": "mini-coupe",
+          "trims": [
+            "Cooper S",
+            "John Cooper Works"
+          ]
+        },
+        {
+          "name": "Hardtop",
+          "count": 100,
+          "slug": "mini-hardtop",
+          "trims": [
+            "Cooper",
+            "Cooper Oxford",
+            "Cooper S",
+            "Cooper SE",
+            "Cooper SE Signature",
+            "John Cooper Works",
+            "John Cooper Works GP"
+          ]
+        },
+        {
+          "name": "Roadster",
+          "count": 3,
+          "slug": "mini-roadster",
+          "trims": [
+            "Cooper S"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mitsubishi",
+      "count": 669,
+      "models": [
+        {
+          "name": "Eclipse",
+          "count": 2,
+          "slug": "mitsubishi-eclipse",
+          "trims": [
+            "GS",
+            "GT Spyder"
+          ]
+        },
+        {
+          "name": "Eclipse Cross",
+          "count": 56,
+          "slug": "mitsubishi-eclipse-cross",
+          "trims": [
+            "Black Edition",
+            "ES",
+            "LE",
+            "RALLIART",
+            "SE",
+            "SEL"
+          ]
+        },
+        {
+          "name": "Lancer",
+          "count": 8,
+          "slug": "mitsubishi-lancer",
+          "trims": [
+            "ES",
+            "GT"
+          ]
+        },
+        {
+          "name": "Mirage",
+          "count": 92,
+          "slug": "mitsubishi-mirage",
+          "trims": [
+            "Black Edition",
+            "DE",
+            "ES",
+            "LE",
+            "SE"
+          ]
+        },
+        {
+          "name": "Outlander",
+          "count": 338,
+          "slug": "mitsubishi-outlander",
+          "trims": [
+            "40th Anniversary",
+            "Black Edition",
+            "ES",
+            "GT",
+            "LE",
+            "Platinum Edition",
+            "SE",
+            "SE Black Edition",
+            "SE Launch Edition",
+            "SE Special Edition",
+            "SEL",
+            "SEL Black Edition",
+            "SEL Special Edition",
+            "SP",
+            "Trail Edition"
+          ]
+        },
+        {
+          "name": "Outlander Sport",
+          "count": 173,
+          "slug": "mitsubishi-outlander-sport",
+          "trims": [
+            "ES",
+            "GT",
+            "LE",
+            "RALLIART",
+            "S",
+            "SE",
+            "SEL",
+            "Trail Edition"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Nissan",
+      "count": 6992,
+      "models": [
+        {
+          "name": "370Z",
+          "count": 29,
+          "slug": "nissan-370z",
+          "trims": [
+            "NISMO",
+            "NISMO Tech",
+            "Sport",
+            "Sport Touring",
+            "Touring",
+            "Touring Sport",
+            "base"
+          ]
+        },
+        {
+          "name": "Altima",
+          "count": 1428,
+          "slug": "nissan-altima",
+          "trims": [
+            "2.5",
+            "2.5 Platinum",
+            "2.5 S",
+            "2.5 SL",
+            "2.5 SR",
+            "2.5 SV",
+            "3.5 SL",
+            "3.5 SR",
+            "VC-T Platinum",
+            "VC-T SR"
+          ]
+        },
+        {
+          "name": "Ariya",
+          "count": 114,
+          "slug": "nissan-ariya",
+          "trims": [
+            "Empower+",
+            "Engage",
+            "Engage e-4ORCE",
+            "Engage+ e-4ORCE",
+            "Evolve+",
+            "Evolve+ e-4ORCE",
+            "Platinum+ e-4ORCE",
+            "Platinum+ e-4ORCE w/20\" Wheels",
+            "Premiere"
+          ]
+        },
+        {
+          "name": "Armada",
+          "count": 191,
+          "slug": "nissan-armada",
+          "trims": [
+            "NISMO",
+            "PRO-4X",
+            "Platinum",
+            "Platinum Reserve",
+            "SL",
+            "SV"
+          ]
+        },
+        {
+          "name": "cube",
+          "count": 1,
+          "slug": "nissan-cube",
+          "trims": [
+            "SL"
+          ]
+        },
+        {
+          "name": "Frontier",
+          "count": 504,
+          "slug": "nissan-frontier",
+          "trims": [
+            "Desert Runner",
+            "LE",
+            "PRO-4X",
+            "PRO-4X R Special Edition",
+            "PRO-X",
+            "S",
+            "SE",
+            "SL",
+            "SV"
+          ]
+        },
+        {
+          "name": "JUKE",
+          "count": 10,
+          "slug": "nissan-juke",
+          "trims": [
+            "S",
+            "SL",
+            "SV"
+          ]
+        },
+        {
+          "name": "Kicks",
+          "count": 395,
+          "slug": "nissan-kicks",
+          "trims": [
+            "S",
+            "SR",
+            "SV"
+          ]
+        },
+        {
+          "name": "LEAF",
+          "count": 51,
+          "slug": "nissan-leaf",
+          "trims": [
+            "PLATINUM PLUS",
+            "S",
+            "S PLUS",
+            "SL",
+            "SL PLUS",
+            "SV",
+            "SV PLUS"
+          ]
+        },
+        {
+          "name": "Maxima",
+          "count": 88,
+          "slug": "nissan-maxima",
+          "trims": [
+            "Platinum",
+            "S",
+            "SL",
+            "SR",
+            "SV"
+          ]
+        },
+        {
+          "name": "Murano",
+          "count": 220,
+          "slug": "nissan-murano",
+          "trims": [
+            "Cross",
+            "LE",
+            "Platinum",
+            "S",
+            "SL",
+            "SL Hybrid",
+            "SV"
+          ]
+        },
+        {
+          "name": "NV1500 Cargo",
+          "count": 1,
+          "slug": "nissan-nv1500-cargo",
+          "trims": [
+            "SV"
+          ]
+        },
+        {
+          "name": "Pathfinder",
+          "count": 540,
+          "slug": "nissan-pathfinder",
+          "trims": [
+            "Platinum",
+            "Rock Creek",
+            "S",
+            "SL",
+            "SV"
+          ]
+        },
+        {
+          "name": "Quest",
+          "count": 3,
+          "slug": "nissan-quest",
+          "trims": [
+            "LE",
+            "SL",
+            "SV"
+          ]
+        },
+        {
+          "name": "Rogue",
+          "count": 1915,
+          "slug": "nissan-rogue",
+          "trims": [
+            "Platinum",
+            "Rock Creek",
+            "S",
+            "SL",
+            "SV",
+            "SV Hybrid",
+            "SV w/SL Pkg"
+          ]
+        },
+        {
+          "name": "Rogue Sport",
+          "count": 195,
+          "slug": "nissan-rogue-sport",
+          "trims": [
+            "S",
+            "SL",
+            "SV"
+          ]
+        },
+        {
+          "name": "Sentra",
+          "count": 663,
+          "slug": "nissan-sentra",
+          "trims": [
+            "S",
+            "SL",
+            "SR",
+            "SR Turbo",
+            "SV",
+            "base"
+          ]
+        },
+        {
+          "name": "Titan",
+          "count": 123,
+          "slug": "nissan-titan",
+          "trims": [
+            "PRO-4X",
+            "Platinum Reserve",
+            "S",
+            "SL",
+            "SV",
+            "XE"
+          ]
+        },
+        {
+          "name": "Titan XD",
+          "count": 42,
+          "slug": "nissan-titan-xd",
+          "trims": [
+            "PRO-4X",
+            "PRO-4X 6 1/2 ft",
+            "Platinum Reserve",
+            "S",
+            "S 6 1/2 ft",
+            "SL",
+            "SV",
+            "SV 6 1/2 ft"
+          ]
+        },
+        {
+          "name": "Versa",
+          "count": 436,
+          "slug": "nissan-versa",
+          "trims": [
+            "Note S",
+            "Note S Plus",
+            "Note SV",
+            "S",
+            "S Plus",
+            "SL",
+            "SR",
+            "SV"
+          ]
+        },
+        {
+          "name": "Xterra",
+          "count": 5,
+          "slug": "nissan-xterra",
+          "trims": [
+            "PRO-4X",
+            "S",
+            "X"
+          ]
+        },
+        {
+          "name": "Z",
+          "count": 38,
+          "slug": "nissan-z",
+          "trims": [
+            "NISMO",
+            "Performance",
+            "Sport"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Polestar",
+      "count": 70,
+      "models": [
+        {
+          "name": "2",
+          "count": 65,
+          "slug": "polestar-2",
+          "trims": [
+            "Launch Edition",
+            "Long Range Dual Motor",
+            "Long Range Dual Motor Performance & Plus",
+            "Long Range Dual Motor Plus",
+            "Long Range Single Motor",
+            "Long Range Single Motor Plus"
+          ]
+        },
+        {
+          "name": "3",
+          "count": 5,
+          "slug": "polestar-3",
+          "trims": [
+            "Long Range Dual Motor",
+            "Long Range Dual Motor Plus",
+            "Long Range Dual Motor Plus & Performance"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Porsche",
+      "count": 584,
+      "models": [
+        {
+          "name": "718 Boxster",
+          "count": 12,
+          "slug": "porsche-718-boxster",
+          "trims": [
+            "GTS",
+            "GTS 4.0",
+            "S",
+            "base"
+          ]
+        },
+        {
+          "name": "718 Cayman",
+          "count": 13,
+          "slug": "porsche-718-cayman",
+          "trims": [
+            "GTS",
+            "GTS 4.0",
+            "S",
+            "Style Edition",
+            "base"
+          ]
+        },
+        {
+          "name": "911",
+          "count": 36,
+          "slug": "porsche-911",
+          "trims": [
+            "Carrera",
+            "Carrera 4 GTS",
+            "Carrera 4S",
+            "Carrera 991",
+            "Carrera S",
+            "Carrera S 991",
+            "GT3 RS",
+            "Turbo S"
+          ]
+        },
+        {
+          "name": "Boxster",
+          "count": 19,
+          "slug": "porsche-boxster",
+          "trims": [
+            "Black Edition",
+            "S",
+            "base"
+          ]
+        },
+        {
+          "name": "Cayenne",
+          "count": 110,
+          "slug": "porsche-cayenne",
+          "trims": [
+            "E-Hybrid",
+            "GTS",
+            "Platinum Edition",
+            "S",
+            "S E-Hybrid",
+            "S Platinum Edition",
+            "Turbo",
+            "base"
+          ]
+        },
+        {
+          "name": "Cayman",
+          "count": 18,
+          "slug": "porsche-cayman",
+          "trims": [
+            "Black Edition",
+            "GTS",
+            "S",
+            "base"
+          ]
+        },
+        {
+          "name": "Macan",
+          "count": 264,
+          "slug": "porsche-macan",
+          "trims": [
+            "GTS",
+            "S",
+            "Sport Edition",
+            "T",
+            "Turbo",
+            "base"
+          ]
+        },
+        {
+          "name": "Macan Electric",
+          "count": 9,
+          "slug": "porsche-macan-electric",
+          "trims": [
+            "4",
+            "4S"
+          ]
+        },
+        {
+          "name": "Panamera",
+          "count": 80,
+          "slug": "porsche-panamera",
+          "trims": [
+            "10 Years Edition",
+            "4",
+            "4 E-Hybrid",
+            "4 E-Hybrid Platinum Edition",
+            "4 E-Hybrid Sport Turismo",
+            "4 Edition",
+            "4 Platinum Edition",
+            "4S",
+            "4S Sport Turismo",
+            "Edition",
+            "GTS",
+            "Platinum Edition",
+            "S",
+            "S E-Hybrid",
+            "Turbo",
+            "Turbo Executive",
+            "Turbo S",
+            "Turbo S E-Hybrid",
+            "base"
+          ]
+        },
+        {
+          "name": "Taycan",
+          "count": 23,
+          "slug": "porsche-taycan",
+          "trims": [
+            "4",
+            "4S",
+            "GTS",
+            "Turbo",
+            "Turbo S",
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ram",
+      "count": 3616,
+      "models": [
+        {
+          "name": "1500",
+          "count": 2261,
+          "slug": "ram-1500",
+          "trims": [
+            "Big Horn",
+            "Express",
+            "Harvest",
+            "Laramie",
+            "Laramie Limited",
+            "Laramie Longhorn",
+            "Limited",
+            "Limited Longhorn",
+            "Lone Star",
+            "Lone Star Silver",
+            "Longhorn",
+            "Night",
+            "Outdoorsman",
+            "R/T",
+            "RHO",
+            "Rebel",
+            "SLT",
+            "ST",
+            "Sport",
+            "TRX",
+            "Tradesman",
+            "Tungsten",
+            "Warlock"
+          ]
+        },
+        {
+          "name": "1500 Classic",
+          "count": 307,
+          "slug": "ram-1500-classic",
+          "trims": [
+            "Big Horn",
+            "Express",
+            "Laramie",
+            "Lone Star",
+            "SLT",
+            "Tradesman",
+            "Warlock"
+          ]
+        },
+        {
+          "name": "2500",
+          "count": 914,
+          "slug": "ram-2500",
+          "trims": [
+            "Big Horn",
+            "Black Express",
+            "Laramie",
+            "Laramie Limited",
+            "Laramie Longhorn",
+            "Laramie Longhorn Edition",
+            "Laramie Power",
+            "Limited",
+            "Limited Longhorn",
+            "Lone Star",
+            "Longhorn",
+            "Outdoorsman",
+            "Power Wagon",
+            "Rebel",
+            "SLT",
+            "ST",
+            "Tradesman",
+            "Tradesman Power"
+          ]
+        },
+        {
+          "name": "3500",
+          "count": 128,
+          "slug": "ram-3500",
+          "trims": [
+            "Big Horn",
+            "Big Horn 6 1/3 ft",
+            "Laramie",
+            "Laramie 6 1/3 ft",
+            "Laramie Limited 6 1/3 ft",
+            "Laramie Longhorn",
+            "Laramie Longhorn 6 1/3 ft",
+            "Laramie Longhorn Edition 6 1/3 ft",
+            "Laramie Longhorn Limited Edition 6 1/3 ft",
+            "Limited",
+            "Limited 6 1/3 ft",
+            "Lone Star",
+            "Lone Star 6 1/3 ft",
+            "Longhorn",
+            "Longhorn 6 1/3 ft",
+            "Outdoorsman 6 1/3 ft",
+            "SLT",
+            "SLT 6 1/3 ft",
+            "Tradesman"
+          ]
+        },
+        {
+          "name": "C/V",
+          "count": 1,
+          "slug": "ram-c-v",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "ProMaster",
+          "count": 4,
+          "slug": "ram-promaster",
+          "trims": [
+            "1500 SLT High Roof",
+            "1500 Tradesman High Roof",
+            "2500 High Roof",
+            "3500 High Roof Extended"
+          ]
+        },
+        {
+          "name": "ProMaster City",
+          "count": 1,
+          "slug": "ram-promaster-city",
+          "trims": [
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Rivian",
+      "count": 100,
+      "models": [
+        {
+          "name": "R1S",
+          "count": 58,
+          "slug": "rivian-r1s",
+          "trims": [
+            "Adventure",
+            "Dual",
+            "Dual Large",
+            "Dual Standard",
+            "Launch Edition",
+            "Quad Large",
+            "Tri Max"
+          ]
+        },
+        {
+          "name": "R1T",
+          "count": 42,
+          "slug": "rivian-r1t",
+          "trims": [
+            "Adventure",
+            "Dual Large",
+            "Dual Standard",
+            "Launch Edition"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Scion",
+      "count": 38,
+      "models": [
+        {
+          "name": "FR-S",
+          "count": 15,
+          "slug": "scion-fr-s",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "iA",
+          "count": 7,
+          "slug": "scion-ia",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "iM",
+          "count": 4,
+          "slug": "scion-im",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "iQ",
+          "count": 2,
+          "slug": "scion-iq",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "tC",
+          "count": 5,
+          "slug": "scion-tc",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "xB",
+          "count": 5,
+          "slug": "scion-xb",
+          "trims": [
+            "10 Series",
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "smart",
+      "count": 16,
+      "models": [
+        {
+          "name": "fortwo",
+          "count": 11,
+          "slug": "smart-fortwo",
+          "trims": [
+            "Passion",
+            "Prime",
+            "Proxy",
+            "Pure"
+          ]
+        },
+        {
+          "name": "fortwo electric drive",
+          "count": 3,
+          "slug": "smart-fortwo-electric-drive",
+          "trims": [
+            "Passion",
+            "Prime",
+            "base"
+          ]
+        },
+        {
+          "name": "fortwo EQ",
+          "count": 2,
+          "slug": "smart-fortwo-eq",
+          "trims": [
+            "Passion",
+            "Prime"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Subaru",
+      "count": 2587,
+      "models": [
+        {
+          "name": "Ascent",
+          "count": 291,
+          "slug": "subaru-ascent",
+          "trims": [
+            "Limited",
+            "Onyx Edition",
+            "Onyx Edition Limited",
+            "Onyx Edition Premium",
+            "Premium",
+            "Touring",
+            "base"
+          ]
+        },
+        {
+          "name": "BRZ",
+          "count": 35,
+          "slug": "subaru-brz",
+          "trims": [
+            "Limited",
+            "Premium",
+            "Series.Blue",
+            "Series.Yellow",
+            "tS"
+          ]
+        },
+        {
+          "name": "Crosstrek",
+          "count": 487,
+          "slug": "subaru-crosstrek",
+          "trims": [
+            "2.0i",
+            "2.0i Limited",
+            "2.0i Premium",
+            "Hybrid",
+            "Hybrid Touring",
+            "Limited",
+            "Premium",
+            "Premium Special Edition",
+            "Sport",
+            "Sport Spt Utility",
+            "Wilderness",
+            "base"
+          ]
+        },
+        {
+          "name": "Forester",
+          "count": 605,
+          "slug": "subaru-forester",
+          "trims": [
+            "2.0XT Premium",
+            "2.0XT Touring",
+            "2.5X",
+            "2.5X Limited",
+            "2.5X Premium",
+            "2.5X Touring",
+            "2.5XT Limited",
+            "2.5i",
+            "2.5i Limited",
+            "2.5i Premium",
+            "2.5i Touring",
+            "Limited",
+            "Premium",
+            "Sport",
+            "Touring",
+            "Wilderness",
+            "base"
+          ]
+        },
+        {
+          "name": "Impreza",
+          "count": 208,
+          "slug": "subaru-impreza",
+          "trims": [
+            "2.0i",
+            "2.0i Limited",
+            "2.0i Premium",
+            "2.0i Sport",
+            "2.0i Sport Limited",
+            "2.0i Sport Premium",
+            "2.5i Premium Sport",
+            "Limited",
+            "Premium",
+            "RS",
+            "Sport",
+            "WRX",
+            "WRX Premium Sport",
+            "WRX STI",
+            "WRX STI Limited",
+            "base"
+          ]
+        },
+        {
+          "name": "Legacy",
+          "count": 134,
+          "slug": "subaru-legacy",
+          "trims": [
+            "2.5i",
+            "2.5i Limited",
+            "2.5i Premium",
+            "2.5i Sport",
+            "3.6R Limited",
+            "Limited",
+            "Limited XT",
+            "Premium",
+            "Sport",
+            "Touring XT",
+            "base"
+          ]
+        },
+        {
+          "name": "Outback",
+          "count": 606,
+          "slug": "subaru-outback",
+          "trims": [
+            "2.5i",
+            "2.5i Limited",
+            "2.5i Premium",
+            "2.5i Touring",
+            "3.6R Limited",
+            "3.6R Touring",
+            "Limited",
+            "Limited XT",
+            "Onyx Edition",
+            "Onyx Edition XT",
+            "Premium",
+            "Touring",
+            "Touring XT",
+            "Wilderness",
+            "base"
+          ]
+        },
+        {
+          "name": "Solterra",
+          "count": 11,
+          "slug": "subaru-solterra",
+          "trims": [
+            "Limited",
+            "Premium",
+            "Touring"
+          ]
+        },
+        {
+          "name": "WRX",
+          "count": 210,
+          "slug": "subaru-wrx",
+          "trims": [
+            "GT",
+            "Limited",
+            "Premium",
+            "STI",
+            "STI Limited",
+            "TR",
+            "base",
+            "tS"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tesla",
+      "count": 2074,
+      "models": [
+        {
+          "name": "Cybertruck",
+          "count": 5,
+          "slug": "tesla-cybertruck",
+          "trims": [
+            "All-Wheel Drive"
+          ]
+        },
+        {
+          "name": "Model 3",
+          "count": 1037,
+          "slug": "tesla-model-3",
+          "trims": [
+            "Long Range",
+            "Mid Range",
+            "Performance",
+            "Premium",
+            "Standard",
+            "Standard Range",
+            "Standard Range Plus"
+          ]
+        },
+        {
+          "name": "Model S",
+          "count": 150,
+          "slug": "tesla-model-s",
+          "trims": [
+            "100D",
+            "60",
+            "60D",
+            "70",
+            "70D",
+            "75",
+            "75D",
+            "85",
+            "85D",
+            "90D",
+            "Long Range",
+            "Long Range Plus",
+            "P100D",
+            "P85",
+            "P85D",
+            "P90D",
+            "Performance",
+            "Plaid",
+            "Standard",
+            "base"
+          ]
+        },
+        {
+          "name": "Model X",
+          "count": 147,
+          "slug": "tesla-model-x",
+          "trims": [
+            "100D",
+            "60D",
+            "75D",
+            "90D",
+            "Long Range",
+            "Long Range Plus",
+            "P100D",
+            "P90D",
+            "Performance",
+            "Plaid",
+            "Standard",
+            "Standard Range",
+            "base"
+          ]
+        },
+        {
+          "name": "Model Y",
+          "count": 735,
+          "slug": "tesla-model-y",
+          "trims": [
+            "Launch Series Long Range",
+            "Long Range",
+            "Performance",
+            "Premium",
+            "Standard",
+            "Standard Range"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Toyota",
+      "count": 6223,
+      "models": [
+        {
+          "name": "4Runner",
+          "count": 367,
+          "slug": "toyota-4runner",
+          "trims": [
+            "40th Anniversary Special Edition",
+            "Limited",
+            "Limited Nightshade Edition",
+            "Nightshade Special Edition",
+            "SR5",
+            "SR5 Premium",
+            "TRD",
+            "TRD Off-Road",
+            "TRD Off-Road Premium",
+            "TRD Pro",
+            "TRD Sport",
+            "TRD Sport Premium",
+            "Trail",
+            "Trail Premium",
+            "Trail Special Edition",
+            "Venture",
+            "Venture Special Edition"
+          ]
+        },
+        {
+          "name": "Avalon",
+          "count": 91,
+          "slug": "toyota-avalon",
+          "trims": [
+            "Limited",
+            "Limited Hybrid",
+            "Touring",
+            "XLE",
+            "XLE Plus",
+            "XLE Premium",
+            "XLE Touring",
+            "XLE Touring Hybrid",
+            "XSE",
+            "base"
+          ]
+        },
+        {
+          "name": "bZ",
+          "count": 40,
+          "slug": "toyota-bz",
+          "trims": [
+            "Limited",
+            "Nightshade",
+            "XLE",
+            "XLE Plus"
+          ]
+        },
+        {
+          "name": "C-HR",
+          "count": 88,
+          "slug": "toyota-c-hr",
+          "trims": [
+            "LE",
+            "Limited",
+            "Nightshade",
+            "XLE",
+            "XLE Premium"
+          ]
+        },
+        {
+          "name": "Camry",
+          "count": 846,
+          "slug": "toyota-camry",
+          "trims": [
+            "Hybrid",
+            "Hybrid LE",
+            "Hybrid XLE",
+            "L",
+            "LE",
+            "LE Hybrid",
+            "SE",
+            "SE Nightshade Edition",
+            "SE Special Edition",
+            "TRD",
+            "XLE",
+            "XSE",
+            "base"
+          ]
+        },
+        {
+          "name": "Corolla",
+          "count": 660,
+          "slug": "toyota-corolla",
+          "trims": [
+            "FX",
+            "L",
+            "LE",
+            "LE Eco",
+            "LE Plus",
+            "Nightshade",
+            "S",
+            "S Plus",
+            "S Premium",
+            "SE",
+            "SE Apex Edition",
+            "SE Infrared",
+            "SE Nightshade Edition",
+            "XLE",
+            "XSE",
+            "base"
+          ]
+        },
+        {
+          "name": "Corolla Cross",
+          "count": 121,
+          "slug": "toyota-corolla-cross",
+          "trims": [
+            "L",
+            "LE",
+            "S",
+            "XLE",
+            "XSE"
+          ]
+        },
+        {
+          "name": "Crown",
+          "count": 40,
+          "slug": "toyota-crown",
+          "trims": [
+            "Limited",
+            "Limited Hybrid",
+            "Nightshade",
+            "Platinum",
+            "XLE",
+            "XLE Hybrid"
+          ]
+        },
+        {
+          "name": "FJ Cruiser",
+          "count": 3,
+          "slug": "toyota-fj-cruiser",
+          "trims": [
+            "base"
+          ]
+        },
+        {
+          "name": "GR Corolla",
+          "count": 35,
+          "slug": "toyota-gr-corolla",
+          "trims": [
+            "Circuit Edition",
+            "Core",
+            "Premium",
+            "Premium Plus"
+          ]
+        },
+        {
+          "name": "GR Supra",
+          "count": 18,
+          "slug": "toyota-gr-supra",
+          "trims": [
+            "2",
+            "3",
+            "3.0 Premium",
+            "A91 Edition",
+            "A91-MT Edition"
+          ]
+        },
+        {
+          "name": "GR86",
+          "count": 87,
+          "slug": "toyota-gr86",
+          "trims": [
+            "10th Anniversary Special Edition",
+            "860 Special Edition",
+            "GT",
+            "GT Black",
+            "Hakone Edition",
+            "Premium",
+            "TRD Special Edition",
+            "TRUENO Edition",
+            "base"
+          ]
+        },
+        {
+          "name": "Grand Highlander",
+          "count": 69,
+          "slug": "toyota-grand-highlander",
+          "trims": [
+            "LE",
+            "Limited",
+            "MAX Limited",
+            "MAX Platinum",
+            "Nightshade",
+            "Platinum",
+            "XLE"
+          ]
+        },
+        {
+          "name": "Highlander",
+          "count": 569,
+          "slug": "toyota-highlander",
+          "trims": [
+            "Bronze Edition",
+            "L",
+            "LE",
+            "LE Nightshade",
+            "LE Plus",
+            "Limited",
+            "Limited Hybrid",
+            "Limited Platinum",
+            "Limited Platinum Hybrid",
+            "Platinum",
+            "SE",
+            "XLE",
+            "XLE Nightshade",
+            "XSE",
+            "base"
+          ]
+        },
+        {
+          "name": "Land Cruiser",
+          "count": 34,
+          "slug": "toyota-land-cruiser",
+          "trims": [
+            "1958",
+            "base"
+          ]
+        },
+        {
+          "name": "Matrix",
+          "count": 1,
+          "slug": "toyota-matrix",
+          "trims": [
+            "S Sport"
+          ]
+        },
+        {
+          "name": "Prius",
+          "count": 175,
+          "slug": "toyota-prius",
+          "trims": [
+            "Advanced",
+            "Five",
+            "Four",
+            "I",
+            "IV",
+            "LE",
+            "Limited",
+            "Nightshade Edition",
+            "One",
+            "Premium",
+            "SE",
+            "Three",
+            "Two",
+            "Two Eco",
+            "XLE",
+            "XSE",
+            "base"
+          ]
+        },
+        {
+          "name": "Prius c",
+          "count": 18,
+          "slug": "toyota-prius-c",
+          "trims": [
+            "Four",
+            "One",
+            "Three",
+            "Two"
+          ]
+        },
+        {
+          "name": "Prius v",
+          "count": 24,
+          "slug": "toyota-prius-v",
+          "trims": [
+            "Five",
+            "Three",
+            "Two"
+          ]
+        },
+        {
+          "name": "RAV4",
+          "count": 1050,
+          "slug": "toyota-rav4",
+          "trims": [
+            "Adventure",
+            "LE",
+            "Limited",
+            "Limited Hybrid",
+            "Platinum",
+            "SE",
+            "Sport",
+            "TRD Off-Road",
+            "Woodland Edition",
+            "XLE",
+            "XLE Hybrid",
+            "XLE Premium",
+            "XSE",
+            "base"
+          ]
+        },
+        {
+          "name": "Sequoia",
+          "count": 59,
+          "slug": "toyota-sequoia",
+          "trims": [
+            "1794 Edition",
+            "Capstone",
+            "Limited",
+            "Platinum",
+            "SR5",
+            "TRD Pro",
+            "TRD Sport"
+          ]
+        },
+        {
+          "name": "Sienna",
+          "count": 248,
+          "slug": "toyota-sienna",
+          "trims": [
+            "CE",
+            "L",
+            "LE",
+            "Limited",
+            "Limited Premium",
+            "Platinum",
+            "SE",
+            "SE Premium",
+            "XLE",
+            "XLE Premium",
+            "XSE"
+          ]
+        },
+        {
+          "name": "Tacoma",
+          "count": 934,
+          "slug": "toyota-tacoma",
+          "trims": [
+            "Limited",
+            "PreRunner",
+            "SR",
+            "SR5",
+            "TRD Off-Road",
+            "TRD Off-Road I-FORCE MAX",
+            "TRD Pro",
+            "TRD Sport",
+            "TRD Sport I-FORCE MAX",
+            "Trail Special Edition",
+            "Trailhunter I-FORCE MAX",
+            "base"
+          ]
+        },
+        {
+          "name": "Tundra",
+          "count": 544,
+          "slug": "toyota-tundra",
+          "trims": [
+            "1794 Edition",
+            "1794 Limited Edition",
+            "Capstone",
+            "Limited",
+            "Platinum",
+            "SR",
+            "SR5",
+            "TRD Pro",
+            "base"
+          ]
+        },
+        {
+          "name": "Venza",
+          "count": 57,
+          "slug": "toyota-venza",
+          "trims": [
+            "LE",
+            "Limited",
+            "Nightshade Edition",
+            "XLE",
+            "base"
+          ]
+        },
+        {
+          "name": "Yaris",
+          "count": 45,
+          "slug": "toyota-yaris",
+          "trims": [
+            "L",
+            "LE",
+            "SE",
+            "XLE",
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Volkswagen",
+      "count": 2800,
+      "models": [
+        {
+          "name": "Arteon",
+          "count": 20,
+          "slug": "volkswagen-arteon",
+          "trims": [
+            "SE",
+            "SE 4Motion",
+            "SE R-Line",
+            "SEL 4Motion",
+            "SEL Premium R-Line 4Motion",
+            "SEL R-Line",
+            "SEL R-Line 4Motion"
+          ]
+        },
+        {
+          "name": "Atlas",
+          "count": 941,
+          "slug": "volkswagen-atlas",
+          "trims": [
+            "Launch Edition",
+            "Peak Edition",
+            "Peak Edition SE 4MOTION w/Tech Pkg",
+            "Peak Edition SEL 4MOTION",
+            "S",
+            "S 4Motion",
+            "SE",
+            "SE 4MOTION",
+            "SE 4MOTION w/Tech Pkg",
+            "SE 4MOTION w/Technology",
+            "SE 4Motion",
+            "SE 4Motion w/Tech Pkg",
+            "SE 4Motion w/Technology",
+            "SE R-Line 4Motion w/Tech Pkg",
+            "SE R-Line 4Motion w/Technology",
+            "SE R-Line w/Tech Pkg",
+            "SE R-Line w/Technology",
+            "SE w/Tech Pkg",
+            "SE w/Technology",
+            "SEL",
+            "SEL 4MOTION",
+            "SEL 4Motion",
+            "SEL Premium 4Motion",
+            "SEL Premium R-Line 4MOTION",
+            "SEL Premium R-Line 4Motion",
+            "SEL R-Line",
+            "SEL R-Line 4MOTION",
+            "SEL R-Line 4Motion",
+            "SEL R-Line Black 4MOTION"
+          ]
+        },
+        {
+          "name": "Beetle",
+          "count": 52,
+          "slug": "volkswagen-beetle",
+          "trims": [
+            "1.8T",
+            "1.8T Classic",
+            "1.8T Denim",
+            "1.8T Dune",
+            "1.8T S",
+            "1.8T SE",
+            "1.8T SEL",
+            "2.0T Coast",
+            "2.0T Final Edition SEL",
+            "2.0T S",
+            "2.0T SE",
+            "2.5L",
+            "2.5L Entry",
+            "R-Line",
+            "TDI",
+            "Turbo",
+            "Turbo Fender Edition"
+          ]
+        },
+        {
+          "name": "CC",
+          "count": 13,
+          "slug": "volkswagen-cc",
+          "trims": [
+            "2.0T R-Line",
+            "2.0T R-Line Executive",
+            "2.0T Sport",
+            "Lux Plus",
+            "Sport"
+          ]
+        },
+        {
+          "name": "e-Golf",
+          "count": 10,
+          "slug": "volkswagen-e-golf",
+          "trims": [
+            "SE",
+            "SEL Premium"
+          ]
+        },
+        {
+          "name": "Eos",
+          "count": 9,
+          "slug": "volkswagen-eos",
+          "trims": [
+            "Executive",
+            "Komfort",
+            "Komfort Hard Top",
+            "Lux Hard Top",
+            "Sport"
+          ]
+        },
+        {
+          "name": "Golf",
+          "count": 54,
+          "slug": "volkswagen-golf",
+          "trims": [
+            "1.4T S",
+            "1.4T SE",
+            "1.4T TSI",
+            "2.5L",
+            "R",
+            "S",
+            "SEL",
+            "TDI",
+            "TDI S",
+            "TDI SEL",
+            "TSI S",
+            "TSI S 4Motion",
+            "TSI SE",
+            "TSI SEL",
+            "TSI Wolfsburg Edition"
+          ]
+        },
+        {
+          "name": "Golf GTI",
+          "count": 91,
+          "slug": "volkswagen-golf-gti",
+          "trims": [
+            "2.0T",
+            "380 Autobahn",
+            "380 S",
+            "380 SE",
+            "40th Anniversary Edition",
+            "Autobahn",
+            "S",
+            "SE",
+            "Sport",
+            "Wolfsburg Edition",
+            "base"
+          ]
+        },
+        {
+          "name": "Golf R",
+          "count": 33,
+          "slug": "volkswagen-golf-r",
+          "trims": [
+            "20th Anniversary Edition",
+            "4Motion",
+            "Black Edition",
+            "base"
+          ]
+        },
+        {
+          "name": "ID.4",
+          "count": 71,
+          "slug": "volkswagen-id-4",
+          "trims": [
+            "1st Edition",
+            "Pro",
+            "Pro S",
+            "Pro S Plus",
+            "S",
+            "S Limited",
+            "Standard"
+          ]
+        },
+        {
+          "name": "ID.Buzz",
+          "count": 3,
+          "slug": "volkswagen-id-buzz",
+          "trims": [
+            "1st Edition 4MOTION",
+            "Pro S Plus",
+            "Pro S Plus 4MOTION"
+          ]
+        },
+        {
+          "name": "Jetta",
+          "count": 276,
+          "slug": "volkswagen-jetta",
+          "trims": [
+            "1.4T R-Line",
+            "1.4T S",
+            "1.4T SE",
+            "1.4T SEL",
+            "1.4T SEL Premium",
+            "1.5T S",
+            "1.5T SE",
+            "1.5T SEL",
+            "1.5T Sport",
+            "1.8T SE",
+            "1.8T SE Sport",
+            "1.8T SEL",
+            "1.8T Sport",
+            "2.0L",
+            "2.0L S",
+            "2.0L TDI",
+            "2.0L TDI SE",
+            "2.0T GLI",
+            "2.0T GLI SE",
+            "2.0T GLI SEL",
+            "2.5L SE",
+            "2.5L SEL",
+            "Hybrid SEL Premium",
+            "SE"
+          ]
+        },
+        {
+          "name": "Jetta GLI",
+          "count": 23,
+          "slug": "volkswagen-jetta-gli",
+          "trims": [
+            "2.0T",
+            "35th Anniversary Edition",
+            "40th Anniversary Edition",
+            "Autobahn",
+            "S"
+          ]
+        },
+        {
+          "name": "Jetta SportWagen",
+          "count": 5,
+          "slug": "volkswagen-jetta-sportwagen",
+          "trims": [
+            "2.0L TDI Sport",
+            "2.5L S Sport",
+            "2.5L SE Sport"
+          ]
+        },
+        {
+          "name": "Passat",
+          "count": 107,
+          "slug": "volkswagen-passat",
+          "trims": [
+            "1.8T Limited Edition",
+            "1.8T R-Line",
+            "1.8T S",
+            "1.8T SE",
+            "1.8T SEL",
+            "1.8T SEL Premium",
+            "2.0T R-Line",
+            "2.0T SE",
+            "2.0T Wolfsburg Edition",
+            "2.5L S",
+            "2.5L SE",
+            "Komfort",
+            "Limited Edition",
+            "R-Line",
+            "S",
+            "SE",
+            "SEL",
+            "TDI SE",
+            "TDI SEL Premium",
+            "V6 SEL Premium"
+          ]
+        },
+        {
+          "name": "Taos",
+          "count": 319,
+          "slug": "volkswagen-taos",
+          "trims": [
+            "S",
+            "S 4MOTION",
+            "SE",
+            "SE 4MOTION",
+            "SE Black",
+            "SE Black 4MOTION",
+            "SEL",
+            "SEL 4MOTION"
+          ]
+        },
+        {
+          "name": "Tiguan",
+          "count": 755,
+          "slug": "volkswagen-tiguan",
+          "trims": [
+            "2.0T",
+            "2.0T 4Motion",
+            "2.0T R-Line",
+            "2.0T R-Line 4Motion",
+            "2.0T S",
+            "2.0T S 4MOTION",
+            "2.0T S 4Motion",
+            "2.0T SE",
+            "2.0T SE 4MOTION",
+            "2.0T SE 4Motion",
+            "2.0T SEL",
+            "2.0T SEL 4MOTION",
+            "2.0T SEL 4Motion",
+            "2.0T SEL Premium",
+            "2.0T SEL Premium 4MOTION",
+            "2.0T SEL R-Line",
+            "2.0T SEL R-Line Jet-Black",
+            "2.0T SEL R-Line Jet-Black 4Motion",
+            "2.0T Sport 4Motion",
+            "2.0T Wolfsburg Edition",
+            "2.0T Wolfsburg Edition 4Motion",
+            "S",
+            "S 4MOTION",
+            "SE",
+            "SE 4MOTION",
+            "SE R-Line Black",
+            "SE R-Line Black 4MOTION",
+            "SEL",
+            "SEL 4MOTION",
+            "SEL Premium R-Line 4MOTION",
+            "SEL R-Line 4MOTION",
+            "Wolfsburg Edition",
+            "Wolfsburg Edition 4MOTION"
+          ]
+        },
+        {
+          "name": "Touareg",
+          "count": 18,
+          "slug": "volkswagen-touareg",
+          "trims": [
+            "TDI",
+            "TDI Lux",
+            "TDI Sport",
+            "V6 Executive",
+            "V6 Lux",
+            "V6 Sport",
+            "V6 Wolfsburg Edition",
+            "VR6 Lux",
+            "VR6 Sport",
+            "X",
+            "base"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Volvo",
+      "count": 568,
+      "models": [
+        {
+          "name": "C40 Recharge",
+          "count": 35,
+          "slug": "volvo-c40-recharge",
+          "trims": [
+            "Plus",
+            "Ultimate"
+          ]
+        },
+        {
+          "name": "C70",
+          "count": 2,
+          "slug": "volvo-c70",
+          "trims": [
+            "T5"
+          ]
+        },
+        {
+          "name": "EX30",
+          "count": 5,
+          "slug": "volvo-ex30",
+          "trims": [
+            "Single Motor Extended Range Plus",
+            "Twin Motor Performance Plus",
+            "Twin Motor Performance Ultra"
+          ]
+        },
+        {
+          "name": "S40",
+          "count": 2,
+          "slug": "volvo-s40",
+          "trims": [
+            "2.4i",
+            "T5"
+          ]
+        },
+        {
+          "name": "S60",
+          "count": 71,
+          "slug": "volvo-s60",
+          "trims": [
+            "B5 Core Dark Theme",
+            "B5 Inscription",
+            "B5 Momentum",
+            "B5 Plus Black Edition",
+            "B5 Plus Dark Theme",
+            "T5",
+            "T5 Cross Country Platinum",
+            "T5 Dynamic",
+            "T5 Inscription",
+            "T5 Inscription Platinum",
+            "T5 Momentum",
+            "T5 Premier",
+            "T5 R-Design",
+            "T6 Inscription",
+            "T6 Momentum",
+            "T6 R-Design",
+            "T6 R-Design Platinum",
+            "T8 Recharge Plus Dark Theme",
+            "T8 Ultra Black Edition"
+          ]
+        },
+        {
+          "name": "S90",
+          "count": 18,
+          "slug": "volvo-s90",
+          "trims": [
+            "B6 Inscription",
+            "B6 Plus Bright Theme",
+            "B6 Ultimate Bright Theme",
+            "T5 Momentum",
+            "T6 Inscription",
+            "T6 Momentum",
+            "T6 R-Design",
+            "T8 Inscription"
+          ]
+        },
+        {
+          "name": "V60",
+          "count": 10,
+          "slug": "volvo-v60",
+          "trims": [
+            "B5 Plus Cross Country",
+            "B5 Ultra Cross Country",
+            "T5 Cross Country",
+            "T5 Drive-E Premier",
+            "T5 Momentum",
+            "T5 Premier"
+          ]
+        },
+        {
+          "name": "XC40",
+          "count": 109,
+          "slug": "volvo-xc40",
+          "trims": [
+            "B4 Core",
+            "B5 Core",
+            "B5 Core Bright Theme",
+            "B5 Core Dark Theme",
+            "B5 Plus Bright Theme",
+            "B5 Plus Dark Theme",
+            "B5 Plus DarkTheme",
+            "B5 Ultimate Bright Theme",
+            "B5 Ultimate Dark Theme",
+            "B5 Ultra Bright Theme",
+            "T4 Inscription",
+            "T4 Momentum",
+            "T4 R-Design",
+            "T5 Inscription",
+            "T5 Momentum",
+            "T5 R-Design"
+          ]
+        },
+        {
+          "name": "XC40 Recharge",
+          "count": 28,
+          "slug": "volvo-xc40-recharge",
+          "trims": [
+            "Plus",
+            "Ultimate",
+            "base"
+          ]
+        },
+        {
+          "name": "XC60",
+          "count": 97,
+          "slug": "volvo-xc60",
+          "trims": [
+            "3.2",
+            "3.2 Platinum",
+            "B5 Core",
+            "B5 Core Dark Theme",
+            "B5 Momentum",
+            "B5 Plus Bright Theme",
+            "B5 Plus Dark Theme",
+            "B5 Ultimate Dark Theme",
+            "B5 Ultra Dark Theme",
+            "Recharge Inscription Expression",
+            "T5 Dynamic",
+            "T5 Inscription",
+            "T5 Momentum",
+            "T5 Platinum",
+            "T5 Premier",
+            "T6",
+            "T6 Dynamic",
+            "T6 Inscription",
+            "T6 Momentum",
+            "T6 R-Design",
+            "T8 Plus Dark Theme",
+            "T8 Polestar Engineered",
+            "T8 R-Design",
+            "T8 Recharge Core Dark Theme",
+            "T8 Recharge Inscription",
+            "T8 Recharge Inscription Expression",
+            "T8 Recharge Plus Dark Theme",
+            "T8 Recharge Ultimate Bright Theme",
+            "T8 Recharge Ultimate Dark Theme"
+          ]
+        },
+        {
+          "name": "XC70",
+          "count": 1,
+          "slug": "volvo-xc70",
+          "trims": [
+            "T5 Premier"
+          ]
+        },
+        {
+          "name": "XC90",
+          "count": 190,
+          "slug": "volvo-xc90",
+          "trims": [
+            "3.2",
+            "B5 Core",
+            "B5 Core Bright Theme",
+            "B5 Plus Bright Theme",
+            "B6 Core",
+            "B6 Core Bright Theme",
+            "B6 Plus",
+            "B6 Plus Bright Theme",
+            "B6 Ultimate Bright Theme",
+            "B6 Ultra",
+            "T5 Momentum",
+            "T5 R-Design",
+            "T6 First Edition",
+            "T6 Inscription",
+            "T6 Momentum",
+            "T6 R-Design",
+            "T8 Core Bright Theme",
+            "T8 Inscription",
+            "T8 Inscription Expression Recharge Extended Range Plug-in Hybrid",
+            "T8 Inscription Expression Recharge Plug-In Hybrid",
+            "T8 Inscription Recharge Plug-In Hybrid",
+            "T8 Plus Bright Theme",
+            "T8 R-Design",
+            "T8 R-Design Recharge Extended Range Plug-in Hybrid",
+            "T8 R-Design Recharge Plug-In Hybrid",
+            "T8 Recharge Core Plug-In Hybrid",
+            "T8 Recharge Plus Bright Theme",
+            "T8 Recharge Plus Dark Theme Plug-In Hybrid",
+            "T8 Recharge Ultimate Bright Theme",
+            "T8 Recharge Ultimate Bright Theme Plug-In Hybrid",
+            "T8 Ultra Bright Theme"
+          ]
+        }
+      ]
+    }
+  ]
+}
