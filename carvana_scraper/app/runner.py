@@ -63,16 +63,21 @@ def _run_worker(state: AppState, options: RunOptions, abort: threading.Event) ->
         state.fail_run(type(exc).__name__, str(exc), traceback.format_exc(limit=6))
 
 
-def _recount_carfax(result) -> None:
+def _recount_carfax(result, pasted_vins: set[str]) -> None:
     """Recompute the Carfax counters after a paste changed the histories.
 
-    The pipeline already derives these at the end of stage 3; this re-derives them so a pasted
-    report is reflected, and so pasting the same report twice cannot inflate the count.
+    A paste counts as an attempt that succeeded, so it widens the population beyond the Carfax
+    shortlist. Without that, pasting a report during a --no-carfax run (where the shortlist is
+    empty) would leave the manifest reporting "Carfax parsed: 0" for a car whose Carfax it holds.
+
+    Derived from a set of VINs rather than incremented, so pasting the same report twice cannot
+    inflate anything.
     """
-    attempted = result.manifest.carfax_attempted or len(result.shortlist_vins)
-    parsed = sum(1 for vin in result.shortlist_vins if has_carfax(result.histories.get(vin)))
+    considered = set(result.shortlist_vins) | set(pasted_vins)
+    parsed = sum(1 for vin in considered if has_carfax(result.histories.get(vin)))
+    result.manifest.carfax_attempted = max(result.manifest.carfax_attempted, len(considered))
     result.manifest.carfax_parsed = parsed
-    result.manifest.carfax_blocked = max(0, attempted - parsed)
+    result.manifest.carfax_blocked = max(0, result.manifest.carfax_attempted - parsed)
 
 
 # ---- Chrome login ------------------------------------------------------------------------
@@ -225,7 +230,7 @@ def apply_paste(state: AppState, vin: str, text: str, vendor: str | None = None)
     scored, anchor_info = ingest_mod.rescore(result, config)
     result.scored = scored
     result.anchor_info = anchor_info
-    _recount_carfax(result)
+    _recount_carfax(result, state.pasted_vins | {vin})
 
     # Reusing the same manifest is safe: render() assigns ranked/needs_carfax/disqualified/
     # conflicts rather than incrementing them, so re-rendering is idempotent.

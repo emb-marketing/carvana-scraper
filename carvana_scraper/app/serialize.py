@@ -86,12 +86,19 @@ def vehicle_to_dict(vehicle: ScoredVehicle) -> dict[str, Any]:
     }
 
 
-def manifest_to_dict(manifest: RunManifest) -> dict[str, Any]:
+def manifest_to_dict(manifest: RunManifest, reconcile: bool = True) -> dict[str, Any]:
     """Serialize the run manifest, including its reconciliation verdict.
 
     `reconciliation_problems` is included because it is the whole point of the manifest: silent
     narrowing is the failure mode that matters, so the UI must be able to show it, not just the
     raw counters.
+
+    Args:
+        manifest: The run's manifest.
+        reconcile: False for a run that deliberately skipped the history stages (--search-only,
+            --no-history). Those checks assume a full pipeline ran, so reporting "no AutoCheck
+            report parsed" as a fault would be wrong — the operator asked for that. The CLI never
+            showed a manifest in those modes at all.
     """
     return {
         "criteria": manifest.criteria,
@@ -118,17 +125,26 @@ def manifest_to_dict(manifest: RunManifest) -> dict[str, Any]:
         },
         "anchor_note": manifest.anchor_note,
         "warnings": list(manifest.warnings),
-        "reconciliation_problems": list(manifest.reconciliation_problems()),
+        "reconciliation_problems": list(manifest.reconciliation_problems()) if reconcile else [],
+        "reconciled": reconcile,
         "lines": list(manifest.lines()),
     }
 
 
-def needs_carfax_entry(vehicle: ScoredVehicle) -> dict[str, Any]:
+def needs_carfax_entry(vehicle: ScoredVehicle, carfax_skipped: bool = False) -> dict[str, Any]:
     """One row of the 'needs your help' list.
 
-    `remedy` mirrors the report's split: a vehicle whose Carfax was attempted and blocked is
-    retryable (or pasteable), while one that never made the shortlist just needs a higher --top-n.
+    `remedy` mirrors the report's split — a vehicle whose Carfax was attempted and blocked is
+    retryable or pasteable, while one that never made the shortlist needs a higher --top-n — with
+    one addition the text report does not make: when the whole Carfax stage was skipped, "raise
+    --top-n" would send the operator to the wrong control.
     """
+    if vehicle.carfax_attempted:
+        remedy = "paste_or_retry"
+    elif carfax_skipped:
+        remedy = "carfax_skipped"
+    else:
+        remedy = "raise_top_n"
     return {
         "vin": vehicle.listing.vin,
         "label": vehicle.listing.label,
@@ -138,12 +154,13 @@ def needs_carfax_entry(vehicle: ScoredVehicle) -> dict[str, Any]:
         "landed_price": vehicle.listing.landed_price,
         "mileage": vehicle.listing.mileage,
         "carfax_attempted": vehicle.carfax_attempted,
-        "remedy": "paste_or_retry" if vehicle.carfax_attempted else "raise_top_n",
+        "remedy": remedy,
         "missing_decision_fields": list(vehicle.history.missing_decision_fields),
     }
 
 
-def buckets(scored: list[ScoredVehicle], sort_key=None) -> dict[str, list[dict[str, Any]]]:
+def buckets(scored: list[ScoredVehicle], sort_key=None,
+            carfax_skipped: bool = False) -> dict[str, list[dict[str, Any]]]:
     """Split scored vehicles into the report's three buckets.
 
     Mirrors `report.render` exactly so the UI and the markdown can never disagree about which car
@@ -154,7 +171,7 @@ def buckets(scored: list[ScoredVehicle], sort_key=None) -> dict[str, list[dict[s
         ranked = sorted(ranked, key=sort_key)
     return {
         "ranked": [vehicle_to_dict(v) for v in ranked],
-        "needs_carfax": [needs_carfax_entry(v) for v in scored
+        "needs_carfax": [needs_carfax_entry(v, carfax_skipped) for v in scored
                          if not v.is_disqualified and not v.is_rankable],
         "disqualified": [vehicle_to_dict(v) for v in scored if v.is_disqualified],
     }

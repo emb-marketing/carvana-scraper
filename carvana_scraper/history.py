@@ -49,6 +49,22 @@ _FIRST_WINS_FIELDS: tuple[str, ...] = (
 )
 
 
+def _vendor_atoms(reports: list[HistoryReport]) -> list[str]:
+    """The distinct vendors contributing to a merge, in first-seen order.
+
+    Splitting on "+" makes the merge safe to apply to an already-merged report. The scraper never
+    does that — it merges two fresh single-vendor reports — but pasting a report onto a vehicle
+    that already has both would otherwise produce `vendor="autocheck+carfax+carfax"`, growing by
+    one atom on every paste, with `sources` recording the compound string as if it were a vendor.
+    """
+    atoms: list[str] = []
+    for report in reports:
+        for atom in (report.vendor or "?").split("+"):
+            if atom and atom not in atoms:
+                atoms.append(atom)
+    return atoms
+
+
 def merge_reports(reports: list[HistoryReport]) -> HistoryReport:
     """Merge one or more vendor reports for the same vehicle, pessimistically.
 
@@ -68,12 +84,21 @@ def merge_reports(reports: list[HistoryReport]) -> HistoryReport:
     if len(parsed) == 1:
         return parsed[0]
 
+    atoms = _vendor_atoms(parsed)
     merged = HistoryReport(
         vin=parsed[0].vin,
         status=STATUS_PARSED,
-        vendor="+".join(report.vendor or "?" for report in parsed),
+        vendor="+".join(atoms),
         source_url=parsed[0].source_url,
-        sources=[report.vendor or "?" for report in parsed],
+        sources=list(atoms),
+        # Disagreements already recorded by an earlier merge are carried forward, not rediscovered.
+        # Re-merging an already-merged report finds none: its fields hold the pessimistic outcome,
+        # so it agrees with the vendor it was merged from, and the conflict would be silently
+        # erased. Losing "AutoCheck said clean, Carfax said accident" is losing the finding this
+        # whole two-vendor design exists to surface. Neither parser sets conflicts, so for the
+        # scraper's own two-fresh-reports merge this contributes nothing.
+        conflicts=list(dict.fromkeys(
+            conflict for report in parsed for conflict in (report.conflicts or []))),
     )
 
     for name in _PROBLEM_FIELDS:
@@ -84,7 +109,9 @@ def merge_reports(reports: list[HistoryReport]) -> HistoryReport:
         setattr(merged, name, any(value for _, value in known))
         if len({value for _, value in known}) > 1:
             detail = " ".join(f"{vendor}={value}" for vendor, value in known)
-            merged.conflicts.append(f"{name}: {detail}")
+            entry = f"{name}: {detail}"
+            if entry not in merged.conflicts:
+                merged.conflicts.append(entry)
 
     for name in _FIRST_WINS_FIELDS:
         for report in parsed:
@@ -98,9 +125,10 @@ def merge_reports(reports: list[HistoryReport]) -> HistoryReport:
     if owner_counts:
         merged.owner_count = max(count for _, count in owner_counts)
         if len({count for _, count in owner_counts}) > 1:
-            merged.conflicts.append(
-                "owner_count: " + " ".join(f"{v}={c}" for v, c in owner_counts)
-                + " (took the higher)")
+            entry = ("owner_count: " + " ".join(f"{v}={c}" for v, c in owner_counts)
+                     + " (took the higher)")
+            if entry not in merged.conflicts:
+                merged.conflicts.append(entry)
 
     # Accident count: the higher of the two.
     accident_counts = [r.accident_count for r in parsed if r.accident_count is not None]
@@ -112,8 +140,14 @@ def merge_reports(reports: list[HistoryReport]) -> HistoryReport:
             if use_type not in merged.use_types:
                 merged.use_types.append(use_type)
         merged.title_brands = merged.title_brands or report.title_brands
-        merged.unrecognized_sections.extend(report.unrecognized_sections)
-        merged.notes.extend(report.notes)
+        # Deduplicated for the same reason as conflicts: re-merging an already-merged report would
+        # otherwise repeat every note and unrecognized section once per paste.
+        for section in report.unrecognized_sections:
+            if section not in merged.unrecognized_sections:
+                merged.unrecognized_sections.append(section)
+        for note in report.notes:
+            if note not in merged.notes:
+                merged.notes.append(note)
 
     return merged
 

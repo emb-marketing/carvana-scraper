@@ -49,6 +49,8 @@ class AppState:
         self.review: dict[str, Any] | None = None
         self.review_running: bool = False
         self.ingested: list[dict[str, Any]] = []
+        # A set, not a counter: pasting the same report twice must not inflate the manifest.
+        self.pasted_vins: set[str] = set()
         self._sequence = 0
 
     # ---- run lifecycle -------------------------------------------------------------------
@@ -78,6 +80,7 @@ class AppState:
             self.review = None
             self.review_running = False
             self.ingested = []
+            self.pasted_vins = set()
             return self.abort
 
     def begin_login(self) -> None:
@@ -169,6 +172,7 @@ class AppState:
     def record_ingest(self, entry: dict[str, Any]) -> None:
         with self._lock:
             self.ingested.append(entry)
+            self.pasted_vins.add(entry["vin"])
 
     def replace_scored(self, scored: list[ScoredVehicle], body: str,
                        manifest: report_mod.RunManifest) -> None:
@@ -240,17 +244,23 @@ class AppState:
             # `_sort_key` is private to report.py but this is the same package, and reusing it is
             # what guarantees the table order matches the rendered markdown exactly.
             sort_key = report_mod._sort_key(result.options.sort)
+            # A run that deliberately skipped the history stages cannot be judged by the
+            # reconciliation checks, which assume the full pipeline ran.
+            full_run = not (result.options.search_only or result.options.no_history)
             payload.update({
                 "criteria": result.criteria.describe(),
                 "sort": result.options.sort,
+                "search_only": result.options.search_only,
                 "anchored": result.anchor_info.get("anchored"),
                 "anchor_note": result.anchor_info.get("note", ""),
                 "report_path": str(result.report_path) if result.report_path else None,
                 "exit_code": result.exit_code,
                 "aborted": result.aborted,
-                "manifest": serialize.manifest_to_dict(result.manifest),
+                "manifest": serialize.manifest_to_dict(result.manifest, reconcile=full_run),
                 "cache_stats": dict(result.cache_stats),
                 "report_body": result.body,
             })
-            payload.update(serialize.buckets(result.scored, sort_key=sort_key))
+            payload.update(serialize.buckets(
+                result.scored, sort_key=sort_key,
+                carfax_skipped=result.options.no_carfax or result.options.no_history))
             return payload

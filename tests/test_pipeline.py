@@ -421,3 +421,60 @@ class RunOptionsTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class MergeIdempotencyTests(unittest.TestCase):
+    """Re-merging an already-merged report must not corrupt it.
+
+    The scraper never does this — it merges two fresh single-vendor reports — but the app's paste
+    path does, when a report is pasted for a vehicle that already has both vendors.
+    """
+
+    @staticmethod
+    def _report(vendor, **over):
+        fields = dict(vin="V1", status=STATUS_PARSED, vendor=vendor, sources=[])
+        fields.update(over)
+        return HistoryReport(**fields)
+
+    def setUp(self) -> None:
+        self.autocheck = self._report("autocheck", sources=["autocheck"], owner_count=2,
+                                      accident_reported=False, notes=["ac note"])
+        self.carfax = self._report("carfax", owner_count=3, accident_reported=True,
+                                   structural_damage=False, notes=["cf note"])
+        self.merged = history.merge_reports([self.autocheck, self.carfax])
+
+    def test_first_merge_records_the_disagreements(self) -> None:
+        self.assertEqual(self.merged.vendor, "autocheck+carfax")
+        self.assertTrue(any("accident_reported" in c for c in self.merged.conflicts))
+        self.assertTrue(any("owner_count" in c for c in self.merged.conflicts))
+
+    def test_vendor_does_not_accumulate_atoms(self) -> None:
+        again = history.merge_reports([self.merged, self.carfax])
+        thrice = history.merge_reports([again, self.carfax])
+        self.assertEqual(again.vendor, "autocheck+carfax")
+        self.assertEqual(thrice.vendor, "autocheck+carfax")
+        self.assertEqual(thrice.sources, ["autocheck", "carfax"])
+
+    def test_conflicts_survive_a_re_merge(self) -> None:
+        """The re-merged report agrees with itself, so conflicts must be carried, not rebuilt.
+
+        Losing "AutoCheck said clean, Carfax said accident" is losing the exact finding the
+        two-vendor design exists to surface.
+        """
+        again = history.merge_reports([self.merged, self.carfax])
+        self.assertEqual(sorted(again.conflicts), sorted(self.merged.conflicts))
+        self.assertTrue(again.conflicts)
+
+    def test_conflicts_are_not_duplicated_by_a_re_merge(self) -> None:
+        again = history.merge_reports([self.merged, self.carfax])
+        self.assertEqual(len(again.conflicts), len(set(again.conflicts)))
+
+    def test_notes_are_not_duplicated_by_a_re_merge(self) -> None:
+        again = history.merge_reports([self.merged, self.carfax])
+        self.assertEqual(sorted(again.notes), ["ac note", "cf note"])
+
+    def test_pessimistic_outcome_is_preserved(self) -> None:
+        again = history.merge_reports([self.merged, self.carfax])
+        self.assertTrue(again.accident_reported)
+        self.assertEqual(again.owner_count, 3)
+        self.assertTrue(history.has_carfax(again))

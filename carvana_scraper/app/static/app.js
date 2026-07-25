@@ -282,17 +282,21 @@ function renderHelp(state) {
   show(el("help-panel"), rows.length > 0);
   text(el("help-count"), rows.length ? `— ${rows.length}` : "");
 
+  const REMEDIES = {
+    paste_or_retry: "· Carfax was attempted and not obtained — paste it below, or re-run to retry",
+    carfax_skipped: "· Carfax was skipped for this run — untick <em>No Carfax</em> and re-run, " +
+                    "or paste the report below",
+    raise_top_n: "· outside the Carfax shortlist — raise <em>Carfax for top N</em> and re-run",
+  };
+
   el("help-list").innerHTML = rows.map((row) => {
-    const pasteable = row.remedy === "paste_or_retry";
     const missing = row.missing_decision_fields.join(", ") || "none";
     return `<div class="card">
       <div class="card-title">${esc(row.label)}</div>
       <div class="card-meta">
         VIN ${esc(row.vin)} · ${money(row.landed_price)} · ${count(row.mileage)} mi<br>
         Missing: <code>${esc(missing)}</code>
-        ${pasteable
-          ? "· Carfax was attempted and blocked"
-          : "· outside the Carfax shortlist — raise <em>Carfax for top N</em> and re-run"}
+        ${REMEDIES[row.remedy] || ""}
       </div>
       <div class="url">${esc(row.carfax_url)}</div>
       <div class="actions">
@@ -413,12 +417,22 @@ function renderManifest(state) {
   show(el("manifest-panel"), Boolean(state.manifest));
   if (!state.manifest) return;
 
-  el("reconciliation").innerHTML = state.manifest.reconciliation_problems.length
-    ? `<div class="alert alert-bad"><strong>This run did not reconcile.</strong>
+  if (!state.manifest.reconciled) {
+    /* --search-only / --no-history skip the history stages by request, so the reconciliation
+       checks do not apply and claiming a fault would be wrong. */
+    el("reconciliation").innerHTML =
+      '<div class="alert alert-warn">History stages were skipped by request, so the ' +
+      "reconciliation checks do not apply to this run.</div>";
+  } else if (state.manifest.reconciliation_problems.length) {
+    el("reconciliation").innerHTML =
+      `<div class="alert alert-bad"><strong>This run did not reconcile.</strong>
         <ul>${state.manifest.reconciliation_problems.map((problem) =>
-          `<li>${esc(problem)}</li>`).join("")}</ul></div>`
-    : '<div class="alert alert-warn" style="background:var(--good-bg);color:var(--good)">' +
+          `<li>${esc(problem)}</li>`).join("")}</ul></div>`;
+  } else {
+    el("reconciliation").innerHTML =
+      '<div class="alert alert-warn" style="background:var(--good-bg);color:var(--good)">' +
       "Counts reconcile.</div>";
+  }
 
   el("warnings").innerHTML = (state.warnings || []).length
     ? `<div class="alert alert-warn"><ul>${state.warnings.map((warning) =>
