@@ -22,7 +22,10 @@ Two front ends over **one** orchestration (`pipeline.execute`): the CLI, and a l
 (`python3 -m carvana_scraper.app`) that adds dropdowns, pasted-report ingest, and a local-Claude
 report reviewer. Both call the same pipeline — do not fork it.
 
-Read [`README.md`](README.md) for usage and [`docs/RECON.md`](docs/RECON.md) before changing
+**Read [`PROJECT_MAP.md`](PROJECT_MAP.md) first** — it is the source of truth for where things live,
+the data flow through both front ends, and a where-to-find table. Navigate by it instead of grepping.
+
+Then [`README.md`](README.md) for usage, and [`docs/RECON.md`](docs/RECON.md) before changing
 anything that touches the sites — it records what was empirically verified on 2026-07-25, with
 saved evidence in `fixtures/recon/`.
 

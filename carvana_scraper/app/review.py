@@ -33,9 +33,21 @@ from ..models import ScoredVehicle
 DEFAULT_REVIEW_COUNT = 5
 REVIEW_TIMEOUT_S = 300
 
-# Never haiku, per the workspace model policy. Opus is the default because this is judgment work.
-DEFAULT_MODEL = "opus"
-ALLOWED_MODELS: tuple[str, ...] = ("opus", "sonnet")
+# Never haiku, per the workspace model policy.
+#
+# Default chosen by measurement, not by tier. Both models were run over an identical 100 KB dossier
+# of the same four vehicles on 2026-07-25:
+#
+#   sonnet  14 findings, 11 quote-verified, 4 conflict resolutions, 246s, $0.38
+#   opus     8 findings,  8 quote-verified, 4 conflict resolutions, 241s, $0.93
+#
+# Same pick, same conflict resolutions, same latency. The split is recall vs precision: opus said
+# less and every quote checked out; sonnet said more with three quotes it could not support — and
+# unsupported quotes are labelled anyway, so the extra recall costs a caveat rather than trust.
+# Sonnet's extra findings also caught a real data discrepancy (a stale AutoCheck score in the
+# cache). Opus remains one dropdown click away for a second opinion.
+DEFAULT_MODEL = "sonnet"
+ALLOWED_MODELS: tuple[str, ...] = ("sonnet", "opus")
 
 SEVERITIES: frozenset[str] = frozenset({"warn", "info", "good"})
 
