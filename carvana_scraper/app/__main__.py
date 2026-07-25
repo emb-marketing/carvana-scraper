@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import sys
 
-from .server import serve
+from .server import DEFAULT_PORT, serve
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -13,8 +13,11 @@ def main(argv: list[str] | None = None) -> int:
         prog="python3 -m carvana_scraper.app",
         description="Local browser UI for the Carvana ranker.",
     )
-    parser.add_argument("--port", type=int, default=0,
-                        help="port to bind (default: let the OS choose a free one)")
+    # None, not 0: 0 is a meaningful explicit value ("let the OS choose"), so it cannot double
+    # as "unset" or it would override the fixed default port.
+    parser.add_argument("--port", type=int, default=None,
+                        help=f"port to bind (default {DEFAULT_PORT}, "
+                             "falling back to any free port if it is busy)")
     parser.add_argument("--no-open", action="store_true",
                         help="do not open a browser window automatically")
     args = parser.parse_args(argv)

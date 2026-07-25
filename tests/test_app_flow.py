@@ -523,3 +523,39 @@ class PortBindingTests(unittest.TestCase):
                 server_mod.build_server_with_fallback(blocker.server_port)
         finally:
             blocker.server_close()
+
+
+class EntryPointTests(unittest.TestCase):
+    """The CLI entry point must not defeat the fixed default port.
+
+    It did: --port defaulted to 0, and 0 is a real value meaning "let the OS choose", so it was
+    passed through as an explicit port and the app bound a random one. Only launching it for real
+    revealed that the feature was dead end to end.
+    """
+
+    def test_no_port_argument_requests_the_default_port(self) -> None:
+        from carvana_scraper.app import __main__ as entry, server as server_mod
+
+        captured = {}
+        saved = entry.serve
+        entry.serve = lambda port=None, open_browser=True: captured.update(port=port)
+        try:
+            entry.main(["--no-open"])
+        finally:
+            entry.serve = saved
+        self.assertIsNone(captured["port"], "an unset --port must not be forced to 0")
+        # ...and None is what selects the fixed default.
+        self.assertEqual(server_mod.DEFAULT_PORT, 8765)
+
+    def test_explicit_port_zero_is_still_honoured(self) -> None:
+        """--port 0 remains a way to ask for any free port."""
+        from carvana_scraper.app import __main__ as entry
+
+        captured = {}
+        saved = entry.serve
+        entry.serve = lambda port=None, open_browser=True: captured.update(port=port)
+        try:
+            entry.main(["--no-open", "--port", "0"])
+        finally:
+            entry.serve = saved
+        self.assertEqual(captured["port"], 0)
