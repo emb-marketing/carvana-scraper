@@ -290,7 +290,7 @@ def validate_response(payload: dict, allowed_vins: set[str]) -> dict[str, Any]:
     }
 
 
-def _review_via_claude(dossier: str, model: str, timeout_s: int) -> str:
+def _review_via_claude(dossier: str, model: str, timeout_s: int) -> tuple[str, dict]:
     """Invoke the local Claude CLI as a pure text-in / text-out call.
 
     Every flag here was verified against claude 2.1.163:
@@ -336,10 +336,20 @@ def _review_via_claude(dossier: str, model: str, timeout_s: int) -> str:
     result = envelope.get("result")
     if not isinstance(result, str) or not result.strip():
         raise ReviewError("claude returned an empty result")
-    return result
+
+    # Surfaced so the UI can say how long a review took, and so model choice can be compared on
+    # measured cost and latency rather than assumed.
+    usage = envelope.get("usage") or {}
+    meta = {
+        "duration_ms": envelope.get("duration_ms"),
+        "cost_usd": envelope.get("total_cost_usd"),
+        "input_tokens": usage.get("input_tokens"),
+        "output_tokens": usage.get("output_tokens"),
+    }
+    return result, meta
 
 
-def _review_via_codex(dossier: str, model: str, timeout_s: int) -> str:
+def _review_via_codex(dossier: str, model: str, timeout_s: int) -> tuple[str, dict]:
     """Not implemented: the codex CLI is broken on this machine.
 
         $ codex exec --help
@@ -380,7 +390,7 @@ def run_review(
 
     raw_dir = Path(raw_dir)
     dossier = build_dossier(vehicles, raw_dir)
-    raw_reply = invoke(dossier, model, timeout_s)
+    raw_reply, meta = invoke(dossier, model, timeout_s)
     review = validate_response(_extract_json_object(raw_reply),
                               {vehicle.listing.vin for vehicle in vehicles})
 
@@ -396,7 +406,8 @@ def run_review(
     review["unsupported_findings"] = sum(
         1 for finding in review["findings"] if not finding["evidence_supported"])
 
-    review.update({"backend": backend, "model": model, "raw": raw_reply})
+    review.update({"backend": backend, "model": model, "raw": raw_reply,
+                   "dossier_chars": len(dossier), **meta})
     return review
 
 

@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 import threading
+import traceback
 import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -27,6 +28,9 @@ STATIC_DIR = Path(__file__).resolve().parent / "static"
 TAXONOMY_PATH = runner.TAXONOMY_PATH
 
 HOST = "127.0.0.1"
+# Fixed so http://127.0.0.1:8765 stays bookmarkable across launches. Falls back to an
+# OS-assigned free port when it is already taken, rather than refusing to start.
+DEFAULT_PORT = 8765
 MAX_BODY_BYTES = 2_000_000  # a pasted report is ~15 KB; this is generous and bounded
 
 _CONTENT_TYPES = {".html": "text/html; charset=utf-8",
@@ -199,6 +203,13 @@ class Handler(BaseHTTPRequestHandler):
             handler()
         except ValueError as exc:
             self._error(400, str(exc))
+        except Exception as exc:  # noqa: BLE001
+            # Without this the handler thread dies and the browser sees a dropped connection with
+            # no explanation. The traceback goes to the terminal; the UI gets something actionable.
+            traceback.print_exc()
+            self._error(500, f"{type(exc).__name__}: {exc}",
+                        "Unexpected server error — the full traceback is in the terminal running "
+                        "the app.")
 
     # ---- static --------------------------------------------------------------------
 
@@ -278,7 +289,7 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def build_server(port: int = 0) -> ThreadingHTTPServer:
-    """Create the server. Port 0 lets the OS pick a free one."""
+    """Create the server bound to loopback. Port 0 lets the OS pick a free one."""
     state = AppState()
     login_done = threading.Event()
 
@@ -288,9 +299,27 @@ def build_server(port: int = 0) -> ThreadingHTTPServer:
     return server
 
 
-def serve(port: int = 0, open_browser: bool = True) -> None:
+def build_server_with_fallback(port: int | None = None) -> tuple[ThreadingHTTPServer, bool]:
+    """Bind `port`, falling back to an OS-assigned free port if it is taken.
+
+    Returns (server, used_fallback). A stale instance or an unrelated process on 8765 should not
+    stop the app from starting; it should just move.
+    """
+    wanted = DEFAULT_PORT if port is None else port
+    try:
+        return build_server(wanted), False
+    except OSError:
+        if port is not None and port != DEFAULT_PORT:
+            raise  # an explicit --port that cannot bind is an error worth surfacing
+        return build_server(0), True
+
+
+def serve(port: int | None = None, open_browser: bool = True) -> None:
     """Run the app until interrupted."""
-    server = build_server(port)
+    server, used_fallback = build_server_with_fallback(port)
+    if used_fallback:
+        print(f"\nPort {DEFAULT_PORT} was busy — using {server.server_port} instead.")
+        print("If that is a stale copy of this app, close it and relaunch for the usual URL.")
     url = f"http://{HOST}:{server.server_port}/"
     print(f"\nCarvana ranker UI: {url}")
     print("A separate Chrome window opens during a run — that is the scraper's own profile,")

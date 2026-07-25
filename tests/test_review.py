@@ -383,3 +383,29 @@ class EvidenceVerificationTests(unittest.TestCase):
         self.assertTrue(supported["real"])
         self.assertFalse(supported["made up"])
         self.assertEqual(result["unsupported_findings"], 1)
+
+
+class MetadataTests(unittest.TestCase):
+    """Latency and cost come from the CLI envelope so model choice can be compared on evidence."""
+
+    def test_envelope_metadata_is_surfaced(self) -> None:
+        envelope = json.dumps({
+            "is_error": False, "result": GOOD_REPLY,
+            "duration_ms": 41234, "total_cost_usd": 0.0731,
+            "usage": {"input_tokens": 38210, "output_tokens": 1904},
+        })
+        with StubbedRun(envelope=envelope):
+            result = review.run_review([make_vehicle(VIN_A), make_vehicle(VIN_B)],
+                                       raw_dir=Path("/nonexistent"))
+        self.assertEqual(result["duration_ms"], 41234)
+        self.assertEqual(result["cost_usd"], 0.0731)
+        self.assertEqual(result["input_tokens"], 38210)
+        self.assertEqual(result["output_tokens"], 1904)
+        self.assertGreater(result["dossier_chars"], 0)
+
+    def test_missing_metadata_does_not_break_the_review(self) -> None:
+        """An older or different CLI build may not report usage; the review must still work."""
+        with StubbedRun(envelope=json.dumps({"is_error": False, "result": GOOD_REPLY})):
+            result = review.run_review([make_vehicle(VIN_A)], raw_dir=Path("/nonexistent"))
+        self.assertIsNone(result["cost_usd"])
+        self.assertEqual(len(result["findings"]), 1)

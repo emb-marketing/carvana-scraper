@@ -10,8 +10,10 @@ from __future__ import annotations
 
 import contextlib
 import json
+import os
 import subprocess
 import sys
+import tempfile
 import threading
 import time
 import unittest
@@ -23,8 +25,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from carvana_scraper import browser, history, pipeline, report as report_mod, search, vdp
-from carvana_scraper.app import review as review_mod
+from carvana_scraper import browser, cache, history, pipeline, report as report_mod, search, vdp
+from carvana_scraper.app import ingest as ingest_mod, review as review_mod, runner
 from carvana_scraper.app.server import build_server
 from carvana_scraper.models import STATUS_PARSED, HistoryReport, Listing
 
@@ -90,7 +92,25 @@ class AppFlowTests(unittest.TestCase):
             "collect": search.collect_listings, "fetch": history.get_or_fetch,
             "imps": vdp.fetch_imperfections, "write": report_mod.write_markdown,
             "connect": pipeline.connect, "stats": pipeline.cache_stats,
+            "runner_connect": runner.connect, "archive": ingest_mod.archive_raw,
         }
+
+        # The paste route reaches runner.apply_paste, which opens a REAL cache connection and
+        # archives the report. Left unstubbed, this test writes synthetic history into
+        # cache/carvana.db — which it did, until a model comparison noticed an AutoCheck score in
+        # the cache disagreeing with the archived report text. Isolate both side effects.
+        #
+        # A temp FILE, not ":memory:": apply_paste runs on an HTTP handler thread and sqlite3
+        # connections are thread-bound, so a connection made here could not be used there. A file
+        # lets each thread open its own, exactly as production does.
+        handle, self.db_path = tempfile.mkstemp(prefix="carvana-test-", suffix=".db")
+        os.close(handle)
+        os.unlink(self.db_path)  # let cache.connect create it with the real schema
+        self.addCleanup(lambda: Path(self.db_path).unlink(missing_ok=True))
+        self.archived: list[tuple[str, str]] = []
+        runner.connect = lambda *a, **k: cache.connect(self.db_path)
+        ingest_mod.archive_raw = lambda vin, content, extension="txt", **k: (
+            self.archived.append((vin, extension)) or Path(f"/tmp/archived/{vin}.{extension}"))
 
         @contextlib.contextmanager
         def fake_session(*a, **k):
@@ -127,6 +147,8 @@ class AppFlowTests(unittest.TestCase):
         report_mod.write_markdown = self._saved["write"]
         pipeline.connect = self._saved["connect"]
         pipeline.cache_stats = self._saved["stats"]
+        runner.connect = self._saved["runner_connect"]
+        ingest_mod.archive_raw = self._saved["archive"]
 
     # ---- helpers ----
 
@@ -259,6 +281,43 @@ class AppFlowTests(unittest.TestCase):
         self.assertIn(VIN_HELD, vins + disqualified,
                       "the pasted car must land in ranked or disqualified, not stay held out")
         self.assertEqual(state["needs_carfax"], [])
+
+    def test_paste_writes_to_the_injected_cache_not_the_real_one(self) -> None:
+        """Guards against this test suite polluting cache/carvana.db, which it once did.
+
+        A synthetic AutoCheck score reached the real cache through this route and sat there
+        disagreeing with the archived report text until a model comparison happened to notice.
+        """
+        capture = RAW_DIR / f"{VIN_HELD}.carfax.txt"
+        if not capture.exists():
+            self.skipTest(f"no archived Carfax capture for {VIN_HELD}")
+        self.start_run()
+        status, _ = self.request("/api/ingest", "POST", {
+            "vin": VIN_HELD,
+            "text": capture.read_text(encoding="utf-8", errors="replace"),
+        })
+        self.assertEqual(status, 200)
+
+        # Written to the temp DB this test injected...
+        temp = cache.connect(self.db_path)
+        try:
+            row = cache.get_history(temp, VIN_HELD)
+        finally:
+            temp.close()
+        self.assertIsNotNone(row, "the paste did not reach the injected cache")
+        self.assertIn("carfax", row["vendor"])
+        # ...and archiving was intercepted rather than writing into cache/raw/.
+        self.assertEqual(self.archived, [(VIN_HELD, "carfax.txt")])
+
+        # ...and the real cache was not written to by this test.
+        real = cache.connect()
+        try:
+            real_row = cache.get_history(real, VIN_HELD)
+        finally:
+            real.close()
+        if real_row is not None:
+            self.assertNotEqual(real_row["fetched_at"], row["fetched_at"],
+                                "the paste wrote through to the real cache/carvana.db")
 
     def test_paste_for_a_vin_not_in_this_run_is_refused(self) -> None:
         self.start_run()
@@ -421,3 +480,46 @@ class AppFlowTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PortBindingTests(unittest.TestCase):
+    """A fixed port keeps the URL bookmarkable; a busy port must not stop the app starting."""
+
+    def test_default_port_is_used_when_free(self) -> None:
+        from carvana_scraper.app import server as server_mod
+        try:
+            srv, fallback = server_mod.build_server_with_fallback()
+        except OSError:
+            self.skipTest("default port is in use on this machine")
+        try:
+            self.assertEqual(srv.server_port, server_mod.DEFAULT_PORT)
+            self.assertFalse(fallback)
+        finally:
+            srv.server_close()
+
+    def test_busy_default_port_falls_back_instead_of_failing(self) -> None:
+        from carvana_scraper.app import server as server_mod
+        try:
+            blocker = server_mod.build_server(server_mod.DEFAULT_PORT)
+        except OSError:
+            self.skipTest("default port is in use on this machine")
+        try:
+            srv, fallback = server_mod.build_server_with_fallback()
+            try:
+                self.assertTrue(fallback)
+                self.assertNotEqual(srv.server_port, server_mod.DEFAULT_PORT)
+                self.assertGreater(srv.server_port, 0)
+            finally:
+                srv.server_close()
+        finally:
+            blocker.server_close()
+
+    def test_explicit_unavailable_port_raises_rather_than_moving(self) -> None:
+        """An explicit --port that cannot bind is a mistake worth surfacing, not papering over."""
+        from carvana_scraper.app import server as server_mod
+        blocker = server_mod.build_server(0)
+        try:
+            with self.assertRaises(OSError):
+                server_mod.build_server_with_fallback(blocker.server_port)
+        finally:
+            blocker.server_close()
