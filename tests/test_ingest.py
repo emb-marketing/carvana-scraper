@@ -57,9 +57,15 @@ def autocheck_only(vin: str) -> HistoryReport:
     )
 
 
-def memory_connection() -> sqlite3.Connection:
-    """An in-memory cache DB with the real schema, so nothing touches cache/carvana.db."""
-    return cache.connect(":memory:")
+def memory_connection(test: unittest.TestCase | None = None) -> sqlite3.Connection:
+    """An in-memory cache DB with the real schema, so nothing touches cache/carvana.db.
+
+    Pass the test case to have the connection closed on teardown.
+    """
+    connection = cache.connect(":memory:")
+    if test is not None:
+        test.addCleanup(connection.close)
+    return connection
 
 
 class VendorDetectionTests(unittest.TestCase):
@@ -192,7 +198,7 @@ class IngestMergeTests(unittest.TestCase):
             self.skipTest("no archived carfax report in cache/raw/")
         self.vin, self.text = capture
         self.listing = make_listing(self.vin)
-        self.connection = memory_connection()
+        self.connection = memory_connection(self)
         self.raw_dir = RAW_DIR
 
     def test_pasting_carfax_completes_an_autocheck_only_vehicle(self) -> None:
@@ -281,7 +287,7 @@ class RescoreTests(unittest.TestCase):
         self.assertIsNone(before[0].score)
 
         merged = ingest.ingest(self.text, listing, result.histories[self.vin],
-                               memory_connection())["report"]
+                               memory_connection(self))["report"]
         result.histories[self.vin] = merged
 
         after, anchor = ingest.rescore(result, self.config)

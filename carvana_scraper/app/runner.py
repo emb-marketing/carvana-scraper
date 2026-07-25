@@ -45,7 +45,6 @@ def start_run(state: AppState, options: RunOptions) -> None:
 def _run_worker(state: AppState, options: RunOptions, abort: threading.Event) -> None:
     try:
         result = pipeline.execute(options, emit=state.record_event, abort=abort)
-        _recount_carfax(result)
         state.finish_run(result)
     except browser.ProfileLockedError as exc:
         # The dedicated profile is single-instance. The exception text already carries the exact
@@ -65,14 +64,15 @@ def _run_worker(state: AppState, options: RunOptions, abort: threading.Event) ->
 
 
 def _recount_carfax(result) -> None:
-    """Recompute carfax_parsed from the reports actually held.
+    """Recompute the Carfax counters after a paste changed the histories.
 
-    Derived rather than incremented so it stays correct after a paste, and so pasting the same
-    report twice cannot inflate it. The pipeline's own counter under-reports blocks on uncached
-    vehicles, which is why this is recomputed rather than trusted.
+    The pipeline already derives these at the end of stage 3; this re-derives them so a pasted
+    report is reflected, and so pasting the same report twice cannot inflate the count.
     """
+    attempted = result.manifest.carfax_attempted or len(result.shortlist_vins)
     parsed = sum(1 for vin in result.shortlist_vins if has_carfax(result.histories.get(vin)))
     result.manifest.carfax_parsed = parsed
+    result.manifest.carfax_blocked = max(0, attempted - parsed)
 
 
 # ---- Chrome login ------------------------------------------------------------------------

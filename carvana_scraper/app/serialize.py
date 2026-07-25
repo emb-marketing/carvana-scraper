@@ -11,31 +11,17 @@ from __future__ import annotations
 
 from typing import Any
 
+from ..history import has_carfax
 from ..models import HistoryReport, Listing, ScoredVehicle
 from ..report import RunManifest
+
+__all__ = ["has_carfax", "listing_to_dict", "history_to_dict", "vehicle_to_dict",
+           "manifest_to_dict", "needs_carfax_entry", "buckets"]
 
 # HistoryReport.to_dict() iterates __dict__, which includes DECISION_FIELDS — it is annotated
 # inside the dataclass body and so became a real field. Harmless in the cache payload, but noise
 # in an API response, so it is dropped here rather than shipped to the browser.
 _HISTORY_NOISE_KEYS = frozenset({"DECISION_FIELDS"})
-
-
-def has_carfax(report: HistoryReport | None) -> bool:
-    """Whether a report actually carries Carfax data.
-
-    Both halves are load-bearing and neither alone is sufficient:
-
-    - `merge_reports` returns a single-vendor report **unmodified**, and `parse_carfax_text` never
-      populates `sources`, so a Carfax-only report is identifiable by `vendor` alone.
-    - A genuine two-vendor merge sets `sources=["autocheck","carfax"]` and
-      `vendor="autocheck+carfax"`, so the merged case needs the `sources` check.
-
-    This is the robust "does this car still need Carfax?" test. The app uses it instead of
-    `manifest.carfax_blocked`, which under-counts blocks on uncached vehicles.
-    """
-    if report is None:
-        return False
-    return "carfax" in (report.sources or []) or report.vendor == "carfax"
 
 
 def listing_to_dict(listing: Listing) -> dict[str, Any]:

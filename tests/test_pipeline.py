@@ -216,33 +216,42 @@ class EventSequenceTests(PipelineHarness):
             self.assertIn("carfax.com", event["carfax_url"])
             self.assertIn(event["vin"], event["carfax_url"])
 
-    def test_a_carfax_block_on_an_uncached_vehicle_is_counted_as_neither(self) -> None:
-        """Documents a pre-existing counter bug, fixed in the follow-up commit.
+    def test_a_carfax_block_is_counted_as_not_obtained(self) -> None:
+        """A blocked Carfax must show up in the counters, or the run looks clean when it isn't.
 
         merge_reports returns the AutoCheck report unmodified when Carfax is blocked, so stage 3
-        sees vendor="autocheck"/status="parsed": the "has carfax" branch misses it and the
-        "is blocked" branch misses it too. `carfax_blocked` therefore under-reports.
-
-        Invariant 7 still holds — reconciliation catches it via carfax_parsed < shortlisted — but
-        the counter the operator reads is wrong, which is why the app derives its blocked list
-        from report state instead of from this counter.
+        never sees a blocked *report* — it sees vendor="autocheck"/status="parsed". The counters
+        are therefore derived from has_carfax rather than from the fetch outcome.
         """
         self.blocked_vins = {VIN_A, VIN_B}
         result, _ = self.run_pipeline()
         self.assertEqual(result.manifest.shortlisted, 2)
         self.assertEqual(result.manifest.carfax_parsed, 0)
-        self.assertEqual(result.manifest.carfax_blocked, 0, "the bug: should be 2")
+        self.assertEqual(result.manifest.carfax_blocked, 2)
         self.assertTrue(result.manifest.reconciliation_problems())
+        self.assertEqual(result.exit_code, 1, "a run missing Carfax must not exit 0")
+
+    def test_blocked_vehicles_emit_a_blocked_event_with_their_url(self) -> None:
+        """Drives the app's 'needs your help' card, which offers the paste."""
+        self.blocked_vins = {VIN_B}
+        _, events = self.run_pipeline()
+        blocked = [e for e in events if e["kind"] == "blocked"]
+        self.assertEqual([e["vin"] for e in blocked], [VIN_B])
+        self.assertIn(VIN_B, blocked[0]["carfax_url"])
 
     def test_vehicles_without_carfax_are_identifiable_from_report_state(self) -> None:
-        """The robust signal the app uses, independent of the buggy counter."""
         self.blocked_vins = {VIN_A, VIN_B}
         result, _ = self.run_pipeline()
         for vehicle in result.scored:
-            report = vehicle.history
-            has_carfax = "carfax" in (report.sources or []) or report.vendor == "carfax"
-            self.assertFalse(has_carfax)
+            self.assertFalse(history.has_carfax(vehicle.history))
             self.assertFalse(vehicle.is_rankable)
+
+    def test_an_autocheck_block_is_not_attributed_to_carfax(self) -> None:
+        """Stage 2 never touches Carfax, so its failures must not inflate a Carfax counter."""
+        self.reports[VIN_A] = HistoryReport(vin=VIN_A, status=STATUS_BLOCKED, vendor="autocheck")
+        result, _ = self.run_pipeline(no_carfax=True)
+        self.assertEqual(result.manifest.autocheck_blocked, 1)
+        self.assertEqual(result.manifest.carfax_blocked, 0)
 
     def test_conflicts_are_emitted_per_vehicle(self) -> None:
         self.reports[VIN_A] = complete_report(

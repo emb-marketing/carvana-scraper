@@ -267,7 +267,10 @@ def _stage_two_autocheck(
         if getattr(report, "status", None) == STATUS_PARSED:
             manifest.autocheck_parsed += 1
         elif getattr(report, "status", None) == STATUS_BLOCKED:
-            manifest.carfax_blocked += 1
+            # Counted against AutoCheck, not Carfax. This stage never touches Carfax, so the old
+            # carfax_blocked increment here misattributed the failure and inflated a counter that
+            # feeds reconciliation_problems() and the exit code.
+            manifest.autocheck_blocked += 1
         else:
             manifest.history_unavailable += 1
 
@@ -319,6 +322,7 @@ def _stage_three_carfax(
         """Surface a DataDome puzzle the moment it appears, not after it resolves."""
         emit({"kind": "challenge", "label": label, "timeout_s": timeout_s})
 
+    attempted: list[str] = []
     for index, listing in enumerate(shortlist, start=1):
         _check_abort(abort)
         emit({"kind": "vehicle", "stage": "carfax", "i": index, "of": len(shortlist),
@@ -326,6 +330,7 @@ def _stage_three_carfax(
               "carfax_url": listing.carfax_url,
               "text": f"  [{index}/{len(shortlist)}] {listing.label} {listing.vin}"})
         manifest.carfax_attempted += 1
+        attempted.append(listing.vin)
 
         # `page` is required even here: on a cache miss get_or_fetch still fetches AutoCheck
         # first, and that call needs a live page.
@@ -336,19 +341,20 @@ def _stage_three_carfax(
             on_challenge=on_challenge, abort=abort)
         histories[listing.vin] = report
 
-        # Both checks are load-bearing: merge_reports returns a single-vendor report unmodified,
-        # and parse_carfax_text never populates `sources`, so a Carfax-only report is identified
-        # by `vendor` alone while a merged one is identified by `sources`.
-        sources = getattr(report, "sources", []) or []
-        if "carfax" in sources or getattr(report, "vendor", "") == "carfax":
-            manifest.carfax_parsed += 1
-        elif getattr(report, "status", None) == STATUS_BLOCKED:
-            manifest.carfax_blocked += 1
+        if not history.has_carfax(report):
             emit({"kind": "blocked", "vin": listing.vin, "label": listing.label,
                   "carfax_url": listing.carfax_url})
         for conflict in getattr(report, "conflicts", []) or []:
             emit({"kind": "conflict", "vin": listing.vin, "message": conflict})
         browser.human_pause()
+
+    # Derived, not incremented. A blocked Carfax fetch does NOT yield a blocked report: on a cache
+    # miss, merge_reports finds AutoCheck to be the only parsed vendor and returns it unmodified,
+    # so the merged report reads vendor="autocheck"/status="parsed". The old per-vehicle branch
+    # therefore matched neither case and carfax_blocked silently stayed at zero while cars were
+    # being blocked. Deriving from has_carfax cannot drift, and stays correct after a paste.
+    manifest.carfax_parsed = sum(1 for vin in attempted if history.has_carfax(histories.get(vin)))
+    manifest.carfax_blocked = len(attempted) - manifest.carfax_parsed
 
     return shortlist_vins
 

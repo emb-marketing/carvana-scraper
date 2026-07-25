@@ -38,6 +38,7 @@ class RunManifest:
     matched: int = 0
     shortlisted: int = 0
     autocheck_parsed: int = 0
+    autocheck_blocked: int = 0
     carfax_attempted: int = 0
     carfax_parsed: int = 0
     carfax_blocked: int = 0
@@ -63,9 +64,10 @@ class RunManifest:
             ("evaluated", self.matched),
             ("shortlisted for Carfax", self.shortlisted),
             ("AutoCheck reports parsed", self.autocheck_parsed),
+            ("AutoCheck blocked (will retry)", self.autocheck_blocked),
             ("Carfax attempted", self.carfax_attempted),
             ("Carfax parsed", self.carfax_parsed),
-            ("Carfax blocked (will retry)", self.carfax_blocked),
+            ("Carfax not obtained (will retry)", self.carfax_blocked),
             ("history unavailable", self.history_unavailable),
             ("served from cache", self.from_cache),
             ("vendor conflicts found", self.conflicts),
@@ -95,7 +97,8 @@ class RunManifest:
         if self.carfax_parsed < self.shortlisted:
             problems.append(
                 f"only {self.carfax_parsed} of {self.shortlisted} shortlisted vehicles got a "
-                f"Carfax report ({self.carfax_blocked} blocked) — re-run to fill the gap")
+                f"Carfax report ({self.carfax_blocked} not obtained) — re-run to fill the gap, "
+                "or paste the reports in")
         return problems
 
 

@@ -118,6 +118,25 @@ def merge_reports(reports: list[HistoryReport]) -> HistoryReport:
     return merged
 
 
+def has_carfax(report: HistoryReport | None) -> bool:
+    """Whether a report actually carries Carfax **findings**.
+
+    The authoritative "does this vehicle still need Carfax?" test. Three conditions, each of which
+    is load-bearing:
+
+    - `is_parsed` is required because a failed fetch still returns `vendor="carfax"`. When both
+      vendors fail, merge_reports prefers the blocked report — so the merged result reads
+      `vendor="carfax"`, `status="history_blocked"` and every field None. Treating that as having
+      Carfax would both count it as parsed and stop the next run from retrying it.
+    - `vendor` alone identifies a Carfax-only report, because `parse_carfax_text` never populates
+      `sources` and merge_reports returns a single-vendor report unmodified.
+    - `sources` identifies a genuine two-vendor merge, which sets `vendor="autocheck+carfax"`.
+    """
+    if report is None or not report.is_parsed:
+        return False
+    return "carfax" in (report.sources or []) or report.vendor == "carfax"
+
+
 def _fetch_report_page(
     context,
     url: str,
@@ -237,8 +256,7 @@ def get_or_fetch(
     cached = get_history(connection, listing.vin)
     if cached and cached.get("payload"):
         report = HistoryReport.from_dict(cached["payload"])
-        has_carfax = "carfax" in (report.sources or []) or report.vendor == "carfax"
-        if not want_carfax or has_carfax:
+        if not want_carfax or has_carfax(report):
             if verbose:
                 print(f"    [history] {listing.vin} from cache "
                       f"({report.vendor}, {cached['age_days']}d old)")
