@@ -1,18 +1,41 @@
 # Carvana Scraper
 
-Personal command-line tool that answers one question on demand: **of the cars currently on Carvana
-matching my criteria, which is the best one to buy right now?** — weighing price and mileage against
-each vehicle's history report.
+Personal tool that answers one question on demand: **of the cars currently on Carvana matching my
+criteria, which is the best one to buy right now?** — weighing price and mileage against each
+vehicle's history report.
 
-Not client work. Runs locally, on demand, driven by a dedicated Chrome profile.
+Not client work. Runs locally, on demand, driven by a dedicated Chrome profile. There are two front
+ends over one pipeline: a **local app** with dropdowns, and the **CLI**.
 
 ---
 
-## Quick start
+## Quick start — the app
 
 ```bash
 cd ~/projects/carvana-scraper
+./run-app.command          # or: python3 -m carvana_scraper.app
+```
 
+Opens a browser UI on `127.0.0.1`. Pick a make and model from dropdowns built from Carvana's own
+inventory taxonomy (40 makes, 528 models), set your caps, and run. A separate Chrome window opens —
+that is the scraper's own profile, and you need to see it to clear a DataDome puzzle.
+
+What the app adds over the CLI:
+
+- **Dropdowns instead of typed flags.** Make cascades to Model; year spans 2009–2027; price and
+  mileage fields carry real inventory bounds. No more guessing whether `--model "Grand Highlander"`
+  resolves to a real URL.
+- **Paste a report the scraper could not fetch.** When Carfax is blocked, that car's card shows its
+  report URL. Open it, select all, copy, paste it in — the text goes through the same parser, the
+  same pessimistic merge, the same cache and the same scorer, and the car is rescored on the spot.
+  This is the whole reason the app exists.
+- **A local-Claude report reviewer.** Press *Review reports with Claude* and it reads the full report
+  prose the scorer never sees, returning findings with quotes plus a pick. It cannot change the
+  ranking (see below).
+
+## Quick start — the CLI
+
+```bash
 # 1. One-time setup — opens Chrome, and you MUST set your delivery zip here (see below)
 python3 -m carvana_scraper --login
 
@@ -25,7 +48,8 @@ python3 -m carvana_scraper \
 ```
 
 Requires Python 3.11+, Playwright (`pip install -r requirements.txt`), and real Google Chrome
-installed. Everything else is standard library.
+installed. Everything else is standard library — the app adds no dependencies, using `http.server`
+and one HTML page.
 
 ### The `--login` step is not optional
 
@@ -181,6 +205,56 @@ tests validate against those too.
 | `--no-imperfections` | Skip Carvana's cosmetic-defect lookup. |
 | `--sort` | `score` (default), `price`, `cpm`, `mileage`. |
 
+The app exposes all of these as controls; `--debug` is omitted because it is parsed and never read.
+
+---
+
+## Pasting a report the scraper could not fetch
+
+DataDome allows roughly six Carfax reports per session. Beyond that a vehicle is held out of the
+ranking — under this tool's rules unknown never counts as clean, so a car with no Carfax cannot be
+scored. Previously the only remedy was to re-run and hope. Now:
+
+1. The app lists each held-out car with its report URL and what is still missing.
+2. Open the report, select all (⌘A), copy (⌘C).
+3. Paste it into that car's card.
+
+The text takes the same path a scraped report does — `parse_carfax_text` → pessimistic merge with
+the cached AutoCheck → `cache/` → rescore — so a pasted car is scored identically to a fetched one,
+and it can just as easily land in **DISQUALIFIED**. It is archived to `cache/raw/` under the same
+name the scraper uses, so it also feeds the reviewer and later runs.
+
+**Visible text only.** Saved HTML and PDFs are refused, and deliberately so. Both parsers find
+sections by whole-line equality (`line == "Structural Damage"`), so markup or PDF text layout
+collapses that structure and yields a report whose every field is unknown. That would not raise — the
+car would be correctly held out while you were told the paste worked. Text under 1,500 characters and
+anything containing a challenge fingerprint are refused for the same reason: caching a DataDome shell
+as history would drop the car from every future run.
+
+---
+
+## The Claude reviewer
+
+`Review reports with Claude` shells out to your local `claude` CLI (`claude -p`, no API key) and has
+one job: read the 6–15 KB of report prose per vendor that `scoring.py` never sees. The scorer reduces
+each report to a handful of booleans and integers; the prose holds damage-severity wording,
+rental/fleet/lease use, service gaps, ownership-length patterns, and the detail behind a vendor
+disagreement.
+
+**It cannot change the ranking, and that is enforced in code rather than asked for in the prompt:**
+
+- The table renders from `ScoredVehicle` independently; any ordering or score the model emits is
+  discarded, and the discard is shown rather than hidden. Invariant 6 holds.
+- Disqualified vehicles are never in its input, so it cannot argue one back.
+- A finding naming a VIN outside the reviewed set is dropped.
+- **Every quote is checked against the report.** A live run returned 6 of 14 quotes that were
+  paraphrased or stitched together; those are now labelled *not found in the report* in the UI. A
+  claim you cannot check is not evidence.
+
+Run it with `opus` (default) or `sonnet`. Never haiku. `codex` is a stub: the installed CLI on this
+machine cannot launch its own binary (`ENOENT` on `codex-darwin-arm64`), so rather than ship an
+untested backend it raises with the reinstall hint.
+
 ---
 
 ## Known limitations
@@ -198,6 +272,17 @@ tests validate against those too.
 - **Owner counts can disagree** between vendors; both call it an estimate. The merge takes the
   higher and records the conflict.
 - **Runs are attended by default** — that is the chosen trade for Carfax coverage.
+- **The app holds one run in memory.** Listing prices are never cached (they change in days), so
+  restarting the app means re-running the search. That is cheap: Carvana's search is not
+  DataDome-gated and histories are cached 30 days, so a re-run mostly hits cache.
+- **One browser session at a time.** `.browser-profile/` is single-instance; a second concurrent run
+  is refused with the `rm -f` remediation rather than a traceback.
+- **`browser.detect_challenge` must not be pointed at a Carvana page.** A normal `/cars` response
+  loads Cloudflare's telemetry script at `/cdn-cgi/challenge-platform/scripts/jsd/main.js`, which
+  matches the `challenge-platform` marker, so a healthy page reads as challenged. Validate the
+  outcome instead — the extractors raise when the content is not there. See `docs/RECON.md` §(d1).
+- **The taxonomy JSON goes stale.** It records inventory counts at extraction time; use *Refresh
+  taxonomy* in the app, or re-run `python3 tools/extract_taxonomy.py`.
 
 ---
 

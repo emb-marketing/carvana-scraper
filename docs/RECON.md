@@ -153,6 +153,39 @@ The blocker is **DataDome**, not Cloudflare:
 that a human solves a puzzle (which sets a `datadome` cookie in the dedicated profile, allowing
 the run to continue) or the remaining VINs are deferred to a later run.
 
+### (d1) `detect_challenge` is for report pages only — it false-positives on carvana.com
+
+Verified 2026-07-25 while adding the app's taxonomy refresh. **`browser.detect_challenge` must not
+be pointed at a Carvana page.** A perfectly normal `/cars` response loads Cloudflare's bot-telemetry
+script:
+
+```html
+<script src="/cdn-cgi/challenge-platform/scripts/jsd/main.js">
+```
+
+That path contains `challenge-platform`, which is one of `CHALLENGE_MARKERS`, so a healthy page is
+reported as challenged. Confirmed against the known-good saved page
+`fixtures/recon/search-base.html` (2.1 MB, 21 vehicle records recovered from it): the marker is
+present, and it is the *only* marker present.
+
+The distinction is `/cdn-cgi/challenge-platform/scripts/jsd/…` (telemetry, always loaded, harmless)
+versus a real Cloudflare interstitial. **The marker list is not changed** — no real Cloudflare
+challenge has ever been captured from these sites to verify a narrower pattern against, DataDome is
+the actual blocker on Carfax, and guessing at anti-bot signatures is the drift this document exists
+to prevent.
+
+What to do instead, on a Carvana page: **validate the outcome, not the page.** The extractors are
+self-validating — `rsc.extract_vehicle_records` raises `PayloadShapeError` and
+`tools.extract_taxonomy.extract_taxonomy` raises `TaxonomyShapeError` when the content is not there,
+so a challenge page, an error page and a layout change all fail loudly and none of them can be
+mistaken for real data. This is why `search.collect_listings` never calls `detect_challenge` and is
+unaffected.
+
+Scope of the false positive, checked: `detect_challenge` is called only from
+`history._fetch_report_page`, i.e. on `carfax.com` and the AutoCheck report host. A live run on
+2026-07-25 fetched and parsed 3/3 AutoCheck reports, so neither report host carries this script and
+the scraper's own paths are correct.
+
 ---
 
 ## (d2) AutoCheck — **unlimited, unchallenged, and on Carvana's own domain**

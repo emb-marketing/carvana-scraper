@@ -1,6 +1,6 @@
 {
   "extracted_at": "2026-07-25",
-  "source": "fixtures/recon/search-base.html",
+  "source": "https://www.carvana.com/cars",
   "bounds": {
     "year": [
       2009,
@@ -18,7 +18,7 @@
   "makes": [
     {
       "name": "Acura",
-      "count": 576,
+      "count": 567,
       "models": [
         {
           "name": "ADX",
@@ -30,7 +30,7 @@
         },
         {
           "name": "ILX",
-          "count": 34,
+          "count": 32,
           "slug": "acura-ilx",
           "trims": [
             "2.0L",
@@ -44,7 +44,7 @@
         },
         {
           "name": "Integra",
-          "count": 70,
+          "count": 68,
           "slug": "acura-integra",
           "trims": [
             "1.5T",
@@ -74,11 +74,10 @@
         },
         {
           "name": "RDX",
-          "count": 170,
+          "count": 167,
           "slug": "acura-rdx",
           "trims": [
             "A-SPEC Pkg",
-            "AcuraWatch Plus Pkg",
             "Advance Pkg",
             "FWD w/A-SPEC Pkg",
             "FWD w/A-Spec Pkg",
@@ -127,7 +126,7 @@
         },
         {
           "name": "TLX",
-          "count": 81,
+          "count": 79,
           "slug": "acura-tlx",
           "trims": [
             "2",
@@ -232,11 +231,11 @@
     },
     {
       "name": "Audi",
-      "count": 1432,
+      "count": 1421,
       "models": [
         {
           "name": "A3",
-          "count": 85,
+          "count": 83,
           "slug": "audi-a3",
           "trims": [
             "1.8T Premium",
@@ -274,7 +273,7 @@
         },
         {
           "name": "A5",
-          "count": 152,
+          "count": 150,
           "slug": "audi-a5",
           "trims": [
             "2.0T Premium Plus",
@@ -288,7 +287,7 @@
         },
         {
           "name": "A6",
-          "count": 87,
+          "count": 86,
           "slug": "audi-a6",
           "trims": [
             "2.0T Premium",
@@ -362,7 +361,7 @@
         },
         {
           "name": "e-tron GT",
-          "count": 3,
+          "count": 4,
           "slug": "audi-e-tron-gt",
           "trims": [
             "Premium Plus",
@@ -380,7 +379,7 @@
         },
         {
           "name": "Q3",
-          "count": 219,
+          "count": 217,
           "slug": "audi-q3",
           "trims": [
             "40 TFSI Premium",
@@ -412,7 +411,7 @@
         },
         {
           "name": "Q5",
-          "count": 325,
+          "count": 322,
           "slug": "audi-q5",
           "trims": [
             "2.0T Premium",
@@ -457,7 +456,7 @@
         },
         {
           "name": "Q7",
-          "count": 168,
+          "count": 167,
           "slug": "audi-q7",
           "trims": [
             "2.0T Premium Plus",
@@ -558,7 +557,7 @@
         },
         {
           "name": "S4",
-          "count": 19,
+          "count": 20,
           "slug": "audi-s4",
           "trims": [
             "Premium",
@@ -568,7 +567,7 @@
         },
         {
           "name": "S5",
-          "count": 39,
+          "count": 38,
           "slug": "audi-s5",
           "trims": [
             "3.0T Quattro",
@@ -606,7 +605,7 @@
         },
         {
           "name": "SQ5",
-          "count": 54,
+          "count": 53,
           "slug": "audi-sq5",
           "trims": [
             "Premium",
@@ -647,11 +646,11 @@
     },
     {
       "name": "BMW",
-      "count": 2531,
+      "count": 2506,
       "models": [
         {
           "name": "1 Series",
-          "count": 8,
+          "count": 7,
           "slug": "bmw-1-series",
           "trims": [
             "128i",
@@ -660,7 +659,7 @@
         },
         {
           "name": "2 Series",
-          "count": 150,
+          "count": 149,
           "slug": "bmw-2-series",
           "trims": [
             "228 Gran",
@@ -679,7 +678,7 @@
         },
         {
           "name": "3 Series",
-          "count": 300,
+          "count": 298,
           "slug": "bmw-3-series",
           "trims": [
             "320i",
@@ -706,7 +705,7 @@
         },
         {
           "name": "4 Series",
-          "count": 166,
+          "count": 165,
           "slug": "bmw-4-series",
           "trims": [
             "428i",
@@ -833,14 +832,6 @@
           ]
         },
         {
-          "name": "i7",
-          "count": 1,
-          "slug": "bmw-i7",
-          "trims": [
-            "M70"
-          ]
-        },
-        {
           "name": "i8",
           "count": 5,
           "slug": "bmw-i8",
@@ -859,7 +850,7 @@
         },
         {
           "name": "M2",
-          "count": 10,
+          "count": 11,
           "slug": "bmw-m2",
           "trims": [
             "Competition",
@@ -914,7 +905,7 @@
         },
         {
           "name": "X1",
-          "count": 304,
+          "count": 297,
           "slug": "bmw-x1",
           "trims": [
             "M35i",
@@ -924,7 +915,7 @@
         },
         {
           "name": "X2",
-          "count": 159,
+          "count": 158,
           "slug": "bmw-x2",
           "trims": [
             "M35i",
@@ -934,7 +925,7 @@
         },
         {
           "name": "X3",
-          "count": 435,
+          "count": 431,
           "slug": "bmw-x3",
           "trims": [
             "3.0i",
@@ -963,7 +954,7 @@
         },
         {
           "name": "X4",
-          "count": 61,
+          "count": 60,
           "slug": "bmw-x4",
           "trims": [
             "M40i",
@@ -983,7 +974,7 @@
         },
         {
           "name": "X5",
-          "count": 297,
+          "count": 292,
           "slug": "bmw-x5",
           "trims": [
             "M50i",
@@ -1010,7 +1001,7 @@
         },
         {
           "name": "X6",
-          "count": 39,
+          "count": 38,
           "slug": "bmw-x6",
           "trims": [
             "M50i",
@@ -1031,7 +1022,7 @@
         },
         {
           "name": "X7",
-          "count": 106,
+          "count": 105,
           "slug": "bmw-x7",
           "trims": [
             "M50i",
@@ -1067,11 +1058,11 @@
     },
     {
       "name": "Buick",
-      "count": 1382,
+      "count": 1363,
       "models": [
         {
           "name": "Cascada",
-          "count": 24,
+          "count": 23,
           "slug": "buick-cascada",
           "trims": [
             "Premium",
@@ -1080,7 +1071,7 @@
         },
         {
           "name": "Enclave",
-          "count": 157,
+          "count": 154,
           "slug": "buick-enclave",
           "trims": [
             "Avenir",
@@ -1094,7 +1085,7 @@
         },
         {
           "name": "Encore",
-          "count": 245,
+          "count": 242,
           "slug": "buick-encore",
           "trims": [
             "Convenience",
@@ -1109,7 +1100,7 @@
         },
         {
           "name": "Encore GX",
-          "count": 614,
+          "count": 605,
           "slug": "buick-encore-gx",
           "trims": [
             "Avenir",
@@ -1121,7 +1112,7 @@
         },
         {
           "name": "Envision",
-          "count": 138,
+          "count": 136,
           "slug": "buick-envision",
           "trims": [
             "Avenir",
@@ -1146,7 +1137,7 @@
         },
         {
           "name": "LaCrosse",
-          "count": 37,
+          "count": 36,
           "slug": "buick-lacrosse",
           "trims": [
             "CXL",
@@ -1154,9 +1145,11 @@
             "Convenience",
             "Essence",
             "Leather",
+            "Preferred",
             "Premium",
             "Premium I",
             "Premium II",
+            "Touring",
             "base"
           ]
         },
@@ -1200,7 +1193,7 @@
     },
     {
       "name": "Cadillac",
-      "count": 949,
+      "count": 943,
       "models": [
         {
           "name": "ATS",
@@ -1242,7 +1235,7 @@
         },
         {
           "name": "CT5",
-          "count": 50,
+          "count": 48,
           "slug": "cadillac-ct5",
           "trims": [
             "Luxury",
@@ -1285,7 +1278,7 @@
         },
         {
           "name": "CTS",
-          "count": 70,
+          "count": 69,
           "slug": "cadillac-cts",
           "trims": [
             "2.0 Luxury",
@@ -1321,7 +1314,7 @@
         },
         {
           "name": "Escalade",
-          "count": 183,
+          "count": 181,
           "slug": "cadillac-escalade",
           "trims": [
             "5 1/4 ft",
@@ -1341,7 +1334,7 @@
         },
         {
           "name": "LYRIQ",
-          "count": 141,
+          "count": 139,
           "slug": "cadillac-lyriq",
           "trims": [
             "Debut Edition",
@@ -1386,7 +1379,7 @@
         },
         {
           "name": "XT4",
-          "count": 110,
+          "count": 111,
           "slug": "cadillac-xt4",
           "trims": [
             "Luxury",
@@ -1436,7 +1429,7 @@
     },
     {
       "name": "Chevrolet",
-      "count": 8087,
+      "count": 8012,
       "models": [
         {
           "name": "Avalanche",
@@ -1455,7 +1448,7 @@
         },
         {
           "name": "Blazer",
-          "count": 348,
+          "count": 346,
           "slug": "chevrolet-blazer",
           "trims": [
             "1LT",
@@ -1488,7 +1481,7 @@
         },
         {
           "name": "Camaro",
-          "count": 379,
+          "count": 373,
           "slug": "chevrolet-camaro",
           "trims": [
             "LS",
@@ -1509,7 +1502,7 @@
         },
         {
           "name": "Colorado",
-          "count": 469,
+          "count": 461,
           "slug": "chevrolet-colorado",
           "trims": [
             "LS 6 ft",
@@ -1525,7 +1518,7 @@
         },
         {
           "name": "Corvette",
-          "count": 352,
+          "count": 348,
           "slug": "chevrolet-corvette",
           "trims": [
             "427",
@@ -1539,7 +1532,7 @@
         },
         {
           "name": "Cruze",
-          "count": 87,
+          "count": 86,
           "slug": "chevrolet-cruze",
           "trims": [
             "1LT",
@@ -1552,7 +1545,7 @@
         },
         {
           "name": "Equinox",
-          "count": 1095,
+          "count": 1086,
           "slug": "chevrolet-equinox",
           "trims": [
             "ACTIV",
@@ -1632,7 +1625,7 @@
         },
         {
           "name": "Malibu",
-          "count": 264,
+          "count": 261,
           "slug": "chevrolet-malibu",
           "trims": [
             "1LT",
@@ -1648,7 +1641,7 @@
         },
         {
           "name": "Silverado 1500",
-          "count": 1701,
+          "count": 1685,
           "slug": "chevrolet-silverado-1500",
           "trims": [
             "Custom",
@@ -1680,7 +1673,7 @@
         },
         {
           "name": "Silverado 2500",
-          "count": 313,
+          "count": 310,
           "slug": "chevrolet-silverado-2500",
           "trims": [
             "6 1/2 ft",
@@ -1766,7 +1759,7 @@
         },
         {
           "name": "Suburban",
-          "count": 208,
+          "count": 206,
           "slug": "chevrolet-suburban",
           "trims": [
             "High Country",
@@ -1780,7 +1773,7 @@
         },
         {
           "name": "Tahoe",
-          "count": 419,
+          "count": 416,
           "slug": "chevrolet-tahoe",
           "trims": [
             "High Country",
@@ -1794,7 +1787,7 @@
         },
         {
           "name": "Trailblazer",
-          "count": 469,
+          "count": 467,
           "slug": "chevrolet-trailblazer",
           "trims": [
             "ACTIV",
@@ -1805,7 +1798,7 @@
         },
         {
           "name": "Traverse",
-          "count": 472,
+          "count": 471,
           "slug": "chevrolet-traverse",
           "trims": [
             "High Country",
@@ -1819,7 +1812,7 @@
         },
         {
           "name": "Trax",
-          "count": 1057,
+          "count": 1042,
           "slug": "chevrolet-trax",
           "trims": [
             "1RS",
@@ -1845,7 +1838,7 @@
     },
     {
       "name": "Chrysler",
-      "count": 1494,
+      "count": 1486,
       "models": [
         {
           "name": "200",
@@ -1884,7 +1877,7 @@
         },
         {
           "name": "Pacifica",
-          "count": 1183,
+          "count": 1177,
           "slug": "chrysler-pacifica",
           "trims": [
             "L",
@@ -1910,7 +1903,7 @@
         },
         {
           "name": "Town & Country",
-          "count": 26,
+          "count": 24,
           "slug": "chrysler-town-country",
           "trims": [
             "LX",
@@ -1933,7 +1926,7 @@
     },
     {
       "name": "Dodge",
-      "count": 1842,
+      "count": 1819,
       "models": [
         {
           "name": "Avenger",
@@ -1945,7 +1938,7 @@
         },
         {
           "name": "Challenger",
-          "count": 394,
+          "count": 389,
           "slug": "dodge-challenger",
           "trims": [
             "392 Hemi Scat Pack Shaker",
@@ -1979,7 +1972,7 @@
         },
         {
           "name": "Charger",
-          "count": 409,
+          "count": 403,
           "slug": "dodge-charger",
           "trims": [
             "Daytona",
@@ -2030,7 +2023,7 @@
         },
         {
           "name": "Durango",
-          "count": 736,
+          "count": 728,
           "slug": "dodge-durango",
           "trims": [
             "Anodized Platinum",
@@ -2063,7 +2056,7 @@
         },
         {
           "name": "Grand Caravan",
-          "count": 107,
+          "count": 103,
           "slug": "dodge-grand-caravan",
           "trims": [
             "AVP",
@@ -2203,11 +2196,11 @@
     },
     {
       "name": "Ford",
-      "count": 7325,
+      "count": 7258,
       "models": [
         {
           "name": "Bronco",
-          "count": 164,
+          "count": 160,
           "slug": "ford-bronco",
           "trims": [
             "Badlands",
@@ -2223,7 +2216,7 @@
         },
         {
           "name": "Bronco Sport",
-          "count": 336,
+          "count": 333,
           "slug": "ford-bronco-sport",
           "trims": [
             "Badlands",
@@ -2258,7 +2251,7 @@
         },
         {
           "name": "EcoSport",
-          "count": 211,
+          "count": 209,
           "slug": "ford-ecosport",
           "trims": [
             "S",
@@ -2269,7 +2262,7 @@
         },
         {
           "name": "Edge",
-          "count": 458,
+          "count": 446,
           "slug": "ford-edge",
           "trims": [
             "Limited",
@@ -2284,12 +2277,13 @@
         },
         {
           "name": "Escape",
-          "count": 694,
+          "count": 689,
           "slug": "ford-escape",
           "trims": [
             "Active",
             "Limited",
             "Platinum",
+            "Platinum Hybrid",
             "S",
             "SE",
             "SE Hybrid",
@@ -2309,7 +2303,7 @@
         },
         {
           "name": "Expedition",
-          "count": 383,
+          "count": 379,
           "slug": "ford-expedition",
           "trims": [
             "Active",
@@ -2324,7 +2318,7 @@
         },
         {
           "name": "Explorer",
-          "count": 1050,
+          "count": 1036,
           "slug": "ford-explorer",
           "trims": [
             "Active",
@@ -2343,7 +2337,7 @@
         },
         {
           "name": "F-150",
-          "count": 1621,
+          "count": 1610,
           "slug": "ford-f-150",
           "trims": [
             "FX2",
@@ -2376,7 +2370,7 @@
         },
         {
           "name": "F-250",
-          "count": 325,
+          "count": 323,
           "slug": "ford-f-250",
           "trims": [
             "King Ranch",
@@ -2430,7 +2424,7 @@
         },
         {
           "name": "Focus",
-          "count": 122,
+          "count": 120,
           "slug": "ford-focus",
           "trims": [
             "Electric",
@@ -2452,7 +2446,7 @@
         },
         {
           "name": "Fusion",
-          "count": 235,
+          "count": 233,
           "slug": "ford-fusion",
           "trims": [
             "Hybrid",
@@ -2471,7 +2465,7 @@
         },
         {
           "name": "Maverick",
-          "count": 220,
+          "count": 216,
           "slug": "ford-maverick",
           "trims": [
             "Lariat",
@@ -2486,7 +2480,7 @@
         },
         {
           "name": "Mustang",
-          "count": 758,
+          "count": 754,
           "slug": "ford-mustang",
           "trims": [
             "BULLITT",
@@ -2509,7 +2503,7 @@
         },
         {
           "name": "Mustang MACH-E",
-          "count": 138,
+          "count": 139,
           "slug": "ford-mustang-mach-e",
           "trims": [
             "California Route 1",
@@ -2520,7 +2514,7 @@
         },
         {
           "name": "Ranger",
-          "count": 222,
+          "count": 223,
           "slug": "ford-ranger",
           "trims": [
             "Edge 6 ft",
@@ -2618,7 +2612,7 @@
     },
     {
       "name": "Genesis",
-      "count": 356,
+      "count": 352,
       "models": [
         {
           "name": "Electrified G80",
@@ -2638,7 +2632,7 @@
         },
         {
           "name": "G70",
-          "count": 178,
+          "count": 176,
           "slug": "genesis-g70",
           "trims": [
             "2.0T",
@@ -2683,7 +2677,7 @@
         },
         {
           "name": "GV70",
-          "count": 72,
+          "count": 69,
           "slug": "genesis-gv70",
           "trims": [
             "2.5T",
@@ -2696,9 +2690,10 @@
         },
         {
           "name": "GV80",
-          "count": 56,
+          "count": 57,
           "slug": "genesis-gv80",
           "trims": [
+            "2.5T Advanced",
             "2.5T Base",
             "2.5T Prestige",
             "2.5T Standard",
@@ -2720,11 +2715,11 @@
     },
     {
       "name": "GMC",
-      "count": 2629,
+      "count": 2610,
       "models": [
         {
           "name": "Acadia",
-          "count": 404,
+          "count": 400,
           "slug": "gmc-acadia",
           "trims": [
             "AT4",
@@ -2741,7 +2736,7 @@
         },
         {
           "name": "Canyon",
-          "count": 190,
+          "count": 189,
           "slug": "gmc-canyon",
           "trims": [
             "AT4",
@@ -2771,7 +2766,7 @@
         },
         {
           "name": "Sierra 1500",
-          "count": 936,
+          "count": 932,
           "slug": "gmc-sierra-1500",
           "trims": [
             "AT4",
@@ -2788,7 +2783,7 @@
         },
         {
           "name": "Sierra 2500",
-          "count": 200,
+          "count": 198,
           "slug": "gmc-sierra-2500",
           "trims": [
             "AT4",
@@ -2829,7 +2824,7 @@
         },
         {
           "name": "Terrain",
-          "count": 488,
+          "count": 486,
           "slug": "gmc-terrain",
           "trims": [
             "AT4",
@@ -2847,7 +2842,7 @@
         },
         {
           "name": "Yukon",
-          "count": 359,
+          "count": 353,
           "slug": "gmc-yukon",
           "trims": [
             "AT4",
@@ -2865,11 +2860,11 @@
     },
     {
       "name": "Honda",
-      "count": 4608,
+      "count": 4558,
       "models": [
         {
           "name": "Accord",
-          "count": 896,
+          "count": 877,
           "slug": "honda-accord",
           "trims": [
             "EX",
@@ -2892,7 +2887,7 @@
         },
         {
           "name": "Civic",
-          "count": 957,
+          "count": 948,
           "slug": "honda-civic",
           "trims": [
             "EX",
@@ -2932,7 +2927,7 @@
         },
         {
           "name": "CR-V",
-          "count": 1039,
+          "count": 1036,
           "slug": "honda-cr-v",
           "trims": [
             "EX",
@@ -2975,7 +2970,7 @@
         },
         {
           "name": "Fit",
-          "count": 68,
+          "count": 67,
           "slug": "honda-fit",
           "trims": [
             "EX",
@@ -2988,7 +2983,7 @@
         },
         {
           "name": "HR-V",
-          "count": 368,
+          "count": 360,
           "slug": "honda-hr-v",
           "trims": [
             "EX",
@@ -3011,7 +3006,7 @@
         },
         {
           "name": "Odyssey",
-          "count": 422,
+          "count": 419,
           "slug": "honda-odyssey",
           "trims": [
             "EX",
@@ -3043,7 +3038,7 @@
         },
         {
           "name": "Pilot",
-          "count": 425,
+          "count": 421,
           "slug": "honda-pilot",
           "trims": [
             "Black Edition",
@@ -3064,7 +3059,7 @@
         },
         {
           "name": "Prologue",
-          "count": 31,
+          "count": 30,
           "slug": "honda-prologue",
           "trims": [
             "EX",
@@ -3074,7 +3069,7 @@
         },
         {
           "name": "Ridgeline",
-          "count": 208,
+          "count": 206,
           "slug": "honda-ridgeline",
           "trims": [
             "BLACK EDITION",
@@ -3092,11 +3087,11 @@
     },
     {
       "name": "Hyundai",
-      "count": 4336,
+      "count": 4297,
       "models": [
         {
           "name": "Accent",
-          "count": 50,
+          "count": 49,
           "slug": "hyundai-accent",
           "trims": [
             "GLS",
@@ -3117,7 +3112,7 @@
         },
         {
           "name": "Elantra",
-          "count": 635,
+          "count": 627,
           "slug": "hyundai-elantra",
           "trims": [
             "Blue HEV",
@@ -3170,7 +3165,7 @@
         },
         {
           "name": "Ioniq",
-          "count": 19,
+          "count": 18,
           "slug": "hyundai-ioniq",
           "trims": [
             "Blue",
@@ -3181,7 +3176,7 @@
         },
         {
           "name": "IONIQ 5",
-          "count": 151,
+          "count": 150,
           "slug": "hyundai-ioniq-5",
           "trims": [
             "Limited",
@@ -3200,7 +3195,7 @@
         },
         {
           "name": "IONIQ 6",
-          "count": 49,
+          "count": 48,
           "slug": "hyundai-ioniq-6",
           "trims": [
             "Limited",
@@ -3219,7 +3214,7 @@
         },
         {
           "name": "Kona",
-          "count": 350,
+          "count": 349,
           "slug": "hyundai-kona",
           "trims": [
             "Iron Man",
@@ -3275,7 +3270,7 @@
         },
         {
           "name": "Santa Cruz",
-          "count": 145,
+          "count": 141,
           "slug": "hyundai-santa-cruz",
           "trims": [
             "Limited 4 ft",
@@ -3289,7 +3284,7 @@
         },
         {
           "name": "Santa Fe",
-          "count": 951,
+          "count": 948,
           "slug": "hyundai-santa-fe",
           "trims": [
             "2.0T",
@@ -3316,7 +3311,7 @@
         },
         {
           "name": "Sonata",
-          "count": 495,
+          "count": 489,
           "slug": "hyundai-sonata",
           "trims": [
             "Blue",
@@ -3340,11 +3335,12 @@
         },
         {
           "name": "Tucson",
-          "count": 782,
+          "count": 772,
           "slug": "hyundai-tucson",
           "trims": [
             "Blue",
             "Eco",
+            "GL",
             "GLS",
             "Limited",
             "N Line",
@@ -3378,7 +3374,7 @@
         },
         {
           "name": "Venue",
-          "count": 146,
+          "count": 143,
           "slug": "hyundai-venue",
           "trims": [
             "Denim",
@@ -3406,7 +3402,7 @@
     },
     {
       "name": "INFINITI",
-      "count": 645,
+      "count": 641,
       "models": [
         {
           "name": "FX",
@@ -3452,7 +3448,7 @@
         },
         {
           "name": "Q50",
-          "count": 81,
+          "count": 79,
           "slug": "infiniti-q50",
           "trims": [
             "2.0t",
@@ -3477,7 +3473,6 @@
             "2.0t",
             "2.0t Pure",
             "3.0t Luxe",
-            "3.0t Premium",
             "IPL",
             "Journey",
             "LUXE",
@@ -3492,6 +3487,7 @@
           "trims": [
             "3.7",
             "3.7 Luxe",
+            "L 3.7",
             "L 3.7 Luxe"
           ]
         },
@@ -3505,7 +3501,7 @@
         },
         {
           "name": "QX30",
-          "count": 36,
+          "count": 35,
           "slug": "infiniti-qx30",
           "trims": [
             "Essential",
@@ -3547,7 +3543,7 @@
         },
         {
           "name": "QX60",
-          "count": 255,
+          "count": 252,
           "slug": "infiniti-qx60",
           "trims": [
             "3.5",
@@ -3568,7 +3564,7 @@
         },
         {
           "name": "QX80",
-          "count": 89,
+          "count": 91,
           "slug": "infiniti-qx80",
           "trims": [
             "LIMITED",
@@ -3583,7 +3579,7 @@
     },
     {
       "name": "Jaguar",
-      "count": 218,
+      "count": 219,
       "models": [
         {
           "name": "E-PACE",
@@ -3655,7 +3651,7 @@
         },
         {
           "name": "XE",
-          "count": 7,
+          "count": 8,
           "slug": "jaguar-xe",
           "trims": [
             "XE 25t",
@@ -3708,11 +3704,11 @@
     },
     {
       "name": "Jeep",
-      "count": 8595,
+      "count": 8551,
       "models": [
         {
           "name": "Cherokee",
-          "count": 914,
+          "count": 903,
           "slug": "jeep-cherokee",
           "trims": [
             "75th Anniversary",
@@ -3740,7 +3736,7 @@
         },
         {
           "name": "Compass",
-          "count": 1646,
+          "count": 1637,
           "slug": "jeep-compass",
           "trims": [
             "75th Anniversary",
@@ -3767,7 +3763,7 @@
         },
         {
           "name": "Gladiator",
-          "count": 625,
+          "count": 621,
           "slug": "jeep-gladiator",
           "trims": [
             "80th Edition",
@@ -3799,7 +3795,7 @@
         },
         {
           "name": "Grand Cherokee",
-          "count": 2192,
+          "count": 2186,
           "slug": "jeep-grand-cherokee",
           "trims": [
             "75th Anniversary Edition",
@@ -3838,7 +3834,7 @@
         },
         {
           "name": "Grand Wagoneer",
-          "count": 333,
+          "count": 332,
           "slug": "jeep-grand-wagoneer",
           "trims": [
             "85th Anniversary Edition",
@@ -3872,7 +3868,7 @@
         },
         {
           "name": "Renegade",
-          "count": 371,
+          "count": 369,
           "slug": "jeep-renegade",
           "trims": [
             "80th Edition",
@@ -3891,7 +3887,7 @@
         },
         {
           "name": "Wagoneer",
-          "count": 584,
+          "count": 583,
           "slug": "jeep-wagoneer",
           "trims": [
             "Series I",
@@ -3915,7 +3911,7 @@
         },
         {
           "name": "Wrangler",
-          "count": 1880,
+          "count": 1870,
           "slug": "jeep-wrangler",
           "trims": [
             "75th Anniversary Edition",
@@ -3969,15 +3965,14 @@
             "Willys Sport",
             "Willys Wheeler",
             "Willys Wheeler W",
-            "Winter",
-            "X"
+            "Winter"
           ]
         }
       ]
     },
     {
       "name": "Kia",
-      "count": 5224,
+      "count": 5173,
       "models": [
         {
           "name": "Cadenza",
@@ -3992,7 +3987,7 @@
         },
         {
           "name": "Carnival",
-          "count": 414,
+          "count": 410,
           "slug": "kia-carnival",
           "trims": [
             "EX",
@@ -4005,7 +4000,7 @@
         },
         {
           "name": "EV6",
-          "count": 79,
+          "count": 77,
           "slug": "kia-ev6",
           "trims": [
             "GT",
@@ -4029,7 +4024,7 @@
         },
         {
           "name": "Forte",
-          "count": 340,
+          "count": 337,
           "slug": "kia-forte",
           "trims": [
             "EX",
@@ -4044,7 +4039,7 @@
         },
         {
           "name": "K4",
-          "count": 847,
+          "count": 841,
           "slug": "kia-k4",
           "trims": [
             "EX",
@@ -4056,7 +4051,7 @@
         },
         {
           "name": "K5",
-          "count": 278,
+          "count": 275,
           "slug": "kia-k5",
           "trims": [
             "EX",
@@ -4077,7 +4072,7 @@
         },
         {
           "name": "Niro",
-          "count": 150,
+          "count": 149,
           "slug": "kia-niro",
           "trims": [
             "EX",
@@ -4105,7 +4100,7 @@
         },
         {
           "name": "Optima",
-          "count": 122,
+          "count": 121,
           "slug": "kia-optima",
           "trims": [
             "EX",
@@ -4144,7 +4139,7 @@
         },
         {
           "name": "Seltos",
-          "count": 245,
+          "count": 242,
           "slug": "kia-seltos",
           "trims": [
             "EX",
@@ -4159,7 +4154,7 @@
         },
         {
           "name": "Sorento",
-          "count": 626,
+          "count": 622,
           "slug": "kia-sorento",
           "trims": [
             "EX",
@@ -4182,7 +4177,7 @@
         },
         {
           "name": "Soul",
-          "count": 582,
+          "count": 572,
           "slug": "kia-soul",
           "trims": [
             "!",
@@ -4207,7 +4202,7 @@
         },
         {
           "name": "Sportage",
-          "count": 829,
+          "count": 819,
           "slug": "kia-sportage",
           "trims": [
             "EX",
@@ -4226,7 +4221,7 @@
         },
         {
           "name": "Stinger",
-          "count": 71,
+          "count": 70,
           "slug": "kia-stinger",
           "trims": [
             "GT",
@@ -4239,7 +4234,7 @@
         },
         {
           "name": "Telluride",
-          "count": 419,
+          "count": 416,
           "slug": "kia-telluride",
           "trims": [
             "EX",
@@ -4258,11 +4253,11 @@
     },
     {
       "name": "Land Rover",
-      "count": 960,
+      "count": 949,
       "models": [
         {
           "name": "Defender",
-          "count": 133,
+          "count": 132,
           "slug": "land-rover-defender",
           "trims": [
             "First Edition",
@@ -4299,7 +4294,7 @@
         },
         {
           "name": "Discovery Sport",
-          "count": 93,
+          "count": 90,
           "slug": "land-rover-discovery-sport",
           "trims": [
             "Dynamic SE",
@@ -4333,7 +4328,7 @@
         },
         {
           "name": "Range Rover",
-          "count": 157,
+          "count": 156,
           "slug": "land-rover-range-rover",
           "trims": [
             "Autobiography",
@@ -4365,7 +4360,7 @@
         },
         {
           "name": "Range Rover Evoque",
-          "count": 132,
+          "count": 127,
           "slug": "land-rover-range-rover-evoque",
           "trims": [
             "HSE",
@@ -4383,7 +4378,6 @@
             "P300 R-Dynamic S",
             "Prestige",
             "Pure Plus",
-            "Pure Premium",
             "SE",
             "SE Dynamic",
             "SE Premium"
@@ -4391,7 +4385,7 @@
         },
         {
           "name": "Range Rover Sport",
-          "count": 205,
+          "count": 206,
           "slug": "land-rover-range-rover-sport",
           "trims": [
             "Autobiography",
@@ -4417,7 +4411,7 @@
         },
         {
           "name": "Range Rover Velar",
-          "count": 170,
+          "count": 168,
           "slug": "land-rover-range-rover-velar",
           "trims": [
             "P250 Dynamic SE",
@@ -4438,7 +4432,7 @@
     },
     {
       "name": "Lexus",
-      "count": 1078,
+      "count": 1069,
       "models": [
         {
           "name": "CT",
@@ -4451,7 +4445,7 @@
         },
         {
           "name": "ES",
-          "count": 152,
+          "count": 151,
           "slug": "lexus-es",
           "trims": [
             "ES 250",
@@ -4470,7 +4464,7 @@
         },
         {
           "name": "GS",
-          "count": 27,
+          "count": 25,
           "slug": "lexus-gs",
           "trims": [
             "GS 200t",
@@ -4480,7 +4474,7 @@
         },
         {
           "name": "GX",
-          "count": 131,
+          "count": 130,
           "slug": "lexus-gx",
           "trims": [
             "GX 460",
@@ -4500,7 +4494,7 @@
         },
         {
           "name": "IS",
-          "count": 139,
+          "count": 138,
           "slug": "lexus-is",
           "trims": [
             "IS 200t",
@@ -4539,7 +4533,7 @@
         },
         {
           "name": "LX",
-          "count": 23,
+          "count": 22,
           "slug": "lexus-lx",
           "trims": [
             "LX 570"
@@ -4585,7 +4579,7 @@
         },
         {
           "name": "RX",
-          "count": 271,
+          "count": 267,
           "slug": "lexus-rx",
           "trims": [
             "RX 350",
@@ -4623,7 +4617,7 @@
         },
         {
           "name": "UX",
-          "count": 61,
+          "count": 62,
           "slug": "lexus-ux",
           "trims": [
             "200",
@@ -4641,7 +4635,7 @@
     },
     {
       "name": "Lincoln",
-      "count": 461,
+      "count": 457,
       "models": [
         {
           "name": "Aviator",
@@ -4668,7 +4662,7 @@
         },
         {
           "name": "Corsair",
-          "count": 61,
+          "count": 60,
           "slug": "lincoln-corsair",
           "trims": [
             "Premiere",
@@ -4719,7 +4713,7 @@
         },
         {
           "name": "MKZ",
-          "count": 59,
+          "count": 58,
           "slug": "lincoln-mkz",
           "trims": [
             "Black Label",
@@ -4737,7 +4731,7 @@
         },
         {
           "name": "Nautilus",
-          "count": 90,
+          "count": 88,
           "slug": "lincoln-nautilus",
           "trims": [
             "Black Label",
@@ -4765,11 +4759,11 @@
     },
     {
       "name": "Lucid",
-      "count": 30,
+      "count": 29,
       "models": [
         {
           "name": "Air",
-          "count": 28,
+          "count": 27,
           "slug": "lucid-air",
           "trims": [
             "Grand Touring",
@@ -4788,7 +4782,7 @@
     },
     {
       "name": "Mazda",
-      "count": 2360,
+      "count": 2331,
       "models": [
         {
           "name": "CX-3",
@@ -4803,7 +4797,7 @@
         },
         {
           "name": "CX-30",
-          "count": 302,
+          "count": 299,
           "slug": "mazda-cx-30",
           "trims": [
             "2.5 Carbon Turbo",
@@ -4827,7 +4821,7 @@
         },
         {
           "name": "CX-5",
-          "count": 681,
+          "count": 672,
           "slug": "mazda-cx-5",
           "trims": [
             "2.5 Carbon Turbo",
@@ -4852,7 +4846,7 @@
         },
         {
           "name": "CX-50",
-          "count": 346,
+          "count": 340,
           "slug": "mazda-cx-50",
           "trims": [
             "2.5 S Preferred",
@@ -4899,7 +4893,7 @@
         },
         {
           "name": "CX-9",
-          "count": 153,
+          "count": 152,
           "slug": "mazda-cx-9",
           "trims": [
             "Carbon Edition",
@@ -4912,7 +4906,7 @@
         },
         {
           "name": "CX-90",
-          "count": 168,
+          "count": 167,
           "slug": "mazda-cx-90",
           "trims": [
             "3.3 Turbo Preferred",
@@ -4941,7 +4935,7 @@
         },
         {
           "name": "MAZDA3",
-          "count": 323,
+          "count": 319,
           "slug": "mazda-mazda3",
           "trims": [
             "2",
@@ -4983,7 +4977,7 @@
         },
         {
           "name": "MAZDA6",
-          "count": 74,
+          "count": 72,
           "slug": "mazda-mazda6",
           "trims": [
             "Grand Touring",
@@ -5007,7 +5001,7 @@
         },
         {
           "name": "MX-5 Miata",
-          "count": 223,
+          "count": 220,
           "slug": "mazda-mx-5-miata",
           "trims": [
             "35th Anniversay",
@@ -5031,11 +5025,11 @@
     },
     {
       "name": "Mercedes-Benz",
-      "count": 2090,
+      "count": 2063,
       "models": [
         {
           "name": "A-Class",
-          "count": 60,
+          "count": 58,
           "slug": "mercedes-benz-a-class",
           "trims": [
             "A 220",
@@ -5080,7 +5074,7 @@
         },
         {
           "name": "AMG CLS",
-          "count": 3,
+          "count": 2,
           "slug": "mercedes-benz-amg-cls",
           "trims": [
             "CLS 53 AMG"
@@ -5141,7 +5135,7 @@
         },
         {
           "name": "AMG GLE",
-          "count": 35,
+          "count": 34,
           "slug": "mercedes-benz-amg-gle",
           "trims": [
             "GLE 43",
@@ -5205,7 +5199,7 @@
         },
         {
           "name": "C-Class",
-          "count": 272,
+          "count": 267,
           "slug": "mercedes-benz-c-class",
           "trims": [
             "C 250",
@@ -5233,7 +5227,7 @@
         },
         {
           "name": "CLA",
-          "count": 182,
+          "count": 181,
           "slug": "mercedes-benz-cla",
           "trims": [
             "CLA 250",
@@ -5253,6 +5247,7 @@
           "count": 34,
           "slug": "mercedes-benz-cls",
           "trims": [
+            "CLS 400",
             "CLS 400 4MATIC",
             "CLS 450",
             "CLS 450 4MATIC",
@@ -5264,7 +5259,7 @@
         },
         {
           "name": "E-Class",
-          "count": 166,
+          "count": 164,
           "slug": "mercedes-benz-e-class",
           "trims": [
             "E 250 BlueTEC",
@@ -5303,7 +5298,7 @@
         },
         {
           "name": "EQE SUV",
-          "count": 8,
+          "count": 7,
           "slug": "mercedes-benz-eqe-suv",
           "trims": [
             "EQE 350 4MATIC",
@@ -5333,6 +5328,7 @@
           "count": 14,
           "slug": "mercedes-benz-gl-class",
           "trims": [
+            "GL 350 BlueTEC 4MATIC",
             "GL 450 4MATIC",
             "GL 550 4MATIC",
             "GL 63 AMG"
@@ -5340,7 +5336,7 @@
         },
         {
           "name": "GLA",
-          "count": 263,
+          "count": 260,
           "slug": "mercedes-benz-gla",
           "trims": [
             "GLA 250",
@@ -5350,7 +5346,7 @@
         },
         {
           "name": "GLB",
-          "count": 182,
+          "count": 181,
           "slug": "mercedes-benz-glb",
           "trims": [
             "GLB 250",
@@ -5359,7 +5355,7 @@
         },
         {
           "name": "GLC",
-          "count": 320,
+          "count": 313,
           "slug": "mercedes-benz-glc",
           "trims": [
             "GLC 300",
@@ -5369,7 +5365,7 @@
         },
         {
           "name": "GLE",
-          "count": 158,
+          "count": 155,
           "slug": "mercedes-benz-gle",
           "trims": [
             "GLE 350",
@@ -5448,7 +5444,7 @@
         },
         {
           "name": "S-Class",
-          "count": 70,
+          "count": 71,
           "slug": "mercedes-benz-s-class",
           "trims": [
             "S 350 BlueTEC 4MATIC",
@@ -5484,7 +5480,7 @@
         },
         {
           "name": "SLK",
-          "count": 27,
+          "count": 26,
           "slug": "mercedes-benz-slk",
           "trims": [
             "SLK 250",
@@ -5516,11 +5512,11 @@
     },
     {
       "name": "MINI",
-      "count": 272,
+      "count": 268,
       "models": [
         {
           "name": "Clubman",
-          "count": 23,
+          "count": 22,
           "slug": "mini-clubman",
           "trims": [
             "Cooper",
@@ -5532,7 +5528,7 @@
         },
         {
           "name": "Convertible",
-          "count": 34,
+          "count": 33,
           "slug": "mini-convertible",
           "trims": [
             "Cooper",
@@ -5542,7 +5538,7 @@
         },
         {
           "name": "Countryman",
-          "count": 109,
+          "count": 107,
           "slug": "mini-countryman",
           "trims": [
             "Cooper",
@@ -5591,7 +5587,7 @@
     },
     {
       "name": "Mitsubishi",
-      "count": 669,
+      "count": 658,
       "models": [
         {
           "name": "Eclipse",
@@ -5604,7 +5600,7 @@
         },
         {
           "name": "Eclipse Cross",
-          "count": 56,
+          "count": 55,
           "slug": "mitsubishi-eclipse-cross",
           "trims": [
             "Black Edition",
@@ -5617,7 +5613,7 @@
         },
         {
           "name": "Lancer",
-          "count": 8,
+          "count": 7,
           "slug": "mitsubishi-lancer",
           "trims": [
             "ES",
@@ -5638,7 +5634,7 @@
         },
         {
           "name": "Outlander",
-          "count": 338,
+          "count": 334,
           "slug": "mitsubishi-outlander",
           "trims": [
             "40th Anniversary",
@@ -5660,7 +5656,7 @@
         },
         {
           "name": "Outlander Sport",
-          "count": 173,
+          "count": 168,
           "slug": "mitsubishi-outlander-sport",
           "trims": [
             "ES",
@@ -5677,7 +5673,7 @@
     },
     {
       "name": "Nissan",
-      "count": 6992,
+      "count": 6923,
       "models": [
         {
           "name": "370Z",
@@ -5695,7 +5691,7 @@
         },
         {
           "name": "Altima",
-          "count": 1428,
+          "count": 1417,
           "slug": "nissan-altima",
           "trims": [
             "2.5",
@@ -5712,7 +5708,7 @@
         },
         {
           "name": "Ariya",
-          "count": 114,
+          "count": 112,
           "slug": "nissan-ariya",
           "trims": [
             "Empower+",
@@ -5723,7 +5719,8 @@
             "Evolve+ e-4ORCE",
             "Platinum+ e-4ORCE",
             "Platinum+ e-4ORCE w/20\" Wheels",
-            "Premiere"
+            "Premiere",
+            "Venture+"
           ]
         },
         {
@@ -5749,7 +5746,7 @@
         },
         {
           "name": "Frontier",
-          "count": 504,
+          "count": 495,
           "slug": "nissan-frontier",
           "trims": [
             "Desert Runner",
@@ -5775,7 +5772,7 @@
         },
         {
           "name": "Kicks",
-          "count": 395,
+          "count": 391,
           "slug": "nissan-kicks",
           "trims": [
             "S",
@@ -5785,7 +5782,7 @@
         },
         {
           "name": "LEAF",
-          "count": 51,
+          "count": 49,
           "slug": "nissan-leaf",
           "trims": [
             "PLATINUM PLUS",
@@ -5799,7 +5796,7 @@
         },
         {
           "name": "Maxima",
-          "count": 88,
+          "count": 83,
           "slug": "nissan-maxima",
           "trims": [
             "Platinum",
@@ -5811,7 +5808,7 @@
         },
         {
           "name": "Murano",
-          "count": 220,
+          "count": 218,
           "slug": "nissan-murano",
           "trims": [
             "Cross",
@@ -5833,7 +5830,7 @@
         },
         {
           "name": "Pathfinder",
-          "count": 540,
+          "count": 535,
           "slug": "nissan-pathfinder",
           "trims": [
             "Platinum",
@@ -5855,9 +5852,10 @@
         },
         {
           "name": "Rogue",
-          "count": 1915,
+          "count": 1899,
           "slug": "nissan-rogue",
           "trims": [
+            "Dark Armor",
             "Platinum",
             "Rock Creek",
             "S",
@@ -5869,7 +5867,7 @@
         },
         {
           "name": "Rogue Sport",
-          "count": 195,
+          "count": 194,
           "slug": "nissan-rogue-sport",
           "trims": [
             "S",
@@ -5879,7 +5877,7 @@
         },
         {
           "name": "Sentra",
-          "count": 663,
+          "count": 657,
           "slug": "nissan-sentra",
           "trims": [
             "S",
@@ -5892,7 +5890,7 @@
         },
         {
           "name": "Titan",
-          "count": 123,
+          "count": 122,
           "slug": "nissan-titan",
           "trims": [
             "PRO-4X",
@@ -5920,7 +5918,7 @@
         },
         {
           "name": "Versa",
-          "count": 436,
+          "count": 431,
           "slug": "nissan-versa",
           "trims": [
             "Note S",
@@ -5957,11 +5955,11 @@
     },
     {
       "name": "Polestar",
-      "count": 70,
+      "count": 69,
       "models": [
         {
           "name": "2",
-          "count": 65,
+          "count": 64,
           "slug": "polestar-2",
           "trims": [
             "Launch Edition",
@@ -5986,7 +5984,7 @@
     },
     {
       "name": "Porsche",
-      "count": 584,
+      "count": 583,
       "models": [
         {
           "name": "718 Boxster",
@@ -6013,7 +6011,7 @@
         },
         {
           "name": "911",
-          "count": 36,
+          "count": 35,
           "slug": "porsche-911",
           "trims": [
             "Carrera",
@@ -6127,11 +6125,11 @@
     },
     {
       "name": "Ram",
-      "count": 3616,
+      "count": 3593,
       "models": [
         {
           "name": "1500",
-          "count": 2261,
+          "count": 2247,
           "slug": "ram-1500",
           "trims": [
             "Big Horn",
@@ -6161,7 +6159,7 @@
         },
         {
           "name": "1500 Classic",
-          "count": 307,
+          "count": 304,
           "slug": "ram-1500-classic",
           "trims": [
             "Big Horn",
@@ -6175,7 +6173,7 @@
         },
         {
           "name": "2500",
-          "count": 914,
+          "count": 908,
           "slug": "ram-2500",
           "trims": [
             "Big Horn",
@@ -6255,11 +6253,11 @@
     },
     {
       "name": "Rivian",
-      "count": 100,
+      "count": 99,
       "models": [
         {
           "name": "R1S",
-          "count": 58,
+          "count": 57,
           "slug": "rivian-r1s",
           "trims": [
             "Adventure",
@@ -6325,6 +6323,7 @@
           "count": 5,
           "slug": "scion-tc",
           "trims": [
+            "Release Series 9.0",
             "base"
           ]
         },
@@ -6341,7 +6340,7 @@
     },
     {
       "name": "smart",
-      "count": 16,
+      "count": 15,
       "models": [
         {
           "name": "fortwo",
@@ -6356,7 +6355,7 @@
         },
         {
           "name": "fortwo electric drive",
-          "count": 3,
+          "count": 2,
           "slug": "smart-fortwo-electric-drive",
           "trims": [
             "Passion",
@@ -6377,11 +6376,11 @@
     },
     {
       "name": "Subaru",
-      "count": 2587,
+      "count": 2557,
       "models": [
         {
           "name": "Ascent",
-          "count": 291,
+          "count": 286,
           "slug": "subaru-ascent",
           "trims": [
             "Limited",
@@ -6395,7 +6394,7 @@
         },
         {
           "name": "BRZ",
-          "count": 35,
+          "count": 34,
           "slug": "subaru-brz",
           "trims": [
             "Limited",
@@ -6407,7 +6406,7 @@
         },
         {
           "name": "Crosstrek",
-          "count": 487,
+          "count": 482,
           "slug": "subaru-crosstrek",
           "trims": [
             "2.0i",
@@ -6426,7 +6425,7 @@
         },
         {
           "name": "Forester",
-          "count": 605,
+          "count": 600,
           "slug": "subaru-forester",
           "trims": [
             "2.0XT Premium",
@@ -6450,7 +6449,7 @@
         },
         {
           "name": "Impreza",
-          "count": 208,
+          "count": 202,
           "slug": "subaru-impreza",
           "trims": [
             "2.0i",
@@ -6466,14 +6465,13 @@
             "Sport",
             "WRX",
             "WRX Premium Sport",
-            "WRX STI",
             "WRX STI Limited",
             "base"
           ]
         },
         {
           "name": "Legacy",
-          "count": 134,
+          "count": 133,
           "slug": "subaru-legacy",
           "trims": [
             "2.5i",
@@ -6491,7 +6489,7 @@
         },
         {
           "name": "Outback",
-          "count": 606,
+          "count": 600,
           "slug": "subaru-outback",
           "trims": [
             "2.5i",
@@ -6523,7 +6521,7 @@
         },
         {
           "name": "WRX",
-          "count": 210,
+          "count": 209,
           "slug": "subaru-wrx",
           "trims": [
             "GT",
@@ -6540,7 +6538,7 @@
     },
     {
       "name": "Tesla",
-      "count": 2074,
+      "count": 2044,
       "models": [
         {
           "name": "Cybertruck",
@@ -6552,7 +6550,7 @@
         },
         {
           "name": "Model 3",
-          "count": 1037,
+          "count": 1023,
           "slug": "tesla-model-3",
           "trims": [
             "Long Range",
@@ -6613,7 +6611,7 @@
         },
         {
           "name": "Model Y",
-          "count": 735,
+          "count": 719,
           "slug": "tesla-model-y",
           "trims": [
             "Launch Series Long Range",
@@ -6628,11 +6626,11 @@
     },
     {
       "name": "Toyota",
-      "count": 6223,
+      "count": 6151,
       "models": [
         {
           "name": "4Runner",
-          "count": 367,
+          "count": 359,
           "slug": "toyota-4runner",
           "trims": [
             "40th Anniversary Special Edition",
@@ -6656,7 +6654,7 @@
         },
         {
           "name": "Avalon",
-          "count": 91,
+          "count": 89,
           "slug": "toyota-avalon",
           "trims": [
             "Limited",
@@ -6673,7 +6671,7 @@
         },
         {
           "name": "bZ",
-          "count": 40,
+          "count": 39,
           "slug": "toyota-bz",
           "trims": [
             "Limited",
@@ -6684,7 +6682,7 @@
         },
         {
           "name": "C-HR",
-          "count": 88,
+          "count": 87,
           "slug": "toyota-c-hr",
           "trims": [
             "LE",
@@ -6696,7 +6694,7 @@
         },
         {
           "name": "Camry",
-          "count": 846,
+          "count": 827,
           "slug": "toyota-camry",
           "trims": [
             "Hybrid",
@@ -6716,7 +6714,7 @@
         },
         {
           "name": "Corolla",
-          "count": 660,
+          "count": 654,
           "slug": "toyota-corolla",
           "trims": [
             "FX",
@@ -6783,7 +6781,7 @@
         },
         {
           "name": "GR Supra",
-          "count": 18,
+          "count": 17,
           "slug": "toyota-gr-supra",
           "trims": [
             "2",
@@ -6825,7 +6823,7 @@
         },
         {
           "name": "Highlander",
-          "count": 569,
+          "count": 563,
           "slug": "toyota-highlander",
           "trims": [
             "Bronze Edition",
@@ -6864,7 +6862,7 @@
         },
         {
           "name": "Prius",
-          "count": 175,
+          "count": 173,
           "slug": "toyota-prius",
           "trims": [
             "Advanced",
@@ -6874,7 +6872,6 @@
             "IV",
             "LE",
             "Limited",
-            "Nightshade Edition",
             "One",
             "Premium",
             "SE",
@@ -6909,7 +6906,7 @@
         },
         {
           "name": "RAV4",
-          "count": 1050,
+          "count": 1039,
           "slug": "toyota-rav4",
           "trims": [
             "Adventure",
@@ -6930,7 +6927,7 @@
         },
         {
           "name": "Sequoia",
-          "count": 59,
+          "count": 57,
           "slug": "toyota-sequoia",
           "trims": [
             "1794 Edition",
@@ -6944,7 +6941,7 @@
         },
         {
           "name": "Sienna",
-          "count": 248,
+          "count": 245,
           "slug": "toyota-sienna",
           "trims": [
             "CE",
@@ -6962,7 +6959,7 @@
         },
         {
           "name": "Tacoma",
-          "count": 934,
+          "count": 927,
           "slug": "toyota-tacoma",
           "trims": [
             "Limited",
@@ -6981,7 +6978,7 @@
         },
         {
           "name": "Tundra",
-          "count": 544,
+          "count": 541,
           "slug": "toyota-tundra",
           "trims": [
             "1794 Edition",
@@ -7023,7 +7020,7 @@
     },
     {
       "name": "Volkswagen",
-      "count": 2800,
+      "count": 2773,
       "models": [
         {
           "name": "Arteon",
@@ -7041,7 +7038,7 @@
         },
         {
           "name": "Atlas",
-          "count": 941,
+          "count": 929,
           "slug": "volkswagen-atlas",
           "trims": [
             "Launch Edition",
@@ -7087,10 +7084,12 @@
             "1.8T S",
             "1.8T SE",
             "1.8T SEL",
+            "1.8T Wolfsburg Edition",
             "2.0T Coast",
             "2.0T Final Edition SEL",
             "2.0T S",
             "2.0T SE",
+            "2.0T Turbo",
             "2.5L",
             "2.5L Entry",
             "R-Line",
@@ -7156,11 +7155,10 @@
         },
         {
           "name": "Golf GTI",
-          "count": 91,
+          "count": 89,
           "slug": "volkswagen-golf-gti",
           "trims": [
             "2.0T",
-            "380 Autobahn",
             "380 S",
             "380 SE",
             "40th Anniversary Edition",
@@ -7209,7 +7207,7 @@
         },
         {
           "name": "Jetta",
-          "count": 276,
+          "count": 273,
           "slug": "volkswagen-jetta",
           "trims": [
             "1.4T R-Line",
@@ -7262,7 +7260,7 @@
         },
         {
           "name": "Passat",
-          "count": 107,
+          "count": 106,
           "slug": "volkswagen-passat",
           "trims": [
             "1.8T Limited Edition",
@@ -7304,7 +7302,7 @@
         },
         {
           "name": "Tiguan",
-          "count": 755,
+          "count": 747,
           "slug": "volkswagen-tiguan",
           "trims": [
             "2.0T",
@@ -7344,7 +7342,7 @@
         },
         {
           "name": "Touareg",
-          "count": 18,
+          "count": 17,
           "slug": "volkswagen-touareg",
           "trims": [
             "TDI",
@@ -7364,7 +7362,7 @@
     },
     {
       "name": "Volvo",
-      "count": 568,
+      "count": 564,
       "models": [
         {
           "name": "C40 Recharge",
@@ -7458,7 +7456,7 @@
         },
         {
           "name": "XC40",
-          "count": 109,
+          "count": 108,
           "slug": "volvo-xc40",
           "trims": [
             "B4 Core",
@@ -7491,13 +7489,14 @@
         },
         {
           "name": "XC60",
-          "count": 97,
+          "count": 95,
           "slug": "volvo-xc60",
           "trims": [
             "3.2",
             "3.2 Platinum",
             "B5 Core",
             "B5 Core Dark Theme",
+            "B5 Inscription",
             "B5 Momentum",
             "B5 Plus Bright Theme",
             "B5 Plus Dark Theme",
@@ -7535,7 +7534,7 @@
         },
         {
           "name": "XC90",
-          "count": 190,
+          "count": 189,
           "slug": "volvo-xc90",
           "trims": [
             "3.2",

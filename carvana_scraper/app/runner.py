@@ -129,7 +129,7 @@ def _taxonomy_worker(state: AppState) -> None:
         import sys
         if str(PROJECT_ROOT) not in sys.path:
             sys.path.insert(0, str(PROJECT_ROOT))
-        from tools.extract_taxonomy import extract_taxonomy, write_taxonomy
+        from tools.extract_taxonomy import TaxonomyShapeError, extract_taxonomy, write_taxonomy
 
         state.note("taxonomy", "Loading carvana.com/cars to re-read the filter taxonomy…")
         with browser.session() as context:
@@ -137,14 +137,22 @@ def _taxonomy_worker(state: AppState) -> None:
             page.goto("https://www.carvana.com/cars", wait_until="domcontentloaded",
                       timeout=90_000)
             browser.human_pause(3.0, 6.0)
-            challenge = browser.detect_challenge(page)
-            if challenge:
-                state.fail_run("challenge", f"carvana.com served a challenge: {challenge[0]}",
-                               "Solve it in the Chrome window, then refresh the taxonomy again.")
-                return
             html = page.content()
 
+        # Deliberately NOT browser.detect_challenge here. That detector is built for third-party
+        # report pages, and on carvana.com it false-positives: a normal /cars response loads
+        # Cloudflare's telemetry script at /cdn-cgi/challenge-platform/scripts/jsd/main.js, which
+        # matches the "challenge-platform" marker even though nothing is being challenged.
+        # Verified against the known-good saved page in fixtures/recon/search-base.html.
+        #
+        # extract_taxonomy is the better check anyway: it is self-validating. A challenge page, an
+        # error page or a changed layout all yield no facet tree and raise, so a bad page can never
+        # overwrite the committed taxonomy.
         document = extract_taxonomy(html, source="https://www.carvana.com/cars")
+        if len(document["makes"]) < 20:
+            raise TaxonomyShapeError(
+                f"only {len(document['makes'])} makes came back, expected 40 or so — refusing to "
+                "overwrite the committed taxonomy with a partial page")
         path = write_taxonomy(document, TAXONOMY_PATH)
         models = sum(len(make["models"]) for make in document["makes"])
         state.note("taxonomy",
