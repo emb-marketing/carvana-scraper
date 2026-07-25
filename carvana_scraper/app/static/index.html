@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carvana ranker</title>
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1>Carvana ranker</h1>
+  <div class="topbar-right">
+    <span id="status-pill" class="pill pill-idle">idle</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ criteria form ============ -->
+<section class="panel">
+  <form id="run-form" autocomplete="off">
+    <div class="cols">
+
+      <fieldset>
+        <legend>Search</legend>
+
+        <label for="make">Make</label>
+        <select id="make" name="make">
+          <option value="">any make</option>
+        </select>
+
+        <label for="model">Model</label>
+        <select id="model" name="model" disabled>
+          <option value="">choose a make first</option>
+        </select>
+
+        <div class="pair">
+          <div>
+            <label for="year_min">Year from</label>
+            <select id="year_min" name="year_min"><option value="">any</option></select>
+          </div>
+          <div>
+            <label for="year_max">Year to</label>
+            <select id="year_max" name="year_max"><option value="">any</option></select>
+          </div>
+        </div>
+
+        <label for="max_price">Max landed price ($)</label>
+        <input type="number" id="max_price" name="max_price" placeholder="e.g. 48000" step="100">
+        <p class="hint" id="price-bounds"></p>
+
+        <label for="max_miles">Max mileage</label>
+        <input type="number" id="max_miles" name="max_miles" placeholder="e.g. 90000" step="1000">
+        <p class="hint" id="mileage-bounds"></p>
+
+        <label for="zip_code">Delivery ZIP</label>
+        <input type="text" id="zip_code" name="zip_code" value="89002" inputmode="numeric"
+               maxlength="10">
+        <p class="hint warn-hint">
+          Recorded and compared, but it <strong>cannot</strong> force the ZIP Carvana prices
+          against — that comes from the browser session. Set it once in Carvana's location picker
+          via <em>Chrome login</em>. Shipping cost, and so landed price and the ranking, depend
+          on it.
+        </p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Run control</legend>
+
+        <label for="sort">Sort ranking by</label>
+        <select id="sort" name="sort"></select>
+
+        <div class="pair">
+          <div>
+            <label for="top_n">Carfax for top N</label>
+            <input type="number" id="top_n" name="top_n" value="12" min="1">
+          </div>
+          <div>
+            <label for="max_reports">Max reports</label>
+            <input type="number" id="max_reports" name="max_reports" value="40" min="1">
+          </div>
+        </div>
+
+        <div class="pair">
+          <div>
+            <label for="max_pages">Search pages</label>
+            <input type="number" id="max_pages" name="max_pages" value="8" min="1">
+          </div>
+          <div>
+            <label for="limit">Limit matches</label>
+            <input type="number" id="limit" name="limit" placeholder="none" min="1">
+          </div>
+        </div>
+
+        <label for="assist_timeout">Puzzle wait (seconds)</label>
+        <input type="number" id="assist_timeout" name="assist_timeout" value="240" min="30">
+
+        <div class="checks">
+          <label><input type="checkbox" name="search_only"> Search only — list and stop</label>
+          <label><input type="checkbox" name="no_history"> No history fetches</label>
+          <label><input type="checkbox" name="no_carfax"> No Carfax (nothing will rank)</label>
+          <label><input type="checkbox" name="no_imperfections"> Skip imperfections</label>
+          <label><input type="checkbox" name="unattended"> Unattended — never pause for puzzles</label>
+        </div>
+      </fieldset>
+
+    </div>
+
+    <p class="hint" id="anchor-warning" hidden>
+      ⚠ Without <strong>both</strong> max price and max mileage, scores anchor to this run's own
+      observed maximums, so they are <strong>not comparable</strong> with any other run.
+    </p>
+
+    <div class="actions">
+      <button type="submit" id="btn-run" class="primary">Run ranking</button>
+      <button type="button" id="btn-cancel" disabled>Cancel</button>
+      <span class="spacer"></span>
+      <button type="button" id="btn-login">Chrome login</button>
+      <button type="button" id="btn-taxonomy">Refresh taxonomy</button>
+    </div>
+    <p class="hint" id="form-error" hidden></p>
+  </form>
+</section>
+
+<!-- ============ login modal ============ -->
+<section class="panel notice" id="login-panel" hidden>
+  <h2>One-time Chrome setup</h2>
+  <ol id="login-steps"></ol>
+  <p class="hint">
+    A Chrome window is open using the scraper's own profile. Do both steps there, then click below.
+  </p>
+  <button type="button" id="btn-login-done" class="primary">Done — save the profile</button>
+</section>
+
+<!-- ============ progress ============ -->
+<section class="panel" id="progress-panel" hidden>
+  <div class="progress-head">
+    <strong id="stage-label">—</strong>
+    <span id="progress-counts" class="muted"></span>
+  </div>
+  <div class="bar"><div class="bar-fill" id="bar-fill"></div></div>
+  <details id="log-details">
+    <summary>Live log</summary>
+    <pre id="log"></pre>
+  </details>
+</section>
+
+<!-- ============ error ============ -->
+<section class="panel error" id="error-panel" hidden>
+  <h2 id="error-title">Something went wrong</h2>
+  <pre id="error-message"></pre>
+  <p class="hint" id="error-hint"></p>
+</section>
+
+<!-- ============ challenge ============ -->
+<section class="panel challenge" id="challenge-panel" hidden>
+  <h2>Bot challenge — needs you</h2>
+  <p>Solve the puzzle in the Chrome window that is already open. The run continues by itself
+     once it clears.</p>
+  <pre id="challenge-label"></pre>
+</section>
+
+<!-- ============ needs your help ============ -->
+<section class="panel" id="help-panel" hidden>
+  <h2>Needs your help <span class="muted" id="help-count"></span></h2>
+  <p class="hint">
+    These are held out of the ranking because their history is incomplete — under this tool's
+    rules unknown never counts as clean. For a car whose Carfax was blocked, open the report,
+    select all and copy, then paste it below to finish the comparison.
+  </p>
+  <div id="help-list"></div>
+</section>
+
+<!-- ============ ranking ============ -->
+<section class="panel" id="ranked-panel" hidden>
+  <div class="panel-head">
+    <h2>Ranked <span class="muted" id="ranked-count"></span></h2>
+    <div class="review-controls">
+      <select id="review-model" title="Reviewer model"></select>
+      <button type="button" id="btn-review">Review reports with Claude</button>
+    </div>
+  </div>
+  <p class="hint">
+    Deterministic ranking, anchored to your max price and mileage so an identical car scores the
+    same on every run. The reviewer below never changes this order or these scores.
+  </p>
+  <div class="table-scroll">
+    <table id="ranked-table">
+      <thead><tr>
+        <th>#</th><th>Score</th><th>Vehicle</th><th>Landed</th><th>Miles</th>
+        <th>$/mi</th><th>Own</th><th>Acc</th><th>AutoCheck</th><th></th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ review ============ -->
+<section class="panel review" id="review-panel" hidden>
+  <h2>Claude's report review</h2>
+  <div id="review-body"></div>
+</section>
+
+<!-- ============ disqualified ============ -->
+<section class="panel" id="dq-panel" hidden>
+  <h2>Disqualified <span class="muted" id="dq-count"></span></h2>
+  <div id="dq-list"></div>
+</section>
+
+<!-- ============ manifest ============ -->
+<section class="panel" id="manifest-panel" hidden>
+  <h2>Run manifest</h2>
+  <div id="reconciliation"></div>
+  <div id="warnings"></div>
+  <details>
+    <summary>Counters and full report</summary>
+    <pre id="manifest-lines"></pre>
+    <pre id="report-body"></pre>
+  </details>
+  <p class="hint" id="report-path"></p>
+</section>
+
+</main>
+
+<!-- paste dialog -->
+<dialog id="paste-dialog">
+  <form id="paste-form" method="dialog">
+    <h2 id="paste-title">Paste report</h2>
+    <p class="hint" id="paste-hint"></p>
+    <p class="hint">
+      Paste the report's <strong>visible text</strong> — open the link, select all, copy. Saved
+      HTML and PDFs are refused on purpose: they would parse to an all-unknown report instead of
+      failing, and you would be told it worked.
+    </p>
+    <textarea id="paste-text" rows="12" placeholder="Paste the full report text here…"></textarea>
+    <p class="hint" id="paste-error" hidden></p>
+    <div class="actions">
+      <button type="button" id="btn-paste-submit" class="primary">Add report</button>
+      <button type="button" id="btn-paste-cancel">Cancel</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="/app.js"></script>
+</body>
+</html>
