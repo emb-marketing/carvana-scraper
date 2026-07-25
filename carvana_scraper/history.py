@@ -23,6 +23,9 @@ never scored as though its history were clean.
 
 from __future__ import annotations
 
+import threading
+from typing import Callable
+
 from .autocheck import parse_autocheck_text
 from .browser import detect_challenge, human_pause, looks_like_report, page_text, wait_for_manual_assist
 from .cache import archive_raw, get_history, put_history
@@ -121,11 +124,16 @@ def _fetch_report_page(
     label: str,
     allow_manual_assist: bool,
     assist_timeout_s: int,
+    on_challenge: Callable[[str, int], None] | None = None,
+    abort: threading.Event | None = None,
 ) -> tuple[str | None, str]:
     """Open a report URL and return (visible_text, status).
 
     Status is `parsed` when real content loaded, `history_blocked` when an anti-bot challenge
     stood in the way, `history_unavailable` when the page failed for any other reason.
+
+    `on_challenge` and `abort` are forwarded to wait_for_manual_assist so a GUI can raise its own
+    alert and cancel the wait. Neither can turn a blocked page into a parsed one.
     """
     page = context.new_page()
     try:
@@ -136,7 +144,8 @@ def _fetch_report_page(
             if not allow_manual_assist:
                 return None, STATUS_BLOCKED
             if not wait_for_manual_assist(page, looks_like_report, label,
-                                          timeout_s=assist_timeout_s):
+                                          timeout_s=assist_timeout_s,
+                                          on_challenge=on_challenge, abort=abort):
                 return None, STATUS_BLOCKED
             human_pause(2.0, 4.0)
 
@@ -176,6 +185,8 @@ def fetch_carfax(
     listing: Listing,
     allow_manual_assist: bool = True,
     assist_timeout_s: int = 240,
+    on_challenge: Callable[[str, int], None] | None = None,
+    abort: threading.Event | None = None,
 ) -> HistoryReport:
     """Fetch and parse the Carfax report for one vehicle.
 
@@ -185,7 +196,8 @@ def fetch_carfax(
     url = listing.carfax_url
     text, status = _fetch_report_page(
         context, url, f"Carfax {listing.label} — {listing.vin}",
-        allow_manual_assist=allow_manual_assist, assist_timeout_s=assist_timeout_s)
+        allow_manual_assist=allow_manual_assist, assist_timeout_s=assist_timeout_s,
+        on_challenge=on_challenge, abort=abort)
     if status != STATUS_PARSED or not text:
         return HistoryReport(vin=listing.vin, status=status, vendor="carfax", source_url=url)
 
@@ -202,6 +214,8 @@ def get_or_fetch(
     allow_manual_assist: bool = True,
     assist_timeout_s: int = 240,
     verbose: bool = True,
+    on_challenge: Callable[[str, int], None] | None = None,
+    abort: threading.Event | None = None,
 ) -> tuple[HistoryReport, bool]:
     """Return a merged history report for one vehicle, using the cache where possible.
 
@@ -214,6 +228,8 @@ def get_or_fetch(
         allow_manual_assist: Whether to pause for a human to solve a puzzle.
         assist_timeout_s: How long to wait for that.
         verbose: Print progress.
+        on_challenge: Forwarded to the manual-assist wait so a GUI can raise its own alert.
+        abort: Forwarded to the manual-assist wait so a GUI can cancel it.
 
     Returns:
         (report, from_cache).
@@ -232,7 +248,8 @@ def get_or_fetch(
         # what we already have, rather than paying for the AutoCheck fetch twice.
         if verbose:
             print(f"    [history] {listing.vin} cached AutoCheck — fetching Carfax only")
-        carfax_only = fetch_carfax(context, listing, allow_manual_assist, assist_timeout_s)
+        carfax_only = fetch_carfax(context, listing, allow_manual_assist, assist_timeout_s,
+                                   on_challenge=on_challenge, abort=abort)
         if verbose:
             print(f"    [history] carfax:    {carfax_only.status}")
         merged_with_cache = merge_reports([report, carfax_only])
@@ -255,7 +272,8 @@ def get_or_fetch(
 
     if want_carfax:
         human_pause()
-        carfax_report = fetch_carfax(context, listing, allow_manual_assist, assist_timeout_s)
+        carfax_report = fetch_carfax(context, listing, allow_manual_assist, assist_timeout_s,
+                                     on_challenge=on_challenge, abort=abort)
         collected.append(carfax_report)
         if verbose:
             print(f"    [history] carfax:    {carfax_report.status}"

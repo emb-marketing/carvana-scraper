@@ -13,6 +13,7 @@ from __future__ import annotations
 import random
 import re
 import sys
+import threading
 import time
 from contextlib import contextmanager
 from pathlib import Path
@@ -200,10 +201,14 @@ def wait_for_manual_assist(
     label: str,
     timeout_s: int = 180,
     poll_s: float = 3.0,
+    on_challenge: Callable[[str, int], None] | None = None,
+    abort: threading.Event | None = None,
 ) -> bool:
     """Alert the operator to a bot challenge and wait for them to clear it.
 
     Deliberately does not attempt to solve the challenge — a human check is answered by a human.
+    `is_ready` remains the only signal that a challenge cleared; neither new argument can shortcut
+    it into returning True.
 
     Args:
         page: The challenged page. Its window is already visible to the operator.
@@ -211,10 +216,15 @@ def wait_for_manual_assist(
         label: Human-readable identifier (a VIN or URL) for the alert banner.
         timeout_s: How long to wait before giving up.
         poll_s: Seconds between readiness checks.
+        on_challenge: Called once with (label, timeout_s) when the challenge is announced, so a
+            GUI can raise its own alert. The terminal bell and banner still fire regardless — the
+            CLI depends on them.
+        abort: Set to stop waiting early. Returns False, i.e. the vehicle is recorded as blocked,
+            never as clean.
 
     Returns:
-        True if the page became ready, False on timeout. Never raises, and never returns True
-        speculatively — the caller must treat False as "this vehicle's history is unknown",
+        True if the page became ready, False on timeout or abort. Never raises, and never returns
+        True speculatively — the caller must treat False as "this vehicle's history is unknown",
         not as "the page loaded".
     """
     bell = "\a"
@@ -229,9 +239,19 @@ def wait_for_manual_assist(
         f"{banner}",
         flush=True,
     )
+    if on_challenge is not None:
+        # A front end that raises on its own alert must not be able to take the run down with it.
+        try:
+            on_challenge(label, timeout_s)
+        except Exception as exc:
+            print(f"  (challenge notification failed: {type(exc).__name__}: {exc})", flush=True)
 
     deadline = time.monotonic() + timeout_s
     while time.monotonic() < deadline:
+        if abort is not None and abort.is_set():
+            print("  Cancelled while waiting — recording as blocked, not as clean.\n",
+                  file=sys.stderr, flush=True)
+            return False
         time.sleep(poll_s)
         try:
             if is_ready(page):
@@ -245,6 +265,26 @@ def wait_for_manual_assist(
     print(f"  Timed out after {timeout_s}s — recording as blocked, not as clean.\n",
           file=sys.stderr, flush=True)
     return False
+
+
+LOGIN_INSTRUCTIONS: tuple[str, ...] = (
+    "Accept any cookie prompt and browse a couple of pages (builds trust).",
+    "IMPORTANT: set your delivery ZIP using Carvana's location picker (the delivery/location "
+    "control in the header). Shipping cost depends on it, and it cannot be set from the command "
+    "line — only here, once.",
+)
+
+
+def open_login_page(context: BrowserContext) -> int:
+    """Navigate the session to Carvana and return the profile's current cookie count.
+
+    Split out of `login` so the GUI can run the same setup without the blocking `input()` below:
+    a bare `input()` on a stdin that is not a TTY raises EOFError, which would take the server
+    process down.
+    """
+    page = context.pages[0] if context.pages else context.new_page()
+    page.goto("https://www.carvana.com/cars", wait_until="domcontentloaded", timeout=90_000)
+    return len(context.cookies())
 
 
 def login(profile_dir: Path | str = DEFAULT_PROFILE_DIR) -> int:
@@ -264,19 +304,18 @@ def login(profile_dir: Path | str = DEFAULT_PROFILE_DIR) -> int:
         A process exit code.
     """
     with session(profile_dir) as context:
-        page = context.pages[0] if context.pages else context.new_page()
-        page.goto("https://www.carvana.com/cars", wait_until="domcontentloaded", timeout=90_000)
+        cookie_count = open_login_page(context)
         banner = "=" * 72
         print(
             f"\n{banner}\n"
             "  ONE-TIME SETUP — do both of these in the Chrome window that just opened\n"
             f"{banner}\n"
-            "  1. Accept any cookie prompt and browse a couple of pages (builds trust).\n"
+            f"  1. {LOGIN_INSTRUCTIONS[0]}\n"
             "  2. IMPORTANT: set your delivery ZIP using Carvana's location picker\n"
             "     (the delivery/location control in the header). Shipping cost depends on it,\n"
             "     and it cannot be set from the command line — only here, once.\n"
             f"{banner}\n"
-            f"  cookies currently in profile: {len(context.cookies())}\n\n"
+            f"  cookies currently in profile: {cookie_count}\n\n"
             "  Press Enter here when done to save the session and close.",
             flush=True,
         )
