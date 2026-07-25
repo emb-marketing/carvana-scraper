@@ -315,3 +315,71 @@ class InvocationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EvidenceVerificationTests(unittest.TestCase):
+    """A quote the report does not contain must not be presented as if it did."""
+
+    REPORT = (
+        "Ownership History\nThe number of owners is estimated\n"
+        "Estimated length of ownership\n7 months\n2 years 1 month\n"
+        "Structural Damage\nNo structural damage reported to CARFAX.\n"
+        "Detailed History\n05/10/2024\nOffered for sale as a Toyota Gold Certified Pre-Owned Vehicle\n"
+    )
+
+    def test_exact_quote_is_supported(self) -> None:
+        self.assertTrue(review.evidence_supported(
+            "No structural damage reported to CARFAX.", self.REPORT))
+
+    def test_quote_reflowed_across_a_line_break_is_supported(self) -> None:
+        """innerText puts a value on the line after its label, so this is a faithful quote."""
+        self.assertTrue(review.evidence_supported(
+            "Estimated length of ownership: 7 months", self.REPORT))
+
+    def test_ellipsis_joined_fragments_are_supported_when_both_are_real(self) -> None:
+        self.assertTrue(review.evidence_supported(
+            "Ownership History ... Toyota Gold Certified Pre-Owned Vehicle", self.REPORT))
+
+    def test_ellipsis_is_not_a_loophole_when_a_fragment_is_invented(self) -> None:
+        self.assertFalse(review.evidence_supported(
+            "Ownership History ... airbag deployed in a rear collision", self.REPORT))
+
+    def test_paraphrased_quote_is_not_supported(self) -> None:
+        self.assertFalse(review.evidence_supported(
+            "The first owner kept the vehicle for about seven months", self.REPORT))
+
+    def test_fabricated_quote_is_not_supported(self) -> None:
+        self.assertFalse(review.evidence_supported(
+            "Structural damage reported after a front-end collision", self.REPORT))
+
+    def test_empty_quote_is_not_supported(self) -> None:
+        self.assertFalse(review.evidence_supported("", self.REPORT))
+
+    def test_trivially_short_fragments_do_not_count_as_support(self) -> None:
+        """Short strings match almost anything; allowing them would make the check meaningless."""
+        self.assertFalse(review.evidence_supported("the", self.REPORT))
+        self.assertFalse(review.evidence_supported("a ... of ... the", self.REPORT))
+
+    def test_missing_report_text_means_unsupported(self) -> None:
+        self.assertFalse(review.evidence_supported("anything at all here", ""))
+
+    def test_run_review_flags_unsupported_findings(self) -> None:
+        vehicles = [make_vehicle(VIN_A)]
+        reply = json.dumps({
+            "pick_vin": VIN_A,
+            "findings": [
+                {"vin": VIN_A, "severity": "warn", "claim": "real",
+                 "evidence": "No structural damage reported to CARFAX."},
+                {"vin": VIN_A, "severity": "warn", "claim": "made up",
+                 "evidence": "Airbags deployed in a rear-end collision in Ohio"},
+            ],
+        })
+        raw_dir = Path(PROJECT_ROOT / "cache" / "raw")
+        if not (raw_dir / f"{VIN_A}.carfax.txt").exists():
+            self.skipTest("no archived report for the fixture VIN")
+        with StubbedRun(result_text=reply):
+            result = review.run_review(vehicles, raw_dir=raw_dir)
+        supported = {f["claim"]: f["evidence_supported"] for f in result["findings"]}
+        self.assertTrue(supported["real"])
+        self.assertFalse(supported["made up"])
+        self.assertEqual(result["unsupported_findings"], 1)

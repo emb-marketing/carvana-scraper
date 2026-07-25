@@ -367,13 +367,25 @@ function renderReview(state) {
 
   if (review.findings.length) {
     parts.push("<h3 style='font-size:13px;margin:0 0 8px'>Findings from the report text</h3>");
-    parts.push(review.findings.map((finding) => `
-      <div class="finding sev-${esc(finding.severity)}">
+    parts.push(review.findings.map((finding) => {
+      /* Whether the quote was located in the report is checked server-side. A claim whose quote
+         cannot be found is still shown — it may well be true — but never as if the report said it. */
+      let quote;
+      if (!finding.evidence) {
+        quote = '<p class="hint">No quote supplied — unverified.</p>';
+      } else if (finding.evidence_supported === false) {
+        quote = `<blockquote>${esc(finding.evidence)}</blockquote>
+          <p class="hint" style="color:var(--warn)">⚠ This quote was not found in the report —
+          paraphrased or stitched together. Check it against the report yourself before trusting
+          the claim.</p>`;
+      } else {
+        quote = `<blockquote>${esc(finding.evidence)}</blockquote>`;
+      }
+      return `<div class="finding sev-${esc(finding.severity)}">
         <div class="claim"><strong>${esc(name(finding.vin))}</strong> — ${esc(finding.claim)}</div>
-        ${finding.evidence
-          ? `<blockquote>${esc(finding.evidence)}</blockquote>`
-          : '<p class="hint">No quote supplied — treat as unsupported.</p>'}
-      </div>`).join(""));
+        ${quote}
+      </div>`;
+    }).join(""));
   }
 
   if (review.conflict_resolutions.length) {
@@ -393,6 +405,11 @@ function renderReview(state) {
       <ul>${review.dropped.map((note) => `<li>${esc(note)}</li>`).join("")}</ul></div>`);
   }
 
+  if (review.unsupported_findings) {
+    parts.push(`<div class="alert alert-warn">${review.unsupported_findings} of
+      ${review.findings.length} findings carry a quote that could not be located in the report.
+      They are marked above.</div>`);
+  }
   parts.push(`<p class="hint">Reviewed ${review.reviewed_vins.length} vehicle(s) via
     ${esc(review.backend)} (${esc(review.model)}). Scores and ordering above are untouched.</p>`);
   el("review-body").innerHTML = parts.join("");

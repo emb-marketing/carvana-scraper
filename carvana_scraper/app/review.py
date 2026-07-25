@@ -83,8 +83,11 @@ Reply with exactly this JSON object:
 
 Rules:
 - Use only the VINs listed below. A finding about any other VIN is discarded.
-- "evidence" must be a literal substring of that vehicle's report text. If you cannot quote it,
-  do not claim it.
+- "evidence" must be COPIED from that vehicle's report text, not paraphrased or reconstructed.
+  Every quote is checked against the report automatically, and one that cannot be located is
+  shown to the user as unverified. Do not add words, labels or punctuation that are not there.
+- To join two separate passages, put "..." between them — each side must still be copied exactly.
+- If you cannot copy a quote for a claim, do not make the claim.
 - Omit "conflict_resolutions" entries where the vendors agree.
 - Output the JSON object only.
 
@@ -95,6 +98,36 @@ Rules:
 
 class ReviewError(RuntimeError):
     """The review could not be produced. Never fatal to a run."""
+
+
+def _normalize_for_match(text: str) -> str:
+    """Collapse whitespace and case so a quote can be located despite reflowing.
+
+    Report text is `innerText`, so a value often sits on the line after its label. A model quoting
+    "Estimated length of ownership: 7 months" is faithfully reporting text that reads
+    "Estimated length of ownership\\n7 months", and a raw substring test would call that a
+    fabrication. Punctuation the model may add between label and value is dropped for the same
+    reason.
+    """
+    collapsed = re.sub(r"\s+", " ", text).strip().lower()
+    return re.sub(r"[:;,]", "", collapsed)
+
+
+def evidence_supported(evidence: str, report_text: str) -> bool:
+    """Whether every fragment of a quote really appears in the vehicle's report.
+
+    Models elide with an ellipsis when joining two distant passages, which is legitimate as long as
+    each side is genuine — so the quote is split on ellipses and every fragment must be found.
+    Fragments under 12 characters are ignored: they match almost anything and would turn this check
+    into a rubber stamp.
+    """
+    if not evidence.strip() or not report_text:
+        return False
+    haystack = _normalize_for_match(report_text)
+    fragments = [f for f in re.split(r"\.{3}|…", evidence) if len(f.strip()) >= 12]
+    if not fragments:
+        return False
+    return all(_normalize_for_match(fragment) in haystack for fragment in fragments)
 
 
 def _read_report(vin: str, vendor: str, raw_dir: Path) -> str:
@@ -345,9 +378,28 @@ def run_review(
     if invoke is None:
         raise ReviewError(f"unknown backend {backend!r}")
 
+    raw_dir = Path(raw_dir)
     dossier = build_dossier(vehicles, raw_dir)
     raw_reply = invoke(dossier, model, timeout_s)
     review = validate_response(_extract_json_object(raw_reply),
                               {vehicle.listing.vin for vehicle in vehicles})
+
+    # Checked against the reports rather than taken on trust. Observed live: a capable model
+    # returned 14 findings of which 6 carried quotes that were paraphrased or stitched together.
+    # The findings were still substantive, so they are kept — but a claim whose quote cannot be
+    # located must not be presented as if the report said it.
+    reports = {vehicle.listing.vin: _combined_report_text(vehicle.listing.vin, raw_dir)
+               for vehicle in vehicles}
+    for finding in review["findings"]:
+        finding["evidence_supported"] = evidence_supported(
+            finding["evidence"], reports.get(finding["vin"], ""))
+    review["unsupported_findings"] = sum(
+        1 for finding in review["findings"] if not finding["evidence_supported"])
+
     review.update({"backend": backend, "model": model, "raw": raw_reply})
     return review
+
+
+def _combined_report_text(vin: str, raw_dir: Path) -> str:
+    """Both vendors' archived report text for one vehicle, concatenated."""
+    return "\n".join(_read_report(vin, vendor, raw_dir) for vendor in ("carfax", "autocheck"))
