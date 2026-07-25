@@ -39,7 +39,7 @@ class SearchCriteria:
     year_max: int | None = None
     max_price: float | None = None
     max_miles: int | None = None
-    zip_code: str = "84604"
+    zip_code: str = "89002"
     top_n: int = 12
     max_reports: int = 40
 
