@@ -54,9 +54,12 @@ export default function SetupPage() {
             borderRadius: "var(--radius-sm)",
             padding: "14px 16px",
             fontSize: 12.5,
-            overflowX: "auto",
             margin: 0,
             color: "var(--text)",
+            // Wrapped, not scrolled: a command the reader cannot see all of is a command they
+            // cannot trust enough to paste.
+            whiteSpace: "pre-wrap",
+            wordBreak: "break-word",
           }}
         >
           {COMMAND}
