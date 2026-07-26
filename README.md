@@ -16,9 +16,19 @@ cd ~/projects/carvana-scraper
 ./run-app.command          # or: python3 -m carvana_scraper.app
 ```
 
-Opens a browser UI on `127.0.0.1`. Pick a make and model from dropdowns built from Carvana's own
-inventory taxonomy (40 makes, 528 models), set your caps, and run. A separate Chrome window opens —
-that is the scraper's own profile, and you need to see it to clear a DataDome puzzle.
+Opens a browser UI at **http://127.0.0.1:8765** — a fixed port, so it is bookmarkable; it falls back
+to any free port if 8765 is taken, and `--port` overrides. Pick a make and model from dropdowns built
+from Carvana's own inventory taxonomy (40 makes, 528 models), set your caps, and run. A separate
+Chrome window opens — that is the scraper's own profile, and you need to see it to clear a DataDome
+puzzle.
+
+**Set both max price and max mileage.** They are the scoring anchors: without both, scores are
+anchored to that run's own observed range and are not comparable with any other run. The UI warns
+when either is blank.
+
+**Check `Max reports` covers your matches.** It defaults to 40; a vehicle beyond it gets no history
+and so appears in no section at all. The run now warns and fails reconciliation rather than
+presenting a shorter table as complete, but raising the number is the actual fix.
 
 What the app adds over the CLI:
 
