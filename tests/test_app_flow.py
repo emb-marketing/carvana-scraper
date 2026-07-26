@@ -25,7 +25,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from carvana_scraper import browser, cache, history, pipeline, report as report_mod, search, vdp
+from carvana_scraper import (browser, cache, delivery, history, pipeline, report as report_mod,
+                             search, vdp)
 from carvana_scraper.app import ingest as ingest_mod, review as review_mod, runner
 from carvana_scraper.app.server import build_server
 from carvana_scraper.models import STATUS_PARSED, HistoryReport, Listing
@@ -96,7 +97,15 @@ class AppFlowTests(unittest.TestCase):
             "imps": vdp.fetch_imperfections, "write": report_mod.write_markdown,
             "connect": pipeline.connect, "stats": pipeline.cache_stats,
             "runner_connect": runner.connect, "archive": ingest_mod.archive_raw,
+            "default_zip": delivery.default_zip,
         }
+
+        # Otherwise the criteria string depends on whether THIS machine has a captured delivery
+        # location: `pipeline.execute` fills an unset zip from `delivery.default_zip()`, so the
+        # author's profile produced "… · zip 89002" while a fresh clone produced no zip at all and
+        # the assertion below failed for everyone but the author. Stub it so the test states its
+        # own input, which is the same reason invariant 13 removed the hardcoded production default.
+        delivery.default_zip = lambda: "89002"
 
         # The paste route reaches runner.apply_paste, which opens a REAL cache connection and
         # archives the report. Left unstubbed, this test writes synthetic history into
@@ -152,6 +161,7 @@ class AppFlowTests(unittest.TestCase):
         pipeline.cache_stats = self._saved["stats"]
         runner.connect = self._saved["runner_connect"]
         ingest_mod.archive_raw = self._saved["archive"]
+        delivery.default_zip = self._saved["default_zip"]
 
     # ---- helpers ----
 
