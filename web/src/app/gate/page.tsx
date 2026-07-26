@@ -3,6 +3,23 @@
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+/**
+ * Reduce `?next=` to a same-origin path, or fall back to the root.
+ *
+ * The middleware only ever writes a pathname here, but the query string is attacker-controllable
+ * in a hand-crafted link. Unchecked, `window.location.href = next` accepts an absolute URL — so
+ * "open GRID" could land a PIN-holder on a lookalike right after they authenticate — and it
+ * accepts `javascript:`, which is script execution rather than merely a redirect.
+ *
+ * Rejected: absolute URLs, protocol-relative `//host`, and the `/\host` form some browsers
+ * normalise into one. Anything not rooted at a single slash goes to `/`.
+ */
+function safeNext(raw: string | null): string {
+  if (!raw || !raw.startsWith("/")) return "/";
+  if (raw.startsWith("//") || raw.startsWith("/\\")) return "/";
+  return raw;
+}
+
 /** The PIN prompt. The only thing an unauthenticated visitor can reach. */
 export default function GatePage() {
   return (
@@ -13,7 +30,7 @@ export default function GatePage() {
 }
 
 function GateForm() {
-  const next = useSearchParams().get("next") || "/";
+  const next = safeNext(useSearchParams().get("next"));
   const [pin, setPin] = useState("");
   const [busy, setBusy] = useState(false);
   const [problem, setProblem] = useState("");
