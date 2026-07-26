@@ -2,12 +2,16 @@
  * List recent runs, and queue a new one.
  *
  * Submitting needs nothing but the site PIN, which the middleware has already checked by the time
- * a request reaches here. A queued job is addressed to the pool rather than to a machine, so a
- * visitor installs nothing: whichever laptop is running a worker picks it up.
+ * a request reaches here.
+ *
+ * Where the job runs depends on whether this browser has claimed a machine. If it has, the run is
+ * addressed to it, so your searches use your laptop and your friend's use theirs. If it has not,
+ * the run goes to the pool unaddressed and any online worker takes it — which is what lets someone
+ * who has installed nothing use the site at all.
  */
 import { NextRequest } from "next/server";
 
-import { error, json } from "@/lib/auth";
+import { OWNER_COOKIE, error, json, workerForOwner } from "@/lib/auth";
 import { sql } from "@/lib/db";
 import { OptionsError, buildOptions, describeOptions } from "@/lib/options";
 
@@ -37,7 +41,8 @@ async function poolStatus(): Promise<{ online: boolean; workers: string[] }> {
   return { online: rows.length > 0, workers: rows.map((row) => row.label) };
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const mine = await workerForOwner(request.cookies.get(OWNER_COOKIE)?.value);
   const runs = await sql`
     select r.id, r.status, r.criteria, r.created_at, r.finished_at,
            coalesce(w.label, 'unassigned') as worker_label
@@ -45,7 +50,11 @@ export async function GET() {
     order by r.created_at desc
     limit ${RECENT_LIMIT}
   `;
-  return json({ runs, pool: await poolStatus() });
+  return json({
+    runs,
+    pool: await poolStatus(),
+    mine: mine ? { label: mine.label } : null,
+  });
 }
 
 export async function POST(request: NextRequest) {
@@ -69,12 +78,18 @@ export async function POST(request: NextRequest) {
       `${queued[0].n} searches are already waiting. Runs take a few minutes each — try shortly.`);
   }
 
+  const mine = await workerForOwner(request.cookies.get(OWNER_COOKIE)?.value);
+
   const rows = (await sql`
-    insert into runs (options, criteria)
-    values (${JSON.stringify(options)}::jsonb, ${describeOptions(options)})
+    insert into runs (options, criteria, worker_id)
+    values (${JSON.stringify(options)}::jsonb, ${describeOptions(options)}, ${mine?.id ?? null})
     returning id
   `) as { id: string }[];
 
-  const pool = await poolStatus();
-  return json({ id: rows[0].id, criteria: describeOptions(options), pool }, 201);
+  return json({
+    id: rows[0].id,
+    criteria: describeOptions(options),
+    assigned_to: mine?.label ?? null,
+    pool: await poolStatus(),
+  }, 201);
 }

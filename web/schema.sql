@@ -14,9 +14,20 @@ create table if not exists workers (
   id                 uuid primary key default gen_random_uuid(),
   token_hash         text not null unique,
   label              text not null,
+  -- Set when a browser claims this machine as its own, so that person's searches run here rather
+  -- than on whoever else happens to be online. Optional: an unclaimed machine still serves the
+  -- pool, which is what lets someone with nothing installed use the site at all.
+  owner_key_hash     text,
+  link_token         text,
+  link_expires_at    timestamptz,
   created_at         timestamptz not null default now(),
   last_seen_at       timestamptz
 );
+
+create index if not exists workers_link_token_idx
+  on workers (link_token) where link_token is not null;
+create index if not exists workers_owner_idx
+  on workers (owner_key_hash) where owner_key_hash is not null;
 
 create table if not exists runs (
   -- worker_id is NULL until a worker claims the job. Jobs are addressed to the pool, not to a

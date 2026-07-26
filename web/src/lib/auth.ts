@@ -11,7 +11,7 @@
  * constant-time comparison here: there is no secret-to-secret comparison to make, and a 32-byte
  * random token is not guessable.
  */
-import { createHash } from "node:crypto";
+import { createHash, randomBytes } from "node:crypto";
 
 import { sql } from "./db";
 
@@ -20,8 +20,30 @@ export type Worker = {
   label: string;
 };
 
+/** How long the one-time link a worker prints stays usable. */
+export const LINK_TTL_MINUTES = 30;
+export const OWNER_COOKIE = "grid_owner";
+
 export function hashSecret(secret: string): string {
   return createHash("sha256").update(secret).digest("hex");
+}
+
+export function newSecret(): string {
+  return randomBytes(32).toString("base64url");
+}
+
+/**
+ * The machine this browser has claimed, if any.
+ *
+ * A browser with no claim is not an error — its searches go to the pool, which is what lets
+ * someone who has installed nothing still use the site.
+ */
+export async function workerForOwner(ownerKey: string | undefined): Promise<Worker | null> {
+  if (!ownerKey) return null;
+  const rows = (await sql`
+    select id, label from workers where owner_key_hash = ${hashSecret(ownerKey)}
+  `) as Worker[];
+  return rows[0] ?? null;
 }
 
 /** The bearer token from an Authorization header, or null when absent or malformed. */

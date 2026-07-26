@@ -1,9 +1,13 @@
 /**
  * Hand a worker the next job in the queue.
  *
- * Jobs belong to the pool, not to a machine. Whichever worker is running takes the next one, which
- * is what lets a visitor use the site with nothing installed — they submit, and the laptop that is
- * actually running does the browser work.
+ * Two kinds of job, in priority order:
+ *
+ *   1. addressed to **this** machine, because the browser that submitted it claimed this one;
+ *   2. unaddressed, from someone who has installed nothing.
+ *
+ * Own work first, so a person who set up their own laptop is never stuck behind a stranger's
+ * search. `worker_id is null` second, so the site still works for everyone else.
  *
  * The claim is a single atomic statement. `for update skip locked` is what makes several workers
  * safe: without it two could read the same queued row and run the same search twice.
@@ -25,8 +29,8 @@ export async function POST(request: NextRequest) {
     update runs set status = 'running', claimed_at = now(), worker_id = ${worker.id}
     where id = (
       select id from runs
-      where status = 'queued'
-      order by created_at
+      where status = 'queued' and (worker_id = ${worker.id} or worker_id is null)
+      order by (worker_id is null), created_at
       limit 1
       for update skip locked
     )

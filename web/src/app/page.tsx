@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { SearchForm } from "@/components/SearchForm";
 import { ago, type RunRow } from "@/lib/types";
@@ -8,15 +9,27 @@ import { ago, type RunRow } from "@/lib/types";
 /**
  * Home: submit a search, and see recent runs.
  *
- * There is nothing to install and nothing to pair. The PIN is the only gate, and a submitted
- * search goes to the queue for whichever machine is currently running a worker. Everyone past the
- * PIN sees every run.
+ * The PIN is the only thing needed to use the site. Where a search *runs* depends on whether this
+ * browser has claimed a machine: if it has, searches go to that laptop; if not, they go to
+ * whichever machine is online. Everyone past the PIN sees every run.
  */
 type Pool = { online: boolean; workers: string[] };
 
 export default function HomePage() {
+  return (
+    <Suspense fallback={null}>
+      <Home />
+    </Suspense>
+  );
+}
+
+function Home() {
+  const params = useSearchParams();
+  const linkResult = params.get("link");
+  const linkedMachine = params.get("machine");
   const [runs, setRuns] = useState<RunRow[]>([]);
   const [pool, setPool] = useState<Pool>({ online: false, workers: [] });
+  const [mine, setMine] = useState<{ label: string } | null>(null);
   const [loaded, setLoaded] = useState(false);
 
   const load = useCallback(async () => {
@@ -26,6 +39,7 @@ export default function HomePage() {
         const payload = await response.json();
         setRuns(payload.runs ?? []);
         setPool(payload.pool ?? { online: false, workers: [] });
+        setMine(payload.mine ?? null);
       }
     } catch {
       // A failed poll is not worth surfacing; the next tick retries.
@@ -42,15 +56,32 @@ export default function HomePage() {
 
   return (
     <main>
+      {linkResult === "ok" && (
+        <div className="alert" style={{ borderColor: "var(--signal)" }}>
+          <h3>This browser now uses {linkedMachine}</h3>
+          <p>Your searches will run there from now on, not on anyone else&rsquo;s machine.</p>
+        </div>
+      )}
+      {(linkResult === "expired" || linkResult === "invalid") && (
+        <div className="alert bad">
+          <h3>That setup link is no longer valid</h3>
+          <p>Restart the worker on your laptop — it prints a fresh one.</p>
+        </div>
+      )}
+
       <div className="spread" style={{ marginBottom: 18 }}>
         <span className="pill">
           <span className={`dot ${pool.online ? "live" : "bad"}`} />
-          {pool.online
-            ? `${pool.workers[0]}${pool.workers.length > 1 ? ` +${pool.workers.length - 1}` : ""} · ready`
-            : "no machine running"}
+          {mine
+            ? `your machine: ${mine.label}`
+            : pool.online
+              ? `${pool.workers[0]}${pool.workers.length > 1 ? ` +${pool.workers.length - 1}` : ""} · ready`
+              : "no machine running"}
         </span>
         <span className="faint small">
-          Searches run on whichever machine is running the scraper.
+          {mine
+            ? "Your searches run on your own laptop."
+            : "Searches run on whichever machine is online."}
         </span>
       </div>
 
@@ -60,6 +91,19 @@ export default function HomePage() {
           <p>
             You can still submit — it will sit in the queue and start by itself the moment one
             comes online.
+          </p>
+        </div>
+      )}
+
+      {loaded && !mine && (
+        <div className="card" style={{ marginBottom: 18 }}>
+          <div className="card-title">Want searches to run on your own laptop?</div>
+          <p className="muted small" style={{ marginTop: 0, marginBottom: 0 }}>
+            Optional — the site works without it. A web page cannot drive your browser profile, so
+            running searches locally means running the scraper itself: clone the repo and run{" "}
+            <code className="mono">./setup.command</code>. It prints a link; open that link once
+            and this browser is bound to that machine. See{" "}
+            <code className="mono">docs/SETUP.md</code>.
           </p>
         </div>
       )}

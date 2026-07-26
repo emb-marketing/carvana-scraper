@@ -100,9 +100,18 @@ python3 -m carvana_scraper.worker      # on each person's own laptop
 ```
 
 **Anyone with the link and the PIN can use it with nothing installed.** They open the site, enter
-the PIN, pick a make and model, and submit. The job goes to the queue; whichever machine is running
-the worker claims it, runs it against that machine's Chrome profile and IP, and publishes back
-progress, the ranking, the manifest and the report text.
+the PIN, pick a make and model, and submit.
+
+Where it *runs* depends on whether that browser has claimed a machine:
+
+- **Claimed** — the search runs on that laptop, against its own Chrome profile and IP. Run the
+  worker there, open the link it prints once, and you are bound to it. Your friend does the same
+  and their searches use their laptop.
+- **Not claimed** — the search goes to the pool and runs on whichever machine is online.
+
+A worker takes its own addressed jobs before pool jobs, so setting up your own laptop never leaves
+you queued behind someone else. Either way the result comes back the same: progress, the ranking,
+the manifest and the report text.
 
 So there is exactly one thing to run, on one machine — yours, or whoever's is convenient:
 

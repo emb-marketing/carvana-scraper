@@ -3,7 +3,8 @@
 **Most people reading about GRID do not need this page.** To *use* the site you need two things:
 the link and the PIN. Open it, enter the PIN, search. Nothing to install.
 
-This page is for the one machine that does the actual work.
+This page is for setting up a machine that *does* the work — either as the one serving everyone,
+or as your own so that your searches run on your laptop.
 
 ---
 
@@ -13,11 +14,14 @@ The site queues searches. It cannot run them.
 
 Scraping needs a real Chrome window with a persistent, aged profile, a human available to clear a
 DataDome puzzle, several minutes per run, and a writable disk for the report cache. Vercel is
-serverless — short-lived cloud functions with no display, no browser and no persistent disk. So one
-laptop somewhere runs the scraper, and everyone else just uses the link.
+serverless — short-lived cloud functions with no display, no browser and no persistent disk.
 
-Whichever machine that is becomes the engine for the whole site. Leave it running and GRID works
-for everyone; close it and searches simply queue until it comes back.
+Nor can the page in *your* browser do it: the sandbox forbids a page on one origin from reading
+another site's content, which is exactly what makes browsing safe. So running searches on your own
+machine means running the scraper there, not just opening a tab.
+
+At least one machine has to be up for anything to run. Leave one running and GRID works for
+everyone; close them all and searches queue until one returns.
 
 ---
 
@@ -45,7 +49,7 @@ can set your delivery ZIP, and then starts the worker. When you see
 
 ```
 Running as 'your-machine'.
-https://… can now run searches — anyone with the PIN, no install.
+https://… can now run searches.
 ```
 
 the site is live. Leave the window open.
@@ -64,6 +68,28 @@ Two things persist from it, and both matter:
 
 Shipping cost is part of landed price, which is part of the ranking. Every search the site runs
 will be priced from **this** machine's location, so set it deliberately.
+
+---
+
+### Making searches run on *your* laptop
+
+By default a search runs on whichever machine is online. To make **your** searches use **your**
+laptop, run the worker there and open the link it prints:
+
+```
+  To make YOUR searches run on THIS machine, open once in your browser:
+    https://…/link?t=…
+```
+
+Open it once. That browser is now bound to that machine, and everything you submit runs there.
+Your friend does the same on theirs and gets the same result — their searches, their laptop.
+
+A browser that has never done this is not broken: its searches go to the pool and run on whoever
+is online. That is what lets someone who installed nothing use the site at all.
+
+**A web page cannot do this for you.** The browser sandbox forbids a page on one origin from
+reading another site's content — that restriction is what makes browsing safe, and it is why using
+your own machine means running the scraper on it rather than just opening a tab.
 
 ---
 

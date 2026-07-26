@@ -341,15 +341,26 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def _announce(info: dict, base_url: str) -> None:
-    """Confirm this machine is now the one serving the site."""
+    """Confirm this machine is serving, and offer to make it *this* browser's machine."""
     queued = info.get("queued") or 0
-    print("\n" + "=" * 66)
+    print("\n" + "=" * 72)
     print(f"  Running as {info.get('label')!r}.")
-    print(f"  {base_url} can now run searches — anyone with the PIN, no install.")
-    print(f"  {queued} search(es) already waiting." if queued
-          else "  Queue is empty. Waiting for searches…")
+    print(f"  {base_url} can now run searches.")
+    print(f"  {queued} search(es) waiting." if queued else "  Queue is empty. Waiting…")
+
+    link_path = info.get("link_path")
+    if link_path:
+        # A link rather than a code: nothing to read off one screen and type into another.
+        print("")
+        print("  To make YOUR searches run on THIS machine, open once in your browser:")
+        print(f"    {base_url}{link_path}")
+        print(f"  (expires in {info.get('link_ttl_minutes', 30)} minutes; restart for a new one)")
+    elif info.get("claimed"):
+        print("  This machine is claimed — its owner's searches run here.")
+
+    print("")
     print("  Leave this window open. Ctrl-C to stop.")
-    print("=" * 66 + "\n")
+    print("=" * 72 + "\n")
 
 
 def main(argv: list[str] | None = None) -> int:

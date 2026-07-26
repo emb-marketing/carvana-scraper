@@ -305,21 +305,34 @@ class MainLoopTests(unittest.TestCase):
             self.assertEqual(worker.main(["--once"]), 0)
         run_one.assert_called_once()
 
+    @staticmethod
+    def _announced(info: dict) -> str:
+        buffer: list[str] = []
+        with mock.patch("builtins.print", lambda *a, **k: buffer.append(" ".join(map(str, a)))):
+            worker._announce(info, "https://grid.example")
+        return "\n".join(buffer)
+
     def test_startup_names_the_site_and_the_waiting_queue(self) -> None:
         """The operator has to know their machine is now the one serving the site."""
-        buffer: list[str] = []
-        with mock.patch("builtins.print", lambda *a, **k: buffer.append(" ".join(map(str, a)))):
-            worker._announce({"label": "studio-mbp", "queued": 3}, "https://grid.example")
-        printed = "\n".join(buffer)
+        printed = self._announced({"label": "studio-mbp", "queued": 3})
         self.assertIn("studio-mbp", printed)
         self.assertIn("https://grid.example", printed)
-        self.assertIn("3 search(es) already waiting", printed)
+        self.assertIn("3 search(es) waiting", printed)
 
     def test_startup_says_so_when_the_queue_is_empty(self) -> None:
-        buffer: list[str] = []
-        with mock.patch("builtins.print", lambda *a, **k: buffer.append(" ".join(map(str, a)))):
-            worker._announce({"label": "studio-mbp", "queued": 0}, "https://grid.example")
-        self.assertIn("Queue is empty", "\n".join(buffer))
+        self.assertIn("Queue is empty", self._announced({"label": "m", "queued": 0}))
+
+    def test_an_unclaimed_machine_prints_a_full_clickable_link(self) -> None:
+        """A link, not a code — there is nothing to read off one screen and type into another."""
+        printed = self._announced(
+            {"label": "m", "queued": 0, "link_path": "/link?t=abc", "link_ttl_minutes": 30})
+        self.assertIn("https://grid.example/link?t=abc", printed)
+        self.assertIn("30 minutes", printed)
+
+    def test_a_claimed_machine_prints_no_link(self) -> None:
+        printed = self._announced({"label": "m", "queued": 0, "claimed": True, "link_path": None})
+        self.assertNotIn("/link?t=", printed)
+        self.assertIn("claimed", printed)
 
 
 if __name__ == "__main__":

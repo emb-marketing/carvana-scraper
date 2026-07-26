@@ -101,10 +101,13 @@ These encode findings that cost real investigation. Do not "simplify" them away.
     **fails closed**: unset config returns 503, never an open site. Vercel's own Deployment
     Protection is unavailable on this plan (Advanced Deployment Protection required) — do not
     re-plan around it without checking the API first.
-15. **Jobs belong to the queue, not to a machine.** A submitted run starts with `worker_id` NULL
-    and any worker claims it (`FOR UPDATE SKIP LOCKED`). That is what makes the site usable by
-    someone with nothing installed, and it is the point of the whole design — do not reintroduce
-    per-visitor pairing.
+15. **Two job routes, own-first.** A run from a browser that has claimed a machine is addressed to
+    it (`worker_id` set); a run from any other browser has `worker_id` NULL and goes to the pool.
+    Workers claim addressed work before pool work, ordered `(worker_id is null), created_at`, under
+    `FOR UPDATE SKIP LOCKED`. **Both routes must keep working**: the addressed one is how "my
+    searches use my laptop" is delivered, and the pool one is the only reason someone with nothing
+    installed can use the site. Claiming a machine is a one-time link the worker prints, never a
+    typed code, and never a prerequisite for using the site.
 16. **The web app renders `AppState.snapshot()`, it does not reshape it.** `app/serialize.py` is
     the single contract between the pipeline and *both* browser front ends. A field added there
     must land in `web/src/lib/types.ts` too. Report prose is the deliberate exception: it goes in

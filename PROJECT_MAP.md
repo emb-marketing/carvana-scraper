@@ -55,6 +55,7 @@ web/              GRID: the shared site. Separate deployable, own package.json. 
                   options.ts (clamping),
                   types.ts (mirrors AppState.snapshot() — keep in step with app/serialize.py).
   src/app/api/    gate, runs, runs/[id], runs/[id]/report, worker/{register,claim,progress,complete}
+  src/app/link/   GET one-time link: binds this browser to the machine that printed it.
   middleware.ts   Site PIN gate. Fails closed. /api/worker/* exempt (bearer-authenticated).
   src/app/        page.tsx (submit), gate/ (PIN), runs/[id]/ (live then final), globals.css
   src/components/ SearchForm, GridSlot, StartLights
@@ -98,12 +99,16 @@ GRID: worker.main -> Client.claim -> worker.run_one
 person  -> site PIN -> POST /api/gate -> HMAC cookie -> middleware lets pages + browser APIs through
 machine -> .worker-token (0600) -> POST /api/worker/register -> Bearer on /api/worker/* (PIN-exempt)
 
-submit:  POST /api/runs            -> run inserted with worker_id NULL (belongs to the queue)
-claim:   POST /api/worker/claim    -> oldest queued run, any worker, FOR UPDATE SKIP LOCKED
+claim a machine (optional):
+  worker register -> one-time link_token -> operator opens GET /link?t=… -> grid_owner cookie
+
+submit:  POST /api/runs         -> worker_id = this browser's machine, or NULL for the pool
+claim:   POST /api/worker/claim -> own addressed jobs first, then unassigned;
+                                   order by (worker_id is null), created_at; SKIP LOCKED
 ```
 
-Nobody installs anything to *use* the site. One machine somewhere runs the worker; everyone else
-just needs the link and the PIN.
+Nobody installs anything to *use* the site — unclaimed submissions run on whichever machine is
+online. Claiming a machine is what makes your searches run on *your* laptop.
 
 **The four stages**, in `pipeline.py`:
 
