@@ -18,12 +18,18 @@ Ranks current Carvana inventory by price, mileage and vehicle history. Drives a 
 real-Chrome profile through four stages: read inventory out of Carvana's RSC payload → AutoCheck
 report for every match → Carfax report for the top-N shortlist → disqualify, score, report.
 
-Two front ends over **one** orchestration (`pipeline.execute`): the CLI, and a local browser app
-(`python3 -m carvana_scraper.app`) that adds dropdowns, pasted-report ingest, and a local-Claude
-report reviewer. Both call the same pipeline — do not fork it.
+Three front ends over **one** orchestration (`pipeline.execute`) — all thin callers, do not fork it:
+
+- the **CLI**;
+- a **local browser app** (`python3 -m carvana_scraper.app`) adding dropdowns, pasted-report
+  ingest, and a local-Claude report reviewer;
+- **GRID** (`web/`), a password-gated Vercel site that queues searches for other people. It holds
+  the queue and results only — `carvana_scraper/worker.py` runs on each person's own laptop and
+  does the browser work there, because a serverless host cannot.
 
 **Read [`PROJECT_MAP.md`](PROJECT_MAP.md) first** — it is the source of truth for where things live,
-the data flow through both front ends, and a where-to-find table. Navigate by it instead of grepping.
+the data flow through all three front ends, and a where-to-find table. Navigate by it instead of
+grepping.
 
 Then [`README.md`](README.md) for usage, and [`docs/RECON.md`](docs/RECON.md) before changing
 anything that touches the sites — it records what was empirically verified on 2026-07-25, with
@@ -38,7 +44,11 @@ saved evidence in `fixtures/recon/`.
 - **Browser:** Playwright + real Google Chrome (`channel="chrome"`), persistent profile in
   `.browser-profile/`, always headful.
 - **Storage:** SQLite at `cache/carvana.db`; raw report text in `cache/raw/`; reports in `out/`.
-- **Deploy:** none — runs locally on demand.
+- **`web/` is a separate deployable** with its own `package.json`: Next.js App Router + `pg`, no
+  CSS framework, no ORM. The Playwright-only rule governs the Python package, not this. The
+  worker's own networking is `urllib.request`, so the package itself stays dependency-free.
+- **Deploy:** the CLI and local app run locally on demand. `web/` deploys to Vercel (root
+  directory `web`) behind Deployment Protection; see [`web/README.md`](web/README.md).
 
 ## Non-negotiable invariants
 These encode findings that cost real investigation. Do not "simplify" them away.
@@ -61,10 +71,11 @@ These encode findings that cost real investigation. Do not "simplify" them away.
    table of four cars when forty matched.
 8. **Never auto-solve a challenge.** Detect, alert, wait for a human. No CAPTCHA services, no proxy
    rotation, no concurrency on the report stage.
-9. **One orchestration.** `pipeline.execute` is the only copy of the four-stage flow; `cli.run` and
-   the app are both thin callers. It implements invariant 7, so a second drifted copy would
-   reintroduce exactly the failure that invariant catches. Every event's `text` is the exact string
-   the CLI prints — changing one changes CLI output, which `tests/test_pipeline.py` pins.
+9. **One orchestration.** `pipeline.execute` is the only copy of the four-stage flow; `cli.run`,
+   the app, and `worker.run_one` are all thin callers. It implements invariant 7, so a second
+   drifted copy would reintroduce exactly the failure that invariant catches. Every event's `text`
+   is the exact string the CLI prints — changing one changes CLI output, which
+   `tests/test_pipeline.py` pins.
 10. **The reviewer never touches the ranking.** `app/review.py` reads report prose the scorer
     discards and returns commentary. Enforced in code, not the prompt: disqualified cars are absent
     from its input, findings naming an unknown VIN are dropped, any emitted score or ordering is
@@ -78,7 +89,20 @@ These encode findings that cost real investigation. Do not "simplify" them away.
 12. **`detect_challenge` is for report pages only.** On carvana.com it false-positives —
     `/cdn-cgi/challenge-platform/scripts/jsd/main.js` loads on every healthy `/cars` response.
     Validate the outcome instead; the extractors raise when content is absent. `docs/RECON.md` §(d1).
-13. **The delivery location is captured, never constructed.** Carvana honours `CVCurrentZip` +
+13. **No hardcoded zip.** `zip_code` defaults to `None` everywhere and resolves in
+    `pipeline.execute` from `delivery.default_zip()` — this machine's captured location. It used to
+    default to `"89002"`, which was fine for one operator and silently prices every other
+    operator's search against the author's city. `None` means "no zip requested", and the
+    mismatch warning is suppressed rather than fired on every run.
+14. **The worker is scoped to its own machine.** Jobs belong to a worker token; the site password
+    is shared by every visitor and so cannot identify a laptop. The worker token, the browser's
+    owner key and the Vercel bypass secret are three different things — see `web/README.md`. Never
+    let a route claim, write progress to, or complete a run that is not `worker_id`-matched.
+15. **The web app renders `AppState.snapshot()`, it does not reshape it.** `app/serialize.py` is
+    the single contract between the pipeline and *both* browser front ends. A field added there
+    must land in `web/src/lib/types.ts` too. Report prose is the deliberate exception: it goes in
+    `run_reports`, out of the result blob, because the run view polls every 2s.
+16. **The delivery location is captured, never constructed.** Carvana honours `CVCurrentZip` +
     `CVCurrentCity` + `CVCurrentState` together and discards a partial triple, and the zip cookie is
     session-scoped so it must be replayed *before any navigation* on every session. City for an
     arbitrary zip is not ours to invent, so `--login` captures what Carvana wrote after the operator
@@ -90,7 +114,8 @@ These encode findings that cost real investigation. Do not "simplify" them away.
 | File | Purpose |
 |------|---------|
 | `carvana_scraper/cli.py` | argparse surface only. `run()` is a thin wrapper over `pipeline.execute` whose emit prints. |
-| `carvana_scraper/pipeline.py` | **The** 4-stage orchestration, with `emit(event)` + `abort`. Shared by the CLI and the app. |
+| `carvana_scraper/pipeline.py` | **The** 4-stage orchestration, with `emit(event)` + `abort`. Shared by all three front ends. |
+| `carvana_scraper/worker.py` | Claims queued jobs from the GRID site and runs them here. Third thin caller; reuses `AppState` verbatim. stdlib networking. |
 | `carvana_scraper/app/` | Local browser UI. `server.py` routes, `runner.py` worker threads, `state.py` mutex-guarded snapshot, `serialize.py` dataclass→JSON, `ingest.py` pasted reports, `review.py` the Claude reviewer, `static/` the page. |
 | `tools/extract_taxonomy.py` | Builds `config/carvana-taxonomy.json` from a saved or live `/cars` page. |
 | `config/carvana-taxonomy.json` | Committed dropdown data: 40 makes → 528 models + inventory bounds. Derived from a **gitignored** fixture, so it must stay committed. |
@@ -111,7 +136,7 @@ These encode findings that cost real investigation. Do not "simplify" them away.
 
 ## Testing
 ```bash
-python3 -m unittest discover -s tests -t . -v    # 187 tests, fully offline
+python3 -m unittest discover -s tests -t . -v    # 255 tests, fully offline
 ```
 Parser and ingest changes must be validated against `cache/raw/*.txt` (real archived reports) — those
 tests skip automatically when the directory is empty, so run them locally where it isn't.

@@ -4,6 +4,14 @@
 # Generated reports
 out/
 
+# This machine's worker identity. Whoever holds it can claim this operator's queued jobs and
+# publish results as them, so it is per-machine and never committed.
+.worker-token
+
+# Local worker/web configuration (CARVANA_WEB_URL, Vercel automation bypass secret)
+.env
+.env.local
+
 # VIN cache (SQLite) + archived raw report payloads
 cache/
 

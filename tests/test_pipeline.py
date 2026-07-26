@@ -16,12 +16,14 @@ import sys
 import threading
 import unittest
 from pathlib import Path
+from unittest import mock
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from carvana_scraper import browser, history, pipeline, report as report_mod, search, vdp
+from carvana_scraper import models
 from carvana_scraper.models import (
     STATUS_BLOCKED,
     STATUS_PARSED,
@@ -155,8 +157,11 @@ class PipelineHarness(unittest.TestCase):
 
     def run_pipeline(self, abort=None, **over):
         events: list[dict] = []
+        # zip_code is explicit so the pinned CLI strings still exercise the zip branch of
+        # describe(); the default is now None and resolves from the machine's captured location,
+        # which a test must never depend on.
         fields = dict(make="Toyota", model="4Runner", year_min=2018, year_max=2023,
-                      max_price=48000.0, max_miles=90000)
+                      max_price=48000.0, max_miles=90000, zip_code="89002")
         fields.update(over)
         result = pipeline.execute(pipeline.RunOptions(**fields), emit=events.append, abort=abort)
         return result, events
@@ -398,9 +403,15 @@ class RunOptionsTests(unittest.TestCase):
 
     def test_from_namespace_leaves_absent_fields_at_their_defaults(self) -> None:
         options = pipeline.RunOptions.from_namespace(argparse.Namespace(make="Toyota"))
-        self.assertEqual(options.zip_code, "89002")
+        self.assertIsNone(options.zip_code)
         self.assertEqual(options.max_pages, 8)
         self.assertEqual(options.sort, "score")
+
+    def test_zip_code_has_no_hardcoded_default(self) -> None:
+        """A constant here would price every other operator's search against the author's city."""
+        self.assertIsNone(pipeline.RunOptions().zip_code)
+        self.assertIsNone(models.SearchCriteria().zip_code)
+
 
     def test_has_criterion_matches_the_cli_validation(self) -> None:
         self.assertFalse(pipeline.RunOptions().has_criterion())
@@ -409,7 +420,7 @@ class RunOptionsTests(unittest.TestCase):
         self.assertTrue(pipeline.RunOptions(year_min=2018).has_criterion())
 
     def test_zip_alone_is_not_a_criterion(self) -> None:
-        """Deliberate: zip_code has a default, so counting it would make every run look valid."""
+        """Deliberate: a zip narrows nothing, so counting it would make every run look valid."""
         self.assertFalse(pipeline.RunOptions(zip_code="89002").has_criterion())
 
     def test_criteria_carries_the_scoring_anchors(self) -> None:
@@ -526,3 +537,31 @@ class MaxReportsNarrowingTests(PipelineHarness):
         result, _ = self.run_pipeline(max_reports=3)
         self.assertTrue(any("dropped by --max-reports" in line
                             for line in result.manifest.lines()))
+
+
+class ZipResolutionTests(PipelineHarness):
+    """`execute` resolves the zip once, so the CLI, the app and the worker cannot drift."""
+
+    def test_an_absent_zip_resolves_from_the_captured_delivery_location(self) -> None:
+        with mock.patch.object(pipeline.delivery, "default_zip", return_value="12345"):
+            result, events = self.run_pipeline(zip_code=None)
+        self.assertEqual(result.options.zip_code, "12345")
+        self.assertIn("zip 12345", self.text_of(events, "stage", n=1))
+
+    def test_an_explicit_zip_is_left_alone(self) -> None:
+        with mock.patch.object(pipeline.delivery, "default_zip", return_value="12345"):
+            result, _ = self.run_pipeline(zip_code="99999")
+        self.assertEqual(result.options.zip_code, "99999")
+
+    def test_no_captured_location_means_no_zip_anywhere(self) -> None:
+        """Not a fabricated default: the criteria line simply omits the zip."""
+        with mock.patch.object(pipeline.delivery, "default_zip", return_value=None):
+            result, events = self.run_pipeline(zip_code=None)
+        self.assertIsNone(result.options.zip_code)
+        self.assertNotIn("zip", self.text_of(events, "stage", n=1))
+
+    def test_no_zip_mismatch_warning_when_none_was_requested(self) -> None:
+        """Otherwise it fires on every run, which is how real warnings get ignored."""
+        with mock.patch.object(pipeline.delivery, "default_zip", return_value=None):
+            result, _ = self.run_pipeline(zip_code=None)
+        self.assertFalse(any("prices reflect zip" in w for w in result.manifest.warnings))

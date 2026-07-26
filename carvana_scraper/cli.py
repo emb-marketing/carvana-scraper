@@ -5,7 +5,7 @@ request. `--login` is the one command that waits on a human, by design.
 
     python3 -m carvana_scraper --login
     python3 -m carvana_scraper --make Toyota --model 4Runner --year-min 2018 --year-max 2023 \\
-        --max-price 38000 --max-miles 70000 --zip 89002 --top-n 12
+        --max-price 38000 --max-miles 70000 --top-n 12
 
 **Pipeline shape**, which follows directly from what the sites allow:
 
@@ -38,7 +38,7 @@ def build_parser() -> argparse.ArgumentParser:
             "examples:\n"
             "  python3 -m carvana_scraper --login\n"
             "  python3 -m carvana_scraper --make Toyota --model 4Runner --year-min 2018 \\\n"
-            "      --max-price 45000 --max-miles 80000 --zip 89002 --top-n 12\n"
+            "      --max-price 45000 --max-miles 80000 --top-n 12\n"
         ),
     )
     parser.add_argument("--login", action="store_true",
@@ -53,11 +53,12 @@ def build_parser() -> argparse.ArgumentParser:
                          help="max LANDED price (vehicle + shipping); also the scoring anchor")
     criteria.add_argument("--max-miles", type=int,
                          help="max odometer; also the scoring anchor")
-    criteria.add_argument("--zip", dest="zip_code", default="89002",
-                         help="delivery zip (default 89002). Compared against the zip Carvana "
-                              "actually prices with. To make Carvana USE it, run --login once and "
-                              "set the zip in Carvana's own location picker: that location is "
-                              "captured and replayed on every later run")
+    criteria.add_argument("--zip", dest="zip_code", default=None,
+                         help="delivery zip. Defaults to the location captured by --login on this "
+                              "machine. Compared against the zip Carvana actually prices with. To "
+                              "make Carvana USE it, run --login once and set the zip in Carvana's "
+                              "own location picker: that location is captured and replayed on "
+                              "every later run")
 
     run = parser.add_argument_group("run control")
     run.add_argument("--top-n", type=int, default=12,

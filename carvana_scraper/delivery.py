@@ -110,6 +110,18 @@ def apply(context, path: Path | str = DEFAULT_LOCATION_PATH) -> dict[str, str] |
     return location
 
 
+def default_zip(path: Path | str = DEFAULT_LOCATION_PATH) -> str | None:
+    """The zip this machine's captured delivery location prices against, if any.
+
+    The zip a run should default to is a property of *this* machine's profile, not a constant:
+    once more than one person runs this tool, a hardcoded zip silently prices everyone else's
+    search against the author's city. Returns None when nothing has been captured, which callers
+    should treat as "no zip criterion" rather than substituting one.
+    """
+    location = load(path)
+    return location["CVCurrentZip"] if location else None
+
+
 def describe(location: dict[str, str] | None) -> str:
     """One-line human summary."""
     if not location:

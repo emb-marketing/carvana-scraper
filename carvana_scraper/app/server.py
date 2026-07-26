@@ -19,7 +19,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 
-from .. import report as report_mod
+from .. import delivery, report as report_mod
 from ..pipeline import RunOptions
 from . import ingest as ingest_mod, review as review_mod, runner
 from .state import AppState
@@ -179,6 +179,9 @@ class Handler(BaseHTTPRequestHandler):
                 "default_review_count": review_mod.DEFAULT_REVIEW_COUNT,
                 "defaults": vars(RunOptions()),
                 "min_report_chars": ingest_mod.MIN_REPORT_CHARS,
+                # This machine's captured delivery location, not a constant — see
+                # delivery.default_zip. None means Chrome login has not captured one yet.
+                "default_zip": delivery.default_zip(),
             })
         return self._error(404, f"no route {route}")
 

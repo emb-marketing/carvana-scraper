@@ -62,6 +62,11 @@ async function loadConfig() {
   models.innerHTML = serverConfig.models
     .map((name) => `<option value="${esc(name)}"${name === serverConfig.default_model
       ? " selected" : ""}>${esc(name)}</option>`).join("");
+
+  // Prefilled from this machine's captured delivery location rather than a hardcoded zip, so a
+  // second operator does not silently search against someone else's city. Blank means nothing has
+  // been captured yet — run Chrome login.
+  if (serverConfig.default_zip) el("zip_code").value = serverConfig.default_zip;
 }
 
 async function loadTaxonomy() {

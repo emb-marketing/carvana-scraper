@@ -1,0 +1,31 @@
+{
+  "name": "grid-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shared queue and results UI for the carvana-scraper ranking pipeline.",
+  "scripts": {
+    "predev": "node scripts/copy-taxonomy.mjs",
+    "prebuild": "node scripts/copy-taxonomy.mjs",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.5.4",
+    "pg": "^8.22.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "overrides": {
+    "postcss": "^8.5.23",
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@types/pg": "^8.20.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "typescript": "^5.8.3"
+  }
+}

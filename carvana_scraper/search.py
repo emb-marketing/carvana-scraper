@@ -198,7 +198,9 @@ def collect_listings(
         matching = matching[:hard_limit]
     stats["matched"] = len(matching)
 
-    if stats["priced_zip"] and stats["priced_zip"] != criteria.zip_code:
+    # `criteria.zip_code` is None when no zip was requested and none was captured. There is nothing
+    # to disagree with then, so warning would fire on every run and train the operator to ignore it.
+    if criteria.zip_code and stats["priced_zip"] and stats["priced_zip"] != criteria.zip_code:
         print(
             f"  [search] WARNING: Carvana priced these results against zip "
             f"{stats['priced_zip']}, not the requested {criteria.zip_code}. "

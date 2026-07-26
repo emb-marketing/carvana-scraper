@@ -1,0 +1,505 @@
+/*
+ * GRID — design system.
+ *
+ * Committed dark palette. The app is a results dashboard read in one sitting, and the starting-
+ * grid metaphor (ranked cars as grid positions, lights out to launch a run) only reads on
+ * asphalt. Every motion rule below is disabled under prefers-reduced-motion at the bottom of the
+ * file — the animations are decoration over a layout that already works static.
+ */
+
+:root {
+  --asphalt-900: #08090c;
+  --asphalt-800: #0e1015;
+  --asphalt-700: #14171e;
+  --asphalt-600: #1c212b;
+  --asphalt-500: #2a3140;
+  --kerb-line: #333b4d;
+
+  --text: #eef1f7;
+  --text-dim: #98a2b8;
+  --text-faint: #6b7688;
+
+  --signal: #d4ff3f;      /* lights-out green, the primary accent */
+  --signal-dark: #a8cc26;
+  --flag-red: #ff4d4d;
+  --flag-amber: #ffb020;
+  --flag-blue: #4da3ff;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--asphalt-900);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Faint diagonal asphalt texture; sits behind everything and never scrolls into focus. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.35;
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(212, 255, 63, 0.06), transparent 60%),
+    radial-gradient(900px 500px at 95% 0%, rgba(77, 163, 255, 0.05), transparent 55%);
+}
+
+a { color: var(--signal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 { margin: 0; line-height: 1.15; letter-spacing: -0.02em; }
+
+.shell { max-width: 1080px; margin: 0 auto; padding: 0 20px 96px; }
+
+/* ---------- header / wordmark ---------- */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 0 26px;
+  flex-wrap: wrap;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 900;
+  font-size: 30px;
+  letter-spacing: -0.06em;
+  color: var(--text);
+  text-decoration: none;
+}
+.wordmark:hover { text-decoration: none; }
+
+/* The checkered block. 2x2 squares, and it flips once on hover like a flag catching air. */
+.flag {
+  width: 26px;
+  height: 26px;
+  border-radius: 5px;
+  background-image:
+    linear-gradient(45deg, var(--text) 25%, transparent 25%, transparent 75%, var(--text) 75%),
+    linear-gradient(45deg, var(--text) 25%, transparent 25%, transparent 75%, var(--text) 75%);
+  background-size: 13px 13px;
+  background-position: 0 0, 6.5px 6.5px;
+  background-color: var(--asphalt-600);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.wordmark:hover .flag { transform: rotateY(180deg) scale(1.08); }
+
+/* Block, or it runs straight into the wordmark with no space. */
+.tagline {
+  display: block;
+  color: var(--text-faint);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-top: 1px;
+}
+
+/* ---------- worker status pill ---------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--kerb-line);
+  background: var(--asphalt-700);
+  font-size: 13px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-faint); flex: none; }
+.dot.live { background: var(--signal); animation: throb 1.8s ease-in-out infinite; }
+.dot.busy { background: var(--flag-amber); animation: throb 0.9s ease-in-out infinite; }
+.dot.bad { background: var(--flag-red); }
+
+@keyframes throb {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 255, 63, 0.5); }
+  50% { box-shadow: 0 0 0 6px rgba(212, 255, 63, 0); }
+}
+
+/* ---------- surfaces ---------- */
+
+.card {
+  background: linear-gradient(180deg, var(--asphalt-800), var(--asphalt-700));
+  border: 1px solid var(--kerb-line);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.card + .card { margin-top: 18px; }
+
+.card-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 16px;
+}
+
+/* ---------- start lights ---------- */
+
+/*
+ * Five lights that fill left to right, then all cut to green — the F1 start sequence. Used as the
+ * launch affirmation when a run is queued, so the wait has a beat to it instead of a spinner.
+ */
+.lights { display: inline-flex; gap: 10px; }
+
+.lights .lamp {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--asphalt-500);
+  border: 2px solid var(--asphalt-600);
+}
+
+.lights.arming .lamp { animation: arm 0.4s ease forwards; }
+.lights.arming .lamp:nth-child(1) { animation-delay: 0.0s; }
+.lights.arming .lamp:nth-child(2) { animation-delay: 0.25s; }
+.lights.arming .lamp:nth-child(3) { animation-delay: 0.5s; }
+.lights.arming .lamp:nth-child(4) { animation-delay: 0.75s; }
+.lights.arming .lamp:nth-child(5) { animation-delay: 1.0s; }
+
+.lights.go .lamp { animation: go 0.45s ease forwards; }
+
+@keyframes arm {
+  to { background: var(--flag-red); box-shadow: 0 0 14px rgba(255, 77, 77, 0.7); }
+}
+@keyframes go {
+  0% { background: var(--flag-red); }
+  100% { background: var(--signal); box-shadow: 0 0 18px rgba(212, 255, 63, 0.8); }
+}
+
+/* ---------- forms ---------- */
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 16px; }
+
+@media (max-width: 640px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 6px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--asphalt-900);
+  border: 1px solid var(--kerb-line);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--signal);
+  box-shadow: 0 0 0 3px rgba(212, 255, 63, 0.14);
+}
+
+.hint { font-size: 12px; color: var(--text-faint); margin: 6px 0 0; }
+.hint.warn { color: var(--flag-amber); }
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--signal);
+  color: #10130a;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.12s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--signal-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212, 255, 63, 0.22);
+}
+.btn:active:not(:disabled) { transform: translateY(0); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* Light sweeps across the button on hover — a shine, not a loader. */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.45), transparent 70%);
+  transform: translateX(-120%);
+}
+.btn:hover:not(:disabled)::after { animation: sweep 0.7s ease; }
+
+@keyframes sweep { to { transform: translateX(120%); } }
+
+.btn.ghost {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--kerb-line);
+}
+.btn.ghost:hover:not(:disabled) { background: var(--asphalt-600); color: var(--text); box-shadow: none; }
+
+/* ---------- grid positions (the ranking) ---------- */
+
+.slot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
+  border: 1px solid var(--kerb-line);
+  border-radius: var(--radius);
+  background: var(--asphalt-800);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  animation: slot-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.slot:hover { border-color: var(--asphalt-500); transform: translateX(3px); }
+.slot + .slot { margin-top: 10px; }
+
+/* Staggered entrance, capped at ten so a long list does not crawl in. */
+.slot:nth-child(1) { animation-delay: 0.02s; }
+.slot:nth-child(2) { animation-delay: 0.06s; }
+.slot:nth-child(3) { animation-delay: 0.10s; }
+.slot:nth-child(4) { animation-delay: 0.14s; }
+.slot:nth-child(5) { animation-delay: 0.18s; }
+.slot:nth-child(6) { animation-delay: 0.22s; }
+.slot:nth-child(7) { animation-delay: 0.26s; }
+.slot:nth-child(8) { animation-delay: 0.30s; }
+.slot:nth-child(9) { animation-delay: 0.34s; }
+.slot:nth-child(n+10) { animation-delay: 0.38s; }
+
+@keyframes slot-in {
+  from { opacity: 0; transform: translateX(-14px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.position {
+  flex: none;
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--asphalt-600);
+  font-weight: 900;
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+}
+
+.slot.p1 .position { background: var(--signal); color: #10130a; }
+.slot.p2 .position { background: #b9c4d6; color: #10130a; }
+.slot.p3 .position { background: #c08457; color: #10130a; }
+.slot.p1 { border-color: rgba(212, 255, 63, 0.4); }
+
+.slot-main { flex: 1; min-width: 0; }
+.slot-name { font-weight: 650; letter-spacing: -0.01em; }
+.slot-meta {
+  font-size: 13px;
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+
+.score {
+  flex: none;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.score b { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
+.score span { display: block; font-size: 11px; color: var(--text-faint); letter-spacing: 0.1em; }
+
+/* ---------- badges ---------- */
+
+.badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.badge.queued { background: rgba(153, 162, 184, 0.16); color: var(--text-dim); }
+.badge.running { background: rgba(255, 176, 32, 0.16); color: var(--flag-amber); }
+.badge.done { background: rgba(212, 255, 63, 0.16); color: var(--signal); }
+.badge.failed { background: rgba(255, 77, 77, 0.16); color: var(--flag-red); }
+.badge.dq { background: rgba(255, 77, 77, 0.16); color: var(--flag-red); }
+.badge.warn { background: rgba(255, 176, 32, 0.16); color: var(--flag-amber); }
+
+/* ---------- stage progress ---------- */
+
+.stages { display: flex; gap: 8px; margin: 4px 0 18px; }
+
+.stage {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--asphalt-600);
+  overflow: hidden;
+  position: relative;
+}
+.stage.done { background: var(--signal); }
+.stage.active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--signal), transparent);
+  animation: scan 1.3s ease-in-out infinite;
+}
+
+@keyframes scan {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+/* ---------- challenge banner ---------- */
+
+.alert {
+  border: 1px solid var(--flag-amber);
+  background: rgba(255, 176, 32, 0.1);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  animation: alert-in 0.3s ease, alert-glow 2s ease-in-out infinite;
+}
+.alert.bad { border-color: var(--flag-red); background: rgba(255, 77, 77, 0.1); animation: alert-in 0.3s ease; }
+.alert h3 { font-size: 15px; margin-bottom: 4px; }
+.alert p { margin: 0; font-size: 13px; color: var(--text-dim); }
+
+@keyframes alert-in { from { opacity: 0; transform: translateY(-8px); } }
+@keyframes alert-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 176, 32, 0.25); }
+  50% { box-shadow: 0 0 22px 0 rgba(255, 176, 32, 0.15); }
+}
+
+/* ---------- event feed ---------- */
+
+.feed {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  max-height: 260px;
+  overflow-y: auto;
+  background: var(--asphalt-900);
+  border: 1px solid var(--kerb-line);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  white-space: pre-wrap;
+  color: var(--text-dim);
+}
+.feed div { animation: fade-in 0.3s ease; }
+@keyframes fade-in { from { opacity: 0; } }
+
+/* ---------- manifest / misc ---------- */
+
+.manifest {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  white-space: pre-wrap;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.rows { display: flex; flex-direction: column; gap: 1px; }
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px 4px;
+  border-bottom: 1px solid var(--asphalt-600);
+}
+.row:last-child { border-bottom: none; }
+
+/* A whole row is often a link. Inherit text colour so the list reads as a list, not as a wall of
+   accent-coloured links; the hover state carries the affordance instead. */
+a.row { color: inherit; text-decoration: none; }
+a.row:hover { text-decoration: none; background: var(--asphalt-800); }
+a.row:hover .slot-name { color: var(--signal); }
+
+.muted { color: var(--text-dim); }
+.faint { color: var(--text-faint); }
+.small { font-size: 13px; }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.stack { display: flex; flex-direction: column; gap: 10px; }
+.inline { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.spread { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.empty { text-align: center; padding: 40px 20px; color: var(--text-faint); }
+
+details.report { margin-top: 10px; }
+details.report summary { cursor: pointer; font-size: 13px; color: var(--signal); }
+details.report pre {
+  margin: 10px 0 0;
+  max-height: 380px;
+  overflow: auto;
+  background: var(--asphalt-900);
+  border: 1px solid var(--kerb-line);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  color: var(--text-dim);
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 28px 0 14px;
+}
+.section-head h2 { font-size: 17px; }
+.section-head .count { color: var(--text-faint); font-size: 13px; }
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

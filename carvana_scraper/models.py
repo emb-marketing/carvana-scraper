@@ -39,7 +39,10 @@ class SearchCriteria:
     year_max: int | None = None
     max_price: float | None = None
     max_miles: int | None = None
-    zip_code: str = "89002"
+    # None means "no zip was requested". Deliberately not a constant: a hardcoded default would
+    # price every other operator's search against the author's city. `delivery.default_zip()`
+    # supplies this machine's captured location, and None simply omits the comparison.
+    zip_code: str | None = None
     top_n: int = 12
     max_reports: int = 40
 
@@ -73,7 +76,8 @@ class SearchCriteria:
             parts.append(f"≤${self.max_price:,.0f} landed")
         if self.max_miles is not None:
             parts.append(f"≤{self.max_miles:,} mi")
-        parts.append(f"zip {self.zip_code}")
+        if self.zip_code:
+            parts.append(f"zip {self.zip_code}")
         return " · ".join(parts)
 
 

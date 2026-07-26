@@ -8,11 +8,14 @@ A personal (not client) tool that answers one question on demand: of the cars cu
 Carvana matching given criteria, which is the best one to buy? It ranks by price and mileage weighed
 against each vehicle's history reports, pulled from **two** vendors and merged pessimistically.
 
-Two front ends sit over **one** orchestration: a CLI, and a local browser app. The app exists for the
-two things a terminal does badly — dropdowns built from Carvana's own inventory taxonomy, and pasting
-in a report the scraper was blocked from fetching.
+Three front ends sit over **one** orchestration: a CLI, a local browser app, and GRID — a
+password-gated Vercel site that lets other people use it. The local app exists for the two things a
+terminal does badly: dropdowns built from Carvana's own inventory taxonomy, and pasting in a report
+the scraper was blocked from fetching.
 
-Runs locally on demand, driving a dedicated headful Chrome profile. No deploy, no server, no CI.
+The browser work always happens on someone's own machine, driving a dedicated headful Chrome
+profile. GRID holds only the queue and the results; it cannot scrape, because the pipeline needs
+real Chrome, a human for DataDome puzzles, minutes of wall clock, and a writable disk.
 
 ---
 
@@ -22,7 +25,7 @@ Runs locally on demand, driving a dedicated headful Chrome profile. No deploy, n
 carvana_scraper/
   __main__.py       `python3 -m carvana_scraper`. sys.exit(main()) — the exit code is load-bearing.
   cli.py            argparse surface. run() is a 4-line wrapper over pipeline.execute.
-  pipeline.py   ★   THE 4-stage orchestration. emit(event) + abort. Shared by both front ends.
+  pipeline.py   ★   THE 4-stage orchestration. emit(event) + abort. Shared by all three front ends.
   browser.py        Persistent real-Chrome session, human pacing, challenge detection, --login.
   search.py         Stage 1: page through results, filter locally, sniff the priced zip.
   rsc.py            Pull vehicle records out of Next.js RSC flight payloads. Pure.
@@ -34,6 +37,7 @@ carvana_scraper/
   report.py         Text table, markdown, RunManifest, exit code.
   models.py     ★   Listing / HistoryReport / ScoredVehicle + the completeness contract.
   cache.py          SQLite at cache/carvana.db, raw report text at cache/raw/.
+  worker.py     ★   Claims jobs from GRID and runs them here. Third thin caller of the pipeline.
 
   app/              The local browser UI. Nothing here is imported by the CLI.
     __main__.py     `python3 -m carvana_scraper.app`
@@ -45,12 +49,23 @@ carvana_scraper/
     review.py   ★   `claude -p` reviewer + its guardrails + quote verification.
     static/         index.html, app.css, app.js. One page, polls /api/state every second.
 
+web/              GRID: the shared site. Separate deployable, own package.json. See web/README.md.
+  schema.sql      workers / runs / run_reports. Apply once to Postgres.
+  src/lib/        db.ts (pg tagged template), auth.ts (tokens + pairing), options.ts (clamping),
+                  types.ts (mirrors AppState.snapshot() — keep in step with app/serialize.py).
+  src/app/api/    pair, runs, runs/[id], runs/[id]/report, worker/{register,claim,progress,complete}
+  src/app/        page.tsx (pair or submit), runs/[id]/page.tsx (live then final), globals.css
+  src/components/ SearchForm, PairPanel, GridSlot, StartLights
+
 tools/extract_taxonomy.py   Builds config/carvana-taxonomy.json from a saved or live /cars page.
 config/scoring.json         Weights + disqualifier toggles. Tunable without code changes.
-config/carvana-taxonomy.json  Committed dropdown data: 40 makes -> 528 models + bounds.
+config/carvana-taxonomy.json  Committed dropdown data: 40 makes -> 527 models + bounds.
+                              NOTE: makes have no `slug` — only models do.
 docs/RECON.md               Verified site behaviour and the evidence trail. Read before site changes.
-tests/                      193 tests, all offline. See "Testing" below.
-run-app.command             Double-clickable launcher.
+docs/SETUP.md               End-user onboarding for a GRID worker.
+tests/                      255 tests, all offline. See "Testing" below.
+run-app.command             Double-clickable launcher for the local app.
+setup.command               Double-clickable first-run setup for a GRID worker.
 .tmp/*.py                   Throwaway recon probes. Not package code; safe to delete.
 ```
 
@@ -60,15 +75,29 @@ run-app.command             Double-clickable launcher.
 
 ## Entry points and data flow
 
-**Both front ends call `pipeline.execute(options, emit, abort)`.** Do not fork it — it implements the
-manifest reconciliation (invariant 7), and a drifted second copy would reintroduce the exact failure
-that invariant catches.
+**All three front ends call `pipeline.execute(options, emit, abort)`.** Do not fork it — it
+implements the manifest reconciliation (invariant 7), and a drifted second copy would reintroduce
+the exact failure that invariant catches.
 
 ```
 CLI:  __main__ -> cli.main -> cli.run -> pipeline.execute(emit=print)
 App:  app.__main__ -> server.serve -> POST /api/run -> runner.start_run
                                    -> worker thread -> pipeline.execute(emit=state.record_event)
                       GET /api/state <- state.snapshot() <- browser polls every 1s
+GRID: worker.main -> Client.claim -> worker.run_one
+                  -> pipeline.execute(emit=ProgressPusher -> state.record_event + POST progress)
+                  -> POST complete { result: state.snapshot(), reports: [...] }
+      browser polls GET /api/runs/[id] every 2s
+```
+
+**GRID's pairing**, which exists because the shared site password identifies a *person allowed in*,
+not a *machine*:
+
+```
+worker first run -> .worker-token (0600) -> POST /api/worker/register -> pairing code "ABC123"
+operator types it on the site -> POST /api/pair -> owner_key in localStorage
+POST /api/runs {owner_key} -> run tagged with that worker_id
+POST /api/worker/claim {Bearer token} -> only that worker's queued runs, FOR UPDATE SKIP LOCKED
 ```
 
 **The four stages**, in `pipeline.py`:
@@ -115,7 +144,13 @@ POST /api/review -> runner.start_review -> review.select_vehicles (top 5 rankabl
 | "Does this car have Carfax?" | `history.has_carfax` — the one predicate; do not re-inline it |
 | Add a UI control | `app/static/index.html` + `app.js`, then `server.options_from_payload` |
 | Add an API route | `server.Handler.do_GET` / `do_POST` route tables |
-| Change what the browser sees | `app/state.py` `snapshot` + `app/serialize.py` |
+| Change what the browser sees | `app/state.py` `snapshot` + `app/serialize.py` — **and** `web/src/lib/types.ts` |
+| Change the GRID site's look | `web/src/app/globals.css`; the brand lives in `layout.tsx` |
+| Change what a submitted search may ask for | `web/src/lib/options.ts` `LIMITS` + `buildOptions` |
+| Add a field to a queued job | `pipeline.RunOptions`, then `web/src/lib/options.ts` — the worker **rejects** unknown keys rather than ignoring them |
+| GRID auth / pairing | `web/src/lib/auth.ts` and `web/README.md`'s table of the three secrets |
+| A worker cannot reach the API | Missing `VERCEL_AUTOMATION_BYPASS_SECRET`; Deployment Protection gates API routes too |
+| Deploy the site | `web/README.md` |
 | Dropdown values are wrong/stale | `tools/extract_taxonomy.py`, or the app's Refresh taxonomy |
 | A site-facing assumption | `docs/RECON.md` **before** touching `browser.py` / `search.py` / `rsc.py` |
 
@@ -124,8 +159,16 @@ POST /api/review -> runner.start_review -> review.select_vehicles (top 5 rankabl
 ## Conventions specific to this project
 
 - **Dependencies: Playwright only.** Everything else is stdlib — no `bs4`, no `rich`, no `pyyaml`, no
-  web framework. The app is `http.server` plus one HTML page. This is why pasted reports are
-  text-only: PDF needs a dependency and HTML needs a tag stripper.
+  web framework. The app is `http.server` plus one HTML page, and `worker.py` uses
+  `urllib.request`. This is why pasted reports are text-only: PDF needs a dependency and HTML needs
+  a tag stripper. `web/` is a separate deployable with its own `package.json` and is not covered by
+  this rule.
+- **No hardcoded zip.** `zip_code` is `None` by default and resolves in `pipeline.execute` from
+  `delivery.default_zip()` — this machine's captured location, not a constant.
+- **Resolve module paths at call time, not as argument defaults.** `load_or_create_token` and
+  `collect_reports` both read their module-level path inside the body. An argument default binds
+  once at import, so a test patching the module attribute misses it — which is how the suite
+  briefly wrote a real `.worker-token` into the repo.
 - **Unknown is never clean.** History fields are tri-state. A vehicle missing any of the seven
   `DECISION_FIELDS` cannot be ranked. An AutoCheck-only car can *never* be complete, because
   `parse_autocheck_text` deliberately never sets `structural_damage` or `airbag_deployment` — that is
@@ -136,19 +179,19 @@ POST /api/review -> runner.start_review -> review.select_vehicles (top 5 rankabl
 - **Never auto-solve a challenge.** Detect, alert, wait for a human.
 - **`browser.detect_challenge` is for report pages only.** It false-positives on carvana.com; see
   `docs/RECON.md` §(d1). On a Carvana page, validate the extraction outcome instead.
-- The full list is `CLAUDE.md` — 12 numbered invariants. Read them before changing behaviour.
+- The full list is `CLAUDE.md` — 16 numbered invariants. Read them before changing behaviour.
 
 ---
 
 ## Testing
 
 ```bash
-python3 -m unittest discover -s tests -t . -v      # 193 tests, fully offline
+python3 -m unittest discover -s tests -t . -v      # 255 tests, fully offline
 ```
 
 | File | Covers |
 |---|---|
-| `test_pipeline.py` (36) | The event contract, stage gating, completeness, warnings, abort, merge idempotency |
+| `test_pipeline.py` (40) | The event contract, stage gating, completeness, warnings, abort, merge idempotency |
 | `test_review.py` (45) | Dossier, guardrails, quote verification, invocation flags, failure modes |
 | `test_ingest.py` (24) | Paste validation, vendor detection, merge order, rescore — against real archived reports |
 | `test_app_flow.py` (23) | The real HTTP server end to end, browser stubbed, incl. the paste path |
@@ -156,6 +199,10 @@ python3 -m unittest discover -s tests -t . -v      # 193 tests, fully offline
 | `test_report.py` (17) | Manifest reconciliation, exit codes, bucketing, sort |
 | `test_parsers.py` (15) | Both parsers, inline fixtures + real archives when present |
 | `test_taxonomy.py` (14) | Extractor shape, slug/URL equivalence, failure modes |
+| `test_worker.py` (28) | Token handling, bypass/bearer headers, unknown-key rejection, progress throttling, failure classification, report collection |
+
+The web app has no automated tests; it was verified end to end against a local Postgres with the
+real worker (see `web/README.md` for how to stand that up).
 
 Tests that need real report text read `cache/raw/` and **skip when it is empty** — it is gitignored,
 so a fresh clone has none.
@@ -171,10 +218,17 @@ Never test by hammering the live sites. When a live check is genuinely needed,
 
 ## Known unverified paths
 
-Both need a human at the keyboard and are covered only by stubbed tests:
+These need a human at the keyboard and are covered only by stubbed tests:
 
-- A real DataDome puzzle during the Carfax stage — the app's challenge card, pause and resume.
+- A real DataDome puzzle during the Carfax stage — the app's challenge card, pause and resume, and
+  GRID's "check your Chrome window" banner. The banner path was exercised with a synthetic
+  `challenge` event, never a real puzzle.
 - `--login` through the app (the Done button releasing the worker thread).
+- **GRID against a real deployment.** The whole loop — register, pair, submit, claim, progress,
+  complete, per-car prose — was verified against a local Postgres and `next dev` with the browser
+  stubbed. Not yet verified: Vercel Deployment Protection plus the automation bypass secret, which
+  is the one piece that cannot be tested locally and the most likely thing to be wrong first.
+- `setup.command` on a machine that has never run this repo.
 
 ---
 

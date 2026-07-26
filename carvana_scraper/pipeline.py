@@ -64,7 +64,10 @@ class RunOptions:
     year_max: int | None = None
     max_price: float | None = None
     max_miles: int | None = None
-    zip_code: str = "89002"
+    # None resolves at run start to this machine's captured delivery location. See
+    # `delivery.default_zip` — a hardcoded default would price other operators' searches against
+    # the author's city.
+    zip_code: str | None = None
 
     top_n: int = 12
     max_reports: int = 40
@@ -209,7 +212,8 @@ def _stage_one_search(
     if search_stats.get("pagination_effective") is False:
         _warn(manifest, emit,
               f"pagination stopped early: {search_stats.get('stopped_because')}")
-    if search_stats.get("priced_zip") and search_stats["priced_zip"] != criteria.zip_code:
+    if (criteria.zip_code and search_stats.get("priced_zip")
+            and search_stats["priced_zip"] != criteria.zip_code):
         # Name the remedy. The zip IS settable — it needs a complete location captured from
         # Carvana's own picker during login, because a partial one is discarded and the cookie is
         # session-scoped. Saying only "prices reflect X" left this looking unfixable for a while.
@@ -405,6 +409,12 @@ def execute(
         rsc.PayloadShapeError: The first results page yielded no extractable records.
         FileNotFoundError: config/scoring.json is missing.
     """
+    # Resolved here rather than in each front end so the CLI, the app and the worker cannot drift.
+    # Mutating `options` is intended: every caller stores it as the record of what the run used, so
+    # it must show the zip that was actually requested.
+    if options.zip_code is None:
+        options.zip_code = delivery.default_zip()
+
     criteria = options.criteria()
     config = scoring.load_config()
     manifest = report_mod.RunManifest(criteria=criteria.describe())

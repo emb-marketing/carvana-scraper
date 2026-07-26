@@ -4,8 +4,10 @@ Personal tool that answers one question on demand: **of the cars currently on Ca
 criteria, which is the best one to buy right now?** — weighing price and mileage against each
 vehicle's history report.
 
-Not client work. Runs locally, on demand, driven by a dedicated Chrome profile. There are two front
-ends over one pipeline: a **local app** with dropdowns, and the **CLI**.
+Not client work. Runs locally, on demand, driven by a dedicated Chrome profile. There are three
+front ends over one pipeline: a **local app** with dropdowns, the **CLI**, and **GRID** — a
+password-gated website that queues searches for other people, each running a worker on their own
+laptop.
 
 ---
 
@@ -83,6 +85,34 @@ Two things persist and both matter:
   stops a warning that otherwise fires on every single run, which is how real warnings get ignored.
 
   Stored at `.browser-profile/delivery-location.json`, gitignored with the profile.
+
+---
+
+## GRID — the shared site
+
+`web/` is a Next.js app on Vercel that lets other people use this. It holds the queue and the
+results; **it does not scrape.** It cannot: the pipeline needs headful real Chrome with an aged
+profile, a human to clear DataDome puzzles, minutes per run, and a writable disk. So each person
+runs their own worker.
+
+```bash
+python3 -m carvana_scraper.worker      # on each person's own laptop
+```
+
+The worker prints a six-character pairing code on first run; enter it once on the site and that
+browser is bound to that machine. From then on, searches submitted there are claimed only by that
+worker, run against its own Chrome profile and IP, and published back with progress, the ranking,
+the manifest and the report text.
+
+`carvana_scraper/worker.py` is a **third thin caller** of `pipeline.execute`, alongside `cli.run`
+and the app's runner. It reuses `AppState` wholesale — `record_event` is already the emit
+callback shape and `snapshot()` is already the payload a browser wants — so the website renders
+exactly the contract the local app renders, and there is no second serialization to drift.
+
+Setup for a new machine is [`docs/SETUP.md`](docs/SETUP.md); deploying the site is
+[`web/README.md`](web/README.md). Access is Vercel Deployment Protection — one shared password —
+plus a per-machine worker token, because the password says *someone* is allowed in and cannot say
+*which laptop* a job belongs to.
 
 ---
 
@@ -207,7 +237,7 @@ gitignored.
 python3 -m unittest discover -s tests -t . -v
 ```
 
-51 tests, fully offline — no browser, no network. Fixtures are synthetic but copied from real
+255 tests, fully offline — no browser, no network. Fixtures are synthetic but copied from real
 report layouts, so they run on a fresh clone; when `cache/raw/` has real archived reports, extra
 tests validate against those too.
 
@@ -315,5 +345,16 @@ open the free report Carvana already links. Accordingly: sequential fetches only
 pacing, a hard `--max-reports` cap, a 30-day per-VIN cache so no report is fetched twice, and
 **the tool never solves a challenge — a human does.**
 
-Do not redistribute fetched report data. Do not add proxy rotation, CAPTCHA-solving services, or
-concurrency to the report stage; each of those would turn human-scale research into something else.
+Do not add proxy rotation, CAPTCHA-solving services, or concurrency to the report stage; each of
+those would turn human-scale research into something else.
+
+**On report data.** This used to say "do not redistribute fetched report data," and the shared
+site (below) is a deliberate, eyes-open departure from it: a worker uploads the full text of every
+report it fetched, and anyone with the site password can read it. That is a decision about a small
+known group behind a password, not a change of view about publishing report data — it must not be
+made public, indexed, or handed to anyone outside that group. Every other commitment above is
+unchanged: the fetching is still sequential, still capped, still cached so no report is pulled
+twice, and still stops for a human at every challenge.
+
+Volume does not increase because the site exists. Each person runs their own worker against their
+own profile and IP, doing what they would have done by hand for their own purchase.
