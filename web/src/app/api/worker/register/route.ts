@@ -8,10 +8,21 @@
  * searches run here rather than on whoever else is online — the difference between "somebody's
  * laptop does it" and "my laptop does it". It is a link rather than a code so there is nothing to
  * read off one screen and type into another.
+ *
+ * This is the only worker route gated by the shared enrollment key: the others prove who they are
+ * with the worker token, which is exactly what does not exist yet here. See `enrollmentMatches`.
  */
 import { NextRequest } from "next/server";
 
-import { LINK_TTL_MINUTES, bearerToken, error, hashSecret, json, newSecret } from "@/lib/auth";
+import {
+  LINK_TTL_MINUTES,
+  bearerToken,
+  enrollmentMatches,
+  error,
+  hashSecret,
+  json,
+  newSecret,
+} from "@/lib/auth";
 import { sql } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
@@ -19,6 +30,21 @@ export const dynamic = "force-dynamic";
 type Row = { id: string; label: string; owner_key_hash: string | null; link_token: string | null };
 
 export async function POST(request: NextRequest) {
+  // Fails closed, like the PIN middleware: an unset key means no machine may enrol, never that any
+  // machine may. The failure mode of the alternative is an open queue nobody notices is open.
+  const expected = process.env.GRID_ENROLL_SECRET;
+  if (!expected) {
+    return error("GRID is not configured for worker enrolment.", 503,
+                 "Set GRID_ENROLL_SECRET on the deployment, then redeploy.");
+  }
+
+  const presented = request.headers.get("x-grid-enroll") ?? "";
+  if (!presented || !enrollmentMatches(presented, expected)) {
+    return error("this machine is not allowed to enrol", 403,
+                 "Download the worker again from the site's Set up page — the archive carries the "
+                 + "current enrolment key.");
+  }
+
   const token = bearerToken(request);
   if (!token) return error("missing worker token", 401);
 

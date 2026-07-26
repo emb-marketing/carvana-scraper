@@ -128,22 +128,27 @@ def load_or_create_token(path: Path | str | None = None) -> str:
 class Client:
     """Thin JSON client for the web app's worker routes."""
 
-    def __init__(self, base_url: str, token: str, bypass: str | None = None) -> None:
+    def __init__(self, base_url: str, token: str, bypass: str | None = None,
+                 enroll: str | None = None) -> None:
         self.base_url = base_url.rstrip("/")
         self.token = token
         self.bypass = bypass
+        self.enroll = enroll
 
-    def post(self, path: str, payload: dict) -> dict:
+    def post(self, path: str, payload: dict, extra_headers: dict[str, str] | None = None) -> dict:
         """POST JSON and return the decoded response.
 
         Raises:
             WorkerError: On any transport or non-2xx response.
         """
+        headers = self._headers()
+        if extra_headers:
+            headers.update(extra_headers)
         request = urllib.request.Request(
             f"{self.base_url}{path}",
             data=json.dumps(payload).encode("utf-8"),
             method="POST",
-            headers=self._headers(),
+            headers=headers,
         )
         try:
             with urllib.request.urlopen(request, timeout=HTTP_TIMEOUT_S) as response:
@@ -169,7 +174,11 @@ class Client:
     # -- routes --
 
     def register(self, label: str) -> dict:
-        return self.post("/api/worker/register", {"label": label})
+        # The enrollment key rides on this call only. It answers "may this machine join at all",
+        # which the worker token cannot answer, because registering is how that token becomes known
+        # to the site. Every later call is authenticated by the token alone.
+        extra = {"x-grid-enroll": self.enroll} if self.enroll else None
+        return self.post("/api/worker/register", {"label": label}, extra)
 
     def claim(self) -> dict | None:
         """The next job for this worker, or None when the queue is empty."""
@@ -413,11 +422,20 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     client = Client(base_url, load_or_create_token(),
-                    setting("VERCEL_AUTOMATION_BYPASS_SECRET", env_file) or None)
+                    setting("VERCEL_AUTOMATION_BYPASS_SECRET", env_file) or None,
+                    setting("GRID_ENROLL_SECRET", env_file) or None)
     try:
         _announce(client.register(socket.gethostname()), client.base_url)
     except WorkerError as exc:
-        print(f"Could not reach {base_url}: {exc}", file=sys.stderr)
+        # A refusal is not an outage. Reporting a 403 as "could not reach" sends the operator to
+        # debug their network when the answer is their download.
+        if "returned 403" in str(exc) or "returned 503" in str(exc):
+            print(f"{base_url} refused this machine.\n{exc}\n\n"
+                  "Download the worker again from the site's Set up page — the archive carries the\n"
+                  "enrolment key, and this copy's is missing or out of date.",
+                  file=sys.stderr)
+        else:
+            print(f"Could not reach {base_url}: {exc}", file=sys.stderr)
         return 2
 
     try:

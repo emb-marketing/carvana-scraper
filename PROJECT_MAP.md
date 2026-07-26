@@ -97,10 +97,11 @@ GRID: worker.main -> Client.claim -> worker.run_one
       browser polls GET /api/runs/[id] every 2s
 ```
 
-**GRID's two secrets**, answering two different questions:
+**GRID's three secrets**, answering three different questions:
 
 ```
 person  -> site PIN -> POST /api/gate -> HMAC cookie -> middleware lets pages + browser APIs through
+may join -> GRID_ENROLL_SECRET -> x-grid-enroll on POST /api/worker/register only (fails closed)
 machine -> .worker-token (0600) -> POST /api/worker/register -> Bearer on /api/worker/* (PIN-exempt)
 
 claim a machine (optional):

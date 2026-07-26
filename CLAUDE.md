@@ -94,13 +94,18 @@ These encode findings that cost real investigation. Do not "simplify" them away.
     default to `"89002"`, which was fine for one operator and silently prices every other
     operator's search against the author's city. `None` means "no zip requested", and the
     mismatch warning is suppressed rather than fired on every run.
-14. **Two secrets, two questions.** The **site PIN** (middleware, `SITE_PIN`) authenticates a
-    *person*; the **worker token** (`Authorization: Bearer`) authenticates a *machine*. Neither
-    substitutes for the other — without the token, anyone past the PIN could publish fabricated
-    results. Worker routes are PIN-exempt by design and authenticate themselves. The middleware
-    **fails closed**: unset config returns 503, never an open site. Vercel's own Deployment
-    Protection is unavailable on this plan (Advanced Deployment Protection required) — do not
-    re-plan around it without checking the API first.
+14. **Three secrets, three questions.** The **site PIN** (middleware, `SITE_PIN`) authenticates a
+    *person*; the **enrolment key** (`GRID_ENROLL_SECRET`, header `x-grid-enroll`) says a machine may
+    *join at all*; the **worker token** (`Authorization: Bearer`) says *which* machine it is. None
+    substitutes for another — without the token, anyone past the PIN could publish fabricated
+    results. Worker routes are PIN-exempt by design and authenticate themselves. Both the middleware
+    and `register` **fail closed**: unset config returns 503, never an open site or an open queue.
+    The enrolment key gates `register` alone, because that is the one route with no worker token to
+    present yet — it is establishing one. It exists because publishing the source removed the
+    barrier that used to stand in for it ("nobody knows the protocol"); do not remove it on the
+    grounds that the URL is unpublished, which is obscurity, not authentication. Vercel's own
+    Deployment Protection is unavailable on this plan (Advanced Deployment Protection required) — do
+    not re-plan around it without checking the API first.
 15. **Two job routes, own-first.** A run from a browser that has claimed a machine is addressed to
     it (`worker_id` set); a run from any other browser has `worker_id` NULL and goes to the pool.
     Workers claim addressed work before pool work, ordered `(worker_id is null), created_at`, under

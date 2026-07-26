@@ -34,7 +34,8 @@ cd web
 npm install
 createdb grid_dev
 psql -d grid_dev -f schema.sql
-DATABASE_URL="postgresql://$USER@localhost/grid_dev" SITE_PIN=dev SESSION_SECRET=dev npm run dev
+DATABASE_URL="postgresql://$USER@localhost/grid_dev" \
+  SITE_PIN=dev SESSION_SECRET=dev GRID_ENROLL_SECRET=dev npm run dev
 ```
 
 `predev` copies `../config/carvana-taxonomy.json` into `public/` for the make/model dropdowns. The
@@ -44,19 +45,29 @@ Point a worker at it:
 
 ```bash
 cd ..
-CARVANA_WEB_URL=http://127.0.0.1:3000 python3 -m carvana_scraper.worker
+CARVANA_WEB_URL=http://127.0.0.1:3000 GRID_ENROLL_SECRET=dev python3 -m carvana_scraper.worker
 ```
 
-## Access: two secrets, two questions
+## Access: three secrets, three questions
 
 | Secret | Held by | Answers | Enforced by |
 |---|---|---|---|
 | `SITE_PIN` | every visitor | may this **person** in | `src/middleware.ts` |
-| worker token | one machine | which **machine** is this | `Authorization: Bearer` on `/api/worker/*` |
+| `GRID_ENROLL_SECRET` | every worker | may this machine **join** | `x-grid-enroll` on `/api/worker/register` |
+| worker token | one machine | **which** machine is this | `Authorization: Bearer` on `/api/worker/*` |
 
 They are not interchangeable. Without the worker token, anyone past the PIN could publish
 fabricated results; without the PIN, the site is public. Worker routes are deliberately PIN-exempt
 — they are called by machines with no browser session, and they authenticate themselves.
+
+The enrolment key exists because `register` is the one worker route that **cannot** present a worker
+token: the token is the thing it is establishing. While the source was private, "nobody knows the
+protocol" stood in for that check. Publishing the repo ended that — anyone who learned the URL could
+otherwise self-enrol, claim pool jobs, read the searches people submitted and publish fabricated
+results. So the check is explicit now. It is shared by every worker rather than per-machine, because
+it answers the coarser question, and it reaches a machine exactly the way the URL does: inside the
+tarball, behind the PIN. `register` **fails closed** — unset means no machine may enrol, and the
+build prints a warning when it bundles a worker without the key.
 
 The middleware **fails closed**: with `SITE_PIN` or `SESSION_SECRET` unset it returns 503 rather
 than serving, because the alternative failure mode is a public site nobody notices is public.
@@ -84,7 +95,9 @@ since Deployment Protection gates API routes too. The worker already sends the
    `../config/carvana-taxonomy.json` reachable at build time.
 2. Provision Postgres, apply `schema.sql`, set `DATABASE_URL` to the **pooled** connection string
    (hostname containing `-pooler`).
-3. Set `SITE_PIN` and `SESSION_SECRET`.
+3. Set `SITE_PIN`, `SESSION_SECRET`, and `GRID_ENROLL_SECRET` (any 32-byte random string). The
+   enrolment key must be present at **build** time too — `bundle-worker.mjs` bakes it into the
+   download, so a build without it produces a worker that cannot register.
 4. `vercel deploy --prod`.
 
 Verify the gate:

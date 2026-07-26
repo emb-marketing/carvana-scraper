@@ -35,13 +35,17 @@ class RecordingClient(worker.Client):
     """A Client that records calls instead of making them."""
 
     def __init__(self, claims=None, fail_on: set[str] | None = None) -> None:
-        super().__init__("https://example.test", "tok", bypass="bypass-secret")
+        super().__init__("https://example.test", "tok", bypass="bypass-secret",
+                         enroll="enroll-key")
         self.calls: list[tuple[str, dict]] = []
+        self.extra_headers: list[tuple[str, dict[str, str]]] = []
         self._claims = list(claims or [])
         self._fail_on = fail_on or set()
 
-    def post(self, path: str, payload: dict) -> dict:
+    def post(self, path: str, payload: dict,
+             extra_headers: dict[str, str] | None = None) -> dict:
         self.calls.append((path, payload))
+        self.extra_headers.append((path, extra_headers or {}))
         if path in self._fail_on:
             raise worker.WorkerError(f"stubbed failure on {path}")
         if path == "/api/worker/claim":
@@ -52,6 +56,12 @@ class RecordingClient(worker.Client):
 
     def paths(self) -> list[str]:
         return [path for path, _ in self.calls]
+
+    def headers_for(self, path: str) -> dict[str, str]:
+        for call_path, headers in self.extra_headers:
+            if call_path == path:
+                return headers
+        raise AssertionError(f"no call to {path} in {self.paths()}")
 
     def body(self, path: str) -> dict:
         for call_path, payload in self.calls:
@@ -137,6 +147,37 @@ class HeaderTests(unittest.TestCase):
 
     def test_trailing_slash_is_normalized(self) -> None:
         self.assertEqual(worker.Client("https://x.test/", "tok").base_url, "https://x.test")
+
+    def test_the_enrollment_key_is_not_a_standing_header(self) -> None:
+        """It rides one call. A standing header would send it on every poll for no reason."""
+        self.assertNotIn("x-grid-enroll",
+                         worker.Client("https://x.test", "tok", enroll="k")._headers())
+
+
+class EnrollmentTests(unittest.TestCase):
+    """Registration is the only route the shared key gates — the rest prove the worker token."""
+
+    def test_register_presents_the_enrollment_key(self) -> None:
+        client = RecordingClient()
+        client.register("machine")
+        self.assertEqual(client.headers_for("/api/worker/register")["x-grid-enroll"],
+                         "enroll-key")
+
+    def test_no_other_route_presents_it(self) -> None:
+        client = RecordingClient(claims=[None])
+        client.register("machine")
+        client.claim()
+        client.progress("run-1", {})
+        client.complete("run-1", {}, [])
+        for path in ("/api/worker/claim", "/api/worker/progress", "/api/worker/complete"):
+            self.assertNotIn("x-grid-enroll", client.headers_for(path), path)
+
+    def test_the_header_is_omitted_rather_than_sent_empty_when_unconfigured(self) -> None:
+        """An empty header would read as a wrong key; absent is the honest signal."""
+        client = RecordingClient()
+        client.enroll = None
+        client.register("machine")
+        self.assertEqual(client.headers_for("/api/worker/register"), {})
 
 
 # ---- options -------------------------------------------------------------------------------

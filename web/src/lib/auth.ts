@@ -11,7 +11,7 @@
  * constant-time comparison here: there is no secret-to-secret comparison to make, and a 32-byte
  * random token is not guessable.
  */
-import { createHash, randomBytes } from "node:crypto";
+import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 
 import { sql } from "./db";
 
@@ -30,6 +30,27 @@ export function hashSecret(secret: string): string {
 
 export function newSecret(): string {
   return randomBytes(32).toString("base64url");
+}
+
+/**
+ * Whether a machine presented the shared enrollment key.
+ *
+ * Registration is the one worker route that cannot authenticate with a worker token, because the
+ * token is the thing it is establishing. While the source was private, "nobody knows the protocol"
+ * stood in for that check. It does not any more: the repo is public, so anyone who learns the
+ * deployment URL could otherwise self-enrol, claim pool jobs, read the searches people submitted
+ * and publish fabricated results.
+ *
+ * The key is shared by every worker rather than per-machine, because it answers a coarser question
+ * — may this machine join at all — and it is delivered the same way the URL is, inside the tarball
+ * behind the PIN. Compared over fixed-length digests so neither length nor first-difference
+ * position leaks by timing.
+ */
+export function enrollmentMatches(submitted: string, expected: string): boolean {
+  return timingSafeEqual(
+    Buffer.from(hashSecret(submitted), "hex"),
+    Buffer.from(hashSecret(expected), "hex"),
+  );
 }
 
 /**

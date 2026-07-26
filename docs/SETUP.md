@@ -32,7 +32,7 @@ everyone; close them all and searches queue until one returns.
 | **macOS** | The launcher is a `.command` file. Linux and Windows work; run the Python directly. |
 | **Python 3.11+** | `python3 --version`. macOS ships one; otherwise [python.org](https://www.python.org/downloads/). |
 | **Google Chrome** | The real one, from [google.com/chrome](https://www.google.com/chrome/). Not Chromium, not Brave. |
-| **The site** | You need the link and the PIN to download the worker in the first place. |
+| **The site** | You need the link and the PIN to download the worker in the first place. The download also carries the enrolment key that lets your machine join, which is why it has to come from the site rather than from a `git clone`. |
 
 ---
 
@@ -135,6 +135,12 @@ you at the keyboard.
 
 **"CARVANA_WEB_URL is not set"** — you are running from a folder with no `.env`. Use
 `./start.command`, or `CARVANA_WEB_URL=https://… python3 -m carvana_scraper.worker`.
+
+**"refused this machine" / 403 on startup** — your download predates the current enrolment key, or
+you assembled the folder from a `git clone` rather than the site. The key is not in the repository
+by design; it ships inside `grid-worker.tar.gz`. Download it again from **Set up** and the message
+goes away. A 503 saying GRID "is not configured for worker enrolment" is the other side of the same
+coin: the *deployment* is missing `GRID_ENROLL_SECRET`, so nothing can enrol until it is set.
 
 **"another Chrome is using the dedicated profile"** — the local app or a second worker is running.
 Close it. The error text includes the exact `rm -f` command if a crash left a stale lock.

@@ -149,11 +149,13 @@ and the app's runner. It reuses `AppState` wholesale — `record_event` is alrea
 callback shape and `snapshot()` is already the payload a browser wants — so the website renders
 exactly the contract the local app renders, and there is no second serialization to drift.
 
-Access is a **site PIN** checked by Next.js middleware, plus a per-machine **worker token** on the
-worker routes. Vercel's own Deployment Protection would have been simpler, but password protection
-needs the Advanced Deployment Protection add-on and Vercel Authentication is not offered for
-production on this plan — both were refused at the API, so the gate lives in the app. It fails
-closed: with `SITE_PIN` unset the site returns 503 rather than serving.
+Access is a **site PIN** checked by Next.js middleware, a shared **enrolment key** deciding whether a
+machine may join the pool at all, and a per-machine **worker token** on the worker routes. Vercel's
+own Deployment Protection would have been simpler, but password protection needs the Advanced
+Deployment Protection add-on and Vercel Authentication is not offered for production on this plan —
+both were refused at the API, so the gate lives in the app. It fails closed twice over: with
+`SITE_PIN` unset the site returns 503 rather than serving, and with `GRID_ENROLL_SECRET` unset no
+machine can enrol.
 
 **Getting a machine running is still a download, not a clone.** The code is public, but this
 deployment's URL is not — so the site generates `grid-worker.tar.gz` at build time, holding the

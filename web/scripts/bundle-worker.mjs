@@ -32,6 +32,16 @@ const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
   : "";
 
+/**
+ * The enrolment key this bundle will present to /api/worker/register.
+ *
+ * Must be the same value the deployment holds as GRID_ENROLL_SECRET, so it is read from the build
+ * environment rather than generated here — a per-build key would refuse every worker. A bundle
+ * built without it cannot register at all, which is worth a loud build-time line rather than a
+ * confusing 503 at somebody's first run.
+ */
+const enrollSecret = process.env.GRID_ENROLL_SECRET ?? "";
+
 if (!existsSync(join(repo, "carvana_scraper"))) {
   console.warn("[bundle-worker] carvana_scraper/ not found — skipping bundle.");
   process.exit(0);
@@ -102,7 +112,13 @@ exec python3 -m carvana_scraper.worker
 
 // Also as a .env, so `python3 -m carvana_scraper.worker` works directly — the docs tell people to
 // run that day to day, and it would otherwise fail with the URL living only inside the launcher.
-if (siteUrl) writeFileSync(join(root, ".env"), `CARVANA_WEB_URL=${siteUrl}\n`, "utf8");
+//
+// The enrolment key travels the same way as the URL and for the same reason: it has to reach a
+// machine without being published, and this archive is already behind the PIN.
+const envLines = [];
+if (siteUrl) envLines.push(`CARVANA_WEB_URL=${siteUrl}`);
+if (enrollSecret) envLines.push(`GRID_ENROLL_SECRET=${enrollSecret}`);
+if (envLines.length) writeFileSync(join(root, ".env"), `${envLines.join("\n")}\n`, "utf8");
 
 const launcherPath = join(root, "start.command");
 writeFileSync(launcherPath, launcher, "utf8");
@@ -132,3 +148,7 @@ execFileSync("tar", ["-czf", target, "-C", stage, "grid-worker"], { stdio: "inhe
 rmSync(stage, { recursive: true, force: true });
 
 console.log(`[bundle-worker] ${target}${siteUrl ? ` (site ${siteUrl})` : " (site prompted at run)"}`);
+if (!enrollSecret) {
+  console.warn("[bundle-worker] GRID_ENROLL_SECRET is unset — a worker from this bundle cannot "
+    + "register. Set it in the build environment for any deployment people download from.");
+}
