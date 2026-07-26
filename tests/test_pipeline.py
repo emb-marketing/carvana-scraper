@@ -478,3 +478,51 @@ class MergeIdempotencyTests(unittest.TestCase):
         self.assertTrue(again.accident_reported)
         self.assertEqual(again.owner_count, 3)
         self.assertTrue(history.has_carfax(again))
+
+
+class MaxReportsNarrowingTests(PipelineHarness):
+    """A matched vehicle with no history appears in NO bucket — that must never be silent.
+
+    Reproduces a real run: 65 matched, --max-reports defaulted to 40, and 25 cars vanished from
+    every section while the manifest reported that its counts reconciled and the process exited 0.
+    """
+
+    def setUp(self) -> None:
+        super().setUp()
+        self.listings = [make_listing(f"VIN{index:014d}") for index in range(5)]
+        self.reports = {listing.vin: complete_report(listing.vin) for listing in self.listings}
+        self.stats = base_stats(matched=5, matched_before_limit=5, parsed_listings=40,
+                               filtered_out=35)
+
+    def test_cars_beyond_max_reports_are_counted_and_warned(self) -> None:
+        result, _ = self.run_pipeline(max_reports=3)
+        self.assertEqual(result.manifest.dropped_by_max_reports, 2)
+        self.assertTrue(any("--max-reports 3 left 2 of 5" in w
+                            for w in result.manifest.warnings),
+                        f"no warning names the drop: {result.manifest.warnings}")
+
+    def test_the_drop_breaks_reconciliation_and_the_exit_code(self) -> None:
+        result, _ = self.run_pipeline(max_reports=3)
+        problems = result.manifest.reconciliation_problems()
+        self.assertTrue(any("appear in NO section" in p for p in problems), problems)
+        self.assertEqual(result.exit_code, 1,
+                         "a run that silently dropped matches must not exit 0")
+
+    def test_buckets_plus_dropped_account_for_every_match(self) -> None:
+        """The arithmetic an operator would do to check nothing went missing."""
+        result, _ = self.run_pipeline(max_reports=3)
+        manifest = result.manifest
+        bucketed = manifest.ranked + manifest.needs_carfax + manifest.disqualified
+        self.assertEqual(bucketed + manifest.dropped_by_max_reports, manifest.matched)
+
+    def test_no_drop_when_the_budget_covers_every_match(self) -> None:
+        result, _ = self.run_pipeline(max_reports=40)
+        self.assertEqual(result.manifest.dropped_by_max_reports, 0)
+        self.assertFalse(any("--max-reports" in w for w in result.manifest.warnings))
+        self.assertFalse(any("NO section" in p
+                             for p in result.manifest.reconciliation_problems()))
+
+    def test_the_counter_appears_in_the_manifest_lines(self) -> None:
+        result, _ = self.run_pipeline(max_reports=3)
+        self.assertTrue(any("dropped by --max-reports" in line
+                            for line in result.manifest.lines()))

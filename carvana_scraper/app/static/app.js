@@ -277,42 +277,62 @@ function renderChallenge(state) {
   }
 }
 
-function renderHelp(state) {
-  const rows = state.needs_carfax || [];
-  show(el("help-panel"), rows.length > 0);
-  text(el("help-count"), rows.length ? `— ${rows.length}` : "");
+/* Renders one held-out car. `actionable` cars get the paste button prominently; the rest are a
+   reference list, because their remedy is one setting, not a manual step per car. */
+function heldOutCard(row, actionable) {
+  const missing = row.missing_decision_fields.join(", ") || "none";
+  const pasteButton = `<button type="button" class="${actionable ? "primary" : ""}"
+      data-paste-vin="${esc(row.vin)}" data-paste-label="${esc(row.label)}">Paste report…</button>`;
+  return `<div class="card">
+    <div class="card-title">${esc(row.label)}</div>
+    <div class="card-meta">
+      VIN ${esc(row.vin)} · ${money(row.landed_price)} · ${count(row.mileage)} mi<br>
+      Missing: <code>${esc(missing)}</code>
+    </div>
+    ${actionable ? `<div class="url">${esc(row.carfax_url)}</div>` : ""}
+    <div class="actions">
+      <a href="${esc(row.carfax_url)}" target="_blank" rel="noopener">
+        <button type="button">Open Carfax</button></a>
+      <a href="${esc(row.listing_url)}" target="_blank" rel="noopener">
+        <button type="button">Listing</button></a>
+      ${pasteButton}
+    </div>
+  </div>`;
+}
 
-  const REMEDIES = {
-    paste_or_retry: "· Carfax was attempted and not obtained — paste it below, or re-run to retry",
-    carfax_skipped: "· Carfax was skipped for this run — untick <em>No Carfax</em> and re-run, " +
-                    "or paste the report below",
-    raise_top_n: "· outside the Carfax shortlist — raise <em>Carfax for top N</em> and re-run",
-  };
-
-  el("help-list").innerHTML = rows.map((row) => {
-    const missing = row.missing_decision_fields.join(", ") || "none";
-    return `<div class="card">
-      <div class="card-title">${esc(row.label)}</div>
-      <div class="card-meta">
-        VIN ${esc(row.vin)} · ${money(row.landed_price)} · ${count(row.mileage)} mi<br>
-        Missing: <code>${esc(missing)}</code>
-        ${REMEDIES[row.remedy] || ""}
-      </div>
-      <div class="url">${esc(row.carfax_url)}</div>
-      <div class="actions">
-        <a href="${esc(row.carfax_url)}" target="_blank" rel="noopener">
-          <button type="button">Open Carfax</button></a>
-        <a href="${esc(row.listing_url)}" target="_blank" rel="noopener">
-          <button type="button">Listing</button></a>
-        <button type="button" class="primary" data-paste-vin="${esc(row.vin)}"
-                data-paste-label="${esc(row.label)}">Paste report…</button>
-      </div>
-    </div>`;
-  }).join("");
-
-  for (const button of el("help-list").querySelectorAll("[data-paste-vin]")) {
+function wirePasteButtons(container) {
+  for (const button of container.querySelectorAll("[data-paste-vin]")) {
     button.addEventListener("click", () =>
       openPaste(button.dataset.pasteVin, button.dataset.pasteLabel));
+  }
+}
+
+/* Two states were previously lumped under "Needs your help", which is how a run where nothing
+   needed help announced that 27 cars did. They are genuinely different:
+     - Carfax attempted and not obtained -> you can paste it. Actionable, per car.
+     - never reached the Carfax shortlist -> raise one number and re-run. Not per car at all. */
+function renderHelp(state) {
+  const rows = state.needs_carfax || [];
+  const actionable = rows.filter((row) => row.remedy !== "raise_top_n");
+  const deferred = rows.filter((row) => row.remedy === "raise_top_n");
+
+  show(el("help-panel"), actionable.length > 0);
+  text(el("help-count"), actionable.length ? `— ${actionable.length}` : "");
+  el("help-list").innerHTML = actionable.map((row) => heldOutCard(row, true)).join("");
+  wirePasteButtons(el("help-list"));
+
+  show(el("deferred-panel"), deferred.length > 0);
+  text(el("deferred-count"), deferred.length ? `— ${deferred.length}` : "");
+  if (deferred.length) {
+    const topN = state.manifest ? state.manifest.counters.shortlisted : null;
+    el("deferred-why").innerHTML =
+      `Carfax ran for the top ${topN ?? "N"} by provisional score, so these ${deferred.length}
+       have AutoCheck only and cannot be ranked — AutoCheck alone can never establish structural
+       damage or airbag deployment. <strong>Nothing is required of you.</strong> To include them,
+       raise <em>Carfax for top N</em> and re-run; Carfax allows roughly 6 per session before a
+       puzzle, so expect to solve one. You can also paste any single report by hand.`;
+    el("deferred-list").innerHTML = deferred.map((row) => heldOutCard(row, false)).join("");
+    wirePasteButtons(el("deferred-list"));
   }
 }
 

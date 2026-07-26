@@ -72,6 +72,9 @@ class _FakeContext:
     def new_page(self):
         return object()
 
+    def cookies(self):
+        return []
+
 
 class _FakeConnection:
     def close(self):
@@ -487,10 +490,14 @@ class PortBindingTests(unittest.TestCase):
 
     def test_default_port_is_used_when_free(self) -> None:
         from carvana_scraper.app import server as server_mod
+        # Probe the port directly: build_server_with_fallback cannot report that 8765 was busy,
+        # because moving on is precisely what it is for.
         try:
-            srv, fallback = server_mod.build_server_with_fallback()
+            probe = server_mod.build_server(server_mod.DEFAULT_PORT)
         except OSError:
-            self.skipTest("default port is in use on this machine")
+            self.skipTest(f"port {server_mod.DEFAULT_PORT} is already in use on this machine")
+        probe.server_close()
+        srv, fallback = server_mod.build_server_with_fallback()
         try:
             self.assertEqual(srv.server_port, server_mod.DEFAULT_PORT)
             self.assertFalse(fallback)
@@ -559,3 +566,86 @@ class EntryPointTests(unittest.TestCase):
         finally:
             entry.serve = saved
         self.assertEqual(captured["port"], 0)
+
+
+class LoginWorkerTests(unittest.TestCase):
+    """The login wait must always terminate, or the app stays busy and refuses every run."""
+
+    def setUp(self) -> None:
+        self._session = browser.session
+        self._open = browser.open_login_page
+        self.addCleanup(lambda: setattr(browser, "session", self._session))
+        self.addCleanup(lambda: setattr(browser, "open_login_page", self._open))
+        browser.open_login_page = lambda context: 42
+
+    def _run_worker(self, context, done, max_wait=6.0):
+        from carvana_scraper.app.state import AppState
+
+        @contextlib.contextmanager
+        def fake_session(*a, **k):
+            yield context
+
+        browser.session = fake_session
+        saved_max = runner.LOGIN_MAX_WAIT_S
+        runner.LOGIN_MAX_WAIT_S = max_wait
+        state = AppState()
+        state.begin_login()
+        try:
+            runner._login_worker(state, done)
+        finally:
+            runner.LOGIN_MAX_WAIT_S = saved_max
+        return state
+
+    def test_clicking_done_completes_the_login(self) -> None:
+        done = threading.Event()
+        done.set()
+        state = self._run_worker(_FakeContext(), done)
+        self.assertEqual(state.status, "idle")
+        self.assertFalse(state.is_busy())
+
+    def test_closing_chrome_instead_of_clicking_done_also_completes(self) -> None:
+        """Otherwise the app sits in `login` forever and every later run is refused as busy."""
+        class ClosedContext(_FakeContext):
+            def cookies(self):
+                raise RuntimeError("Target page, context or browser has been closed")
+
+        state = self._run_worker(ClosedContext(), threading.Event())
+        self.assertEqual(state.status, "idle")
+        self.assertTrue(any("Chrome was closed" in (e.get("text") or "")
+                            for e in state.events))
+
+    def test_login_wait_is_bounded(self) -> None:
+        """A window left open with nothing clicked must not wedge the app indefinitely."""
+        class LiveContext(_FakeContext):
+            def cookies(self):
+                return []
+
+        state = self._run_worker(LiveContext(), threading.Event(), max_wait=4.0)
+        self.assertEqual(state.status, "idle")
+        self.assertTrue(any("No confirmation after" in (e.get("text") or "")
+                            for e in state.events))
+
+    def test_locked_profile_during_login_is_reported(self) -> None:
+        def locked(*a, **k):
+            raise browser.ProfileLockedError("in use\n  rm -f .browser-profile/Singleton*")
+
+        from carvana_scraper.app.state import AppState
+        browser.session = locked
+        state = AppState()
+        state.begin_login()
+        runner._login_worker(state, threading.Event())
+        self.assertEqual(state.status, "error")
+        self.assertEqual(state.error["kind"], "profile_locked")
+
+
+class PastedVinsLockTests(unittest.TestCase):
+    def test_pasted_returns_a_snapshot_not_the_live_set(self) -> None:
+        """Each paste runs on its own thread; handing out the live set invites a mid-iteration error."""
+        from carvana_scraper.app.state import AppState
+
+        state = AppState()
+        state.record_ingest({"vin": "V1"})
+        snapshot = state.pasted()
+        state.record_ingest({"vin": "V2"})
+        self.assertEqual(snapshot, {"V1"}, "the returned set must not track later mutations")
+        self.assertEqual(state.pasted(), {"V1", "V2"})

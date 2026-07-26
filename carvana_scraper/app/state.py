@@ -174,6 +174,15 @@ class AppState:
             self.ingested.append(entry)
             self.pasted_vins.add(entry["vin"])
 
+    def pasted(self) -> set[str]:
+        """A copy of the pasted VINs, taken under the lock.
+
+        Each paste runs on its own HTTP handler thread, so reading the live set while another
+        thread adds to it could raise mid-iteration.
+        """
+        with self._lock:
+            return set(self.pasted_vins)
+
     def replace_scored(self, scored: list[ScoredVehicle], body: str,
                        manifest: report_mod.RunManifest) -> None:
         """Swap in a rescored result after a report was pasted in.

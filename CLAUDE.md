@@ -78,6 +78,13 @@ These encode findings that cost real investigation. Do not "simplify" them away.
 12. **`detect_challenge` is for report pages only.** On carvana.com it false-positives —
     `/cdn-cgi/challenge-platform/scripts/jsd/main.js` loads on every healthy `/cars` response.
     Validate the outcome instead; the extractors raise when content is absent. `docs/RECON.md` §(d1).
+13. **The delivery location is captured, never constructed.** Carvana honours `CVCurrentZip` +
+    `CVCurrentCity` + `CVCurrentState` together and discards a partial triple, and the zip cookie is
+    session-scoped so it must be replayed *before any navigation* on every session. City for an
+    arbitrary zip is not ours to invent, so `--login` captures what Carvana wrote after the operator
+    used its picker. `docs/RECON.md` §(a1) has the five observations. This **corrects** the earlier
+    claim that the pricing zip could not be set — when a documented finding turns out to be wrong,
+    reverify and rewrite it rather than working around it.
 
 ## Layout
 | File | Purpose |
@@ -90,6 +97,7 @@ These encode findings that cost real investigation. Do not "simplify" them away.
 | `carvana_scraper/browser.py` | Persistent real-Chrome session, human pacing, DataDome detection, manual assist, `--login`. |
 | `carvana_scraper/rsc.py` | Extract vehicle records from Next.js RSC flight payload. Pure, testable. |
 | `carvana_scraper/search.py` | Stage 1: page through results, filter locally, sniff the priced zip. |
+| `carvana_scraper/delivery.py` | Capture + replay the delivery location that decides Carvana's pricing zip. |
 | `carvana_scraper/vdp.py` | AutoCheck token from the wrapper page + cosmetic imperfections. |
 | `carvana_scraper/history.py` | Stage 3 orchestration + the pessimistic merge. |
 | `carvana_scraper/carfax.py` | Carfax text parser. Verdict column is authoritative, not the prose. |

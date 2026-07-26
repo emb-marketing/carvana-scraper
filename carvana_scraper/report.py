@@ -36,6 +36,7 @@ class RunManifest:
     matched_before_limit: int = 0
     dropped_by_limit: int = 0
     matched: int = 0
+    dropped_by_max_reports: int = 0
     shortlisted: int = 0
     autocheck_parsed: int = 0
     autocheck_blocked: int = 0
@@ -62,6 +63,7 @@ class RunManifest:
             ("matched criteria", self.matched_before_limit or self.matched),
             ("dropped by --limit", self.dropped_by_limit),
             ("evaluated", self.matched),
+            ("dropped by --max-reports", self.dropped_by_max_reports),
             ("shortlisted for Carfax", self.shortlisted),
             ("AutoCheck reports parsed", self.autocheck_parsed),
             ("AutoCheck blocked (will retry)", self.autocheck_blocked),
@@ -99,6 +101,14 @@ class RunManifest:
                 f"only {self.carfax_parsed} of {self.shortlisted} shortlisted vehicles got a "
                 f"Carfax report ({self.carfax_blocked} not obtained) — re-run to fill the gap, "
                 "or paste the reports in")
+        if self.dropped_by_max_reports:
+            # Deliberately a reconciliation problem, not merely a warning. A vehicle with no
+            # history appears in none of the three sections, so the report silently describes
+            # fewer cars than it says matched — and --max-reports has a default, so this can
+            # happen to an operator who never chose it.
+            problems.append(
+                f"{self.dropped_by_max_reports} of {self.matched} matching vehicles got no "
+                "history and so appear in NO section — raise --max-reports")
         return problems
 
 

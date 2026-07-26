@@ -21,6 +21,8 @@ from typing import Callable, Iterator
 
 from playwright.sync_api import BrowserContext, Page, sync_playwright
 
+from . import delivery
+
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_PROFILE_DIR = PROJECT_ROOT / ".browser-profile"
 
@@ -125,6 +127,7 @@ def session(
     headless: bool = False,
     viewport_width: int = 1440,
     viewport_height: int = 900,
+    restore_location: bool = True,
 ) -> Iterator[BrowserContext]:
     """Yield a persistent real-Chrome browser context.
 
@@ -138,6 +141,8 @@ def session(
             must be able to see and clear a challenge.
         viewport_width: Browser viewport width in pixels.
         viewport_height: Browser viewport height in pixels.
+        restore_location: Replay the saved delivery location before any navigation. False during
+            login, where the operator is about to choose it.
 
     Yields:
         A Playwright BrowserContext whose cookies and storage persist across runs.
@@ -158,6 +163,15 @@ def session(
             args=CHROME_ARGS,
         )
         try:
+            if restore_location:
+                # Before any navigation, deliberately: Carvana fixes the location on the first
+                # page load and rewrites these cookies afterwards, so applying them later has no
+                # effect on the prices this run reports. CVCurrentZip is session-scoped, which is
+                # why this has to happen on every session rather than once during login.
+                restored = delivery.apply(context)
+                if restored:
+                    print(f"  [browser] delivery location restored: "
+                          f"{delivery.describe(restored)}")
             yield context
         finally:
             context.close()
@@ -281,10 +295,25 @@ def open_login_page(context: BrowserContext) -> int:
     Split out of `login` so the GUI can run the same setup without the blocking `input()` below:
     a bare `input()` on a stdin that is not a TTY raises EOFError, which would take the server
     process down.
+
+    Deliberately does NOT replay a saved delivery location: this is the one flow where the operator
+    is about to set it, and pre-seeding would show them a location they had not chosen yet.
     """
     page = context.pages[0] if context.pages else context.new_page()
     page.goto("https://www.carvana.com/cars", wait_until="domcontentloaded", timeout=90_000)
     return len(context.cookies())
+
+
+def capture_delivery_location(context: BrowserContext) -> dict[str, str] | None:
+    """Persist the delivery location Carvana wrote after the operator used its picker.
+
+    Returns the saved location, or None if Carvana never wrote a complete one — which usually
+    means the picker was not touched.
+    """
+    location = delivery.capture(context)
+    if location:
+        delivery.save(location)
+    return location
 
 
 def login(profile_dir: Path | str = DEFAULT_PROFILE_DIR) -> int:
@@ -295,15 +324,16 @@ def login(profile_dir: Path | str = DEFAULT_PROFILE_DIR) -> int:
 
     1. **Trust.** Browsing the site briefly gives the profile a history and cookies, which is
        most of why later report fetches are not challenged immediately.
-    2. **Delivery location.** `--zip` cannot set Carvana's pricing zip; Carvana derives it from
-       the session and defaults to its own guess. Setting the delivery zip in the UI **here** is
-       what makes shipping costs — and therefore landed prices and the ranking — correct. If it
-       is not set, every run prints a warning naming the zip Carvana actually priced against.
+    2. **Delivery location.** Setting the delivery zip in Carvana's own picker **here** is what
+       makes shipping costs — and therefore landed prices and the ranking — correct. The location
+       Carvana writes is captured on the way out and replayed at the start of every later session,
+       because its zip cookie is session-scoped and would otherwise be re-derived from the IP each
+       run. Skip this and every run prints a warning naming the zip Carvana actually priced with.
 
     Returns:
         A process exit code.
     """
-    with session(profile_dir) as context:
+    with session(profile_dir, restore_location=False) as context:
         cookie_count = open_login_page(context)
         banner = "=" * 72
         print(
@@ -321,8 +351,15 @@ def login(profile_dir: Path | str = DEFAULT_PROFILE_DIR) -> int:
         )
         input()
         print(f"  cookies after session: {len(context.cookies())}")
-        print("  Profile saved. Later runs will warn if Carvana still prices against a "
-              "different zip.")
+        location = capture_delivery_location(context)
+        if location:
+            print(f"  Delivery location saved: {delivery.describe(location)}")
+            print("  Every later run will replay it, so prices reflect that zip.")
+        else:
+            print("  NOTE: no delivery location captured — Carvana never wrote a complete one, "
+                  "which usually means its location picker was not used.")
+            print("  Runs will price against this connection's IP and say so.")
+        print("  Profile saved.")
     return 0
 
 

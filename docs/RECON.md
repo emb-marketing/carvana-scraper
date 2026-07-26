@@ -72,6 +72,45 @@ drift-prone thing we could build; arithmetic on records we already hold cannot s
 **Zip matters:** with no location set, Carvana defaulted to `zip5=89101` (Las Vegas), which drives
 `transportCost` and delivery estimates. `--zip` must be passed and verified in the payload.
 
+### (a1) The pricing zip IS controllable — a complete cookie triple, replayed every session
+
+**This corrects an earlier conclusion in this document.** The first pass recorded that `--zip`
+could not influence Carvana's pricing zip. Wrong, and wrong in a way worth writing down. Five
+observations, 2026-07-25, each a fresh session reading `serverZip` out of the SRP and sniffing the
+`apik.carvana.io` request:
+
+| cookies set before the first request | Carvana priced with |
+|---|---|
+| none | 89101 (IP) |
+| `CVCurrentZip` only | 89101 |
+| `CVCurrentZip` + `CVCurrentSource` | 89101 |
+| `CVCurrentZip` + `CVCurrentSource` + `CVCurrentAccuracyRadius` | 89101 |
+| **`CVCurrentZip` + `CVCurrentCity` + `CVCurrentState`** | **89002, as asked** |
+| the same three, asking `84604` (control) | **84604, as asked** |
+
+Two facts explain the original mistake:
+
+1. **A partial location is discarded.** Carvana wants zip, city and state together; anything less
+   and it re-geolocates. `CVCurrentSource` and `CVCurrentAccuracyRadius` are irrelevant — the
+   working run had `Source` rewritten from `user` to `unknown` mid-load and still priced correctly.
+2. **`CVCurrentZip` is session-scoped.** It is absent at the start of every new browser session, so
+   Carvana re-derives it from the IP each run. A location set once in the picker therefore never
+   survived to the next run, which reads exactly like "cannot be forced".
+
+Carvana also rewrites the family back to its IP guess *during* the load — after the pricing request
+has already gone out with the value we set. So the cookies afterwards are not evidence of what was
+used; the sniffed request and `serverZip` are.
+
+Because the city for an arbitrary zip is not something to invent, the implementation **captures**
+rather than constructs: `--login` reads the triple Carvana itself wrote once the operator has used
+the picker, saves it to `.browser-profile/delivery-location.json`, and `browser.session()` replays
+it before any navigation. See `carvana_scraper/delivery.py`.
+
+Measured impact for the operator's own case: **none.** 89002 (Henderson) and 89101 (Las Vegas) are
+the same Carvana delivery market — across six shared vehicles the shipping cost was identical, five
+of them free and one $390 either way. The fix is worth having for correctness and because a warning
+that fires on every run is a warning nobody reads, not because it changes prices here.
+
 ---
 
 ## (b) VDP fields — pricing is on the SRP record; history is not

@@ -53,15 +53,26 @@ and one HTML page.
 
 ### The `--login` step is not optional
 
-Two things persist in the profile and both matter:
+Two things persist and both matter:
 
 - **Trust** — an aged profile with real cookies is most of why report fetches are not challenged
   immediately.
-- **Your delivery ZIP** — `--zip` **cannot** set Carvana's pricing zip. Carvana derives it from the
-  session and defaults to its own guess (observed: 89101, Las Vegas). Shipping cost feeds landed
-  price, which feeds the ranking, so set the zip in Carvana's own location picker during `--login`.
-  Every run prints a warning naming the zip Carvana actually priced against, so you will know if
-  it's wrong.
+- **Your delivery ZIP.** Carvana decides the pricing zip from a cookie triple —
+  `CVCurrentZip` + `CVCurrentCity` + `CVCurrentState`. A *partial* location is discarded, and the
+  zip cookie is **session-scoped**, so it is absent at the start of every run and Carvana
+  re-geolocates from your IP (observed: 89101, Las Vegas). That is why setting the picker once never
+  used to stick.
+
+  So `--login` now **captures** the location Carvana writes after you use its picker, and every
+  later session **replays** it before the first request. Nothing is guessed — the city and state
+  come from Carvana. Runs print `delivery location restored: 89002 (Henderson, NV)`, and the
+  mismatch warning stops firing.
+
+  Measured caveat: for Henderson vs Las Vegas the shipping cost is *identical* (same delivery
+  market), so this changed no prices here. It matters if you search a distant car or move — and it
+  stops a warning that otherwise fires on every single run, which is how real warnings get ignored.
+
+  Stored at `.browser-profile/delivery-location.json`, gitignored with the profile.
 
 ---
 
@@ -259,8 +270,9 @@ untested backend it raises with the reinstall hint.
 
 ## Known limitations
 
-- **`--zip` does not control Carvana's pricing zip.** Set it in the UI during `--login`. The tool
-  detects the zip Carvana actually used and warns on mismatch; it cannot force it.
+- **`--zip` alone does not control Carvana's pricing zip** — but a captured location does. Run
+  `--login` (or *Chrome login*) once and set the zip in Carvana's own picker; that location is saved
+  and replayed on every later run, and the mismatch warning stops. Details below.
 - **Coverage is bounded by `--max-pages`.** Roughly 21 vehicles per page. A broad search may hold
   more inventory than the run loads; the manifest reports what was actually seen.
 - **Year / price / mileage filters are applied locally**, not by Carvana. Make and model go through

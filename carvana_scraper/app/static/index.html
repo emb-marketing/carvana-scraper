@@ -161,17 +161,6 @@
   <pre id="challenge-label"></pre>
 </section>
 
-<!-- ============ needs your help ============ -->
-<section class="panel" id="help-panel" hidden>
-  <h2>Needs your help <span class="muted" id="help-count"></span></h2>
-  <p class="hint">
-    These are held out of the ranking because their history is incomplete — under this tool's
-    rules unknown never counts as clean. For a car whose Carfax was blocked, open the report,
-    select all and copy, then paste it below to finish the comparison.
-  </p>
-  <div id="help-list"></div>
-</section>
-
 <!-- ============ ranking ============ -->
 <section class="panel" id="ranked-panel" hidden>
   <div class="panel-head">
@@ -200,6 +189,27 @@
 <section class="panel review" id="review-panel" hidden>
   <h2>Claude's report review</h2>
   <div id="review-body"></div>
+</section>
+
+<!-- ============ needs your help ============ -->
+<section class="panel notice" id="help-panel" hidden>
+  <h2>Needs your help <span class="muted" id="help-count"></span></h2>
+  <p class="hint">
+    Carfax was attempted for these and did not come back — blocked, or unreadable. Open the
+    report, select all, copy, and paste it in to finish the comparison. Nothing else is required
+    of you anywhere on this page.
+  </p>
+  <div id="help-list"></div>
+</section>
+
+<!-- ============ not checked yet ============ -->
+<section class="panel" id="deferred-panel" hidden>
+  <h2>Not checked yet <span class="muted" id="deferred-count"></span></h2>
+  <p class="hint" id="deferred-why"></p>
+  <details>
+    <summary>Show them</summary>
+    <div id="deferred-list"></div>
+  </details>
 </section>
 
 <!-- ============ disqualified ============ -->

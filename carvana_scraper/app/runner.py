@@ -15,7 +15,7 @@ import traceback
 from pathlib import Path
 from typing import Any
 
-from .. import browser, pipeline, report as report_mod, rsc, scoring
+from .. import browser, delivery, pipeline, report as report_mod, rsc, scoring
 from ..cache import connect
 from ..pipeline import RunOptions
 from . import ingest as ingest_mod, review as review_mod
@@ -94,16 +94,63 @@ def start_login(state: AppState, done: threading.Event) -> None:
     _spawn(_login_worker, state, done, name="login")
 
 
+# A generous ceiling on the login wait. Not a deadline for the operator so much as a guarantee that
+# the app cannot stay wedged in `login` forever: while it is, is_busy() refuses every run.
+LOGIN_MAX_WAIT_S = 30 * 60
+
+
+def _browser_still_open(context) -> bool:
+    """Whether the Chrome window is still alive.
+
+    Playwright raises once the context is gone, and there is no reliable boolean to ask instead.
+    """
+    try:
+        context.cookies()
+        return True
+    except Exception:
+        return False
+
+
 def _login_worker(state: AppState, done: threading.Event) -> None:
     try:
-        with browser.session() as context:
+        with browser.session(restore_location=False) as context:
             cookies = browser.open_login_page(context)
             state.note("login", f"Chrome is open. Cookies currently in profile: {cookies}")
             state.note("login", "1. " + browser.LOGIN_INSTRUCTIONS[0])
             state.note("login", "2. " + browser.LOGIN_INSTRUCTIONS[1])
-            # No timeout: the operator may take as long as they need with the location picker.
-            done.wait()
+
+            # Polled rather than a bare done.wait(): closing the Chrome window instead of clicking
+            # Done is an obvious thing to do, and an unbounded wait left the app stuck in `login`
+            # with every subsequent run refused as busy. Closing the window now counts as finishing
+            # — the profile is saved either way — and the ceiling means no path hangs forever.
+            deadline = LOGIN_MAX_WAIT_S
+            while not done.wait(2.0):
+                deadline -= 2.0
+                if not _browser_still_open(context):
+                    # Nothing to capture: reading cookies from a closed context is what told us it
+                    # closed. Anything the operator set is in the profile, but the session-scoped
+                    # location cookies are gone, so they must click Done next time to save it.
+                    state.note("login", "Chrome was closed — treating that as done. Profile saved, "
+                                        "but the delivery location could not be read; use Done "
+                                        "next time to save it.")
+                    state.finish_login()
+                    return
+                if deadline <= 0:
+                    state.note("login", f"No confirmation after {LOGIN_MAX_WAIT_S // 60} minutes "
+                                        "— closing Chrome. Anything you changed is saved; click "
+                                        "Chrome login again if you need more time.")
+                    state.finish_login()
+                    return
+
             state.note("login", f"Profile saved. Cookies after session: {len(context.cookies())}")
+            location = browser.capture_delivery_location(context)
+            if location:
+                state.note("login", f"Delivery location saved: {delivery.describe(location)} — "
+                                    "every later run replays it, so prices reflect that zip.")
+            else:
+                state.note("login", "No delivery location captured — Carvana never wrote a "
+                                    "complete one, which usually means its location picker was "
+                                    "not used. Runs will price against this connection's IP.")
     except browser.ProfileLockedError as exc:
         state.fail_run("profile_locked", str(exc), "Close the other Chrome window and try again.")
         return
@@ -238,7 +285,7 @@ def apply_paste(state: AppState, vin: str, text: str, vendor: str | None = None)
     scored, anchor_info = ingest_mod.rescore(result, config)
     result.scored = scored
     result.anchor_info = anchor_info
-    _recount_carfax(result, state.pasted_vins | {vin})
+    _recount_carfax(result, state.pasted() | {vin})
 
     # Reusing the same manifest is safe: render() assigns ranked/needs_carfax/disqualified/
     # conflicts rather than incrementing them, so re-rendering is idempotent.

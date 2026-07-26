@@ -54,9 +54,10 @@ def build_parser() -> argparse.ArgumentParser:
     criteria.add_argument("--max-miles", type=int,
                          help="max odometer; also the scoring anchor")
     criteria.add_argument("--zip", dest="zip_code", default="89002",
-                         help="delivery zip (default 89002). Recorded and compared against the "
-                              "zip Carvana actually prices with, but it CANNOT force that zip — "
-                              "set the real one in Carvana's location picker during --login")
+                         help="delivery zip (default 89002). Compared against the zip Carvana "
+                              "actually prices with. To make Carvana USE it, run --login once and "
+                              "set the zip in Carvana's own location picker: that location is "
+                              "captured and replayed on every later run")
 
     run = parser.add_argument_group("run control")
     run.add_argument("--top-n", type=int, default=12,

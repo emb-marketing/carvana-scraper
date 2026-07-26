@@ -28,7 +28,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable
 
-from . import browser, history, report as report_mod, scoring, search, vdp
+from . import browser, delivery, history, report as report_mod, scoring, search, vdp
 from .cache import connect, stats as cache_stats
 from .models import (
     STATUS_BLOCKED,
@@ -210,8 +210,19 @@ def _stage_one_search(
         _warn(manifest, emit,
               f"pagination stopped early: {search_stats.get('stopped_because')}")
     if search_stats.get("priced_zip") and search_stats["priced_zip"] != criteria.zip_code:
+        # Name the remedy. The zip IS settable — it needs a complete location captured from
+        # Carvana's own picker during login, because a partial one is discarded and the cookie is
+        # session-scoped. Saying only "prices reflect X" left this looking unfixable for a while.
+        saved = delivery.load()
+        if saved:
+            remedy = (f"a saved location exists ({delivery.describe(saved)}) but Carvana priced "
+                      "against something else — re-run Chrome login to refresh it")
+        else:
+            remedy = ("no delivery location is saved — run Chrome login and set the ZIP in "
+                      "Carvana's own location picker, and every later run will use it")
         _warn(manifest, emit,
-              f"prices reflect zip {search_stats['priced_zip']}, not {criteria.zip_code}")
+              f"prices reflect zip {search_stats['priced_zip']}, not {criteria.zip_code}: "
+              f"{remedy}")
 
     emit({"kind": "search_done", "matched": manifest.matched,
           "parsed": manifest.parsed_listings, "stats": dict(search_stats),
@@ -251,6 +262,18 @@ def _stage_two_autocheck(
     emit({"kind": "stage", "n": 2, "of": 4, "name": "autocheck", "total": budget,
           "text": f"\n[2/4] AutoCheck for {budget} vehicle(s) "
                   f"(Carvana-hosted, no rate limit observed)"})
+
+    # A vehicle with no history never reaches `scored`, so it lands in NO bucket — not ranked, not
+    # held out, not disqualified. Left unwarned, a run that matched 65 cars presents a table of 40
+    # and reports that its counts reconcile. That is precisely the silent narrowing the manifest
+    # exists to expose, and it is worse than the --limit case because --max-reports has a default:
+    # the operator need never have chosen it.
+    manifest.dropped_by_max_reports = len(listings) - budget
+    if manifest.dropped_by_max_reports:
+        _warn(manifest, emit,
+              f"--max-reports {options.max_reports} left {manifest.dropped_by_max_reports} of "
+              f"{len(listings)} matching vehicles with no history at all, so they appear in NO "
+              f"section below — raise --max-reports to include them")
 
     for index, listing in enumerate(listings[:budget], start=1):
         _check_abort(abort)
