@@ -287,7 +287,7 @@ gitignored.
 python3 -m unittest discover -s tests -t . -v
 ```
 
-255 tests, fully offline — no browser, no network. Fixtures are synthetic but copied from real
+267 tests, fully offline — no browser, no network. Fixtures are synthetic but copied from real
 report layouts, so they run on a fresh clone; when `cache/raw/` has real archived reports, extra
 tests validate against those too.
 

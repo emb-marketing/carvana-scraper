@@ -68,7 +68,7 @@ config/carvana-taxonomy.json  Committed dropdown data: 40 makes -> 527 models + 
                               NOTE: makes have no `slug` — only models do.
 docs/RECON.md               Verified site behaviour and the evidence trail. Read before site changes.
 docs/SETUP.md               How to run the machine that serves the site.
-tests/                      255 tests, all offline. See "Testing" below.
+tests/                      267 tests, all offline. See "Testing" below.
 install.sh                  Public one-command install: curl … | bash. Downloads, installs, runs the app.
                             Reads /dev/tty, because under `curl | bash` stdin is the script itself.
 run-app.command             Double-clickable launcher for the local app.
@@ -201,7 +201,7 @@ POST /api/review -> runner.start_review -> review.select_vehicles (top 5 rankabl
 ## Testing
 
 ```bash
-python3 -m unittest discover -s tests -t . -v      # 255 tests, fully offline
+python3 -m unittest discover -s tests -t . -v      # 267 tests, fully offline
 ```
 
 | File | Covers |

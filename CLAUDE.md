@@ -48,7 +48,8 @@ saved evidence in `fixtures/recon/`.
   CSS framework, no ORM. The Playwright-only rule governs the Python package, not this. The
   worker's own networking is `urllib.request`, so the package itself stays dependency-free.
 - **Deploy:** the CLI and local app run locally on demand. `web/` deploys to Vercel (root
-  directory `web`) behind Deployment Protection; see [`web/README.md`](web/README.md).
+  directory `web`) behind the app's own PIN gate — **not** Vercel Deployment Protection, which this
+  plan does not offer (see invariant 14). See [`web/README.md`](web/README.md).
 
 ## Non-negotiable invariants
 These encode findings that cost real investigation. Do not "simplify" them away.
@@ -157,7 +158,7 @@ These encode findings that cost real investigation. Do not "simplify" them away.
 
 ## Testing
 ```bash
-python3 -m unittest discover -s tests -t . -v    # 255 tests, fully offline
+python3 -m unittest discover -s tests -t . -v    # 267 tests, fully offline
 ```
 Parser and ingest changes must be validated against `cache/raw/*.txt` (real archived reports) — those
 tests skip automatically when the directory is empty, so run them locally where it isn't.
