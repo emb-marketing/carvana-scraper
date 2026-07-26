@@ -1,8 +1,8 @@
 #!/bin/bash
-# Double-clickable setup for a GRID worker.
+# Double-clickable setup for the machine that serves GRID.
 #
-# Gets a fresh machine from "cloned the repo" to "paired worker waiting for jobs" without editing
-# a file by hand. Safe to re-run: every step is a no-op when it has already been done.
+# Gets a fresh machine from "cloned the repo" to "the site is live and running searches" without
+# editing a file by hand. Safe to re-run: every step is a no-op when it has already been done.
 #
 # Finder runs this from an arbitrary working directory, so cd to the repo first.
 set -u
@@ -12,7 +12,7 @@ say()  { printf '\n\033[1m%s\033[0m\n' "$*"; }
 warn() { printf '\033[33m  %s\033[0m\n' "$*"; }
 die()  { printf '\n\033[31mSetup stopped: %s\033[0m\n\n' "$*"; exit 1; }
 
-say "GRID worker setup"
+say "GRID — set up this machine to run searches"
 
 # ---- 1. Python -----------------------------------------------------------------------------
 
@@ -56,16 +56,6 @@ if [ -z "${CARVANA_WEB_URL:-}" ]; then
   printf 'CARVANA_WEB_URL=%s\n' "$CARVANA_WEB_URL" >> "$ENV_FILE"
 fi
 
-if [ -z "${VERCEL_AUTOMATION_BYPASS_SECRET:-}" ]; then
-  # Vercel's Deployment Protection gates the API routes too, so without this the worker is served
-  # the password page and every call fails. Whoever runs the site hands this out with the password.
-  say "Automation bypass secret"
-  printf '  Paste the bypass secret you were given (blank if the site has no password): '
-  read -r VERCEL_AUTOMATION_BYPASS_SECRET
-  if [ -n "$VERCEL_AUTOMATION_BYPASS_SECRET" ]; then
-    printf 'VERCEL_AUTOMATION_BYPASS_SECRET=%s\n' "$VERCEL_AUTOMATION_BYPASS_SECRET" >> "$ENV_FILE"
-  fi
-fi
 chmod 600 "$ENV_FILE" 2>/dev/null
 
 # ---- 5. Chrome login ---------------------------------------------------------------------------
@@ -92,11 +82,13 @@ fi
 
 say "Starting the worker"
 cat <<'EOF'
-  Leave this window open. It prints a pairing code the first time — enter that on the site
-  and this machine becomes yours. Ctrl-C to stop.
+  Leave this window open. While it runs, anyone with the site link and PIN can run searches —
+  they install nothing. Close it and their searches just queue until you are back.
+
+  Ctrl-C to stop.
 
 EOF
 
 export CARVANA_WEB_URL
-export VERCEL_AUTOMATION_BYPASS_SECRET
+export VERCEL_AUTOMATION_BYPASS_SECRET="${VERCEL_AUTOMATION_BYPASS_SECRET:-}"
 exec python3 -m carvana_scraper.worker

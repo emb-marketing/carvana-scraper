@@ -14,13 +14,7 @@ import { StartLights } from "./StartLights";
  * make/model are the only filters applied server-side via the URL path — a typo there yields an
  * empty run rather than a validation error.
  */
-export function SearchForm({
-  ownerKey,
-  onQueued,
-}: {
-  ownerKey: string;
-  onQueued: (id: string) => void;
-}) {
+export function SearchForm({ onQueued }: { onQueued: (id: string) => void }) {
   const [taxonomy, setTaxonomy] = useState<Taxonomy | null>(null);
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
@@ -70,7 +64,7 @@ export function SearchForm({
     try {
       const response = await fetch("/api/runs", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "x-owner-key": ownerKey },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ options }),
       });
       const payload = await response.json();
@@ -94,7 +88,7 @@ export function SearchForm({
       <div className="card" style={{ textAlign: "center", padding: "48px 22px" }}>
         <StartLights />
         <h2 style={{ marginTop: 24 }}>Lights out</h2>
-        <p className="muted small">Queued. Your worker picks it up within a few seconds.</p>
+        <p className="muted small">Queued. The machine running the scraper takes it from here.</p>
       </div>
     );
   }
@@ -216,8 +210,8 @@ export function SearchForm({
           <label htmlFor="zip_code">Delivery ZIP</label>
           <input id="zip_code" name="zip_code" inputMode="numeric" maxLength={10} placeholder="from your profile" />
           <p className="hint">
-            Blank uses the location your worker captured during Chrome login — which is the only
-            thing that actually moves Carvana&rsquo;s pricing zip.
+            Blank uses the delivery location captured on the machine running the scraper —
+            which is the only thing that actually moves Carvana&rsquo;s pricing zip.
           </p>
         </div>
         <div>

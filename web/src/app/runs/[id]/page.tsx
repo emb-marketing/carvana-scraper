@@ -65,7 +65,7 @@ export default function RunPage({ params }: { params: Promise<{ id: string }> })
           <h1 style={{ fontSize: 22 }}>{run.criteria || "search"}</h1>
           <p className="faint small" style={{ margin: "4px 0 0" }}>
             {run.worker_label}
-            {run.status === "queued" && !run.worker_online && " · worker offline"}
+            {run.status === "queued" && !run.worker_online && " · no machine running"}
           </p>
         </div>
         <span className={`badge ${run.status}`}>{run.status}</span>
@@ -76,8 +76,8 @@ export default function RunPage({ params }: { params: Promise<{ id: string }> })
           <div className="card-title">On the grid</div>
           <p className="muted small" style={{ margin: 0 }}>
             {run.worker_online
-              ? "Waiting for your worker to pick this up."
-              : "Your worker is offline. Start it and this begins automatically."}
+              ? "Waiting for a machine to pick this up — usually a few seconds."
+              : "No machine is running the scraper. This starts by itself as soon as one is."}
           </p>
         </div>
       )}
@@ -88,8 +88,9 @@ export default function RunPage({ params }: { params: Promise<{ id: string }> })
         <div className="alert">
           <h3>Puzzle waiting — check your Chrome window</h3>
           <p>
-            Carfax is showing a DataDome challenge for {snapshot.challenge.label}. Solve it in the
-            Chrome window your worker opened; the run continues on its own.
+            Carfax is showing a DataDome challenge for {snapshot.challenge.label}. Whoever is
+            running the scraper needs to solve it in their Chrome window; the run then continues
+            on its own.
             {snapshot.challenge.timeout_s
               ? ` It gives up after ${snapshot.challenge.timeout_s}s and defers the car.`
               : ""}

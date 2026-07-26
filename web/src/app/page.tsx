@@ -2,95 +2,69 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-import { PairPanel } from "@/components/PairPanel";
 import { SearchForm } from "@/components/SearchForm";
 import { ago, type RunRow } from "@/lib/types";
 
 /**
- * Home: pair, submit a search, and see recent runs.
+ * Home: submit a search, and see recent runs.
  *
- * The owner key lives in localStorage. It identifies which machine a submitted job is addressed
- * to, not who the visitor is — the site password is the only access control, and every finished
- * run is visible to everyone past it.
+ * There is nothing to install and nothing to pair. The PIN is the only gate, and a submitted
+ * search goes to the queue for whichever machine is currently running a worker. Everyone past the
+ * PIN sees every run.
  */
-const OWNER_KEY_STORAGE = "grid.owner_key";
-const LABEL_STORAGE = "grid.worker_label";
+type Pool = { online: boolean; workers: string[] };
 
 export default function HomePage() {
-  const [ownerKey, setOwnerKey] = useState<string | null>(null);
-  const [label, setLabel] = useState<string>("");
-  const [ready, setReady] = useState(false);
   const [runs, setRuns] = useState<RunRow[]>([]);
+  const [pool, setPool] = useState<Pool>({ online: false, workers: [] });
+  const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    setOwnerKey(localStorage.getItem(OWNER_KEY_STORAGE));
-    setLabel(localStorage.getItem(LABEL_STORAGE) ?? "");
-    setReady(true);
-  }, []);
-
-  const loadRuns = useCallback(async () => {
+  const load = useCallback(async () => {
     try {
       const response = await fetch("/api/runs");
-      if (response.ok) setRuns((await response.json()).runs ?? []);
+      if (response.ok) {
+        const payload = await response.json();
+        setRuns(payload.runs ?? []);
+        setPool(payload.pool ?? { online: false, workers: [] });
+      }
     } catch {
       // A failed poll is not worth surfacing; the next tick retries.
+    } finally {
+      setLoaded(true);
     }
   }, []);
 
   useEffect(() => {
-    loadRuns();
-    const timer = setInterval(loadRuns, 5000);
+    load();
+    const timer = setInterval(load, 5000);
     return () => clearInterval(timer);
-  }, [loadRuns]);
-
-  function handlePaired(key: string, workerLabel: string) {
-    localStorage.setItem(OWNER_KEY_STORAGE, key);
-    localStorage.setItem(LABEL_STORAGE, workerLabel);
-    setOwnerKey(key);
-    setLabel(workerLabel);
-  }
-
-  function unpair() {
-    localStorage.removeItem(OWNER_KEY_STORAGE);
-    localStorage.removeItem(LABEL_STORAGE);
-    setOwnerKey(null);
-    setLabel("");
-  }
-
-  const mine = runs.find((run) => run.worker_label === label);
-  const online = mine?.worker_online ?? false;
-
-  if (!ready) return null;
+  }, [load]);
 
   return (
     <main>
-      {ownerKey && (
-        <div className="spread" style={{ marginBottom: 18 }}>
-          <span className="pill">
-            <span className={`dot ${online ? "live" : "bad"}`} />
-            {label || "your machine"} · {online ? "worker online" : "worker offline"}
-          </span>
-          <button className="btn ghost" onClick={unpair} type="button">
-            Unpair
-          </button>
-        </div>
-      )}
+      <div className="spread" style={{ marginBottom: 18 }}>
+        <span className="pill">
+          <span className={`dot ${pool.online ? "live" : "bad"}`} />
+          {pool.online
+            ? `${pool.workers[0]}${pool.workers.length > 1 ? ` +${pool.workers.length - 1}` : ""} · ready`
+            : "no machine running"}
+        </span>
+        <span className="faint small">
+          Searches run on whichever machine is running the scraper.
+        </span>
+      </div>
 
-      {!online && ownerKey && (
+      {loaded && !pool.online && (
         <div className="alert">
-          <h3>Your worker is not running</h3>
+          <h3>No machine is running the scraper right now</h3>
           <p>
-            Nothing will happen to a queued search until it is. Start it on your laptop with{" "}
-            <code className="mono">python3 -m carvana_scraper.worker</code>.
+            You can still submit — it will sit in the queue and start by itself the moment one
+            comes online.
           </p>
         </div>
       )}
 
-      {ownerKey ? (
-        <SearchForm ownerKey={ownerKey} onQueued={(id) => { window.location.href = `/runs/${id}`; }} />
-      ) : (
-        <PairPanel onPaired={handlePaired} />
-      )}
+      <SearchForm onQueued={(id) => { window.location.href = `/runs/${id}`; }} />
 
       <div className="section-head">
         <h2>Recent runs</h2>
@@ -99,7 +73,7 @@ export default function HomePage() {
 
       <div className="card">
         {runs.length === 0 ? (
-          <div className="empty">Nothing has run yet.</div>
+          <div className="empty">Nothing has run yet. Start one above.</div>
         ) : (
           <div className="rows">
             {runs.map((run) => (

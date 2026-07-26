@@ -15,12 +15,16 @@ export const dynamic = "force-dynamic";
 export async function GET(_request: NextRequest, context: { params: Promise<{ id: string }> }) {
   const { id } = await context.params;
 
+  // Left join: a queued run has no worker yet, and must still be viewable while it waits.
   const rows = await sql`
     select r.id, r.status, r.criteria, r.created_at, r.claimed_at, r.finished_at,
            r.options, r.progress, r.result, r.error,
-           w.label as worker_label,
-           w.last_seen_at > now() - interval '30 seconds' as worker_online
-    from runs r join workers w on w.id = r.worker_id
+           coalesce(w.label, 'unassigned') as worker_label,
+           exists (
+             select 1 from workers
+             where last_seen_at > now() - '45 seconds'::interval
+           ) as worker_online
+    from runs r left join workers w on w.id = r.worker_id
     where r.id = ${id}::uuid
   `;
 

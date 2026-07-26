@@ -94,15 +94,22 @@ These encode findings that cost real investigation. Do not "simplify" them away.
     default to `"89002"`, which was fine for one operator and silently prices every other
     operator's search against the author's city. `None` means "no zip requested", and the
     mismatch warning is suppressed rather than fired on every run.
-14. **The worker is scoped to its own machine.** Jobs belong to a worker token; the site password
-    is shared by every visitor and so cannot identify a laptop. The worker token, the browser's
-    owner key and the Vercel bypass secret are three different things — see `web/README.md`. Never
-    let a route claim, write progress to, or complete a run that is not `worker_id`-matched.
-15. **The web app renders `AppState.snapshot()`, it does not reshape it.** `app/serialize.py` is
+14. **Two secrets, two questions.** The **site PIN** (middleware, `SITE_PIN`) authenticates a
+    *person*; the **worker token** (`Authorization: Bearer`) authenticates a *machine*. Neither
+    substitutes for the other — without the token, anyone past the PIN could publish fabricated
+    results. Worker routes are PIN-exempt by design and authenticate themselves. The middleware
+    **fails closed**: unset config returns 503, never an open site. Vercel's own Deployment
+    Protection is unavailable on this plan (Advanced Deployment Protection required) — do not
+    re-plan around it without checking the API first.
+15. **Jobs belong to the queue, not to a machine.** A submitted run starts with `worker_id` NULL
+    and any worker claims it (`FOR UPDATE SKIP LOCKED`). That is what makes the site usable by
+    someone with nothing installed, and it is the point of the whole design — do not reintroduce
+    per-visitor pairing.
+16. **The web app renders `AppState.snapshot()`, it does not reshape it.** `app/serialize.py` is
     the single contract between the pipeline and *both* browser front ends. A field added there
     must land in `web/src/lib/types.ts` too. Report prose is the deliberate exception: it goes in
     `run_reports`, out of the result blob, because the run view polls every 2s.
-16. **The delivery location is captured, never constructed.** Carvana honours `CVCurrentZip` +
+17. **The delivery location is captured, never constructed.** Carvana honours `CVCurrentZip` +
     `CVCurrentCity` + `CVCurrentState` together and discards a partial triple, and the zip cookie is
     session-scoped so it must be replayed *before any navigation* on every session. City for an
     arbitrary zip is not ours to invent, so `--login` captures what Carvana wrote after the operator

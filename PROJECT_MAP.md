@@ -9,7 +9,7 @@ Carvana matching given criteria, which is the best one to buy? It ranks by price
 against each vehicle's history reports, pulled from **two** vendors and merged pessimistically.
 
 Three front ends sit over **one** orchestration: a CLI, a local browser app, and GRID — a
-password-gated Vercel site that lets other people use it. The local app exists for the two things a
+PIN-gated Vercel site anyone can use with nothing installed. The local app exists for the two things a
 terminal does badly: dropdowns built from Carvana's own inventory taxonomy, and pasting in a report
 the scraper was blocked from fetching.
 
@@ -51,21 +51,23 @@ carvana_scraper/
 
 web/              GRID: the shared site. Separate deployable, own package.json. See web/README.md.
   schema.sql      workers / runs / run_reports. Apply once to Postgres.
-  src/lib/        db.ts (pg tagged template), auth.ts (tokens + pairing), options.ts (clamping),
+  src/lib/        db.ts (pg tagged template), auth.ts (worker tokens), gate.ts (site PIN, edge-safe),
+                  options.ts (clamping),
                   types.ts (mirrors AppState.snapshot() — keep in step with app/serialize.py).
-  src/app/api/    pair, runs, runs/[id], runs/[id]/report, worker/{register,claim,progress,complete}
-  src/app/        page.tsx (pair or submit), runs/[id]/page.tsx (live then final), globals.css
-  src/components/ SearchForm, PairPanel, GridSlot, StartLights
+  src/app/api/    gate, runs, runs/[id], runs/[id]/report, worker/{register,claim,progress,complete}
+  middleware.ts   Site PIN gate. Fails closed. /api/worker/* exempt (bearer-authenticated).
+  src/app/        page.tsx (submit), gate/ (PIN), runs/[id]/ (live then final), globals.css
+  src/components/ SearchForm, GridSlot, StartLights
 
 tools/extract_taxonomy.py   Builds config/carvana-taxonomy.json from a saved or live /cars page.
 config/scoring.json         Weights + disqualifier toggles. Tunable without code changes.
 config/carvana-taxonomy.json  Committed dropdown data: 40 makes -> 527 models + bounds.
                               NOTE: makes have no `slug` — only models do.
 docs/RECON.md               Verified site behaviour and the evidence trail. Read before site changes.
-docs/SETUP.md               End-user onboarding for a GRID worker.
+docs/SETUP.md               How to run the machine that serves the site.
 tests/                      255 tests, all offline. See "Testing" below.
 run-app.command             Double-clickable launcher for the local app.
-setup.command               Double-clickable first-run setup for a GRID worker.
+setup.command               Double-clickable first-run setup for the scraping machine.
 .tmp/*.py                   Throwaway recon probes. Not package code; safe to delete.
 ```
 
@@ -90,15 +92,18 @@ GRID: worker.main -> Client.claim -> worker.run_one
       browser polls GET /api/runs/[id] every 2s
 ```
 
-**GRID's pairing**, which exists because the shared site password identifies a *person allowed in*,
-not a *machine*:
+**GRID's two secrets**, answering two different questions:
 
 ```
-worker first run -> .worker-token (0600) -> POST /api/worker/register -> pairing code "ABC123"
-operator types it on the site -> POST /api/pair -> owner_key in localStorage
-POST /api/runs {owner_key} -> run tagged with that worker_id
-POST /api/worker/claim {Bearer token} -> only that worker's queued runs, FOR UPDATE SKIP LOCKED
+person  -> site PIN -> POST /api/gate -> HMAC cookie -> middleware lets pages + browser APIs through
+machine -> .worker-token (0600) -> POST /api/worker/register -> Bearer on /api/worker/* (PIN-exempt)
+
+submit:  POST /api/runs            -> run inserted with worker_id NULL (belongs to the queue)
+claim:   POST /api/worker/claim    -> oldest queued run, any worker, FOR UPDATE SKIP LOCKED
 ```
+
+Nobody installs anything to *use* the site. One machine somewhere runs the worker; everyone else
+just needs the link and the PIN.
 
 **The four stages**, in `pipeline.py`:
 
@@ -179,7 +184,7 @@ POST /api/review -> runner.start_review -> review.select_vehicles (top 5 rankabl
 - **Never auto-solve a challenge.** Detect, alert, wait for a human.
 - **`browser.detect_challenge` is for report pages only.** It false-positives on carvana.com; see
   `docs/RECON.md` §(d1). On a Carvana page, validate the extraction outcome instead.
-- The full list is `CLAUDE.md` — 16 numbered invariants. Read them before changing behaviour.
+- The full list is `CLAUDE.md` — 17 numbered invariants. Read them before changing behaviour.
 
 ---
 

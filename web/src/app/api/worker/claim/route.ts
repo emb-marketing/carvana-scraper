@@ -1,9 +1,12 @@
 /**
- * Hand a worker its next job.
+ * Hand a worker the next job in the queue.
  *
- * The claim is a single atomic statement. `for update skip locked` matters for the case of one
- * person running two machines on the same token: without it both could read the same queued row
- * and run the same search twice through two browser profiles.
+ * Jobs belong to the pool, not to a machine. Whichever worker is running takes the next one, which
+ * is what lets a visitor use the site with nothing installed — they submit, and the laptop that is
+ * actually running does the browser work.
+ *
+ * The claim is a single atomic statement. `for update skip locked` is what makes several workers
+ * safe: without it two could read the same queued row and run the same search twice.
  */
 import { NextRequest } from "next/server";
 
@@ -19,10 +22,10 @@ export async function POST(request: NextRequest) {
   if (!worker) return error("unknown worker token", 401);
 
   const rows = (await sql`
-    update runs set status = 'running', claimed_at = now()
+    update runs set status = 'running', claimed_at = now(), worker_id = ${worker.id}
     where id = (
       select id from runs
-      where worker_id = ${worker.id} and status = 'queued'
+      where status = 'queued'
       order by created_at
       limit 1
       for update skip locked

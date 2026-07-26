@@ -12,9 +12,10 @@ wherever the operator actually is.
 the browser renders, so there is no serialization code here and the web UI consumes the same
 contract the local app does.
 
-**Jobs are scoped to this machine.** Every worker holds its own token; the server hands it only
-jobs belonging to that token's worker. The site password says *someone* may be here, not *which
-laptop* a job is for — pairing supplies that.
+**Jobs belong to the queue, not to a machine.** Whichever worker is running takes the next one, so
+a visitor to the site needs nothing installed — they submit, and the laptop actually running this
+does the browser work. The worker token authenticates the machine; the site PIN authenticates the
+person, and neither substitutes for the other.
 
 Networking is `urllib.request`, so the "Playwright only" dependency rule still holds.
 
@@ -340,15 +341,14 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def _announce(info: dict, base_url: str) -> None:
-    """Tell the operator whether this machine still needs pairing."""
-    if info.get("paired"):
-        print(f"[worker] paired as {info.get('label')!r}. Waiting for jobs…")
-        return
+    """Confirm this machine is now the one serving the site."""
+    queued = info.get("queued") or 0
     print("\n" + "=" * 66)
-    print("  This machine is not paired yet.")
-    print(f"  1. Open  {base_url}")
-    print(f"  2. Enter pairing code:  {info.get('pairing_code')}")
-    print("  The code expires in 15 minutes; restart this worker for a fresh one.")
+    print(f"  Running as {info.get('label')!r}.")
+    print(f"  {base_url} can now run searches — anyone with the PIN, no install.")
+    print(f"  {queued} search(es) already waiting." if queued
+          else "  Queue is empty. Waiting for searches…")
+    print("  Leave this window open. Ctrl-C to stop.")
     print("=" * 66 + "\n")
 
 

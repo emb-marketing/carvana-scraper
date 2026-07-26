@@ -99,20 +99,29 @@ runs their own worker.
 python3 -m carvana_scraper.worker      # on each person's own laptop
 ```
 
-The worker prints a six-character pairing code on first run; enter it once on the site and that
-browser is bound to that machine. From then on, searches submitted there are claimed only by that
-worker, run against its own Chrome profile and IP, and published back with progress, the ranking,
-the manifest and the report text.
+**Anyone with the link and the PIN can use it with nothing installed.** They open the site, enter
+the PIN, pick a make and model, and submit. The job goes to the queue; whichever machine is running
+the worker claims it, runs it against that machine's Chrome profile and IP, and publishes back
+progress, the ranking, the manifest and the report text.
+
+So there is exactly one thing to run, on one machine — yours, or whoever's is convenient:
+
+Leave that window open and the site is live for everyone. Close it and searches simply queue until
+a machine comes back.
 
 `carvana_scraper/worker.py` is a **third thin caller** of `pipeline.execute`, alongside `cli.run`
 and the app's runner. It reuses `AppState` wholesale — `record_event` is already the emit
 callback shape and `snapshot()` is already the payload a browser wants — so the website renders
 exactly the contract the local app renders, and there is no second serialization to drift.
 
-Setup for a new machine is [`docs/SETUP.md`](docs/SETUP.md); deploying the site is
-[`web/README.md`](web/README.md). Access is Vercel Deployment Protection — one shared password —
-plus a per-machine worker token, because the password says *someone* is allowed in and cannot say
-*which laptop* a job belongs to.
+Access is a **site PIN** checked by Next.js middleware, plus a per-machine **worker token** on the
+worker routes. Vercel's own Deployment Protection would have been simpler, but password protection
+needs the Advanced Deployment Protection add-on and Vercel Authentication is not offered for
+production on this plan — both were refused at the API, so the gate lives in the app. It fails
+closed: with `SITE_PIN` unset the site returns 503 rather than serving.
+
+Running a machine is [`docs/SETUP.md`](docs/SETUP.md); deploying the site is
+[`web/README.md`](web/README.md).
 
 ---
 

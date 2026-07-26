@@ -305,11 +305,21 @@ class MainLoopTests(unittest.TestCase):
             self.assertEqual(worker.main(["--once"]), 0)
         run_one.assert_called_once()
 
-    def test_an_unpaired_worker_prints_its_pairing_code(self) -> None:
+    def test_startup_names_the_site_and_the_waiting_queue(self) -> None:
+        """The operator has to know their machine is now the one serving the site."""
         buffer: list[str] = []
         with mock.patch("builtins.print", lambda *a, **k: buffer.append(" ".join(map(str, a)))):
-            worker._announce({"paired": False, "pairing_code": "ABC123"}, "https://example.test")
-        self.assertIn("ABC123", "\n".join(buffer))
+            worker._announce({"label": "studio-mbp", "queued": 3}, "https://grid.example")
+        printed = "\n".join(buffer)
+        self.assertIn("studio-mbp", printed)
+        self.assertIn("https://grid.example", printed)
+        self.assertIn("3 search(es) already waiting", printed)
+
+    def test_startup_says_so_when_the_queue_is_empty(self) -> None:
+        buffer: list[str] = []
+        with mock.patch("builtins.print", lambda *a, **k: buffer.append(" ".join(map(str, a)))):
+            worker._announce({"label": "studio-mbp", "queued": 0}, "https://grid.example")
+        self.assertIn("Queue is empty", "\n".join(buffer))
 
 
 if __name__ == "__main__":

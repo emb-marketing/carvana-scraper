@@ -12,6 +12,9 @@ out/
 .env
 .env.local
 
+# Site PIN + session secret + Vercel bypass, written during deploy setup. Never commit.
+.grid-secrets.txt
+
 # VIN cache (SQLite) + archived raw report payloads
 cache/
 
@@ -46,3 +49,6 @@ service-account*.json
 *.key
 *.p12
 *.pem
+
+# Vercel CLI link state (project + org ids)
+.vercel/

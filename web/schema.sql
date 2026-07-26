@@ -8,27 +8,21 @@
 
 create extension if not exists pgcrypto;
 
--- One row per paired machine. The token is this machine's identity; only its sha256 is stored, so
--- a database leak does not let anyone claim someone else's jobs.
+-- One row per machine running a worker. The token is that machine's identity; only its sha256 is
+-- stored, so a database leak does not let anyone publish results as a worker.
 create table if not exists workers (
   id                 uuid primary key default gen_random_uuid(),
   token_hash         text not null unique,
   label              text not null,
-  owner_key_hash     text,
-  pairing_code       text,
-  pairing_expires_at timestamptz,
   created_at         timestamptz not null default now(),
   last_seen_at       timestamptz
 );
 
--- Pairing codes are short and therefore guessable at volume; they are looked up directly, so an
--- index keeps that cheap, and they are cleared the moment they are redeemed.
-create index if not exists workers_pairing_code_idx
-  on workers (pairing_code) where pairing_code is not null;
-
 create table if not exists runs (
+  -- worker_id is NULL until a worker claims the job. Jobs are addressed to the pool, not to a
+  -- machine: whichever worker is running takes the next one, so a visitor needs nothing installed.
   id           uuid primary key default gen_random_uuid(),
-  worker_id    uuid not null references workers(id) on delete cascade,
+  worker_id    uuid references workers(id) on delete set null,
   created_at   timestamptz not null default now(),
   claimed_at   timestamptz,
   finished_at  timestamptz,
@@ -41,7 +35,7 @@ create table if not exists runs (
   error        jsonb
 );
 
-create index if not exists runs_queue_idx on runs (worker_id, status, created_at);
+create index if not exists runs_queue_idx on runs (status, created_at);
 create index if not exists runs_recent_idx on runs (created_at desc);
 
 create table if not exists run_reports (
