@@ -1,6 +1,6 @@
 # PROJECT_MAP — carvana-scraper
 
-**Last updated:** 2026-07-25
+**Last updated:** 2026-07-26
 
 ## What this is
 
@@ -69,6 +69,8 @@ config/carvana-taxonomy.json  Committed dropdown data: 40 makes -> 527 models + 
 docs/RECON.md               Verified site behaviour and the evidence trail. Read before site changes.
 docs/SETUP.md               How to run the machine that serves the site.
 tests/                      255 tests, all offline. See "Testing" below.
+install.sh                  Public one-command install: curl … | bash. Downloads, installs, runs the app.
+                            Reads /dev/tty, because under `curl | bash` stdin is the script itself.
 run-app.command             Double-clickable launcher for the local app.
 setup.command               Double-clickable first-run setup for the scraping machine.
 .tmp/*.py                   Throwaway recon probes. Not package code; safe to delete.
@@ -246,7 +248,10 @@ These need a human at the keyboard and are covered only by stubbed tests:
 
 ## Git
 
-Remote `emb-marketing/carvana-scraper` (private). **`main` only**, no `dev` branch — solo personal
-project, following the `ioverlander-kml` precedent. Never commit `.browser-profile/`, `cache/` or
-`out/`; all three are gitignored. `config/carvana-taxonomy.json` is derived from a gitignored fixture
-and **must** stay committed, or a fresh clone has no dropdown data.
+Remote `emb-marketing/carvana-scraper`, **public** since 2026-07-26 — `install.sh` at the root is the
+one-command install, and it is what "somebody else can run this" means now. The GRID site's URL and
+PIN remain unpublished: they exist only inside the gitignored `grid-worker.tar.gz` the site builds,
+and must never be committed. **`main` only**, no `dev` branch — solo personal project, following the
+`ioverlander-kml` precedent. Never commit `.browser-profile/`, `cache/` or `out/`; all three are
+gitignored. `config/carvana-taxonomy.json` is derived from a gitignored fixture and **must** stay
+committed, or a fresh clone has no dropdown data.

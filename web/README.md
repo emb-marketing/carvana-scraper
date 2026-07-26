@@ -11,8 +11,10 @@ per-visitor pairing.
 
 `scripts/bundle-worker.mjs` builds `public/grid-worker.tar.gz` at predev/prebuild: the Python
 package, `config/`, and a `start.command` + `.env` carrying `VERCEL_PROJECT_PRODUCTION_URL`. The
-repo is private, so a download beats "clone it". The archive is gitignored and stays behind the
-PIN, which keeps the source from being public.
+source is public — `install.sh` at the repo root installs it in one command — but **this
+deployment's URL is not**. It exists only inside the archive, which is gitignored and stays behind
+the PIN. That is what the download buys over "clone it and set the URL": the URL is already correct,
+and it is published nowhere.
 
 Running the scraping machine: [`../docs/SETUP.md`](../docs/SETUP.md).
 

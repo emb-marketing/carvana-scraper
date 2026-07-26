@@ -11,10 +11,36 @@ laptop.
 
 ---
 
+## Install
+
+One command. It checks Python and Chrome, downloads the code, installs Playwright, opens Chrome once
+so you can set your delivery ZIP, and starts the app.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/emb-marketing/carvana-scraper/main/install.sh | bash
+```
+
+Needs **macOS or Linux**, **Python 3.11+**, and **real Google Chrome** — there is no browser to
+download, because Playwright drives the Chrome you already have. It lands in `~/carvana-scraper`
+(set `CARVANA_DIR` to change that) and is safe to re-run: it updates in place and never touches your
+Chrome profile, report cache or `.env`.
+
+By hand, if you would rather read before you run:
+
+```bash
+git clone https://github.com/emb-marketing/carvana-scraper.git
+cd carvana-scraper
+python3 -m pip install --user -r requirements.txt
+python3 -m carvana_scraper --login      # sets your delivery ZIP — see below, it is not optional
+./run-app.command
+```
+
+---
+
 ## Quick start — the app
 
 ```bash
-cd ~/projects/carvana-scraper
+cd ~/carvana-scraper
 ./run-app.command          # or: python3 -m carvana_scraper.app
 ```
 
@@ -129,10 +155,12 @@ needs the Advanced Deployment Protection add-on and Vercel Authentication is not
 production on this plan — both were refused at the API, so the gate lives in the app. It fails
 closed: with `SITE_PIN` unset the site returns 503 rather than serving.
 
-**Getting a machine running is a download, not a clone.** The repo is private, so the site
-generates `grid-worker.tar.gz` at build time — the package, the config, and a launcher with the
-deployment's URL already baked in. The `/setup` page has the link and a one-line command. Details
-in [`docs/SETUP.md`](docs/SETUP.md); deploying the site is [`web/README.md`](web/README.md).
+**Getting a machine running is still a download, not a clone.** The code is public, but this
+deployment's URL is not — so the site generates `grid-worker.tar.gz` at build time, holding the
+package, the config, and a launcher with the URL already baked in. That leaves nothing to configure
+after unpacking and keeps the URL behind the PIN. The `/setup` page has the link and a one-line
+command. Details in [`docs/SETUP.md`](docs/SETUP.md); deploying the site is
+[`web/README.md`](web/README.md).
 
 ---
 
@@ -375,6 +403,11 @@ known group behind a password, not a change of view about publishing report data
 made public, indexed, or handed to anyone outside that group. Every other commitment above is
 unchanged: the fetching is still sequential, still capped, still cached so no report is pulled
 twice, and still stops for a human at every challenge.
+
+**Publishing the source does not extend to any of that.** The code is public; the reports are not.
+No fetched report has ever been committed — `cache/` and `out/` are gitignored and always have been
+— and neither the site's URL nor its PIN is in this repository. What a reader of this repo gets is a
+tool they can point at their own purchase, with their own Chrome profile and their own IP.
 
 Volume does not increase because the site exists. Each person runs their own worker against their
 own profile and IP, doing what they would have done by hand for their own purchase.

@@ -1,10 +1,11 @@
 /**
  * Bundle the worker into a downloadable archive, at build time.
  *
- * The repo is private, so "git clone it" is not something you can send to a friend. Instead the
- * site hands out a tarball containing just what a worker needs — the Python package, the scoring
- * config, the taxonomy, and a launcher with **this deployment's URL already baked in**, so there
- * is nothing to configure after unpacking.
+ * The source is public, but this deployment's URL is not — so "git clone it and set the URL" would
+ * mean either publishing the URL or making someone read it off one screen and type it into another.
+ * Instead the site hands out a tarball containing just what a worker needs — the Python package, the
+ * scoring config, the taxonomy, and a launcher with **this deployment's URL already baked in** — so
+ * there is nothing to configure after unpacking and the URL never leaves the PIN.
  *
  * Staged into a directory and tarred whole rather than using `--transform`, which GNU tar has and
  * macOS's bsdtar does not — this has to produce the same archive on a laptop and on Vercel.

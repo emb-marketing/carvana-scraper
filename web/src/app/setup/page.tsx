@@ -5,9 +5,8 @@ import { useState } from "react";
 /**
  * How to run searches on your own machine: one download, one command.
  *
- * The repo is private, so "clone it" is not something you can send to someone. The archive is
- * generated at build time with this deployment's URL already inside it, so there is nothing to
- * configure after unpacking.
+ * The source is public, but this site's URL is not. The archive is generated at build time with the
+ * URL already inside it, so there is nothing to configure after unpacking and nothing to publish.
  */
 const COMMAND = "cd ~/Downloads && tar xzf grid-worker.tar.gz && cd grid-worker && ./start.command";
 

@@ -119,6 +119,11 @@ These encode findings that cost real investigation. Do not "simplify" them away.
     used its picker. `docs/RECON.md` §(a1) has the five observations. This **corrects** the earlier
     claim that the pricing zip could not be set — when a documented finding turns out to be wrong,
     reverify and rewrite it rather than working around it.
+18. **`install.sh` reads `/dev/tty`, never stdin.** It is meant to be run as `curl … | bash`, where
+    stdin *is* the script — so a prompt on stdin consumes script text, and `browser.login()`'s bare
+    `input()` raises `EOFError` there (`browser.py` says so at the call site). Hence `--login < $TTY`,
+    and the graceful degradation to printing the commands when no terminal exists at all. Do not
+    "simplify" the redirect away; it fails only in the one invocation the file exists to support.
 
 ## Layout
 | File | Purpose |
@@ -142,6 +147,7 @@ These encode findings that cost real investigation. Do not "simplify" them away.
 | `carvana_scraper/models.py` | Shared dataclasses + the completeness contract. |
 | `config/scoring.json` | Weights and disqualifier toggles. Tunable without code changes. |
 | `docs/RECON.md` | Verified site behaviour + the evidence trail. Read before site-facing changes. |
+| `install.sh` | Public one-command install (`curl … \| bash`). Reads `/dev/tty`, never stdin — see below. |
 | `.tmp/*.py` | Throwaway recon probes. Not part of the package; safe to delete. |
 
 ## Testing
@@ -164,7 +170,12 @@ have to. When a live check is genuinely needed, `--search-only --limit 3 --max-p
 page load and no report fetches.
 
 ## Git
-- **Remote:** `emb-marketing/carvana-scraper` (private)
+- **Remote:** `emb-marketing/carvana-scraper` — **public** since 2026-07-26.
+- **The code is public; the site and its data are not.** Assume every commit is world-readable.
+  The GRID deployment's URL, its `SITE_PIN`, and any fetched report text stay out of the repo: the
+  URL lives only in the gitignored `grid-worker.tar.gz` the site builds, and reports live only in
+  the gitignored `cache/`. Do not "helpfully" bake the site URL into `install.sh` or a doc — that
+  would publish the location of a PIN-gated site holding third-party report text.
 - **Default branch:** `main` — personal solo project, following the `ioverlander-kml` precedent.
   No `dev` branch.
 - Never commit `.browser-profile/`, `cache/`, or `out/`. Already gitignored — verify with
