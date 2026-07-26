@@ -32,20 +32,22 @@ everyone; close them all and searches queue until one returns.
 | **macOS** | The launcher is a `.command` file. Linux and Windows work; run the Python directly. |
 | **Python 3.11+** | `python3 --version`. macOS ships one; otherwise [python.org](https://www.python.org/downloads/). |
 | **Google Chrome** | The real one, from [google.com/chrome](https://www.google.com/chrome/). Not Chromium, not Brave. |
-| **The site URL** | e.g. `https://grid-xi-nine.vercel.app` |
+| **The site** | You need the link and the PIN to download the worker in the first place. |
 
 ---
 
 ## Setup
 
+Open the site, go to **Set up**, and download `grid-worker.tar.gz`. Then either double-click
+`start.command` after unzipping, or paste this:
+
 ```bash
-git clone git@github.com:emb-marketing/carvana-scraper.git
-cd carvana-scraper
-./setup.command          # or double-click it in Finder
+cd ~/Downloads && tar xzf grid-worker.tar.gz && cd grid-worker && ./start.command
 ```
 
-It checks Python and Chrome, installs Playwright, asks for the site URL, opens Chrome once so you
-can set your delivery ZIP, and then starts the worker. When you see
+The site URL is already inside the download, so there is nothing to configure. It checks Python and
+Chrome, installs Playwright, opens Chrome once so you can set your delivery ZIP, and starts the
+worker. When you see
 
 ```
 Running as 'your-machine'.
@@ -96,9 +98,11 @@ your own machine means running the scraper on it rather than just opening a tab.
 ## Day to day
 
 ```bash
-cd carvana-scraper
-python3 -m carvana_scraper.worker
+cd ~/Downloads/grid-worker && ./start.command
 ```
+
+or, equivalently, `python3 -m carvana_scraper.worker` from that folder — the download ships a
+`.env` holding the site URL, so both work.
 
 | Flag | Effect |
 |---|---|
@@ -129,8 +133,8 @@ you at the keyboard.
 
 ## Troubleshooting
 
-**"CARVANA_WEB_URL is not set"** — the `.env` did not load. Re-run `./setup.command`, or
-`export CARVANA_WEB_URL=https://…` before starting the worker.
+**"CARVANA_WEB_URL is not set"** — you are running from a folder with no `.env`. Use
+`./start.command`, or `CARVANA_WEB_URL=https://… python3 -m carvana_scraper.worker`.
 
 **"another Chrome is using the dedicated profile"** — the local app or a second worker is running.
 Close it. The error text includes the exact `rm -f` command if a crash left a stale lock.

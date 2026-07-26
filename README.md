@@ -129,8 +129,10 @@ needs the Advanced Deployment Protection add-on and Vercel Authentication is not
 production on this plan — both were refused at the API, so the gate lives in the app. It fails
 closed: with `SITE_PIN` unset the site returns 503 rather than serving.
 
-Running a machine is [`docs/SETUP.md`](docs/SETUP.md); deploying the site is
-[`web/README.md`](web/README.md).
+**Getting a machine running is a download, not a clone.** The repo is private, so the site
+generates `grid-worker.tar.gz` at build time — the package, the config, and a launcher with the
+deployment's URL already baked in. The `/setup` page has the link and a one-line command. Details
+in [`docs/SETUP.md`](docs/SETUP.md); deploying the site is [`web/README.md`](web/README.md).
 
 ---
 

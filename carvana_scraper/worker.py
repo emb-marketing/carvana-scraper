@@ -61,6 +61,42 @@ class WorkerError(RuntimeError):
     """A request to the web app failed in a way the operator needs to see."""
 
 
+# ---- configuration ---------------------------------------------------------------------------
+
+
+def load_env_file(path: Path | str | None = None) -> dict[str, str]:
+    """Read `KEY=VALUE` lines from the `.env` beside the package.
+
+    The launcher exports these itself, but the docs also tell people to run
+    `python3 -m carvana_scraper.worker` directly for day-to-day use — and that failed with
+    "CARVANA_WEB_URL is not set" because the URL only existed inside the launcher. Reading the file
+    here makes both routes work.
+
+    Deliberately not a dotenv dependency: this is three lines of parsing against the
+    Playwright-only rule. Never raises — an unreadable file just means no values.
+    """
+    target = Path(path if path is not None else PROJECT_ROOT / ".env")
+    values: dict[str, str] = {}
+    try:
+        for line in target.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, value = line.partition("=")
+            values[key.strip()] = value.strip().strip("'\"")
+    except (OSError, UnicodeDecodeError):
+        return {}
+    return values
+
+
+def setting(name: str, env_file: dict[str, str]) -> str:
+    """A setting from the real environment, falling back to the `.env` file.
+
+    The environment wins so `CARVANA_WEB_URL=… python3 -m …` can override a stale file.
+    """
+    return (os.environ.get(name) or env_file.get(name) or "").strip()
+
+
 # ---- token ---------------------------------------------------------------------------------
 
 
@@ -367,13 +403,17 @@ def main(argv: list[str] | None = None) -> int:
     """Poll for jobs until interrupted. Returns a process exit code."""
     args = build_parser().parse_args(argv)
 
-    base_url = os.environ.get("CARVANA_WEB_URL", "").strip()
+    env_file = load_env_file()
+    base_url = setting("CARVANA_WEB_URL", env_file)
     if not base_url:
-        print("CARVANA_WEB_URL is not set — point it at the deployed app.", file=sys.stderr)
+        print("CARVANA_WEB_URL is not set, and no .env beside the package has it.\n"
+              "Run ./start.command (or ./setup.command), or set it yourself:\n"
+              "  CARVANA_WEB_URL=https://… python3 -m carvana_scraper.worker",
+              file=sys.stderr)
         return 2
 
     client = Client(base_url, load_or_create_token(),
-                    os.environ.get("VERCEL_AUTOMATION_BYPASS_SECRET") or None)
+                    setting("VERCEL_AUTOMATION_BYPASS_SECRET", env_file) or None)
     try:
         _announce(client.register(socket.gethostname()), client.base_url)
     except WorkerError as exc:

@@ -91,6 +91,36 @@ class TokenTests(unittest.TestCase):
         self.assertTrue(self.path.is_file())
 
 
+# ---- configuration -------------------------------------------------------------------------
+
+
+class EnvFileTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.dir = tempfile.TemporaryDirectory()
+        self.addCleanup(self.dir.cleanup)
+        self.path = Path(self.dir.name) / ".env"
+
+    def test_parses_key_value_lines_ignoring_comments_and_blanks(self) -> None:
+        self.path.write_text("# a comment\n\nCARVANA_WEB_URL=https://x.test\nA='q'\nB=\"r\"\n")
+        values = worker.load_env_file(self.path)
+        self.assertEqual(values["CARVANA_WEB_URL"], "https://x.test")
+        self.assertEqual(values["A"], "q")
+        self.assertEqual(values["B"], "r")
+
+    def test_a_missing_file_is_not_an_error(self) -> None:
+        self.assertEqual(worker.load_env_file(Path(self.dir.name) / "nope"), {})
+
+    def test_the_real_environment_wins_over_the_file(self) -> None:
+        """So `CARVANA_WEB_URL=… python3 -m …` can override a stale bundled file."""
+        with mock.patch.dict(worker.os.environ, {"K": "from-env"}, clear=False):
+            self.assertEqual(worker.setting("K", {"K": "from-file"}), "from-env")
+
+    def test_the_file_is_used_when_the_environment_is_unset(self) -> None:
+        with mock.patch.dict(worker.os.environ, {}, clear=False):
+            worker.os.environ.pop("K_UNSET", None)
+            self.assertEqual(worker.setting("K_UNSET", {"K_UNSET": "from-file"}), "from-file")
+
+
 # ---- transport -----------------------------------------------------------------------------
 
 
@@ -289,8 +319,20 @@ class MainLoopTests(unittest.TestCase):
         self.addCleanup(self.token.stop)
 
     def test_missing_base_url_exits_with_a_message(self) -> None:
-        with mock.patch.dict(worker.os.environ, {"CARVANA_WEB_URL": ""}, clear=False):
+        """`.env` is stubbed too — otherwise this reads the developer's real one and passes."""
+        with mock.patch.dict(worker.os.environ, {"CARVANA_WEB_URL": ""}, clear=False), \
+             mock.patch.object(worker, "load_env_file", return_value={}):
             self.assertEqual(worker.main(["--once"]), 2)
+
+    def test_the_base_url_can_come_from_the_env_file_alone(self) -> None:
+        """The download ships a .env, and the docs tell people to run the module directly."""
+        client = RecordingClient(claims=[])
+        with mock.patch.dict(worker.os.environ, {"CARVANA_WEB_URL": ""}, clear=False), \
+             mock.patch.object(worker, "load_env_file",
+                               return_value={"CARVANA_WEB_URL": "https://from-file.test"}), \
+             mock.patch.object(worker, "Client", return_value=client) as ctor:
+            self.assertEqual(worker.main(["--once"]), 0)
+        self.assertEqual(ctor.call_args[0][0], "https://from-file.test")
 
     def test_once_with_an_empty_queue_exits_zero(self) -> None:
         client = RecordingClient(claims=[])

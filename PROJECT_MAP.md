@@ -56,6 +56,8 @@ web/              GRID: the shared site. Separate deployable, own package.json. 
                   types.ts (mirrors AppState.snapshot() — keep in step with app/serialize.py).
   src/app/api/    gate, runs, runs/[id], runs/[id]/report, worker/{register,claim,progress,complete}
   src/app/link/   GET one-time link: binds this browser to the machine that printed it.
+  src/app/setup/  Download + copy-paste command for running a worker locally.
+  scripts/        copy-taxonomy.mjs, bundle-worker.mjs (builds the downloadable tarball)
   middleware.ts   Site PIN gate. Fails closed. /api/worker/* exempt (bearer-authenticated).
   src/app/        page.tsx (submit), gate/ (PIN), runs/[id]/ (live then final), globals.css
   src/components/ SearchForm, GridSlot, StartLights

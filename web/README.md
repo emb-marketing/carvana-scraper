@@ -9,6 +9,11 @@ and the results, and one machine somewhere runs `python3 -m carvana_scraper.work
 attached; whichever machine is running claims it. That is the whole design — do not reintroduce
 per-visitor pairing.
 
+`scripts/bundle-worker.mjs` builds `public/grid-worker.tar.gz` at predev/prebuild: the Python
+package, `config/`, and a `start.command` + `.env` carrying `VERCEL_PROJECT_PRODUCTION_URL`. The
+repo is private, so a download beats "clone it". The archive is gitignored and stays behind the
+PIN, which keeps the source from being public.
+
 Running the scraping machine: [`../docs/SETUP.md`](../docs/SETUP.md).
 
 ## Stack

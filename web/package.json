@@ -4,8 +4,8 @@
   "private": true,
   "description": "Shared queue and results UI for the carvana-scraper ranking pipeline.",
   "scripts": {
-    "predev": "node scripts/copy-taxonomy.mjs",
-    "prebuild": "node scripts/copy-taxonomy.mjs",
+    "predev": "node scripts/copy-taxonomy.mjs && node scripts/bundle-worker.mjs",
+    "prebuild": "node scripts/copy-taxonomy.mjs && node scripts/bundle-worker.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

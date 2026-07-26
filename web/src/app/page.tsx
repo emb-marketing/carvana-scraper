@@ -97,14 +97,18 @@ function Home() {
 
       {loaded && !mine && (
         <div className="card" style={{ marginBottom: 18 }}>
-          <div className="card-title">Want searches to run on your own laptop?</div>
-          <p className="muted small" style={{ marginTop: 0, marginBottom: 0 }}>
-            Optional — the site works without it. A web page cannot drive your browser profile, so
-            running searches locally means running the scraper itself: clone the repo and run{" "}
-            <code className="mono">./setup.command</code>. It prints a link; open that link once
-            and this browser is bound to that machine. See{" "}
-            <code className="mono">docs/SETUP.md</code>.
-          </p>
+          <div className="spread">
+            <div style={{ minWidth: 0 }}>
+              <div className="card-title" style={{ marginBottom: 6 }}>
+                Run searches on your own machine
+              </div>
+              <p className="muted small" style={{ margin: 0 }}>
+                Optional — one download and one command. Yours run on your laptop instead of
+                whoever else is online.
+              </p>
+            </div>
+            <a className="btn ghost" href="/setup">Set up</a>
+          </div>
         </div>
       )}
 
